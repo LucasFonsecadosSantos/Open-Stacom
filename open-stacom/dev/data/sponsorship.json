@@ -20,7 +20,8 @@
             youtube: "",
             linkedin: "",
             github: "",
-            spotify: ""
+            spotify: "",
+            instagram: ""
         },
         description: ""
     }

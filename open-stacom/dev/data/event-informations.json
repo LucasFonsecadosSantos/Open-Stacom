@@ -1,0 +1,43 @@
+{
+    name: "",
+    description: "",
+    logo: "",
+    keywords: "",
+    edition: "",
+    brief: "",
+    start-date: "",
+    end-date: "",
+    website: "",
+    event-type: "",
+    phone-list: [
+        {number: ""}
+    ],
+    powered-by: {
+        name: "",
+        brief: "",
+        avatar: "",
+        url: "",
+        email: "",
+        phone: "",
+        address: ""
+    }
+    location: {
+        address: "",
+        city: "",
+        state: "",
+        zip-code: "",
+        country: "",
+        local: ""
+    }
+    social-networks: {
+        facebook: "",
+        lattes: "",
+        twitter: "",
+        behance: "",
+        youtube: "",
+        linkedin: "",
+        github: "",
+        spotify: "",
+        instagram: ""
+    }
+}
