@@ -1,0 +1,27 @@
+[
+    {
+        key: "",
+        name: "",
+        avatar: "",
+        url: "",
+        video-url: "",
+        contact: {
+            phone: "",
+            email: ""
+        },
+        location: {
+            address: ""
+        },
+        social-networks: {
+            facebook: "",
+            lattes: "",
+            twitter: "",
+            behance: "",
+            youtube: "",
+            linkedin: "",
+            github: "",
+            spotify: ""
+        },
+        description: ""
+    }
+]
