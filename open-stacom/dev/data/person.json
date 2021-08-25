@@ -1,0 +1,41 @@
+{
+    key: "",
+    name: "",
+    avatar: "",
+    city: "",
+    contry: "",
+    phone: "",
+    email: "",
+    job: "",
+    academic-formation: {
+        graduating: {
+            year: "",
+            institute: "",
+            contry: "",
+            area: ""
+        },
+        master-degree: {
+            year: "",
+            institute: "",
+            contry: "",
+            area: ""
+        },
+        doctorate-degree: {
+            year: "",
+            institute: "",
+            contry: "",
+            area: ""
+        }
+    }
+    social-networks: {
+        facebook: "",
+        lattes: "",
+        twitter: "",
+        behance: "",
+        youtube: "",
+        linkedin: "",
+        github: "",
+        spotify: "",
+        instagram: ""
+    }
+}
