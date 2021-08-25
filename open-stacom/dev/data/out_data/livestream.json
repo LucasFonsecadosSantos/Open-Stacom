@@ -1,0 +1,17 @@
+[
+    {
+        key: "",
+        title: "",
+        brief: "",
+        image: "",
+        livestream-url: "",
+        begin-datetime: "",
+        end-datetime: "",
+        presenters: [
+            {key: ""}
+        ],
+        util-links: [
+            {url: ""}
+        ]
+    }
+]
