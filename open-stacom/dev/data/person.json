@@ -4,7 +4,7 @@
     avatar: "",
     city: "",
     contry: "",
-    tellphone: "",
+    phone: "",
     email: "",
     job: "",
     academic-formation: {
