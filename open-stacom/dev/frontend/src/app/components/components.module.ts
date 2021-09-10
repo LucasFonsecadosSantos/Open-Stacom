@@ -38,6 +38,7 @@ import {
   CommitteeFormComponent,
   CommitteeInfoComponent,
   CommitteeListComponent
+} from './committee';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -63,14 +64,14 @@ import {
     ScheduleFormComponent,
     ScheduleTableComponent,
 
-    PreviousEditionListComponent,
-    PreviousEditionFormComponent,
-    PreviousEditionInfoComponent,
-
     CommitteeFormComponent,
     CommitteeInfoComponent,
-    CommitteeListComponent
-  ],
+    CommitteeListComponent,
+
+    PreviousEditionListComponent,
+    PreviousEditionFormComponent,
+    PreviousEditionInfoComponent
+],
   exports: [
     FooterComponent,
     NavbarComponent,
