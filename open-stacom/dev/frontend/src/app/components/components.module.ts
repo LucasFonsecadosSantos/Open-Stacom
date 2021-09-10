@@ -29,6 +29,9 @@ import {
   ScheduleFormComponent,
   ScheduleTableComponent
 } from './schedule';
+import { PreviousEditionListComponent } from './previous-editions/previous-edition-list/previous-edition-list.component';
+import { PreviousEditionFormComponent } from './previous-editions/previous-edition-form/previous-edition-form.component';
+import { PreviousEditionInfoComponent } from './previous-editions/previous-edition-info/previous-edition-info.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
@@ -53,7 +56,10 @@ import {
     ActivityListComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent
+    ScheduleTableComponent,
+    PreviousEditionListComponent,
+    PreviousEditionFormComponent,
+    PreviousEditionInfoComponent
   ],
   exports: [
     FooterComponent,
