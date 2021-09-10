@@ -29,7 +29,15 @@ import {
   ScheduleFormComponent,
   ScheduleTableComponent
 } from './schedule';
-
+import {
+  PreviousEditionListComponent,
+  PreviousEditionFormComponent,
+  PreviousEditionInfoComponent
+} from './previous-editions';
+import {
+  CommitteeFormComponent,
+  CommitteeInfoComponent,
+  CommitteeListComponent
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -53,7 +61,15 @@ import {
     ActivityListComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent
+    ScheduleTableComponent,
+
+    PreviousEditionListComponent,
+    PreviousEditionFormComponent,
+    PreviousEditionInfoComponent,
+
+    CommitteeFormComponent,
+    CommitteeInfoComponent,
+    CommitteeListComponent
   ],
   exports: [
     FooterComponent,
@@ -76,7 +92,15 @@ import {
     ActivityFormComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent
+    ScheduleTableComponent,
+
+    PreviousEditionListComponent,
+    PreviousEditionFormComponent,
+    PreviousEditionInfoComponent,
+
+    CommitteeFormComponent,
+    CommitteeInfoComponent,
+    CommitteeListComponent
   ]
 })
 export class ComponentsModule {}
