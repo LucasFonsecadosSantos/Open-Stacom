@@ -1,112 +1,39 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { PagesModule } from 'src/app/pages';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
+import { ToastrModule } from 'ngx-toastr';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import { AppComponent } from "./app.component";
 import {
-  NavbarComponent,
-  FooterComponent,
-  HeaderComponent,
-  ContentComponent
+  AdminLayoutComponent,
+  AuthLayoutComponent
+} from "./layouts";
 
-} from './template';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import {
-  AboutComponent,
-  VersionComponent,
-  SponsorshipComponent,
-  PhotoGalleryComponent,
-  VideoGalleryComponent,
-  ScheduleComponent,
-  EventComponent,
-  HomeComponent,
-  ActivityComponent,
-  LivestreamComponent,
-  EventEditionTimelineComponent
-
-} from './pages';
-
-import {
-  ActivityRemoveService,
-  ActivityCreateService,
-  ActivityListService,
-  EventEditionTimelineCreateService,
-  EventEditionTimelineListService,
-  EventEditionTimelineRemoveService,
-  LivestreamCreateService,
-  LivestreamListService,
-  LivestreamRemoveService,
-  PersonCreateService,
-  PersonListService,
-  PersonRemoveService,
-  PhotoGalleryCreateService,
-  PhotoGalleryListService,
-  PhotoGalleryRemoveService,
-  ScheduleCreateService,
-  ScheduleListService,
-  ScheduleRemoveService,
-  SpeechesCreateService,
-  SpeechesListService,
-  SponsorRemoveService,
-  SponsorCreateService,
-  SponsorListService,
-  VideoGalleryCreateService,
-  VideoGalleryListService,
-  VideoGalleryRemoveService
-} from './services';
+import { AppRoutingModule } from "./app-routing.module";
+import { ComponentsModule } from "./components/components.module";
 @NgModule({
+  imports: [
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ComponentsModule,
+    NgbModule,
+    RouterModule,
+    AppRoutingModule,
+    PagesModule,
+    ToastrModule.forRoot()
+  ],
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    AboutComponent,
-    VersionComponent,
-    SponsorshipComponent,
-    PhotoGalleryComponent,
-    VideoGalleryComponent,
-    ScheduleComponent,
-    EventComponent,
-    HomeComponent,
-    ActivityComponent,
-    HeaderComponent,
-    ContentComponent,
-    LivestreamComponent,
-    EventEditionTimelineComponent
+    AdminLayoutComponent,
+    AuthLayoutComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    ActivityRemoveService,
-    ActivityCreateService,
-    ActivityListService,
-    EventEditionTimelineCreateService,
-    EventEditionTimelineListService,
-    EventEditionTimelineRemoveService,
-    LivestreamCreateService,
-    LivestreamListService,
-    LivestreamRemoveService,
-    PersonCreateService,
-    PersonListService,
-    PersonRemoveService,
-    PhotoGalleryCreateService,
-    PhotoGalleryListService,
-    PhotoGalleryRemoveService,
-    ScheduleCreateService,
-    ScheduleListService,
-    ScheduleRemoveService,
-    SpeechesCreateService,
-    SpeechesListService,
-    SponsorRemoveService,
-    SponsorCreateService,
-    SponsorListService,
-    SponsorRemoveService,
-    VideoGalleryCreateService,
-    VideoGalleryListService,
-    VideoGalleryRemoveService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
