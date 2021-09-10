@@ -29,10 +29,16 @@ import {
   ScheduleFormComponent,
   ScheduleTableComponent
 } from './schedule';
-import { PreviousEditionListComponent } from './previous-editions/previous-edition-list/previous-edition-list.component';
-import { PreviousEditionFormComponent } from './previous-editions/previous-edition-form/previous-edition-form.component';
-import { PreviousEditionInfoComponent } from './previous-editions/previous-edition-info/previous-edition-info.component';
-
+import {
+  PreviousEditionListComponent,
+  PreviousEditionFormComponent,
+  PreviousEditionInfoComponent
+} from './previous-editions';
+import {
+  CommitteeFormComponent,
+  CommitteeInfoComponent,
+  CommitteeListComponent
+} from './committee';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -57,10 +63,15 @@ import { PreviousEditionInfoComponent } from './previous-editions/previous-editi
 
     ScheduleFormComponent,
     ScheduleTableComponent,
+
+    CommitteeFormComponent,
+    CommitteeInfoComponent,
+    CommitteeListComponent,
+
     PreviousEditionListComponent,
     PreviousEditionFormComponent,
     PreviousEditionInfoComponent
-  ],
+],
   exports: [
     FooterComponent,
     NavbarComponent,
@@ -82,7 +93,15 @@ import { PreviousEditionInfoComponent } from './previous-editions/previous-editi
     ActivityFormComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent
+    ScheduleTableComponent,
+
+    PreviousEditionListComponent,
+    PreviousEditionFormComponent,
+    PreviousEditionInfoComponent,
+
+    CommitteeFormComponent,
+    CommitteeInfoComponent,
+    CommitteeListComponent
   ]
 })
 export class ComponentsModule {}
