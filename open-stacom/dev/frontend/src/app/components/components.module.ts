@@ -25,6 +25,10 @@ import {
   ActivityFormComponent,
   ActivityListComponent
 } from './activity';
+import {
+  ScheduleFormComponent,
+  ScheduleTableComponent
+} from './schedule';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
@@ -46,7 +50,10 @@ import {
 
     ActivityInfoComponent,
     ActivityFormComponent,
-    ActivityListComponent
+    ActivityListComponent,
+
+    ScheduleFormComponent,
+    ScheduleTableComponent
   ],
   exports: [
     FooterComponent,
@@ -66,7 +73,10 @@ import {
 
     ActivityInfoComponent,
     ActivityListComponent,
-    ActivityFormComponent
+    ActivityFormComponent,
+
+    ScheduleFormComponent,
+    ScheduleTableComponent
   ]
 })
 export class ComponentsModule {}
