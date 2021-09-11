@@ -53,6 +53,13 @@ import {
   PhotoGalleryFindService
 } from './photo-gallery';
 
+import {
+  VideoGalleryDeleteService,
+  VideoGalleryUpdateService,
+  VideoGalleryCreateService,
+  VideoGalleryFindService
+} from './video-gallery';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -94,6 +101,11 @@ import { CommonModule } from '@angular/common';
     PhotoGalleryUpdateService,
     PhotoGalleryCreateService,
     PhotoGalleryFindService,
+
+    VideoGalleryDeleteService,
+    VideoGalleryUpdateService,
+    VideoGalleryCreateService,
+    VideoGalleryFindService,
 
     PreviousEditionDeleteService,
     PreviousEditionUpdateService,
