@@ -2,22 +2,28 @@ import {
   PersonCreateService,
   PersonDeleteService,
   PersonFindService,
-  PersonListService
+  PersonUpdateService
 } from './person';
 
 import {
   ActivityFindService,
-  ActivityListService,
+  ActivityUpdateService,
   ActivityDeleteService,
   ActivityCreateService
 } from './activity';
 
 import {
   ScheduleFindService,
-  ScheduleListService,
+  ScheduleUpdateService,
   ScheduleDeleteService,
   ScheduleCreateService
 } from './schedule';
+
+import {
+  EventCreateService,
+  EventUpdateService,
+  EventFindService
+} from './event';
 
 
 import { NgModule } from '@angular/core';
@@ -31,7 +37,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   providers: [
-    PersonListService,
+    PersonUpdateService,
     PersonFindService,
     PersonDeleteService,
     PersonCreateService,
@@ -39,12 +45,16 @@ import { CommonModule } from '@angular/common';
     ActivityCreateService,
     ActivityDeleteService,
     ActivityFindService,
-    ActivityListService,
+    ActivityUpdateService,
 
     ScheduleFindService,
-    ScheduleListService,
+    ScheduleUpdateService,
     ScheduleDeleteService,
-    ScheduleCreateService
+    ScheduleCreateService,
+
+    EventCreateService,
+    EventUpdateService,
+    EventFindService
   ]
 })
 export class ServicesModule { }
