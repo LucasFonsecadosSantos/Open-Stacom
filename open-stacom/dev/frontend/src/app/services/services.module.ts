@@ -12,6 +12,14 @@ import {
   ActivityCreateService
 } from './activity';
 
+import {
+  ScheduleFindService,
+  ScheduleListService,
+  ScheduleDeleteService,
+  ScheduleCreateService
+} from './schedule';
+
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -31,7 +39,12 @@ import { CommonModule } from '@angular/common';
     ActivityCreateService,
     ActivityDeleteService,
     ActivityFindService,
-    ActivityListService
+    ActivityListService,
+
+    ScheduleFindService,
+    ScheduleListService,
+    ScheduleDeleteService,
+    ScheduleCreateService
   ]
 })
 export class ServicesModule { }
