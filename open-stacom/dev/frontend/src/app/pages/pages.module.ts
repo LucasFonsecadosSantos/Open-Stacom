@@ -14,7 +14,8 @@ import {
   VersioningComponent,
   ScheduleComponent,
   SponsorshipComponent,
-  PreviousEditionsComponent
+  PreviousEditionsComponent,
+  CallsComponent
 } from './';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     ScheduleComponent,
     VersioningComponent,
     SponsorshipComponent,
-    PreviousEditionsComponent
+    PreviousEditionsComponent,
+    CallsComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import {
     ScheduleComponent,
     VersioningComponent,
     SponsorshipComponent,
-    PreviousEditionsComponent
+    PreviousEditionsComponent,
+    CallsComponent
   ]
 })
 export class PagesModule { }

@@ -10,3 +10,4 @@ export * from './about';
 export * from './photo-gallery';
 export * from './video-gallery';
 export * from './event';
+export * from './calls';
