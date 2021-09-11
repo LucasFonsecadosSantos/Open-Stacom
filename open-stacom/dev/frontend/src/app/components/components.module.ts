@@ -52,6 +52,7 @@ import {
   VideoGalleryFormComponent,
   VideoGalleryViewModalComponent
 } from './video-gallery';
+import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -93,7 +94,9 @@ import {
     PhotoGalleryViewModalComponent,
 
     VideoGalleryFormComponent,
-    VideoGalleryViewModalComponent
+    VideoGalleryViewModalComponent,
+
+    WelcomeComponent
 ],
   exports: [
     FooterComponent,
@@ -134,7 +137,9 @@ import {
     PhotoGalleryViewModalComponent,
 
     VideoGalleryFormComponent,
-    VideoGalleryViewModalComponent
+    VideoGalleryViewModalComponent,
+
+    WelcomeComponent
   ]
 })
 export class ComponentsModule {}
