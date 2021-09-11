@@ -32,6 +32,13 @@ import {
   SponsorFindService
 } from './sponsor';
 
+import {
+  CallsDeleteService,
+  CallsUpdateService,
+  CallsCreateService,
+  CallsFindService
+} from './calls';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -63,6 +70,12 @@ import { CommonModule } from '@angular/common';
     SponsorUpdateService,
     SponsorDeleteService,
     SponsorCreateService,
+
+    CallsDeleteService,
+    CallsUpdateService,
+    CallsCreateService,
+    CallsFindService,
+
 
     EventCreateService,
     EventUpdateService,
