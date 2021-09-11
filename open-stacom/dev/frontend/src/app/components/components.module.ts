@@ -44,6 +44,10 @@ import {
   CallsInfoComponent,
   CallsFormComponent
 } from './calls';
+import {
+  PhotoGalleryFormComponent,
+  PhotoGalleryViewModalComponent
+} from './photo-gallery';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -79,7 +83,10 @@ import {
 
     CallsListComponent,
     CallsInfoComponent,
-    CallsFormComponent
+    CallsFormComponent,
+
+    PhotoGalleryFormComponent,
+    PhotoGalleryViewModalComponent
 ],
   exports: [
     FooterComponent,
@@ -114,7 +121,10 @@ import {
 
     CallsListComponent,
     CallsInfoComponent,
-    CallsFormComponent
+    CallsFormComponent,
+
+    PhotoGalleryFormComponent,
+    PhotoGalleryViewModalComponent
   ]
 })
 export class ComponentsModule {}
