@@ -25,6 +25,13 @@ import {
   EventFindService
 } from './event';
 
+import {
+  SponsorDeleteService,
+  SponsorUpdateService,
+  SponsorCreateService,
+  SponsorFindService
+} from './sponsor';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -51,6 +58,11 @@ import { CommonModule } from '@angular/common';
     ScheduleUpdateService,
     ScheduleDeleteService,
     ScheduleCreateService,
+
+    SponsorFindService,
+    SponsorUpdateService,
+    SponsorDeleteService,
+    SponsorCreateService,
 
     EventCreateService,
     EventUpdateService,
