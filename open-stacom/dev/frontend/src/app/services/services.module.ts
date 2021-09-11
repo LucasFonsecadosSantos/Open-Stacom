@@ -2,7 +2,16 @@ import {
   PersonCreateService,
   PersonDeleteService,
   PersonFindService,
-  PersonListService } from './person';
+  PersonListService
+} from './person';
+
+import {
+  ActivityFindService,
+  ActivityListService,
+  ActivityDeleteService,
+  ActivityCreateService
+} from './activity';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +26,12 @@ import { CommonModule } from '@angular/common';
     PersonListService,
     PersonFindService,
     PersonDeleteService,
-    PersonCreateService
+    PersonCreateService,
+
+    ActivityCreateService,
+    ActivityDeleteService,
+    ActivityFindService,
+    ActivityListService
   ]
 })
 export class ServicesModule { }
