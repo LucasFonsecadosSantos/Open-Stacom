@@ -39,6 +39,11 @@ import {
   CommitteeInfoComponent,
   CommitteeListComponent
 } from './committee';
+import {
+  CallsListComponent,
+  CallsInfoComponent,
+  CallsFormComponent
+} from './calls';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -70,7 +75,11 @@ import {
 
     PreviousEditionListComponent,
     PreviousEditionFormComponent,
-    PreviousEditionInfoComponent
+    PreviousEditionInfoComponent,
+
+    CallsListComponent,
+    CallsInfoComponent,
+    CallsFormComponent
 ],
   exports: [
     FooterComponent,
@@ -101,7 +110,11 @@ import {
 
     CommitteeFormComponent,
     CommitteeInfoComponent,
-    CommitteeListComponent
+    CommitteeListComponent,
+
+    CallsListComponent,
+    CallsInfoComponent,
+    CallsFormComponent
   ]
 })
 export class ComponentsModule {}
