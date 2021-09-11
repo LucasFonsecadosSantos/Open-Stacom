@@ -33,6 +33,13 @@ import {
 } from './sponsor';
 
 import {
+  PreviousEditionDeleteService,
+  PreviousEditionUpdateService,
+  PreviousEditionCreateService,
+  PreviousEditionFindService
+} from './previous-edition';
+
+import {
   CallsDeleteService,
   CallsUpdateService,
   CallsCreateService,
@@ -76,6 +83,10 @@ import { CommonModule } from '@angular/common';
     CallsCreateService,
     CallsFindService,
 
+    PreviousEditionDeleteService,
+    PreviousEditionUpdateService,
+    PreviousEditionCreateService,
+    PreviousEditionFindService,
 
     EventCreateService,
     EventUpdateService,
