@@ -46,6 +46,13 @@ import {
   CallsFindService
 } from './calls';
 
+import {
+  PhotoGalleryDeleteService,
+  PhotoGalleryUpdateService,
+  PhotoGalleryCreateService,
+  PhotoGalleryFindService
+} from './photo-gallery';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -82,6 +89,11 @@ import { CommonModule } from '@angular/common';
     CallsUpdateService,
     CallsCreateService,
     CallsFindService,
+
+    PhotoGalleryDeleteService,
+    PhotoGalleryUpdateService,
+    PhotoGalleryCreateService,
+    PhotoGalleryFindService,
 
     PreviousEditionDeleteService,
     PreviousEditionUpdateService,
