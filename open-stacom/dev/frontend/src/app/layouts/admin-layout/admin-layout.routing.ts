@@ -11,7 +11,8 @@ import {
   ActivityComponent,
   ScheduleComponent,
   VersioningComponent,
-  PreviousEditionsComponent
+  PreviousEditionsComponent,
+  CallsComponent
 } from "../../pages";
 import { IconsComponent } from "../../pages/icons/icons.component";
 import { MapComponent } from "../../pages/map/map.component";
@@ -30,6 +31,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "about", component: AboutComponent },
 
   { path: "pessoa", component: PersonComponent },
+  { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
 
   { path: "evento", component: EventComponent },
@@ -41,6 +43,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "videos", component: VideoGalleryComponent },
   { path: "video-gallery", component: VideoGalleryComponent },
 
+  { path: "about", component: AboutComponent },
+  { path: "sobre", component: AboutComponent },
+
   { path: "versionamento", component: VersioningComponent },
   { path: "versioning", component: VersioningComponent },
 
@@ -49,6 +54,10 @@ export const AdminLayoutRoutes: Routes = [
 
   { path: "patrocinadores", component: SponsorshipComponent },
   { path: "sponsorship", component: SponsorshipComponent },
+
+  { path: "calls", component: CallsComponent },
+  { path: "chamadas", component: CallsComponent },
+  { path: "prazos", component: CallsComponent },
 
   { path: "programacao", component: ScheduleComponent },
   { path: "trilhas", component: ScheduleComponent },
