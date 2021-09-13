@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+  - "9"
+
+dist: trusty
+
+sudo: requiredbranches:
+  only:
+  - dev
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng lint
+  - ng build --prod --base-href https://github.com/LucasFonsecadosSantos/Open-Stacom/dev/frontend
