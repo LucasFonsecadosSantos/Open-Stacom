@@ -50,6 +50,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "versioning", component: VersioningComponent },
 
   { path: "atividade", component: ActivityComponent },
+  { path: "atividades", component: ActivityComponent },
   { path: "activity", component: ActivityComponent },
 
   { path: "patrocinadores", component: SponsorshipComponent },
