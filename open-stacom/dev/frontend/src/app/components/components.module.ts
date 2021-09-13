@@ -114,7 +114,7 @@ import { TemplateChoiceComponent } from './template-choice';
 
     SponsorFormComponent,
     SponsorInfoComponent,
-    SponsorFormComponent,
+    SponsorListComponent,
 
     ActivityInfoComponent,
     ActivityListComponent,
