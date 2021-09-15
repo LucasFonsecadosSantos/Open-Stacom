@@ -6,6 +6,7 @@ import { WelcomeLayoutComponent } from './welcome-layout.component';
 
 import { ComponentsModule } from 'src/app/components';
 import {  } from './components/new-project/new-project.component';
+
 import {
   LoadProjectComponent,
   NewProjectComponent,

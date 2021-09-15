@@ -3,13 +3,27 @@
     <h4 class=" card-title">Pessoas Registradas</h4>
   </div> -->
   <div class=" card-body">
-    <button type="button" class="btn btn-danger">
-      <i class="tim-icons icon-align-center"></i>
-      | criar um novo projeto
-    </button>
-    <button type="button" class="btn btn-danger">
-      <i class="tim-icons icon-align-center"></i>
-      | abrir um projeto já existente
-    </button>
+    <div class="row">
+      <div class="col-md-6">
+        <a routerLink="/novo">
+          <div class="welcome-button  btn btn-primary btn-simple mr-1">
+            <span class="material-icons-outlined">
+              create_new_folder
+            </span>
+            Criar um novo projeto
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a routerLink="/carregar">
+          <div class="welcome-button  btn btn-primary btn-simple mr-1">
+            <span class="material-icons-outlined">
+              upload_file
+            </span>
+            Carregar um projeto já existente
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
