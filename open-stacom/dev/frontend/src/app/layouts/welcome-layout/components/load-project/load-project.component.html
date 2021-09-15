@@ -5,8 +5,18 @@
   <div class=" card-body">
     <div class="row d-flex justify-content-center">
       <form >
-        <input id="project-file-upload" class="d-none" type="file" accept=".zip"/>
-        <label for="project-file-upload" class="btn btn-primary ng-star-inserted">Selecionar Arquivo</label>
+        <input id="project-file-upload" class="d-none" type="file" accept=".zip" (change)="selectFile($event)"/>
+        <label for="project-file-upload" class="btn btn-primary ng-star-inserted" *ngIf="!selectedFiles" >Selecionar Arquivo</label>
+        <button *ngIf="selectedFiles" (change)="upload()" class="btn btn-primary ng-star-inserted">upload</button>
+        <div *ngIf="currentFile" class="progress my-3">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{width: progress + '%'}"
+          >{{ progress }}%</div>
+        </div>
       </form>
     </div>
   </div>

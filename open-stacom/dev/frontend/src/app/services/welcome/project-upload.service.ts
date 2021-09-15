@@ -17,6 +17,10 @@ export class ProjectUploadService {
 
   }
 
+  getFiles(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/projetos`);
+  }
+
   private _getFormData(file: File): FormData {
 
     const formData: FormData = new FormData();
@@ -38,4 +42,5 @@ export class ProjectUploadService {
     );
 
   }
+
 }
