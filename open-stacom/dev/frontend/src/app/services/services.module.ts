@@ -60,6 +60,10 @@ import {
   VideoGalleryFindService
 } from './video-gallery';
 
+import {
+  ProjectUploadService
+} from './welcome';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -114,7 +118,9 @@ import { CommonModule } from '@angular/common';
 
     EventCreateService,
     EventUpdateService,
-    EventFindService
+    EventFindService,
+
+    ProjectUploadService
   ]
 })
 export class ServicesModule { }
