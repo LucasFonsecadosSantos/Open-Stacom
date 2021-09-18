@@ -6,7 +6,15 @@ export const environment = {
   production: false,
   API_URL: {
     BASE: 'http://localhost:3000',
-    TEMPLATES_RETRIEVING: '/templates-list'
+    TEMPLATES: '/templates',
+    PERSON: '/person',
+    CALLS: '/calls',
+    PHOTO_GALLERY: '/photo-gallery',
+    SPONSOR: '/sponsorship',
+    VIDEO_GALLERY: '/video-gallery',
+    ACTIVITY: '/activities',
+    EVENT: '/event',
+    SCHEDULE: '/schedule'
   }
 };
 

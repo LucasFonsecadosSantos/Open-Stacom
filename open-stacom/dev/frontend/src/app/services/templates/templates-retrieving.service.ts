@@ -14,7 +14,7 @@ export class TemplatesRetrievingService {
 
   retrieving(): Observable<any> {
 
-    return this.http.get<Template[]>(`${environment.API_URL.BASE}${environment.API_URL.TEMPLATES_RETRIEVING}`);
+    return this.http.get<Template[]>(`${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}`);
 
   }
 }
