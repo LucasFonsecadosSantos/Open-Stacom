@@ -64,6 +64,10 @@ import {
   ProjectUploadService
 } from './welcome';
 
+import {
+  TemplatesRetrievingService
+} from './templates';
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -120,7 +124,9 @@ import { CommonModule } from '@angular/common';
     EventUpdateService,
     EventFindService,
 
-    ProjectUploadService
+    ProjectUploadService,
+
+    TemplatesRetrievingService
   ]
 })
 export class ServicesModule { }

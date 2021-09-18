@@ -2,6 +2,8 @@ import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +35,7 @@ export class ProjectUploadService {
 
     return new HttpRequest(
       'POST',
-      `${this.apiUrl}/upload-project`,
+      `${environment.API_URL}/upload-project`,
       formData,
       {
         reportProgress: true,

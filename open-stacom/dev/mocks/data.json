@@ -1,0 +1,14 @@
+{
+    "templates": [
+        {
+            "name": "Teste de template 01",
+            "path": "/template01",
+            "author": "lucas fonseca dos santos",
+            "description": "asldlsadasd",
+            "avatar": "aasdasd",
+            "sections": [
+
+            ]
+        }
+    ]
+}

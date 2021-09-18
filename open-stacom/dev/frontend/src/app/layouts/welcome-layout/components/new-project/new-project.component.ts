@@ -1,4 +1,6 @@
+import { TemplatesRetrievingService } from './../../../../services/templates/templates-retrieving.service';
 import { Component, OnInit } from '@angular/core';
+import { Template } from 'src/app/models';
 
 @Component({
   selector: 'app-new-project',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProjectComponent implements OnInit {
 
-  constructor() { }
+  templates: Template[];
+  messages: string[];
+
+  constructor(private templatesRetrievingService: TemplatesRetrievingService) { }
 
   ngOnInit(): void {
+
+    this.templatesRetrievingService.retrieving().subscribe(
+
+      response => {
+        this.templates = response;
+      }
+
+    );
+
   }
 
 }
