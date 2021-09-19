@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Event } from './../../models';
 import { environment } from 'src/environments/environment';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class EventCreateService {
 
     return this.http.post<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
-      {templateID: templateid},
+      {
+        id: uuidv4(),
+        templateID: templateid
+      },
       {
         reportProgress: true,
         responseType: 'json',
