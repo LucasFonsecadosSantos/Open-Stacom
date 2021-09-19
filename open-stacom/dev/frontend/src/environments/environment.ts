@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  API_MOCK_URL: {
+    BASE: "../../mocks"
+  },
   API_URL: {
     BASE: 'http://localhost:3000',
     TEMPLATES: '/templates',

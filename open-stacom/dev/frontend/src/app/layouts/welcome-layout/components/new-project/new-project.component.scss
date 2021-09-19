@@ -1,0 +1,19 @@
+.template-cell {
+  overflow-y: hidden;
+  cursor: pointer;
+  transition: all .8s;
+
+  &:hover {
+    border: solid #F00 1px;
+  }
+
+  .template-cell__header {
+    max-height: 130px;
+    overflow-y: hidden;
+    border-radius: 8px;
+  }
+
+  .template-cell__body {
+
+  }
+}

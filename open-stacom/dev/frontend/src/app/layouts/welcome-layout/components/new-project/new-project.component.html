@@ -1,30 +1,24 @@
 <div class=" card">
   <div class=" card-header">
-    <h4 class=" card-title">Novo Projeto</h4>
+    <h4 class=" card-title">Selecione um estilo para sua página</h4>
   </div>
   <div class=" card-body">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li
-          data-target="#carouselExampleIndicators" data-slide-to="{{i}}" class="active"
-          *ngFor="let template of templates; let i = index"
-        ></li>
-      </ol>
-      <div class="carousel-inner">
-        <div
-          class="carousel-item active"
-          *ngFor="let template of templates"
-        >
-          <img class="d-block w-100" src="{{template.avatar}}" alt="{{template.description}}">
+    <div class="row">
+      <div
+        *ngFor="let template of templates"
+        title="{{template.name}} - {{template.description}}"
+        alt="{{template.name}}"
+        class="col-md-4 template-cell"
+        [routerLink]="['/inicio', template.id]"
+      >
+        <div class="template-cell__header">
+          <img class="mt-1 mb-1" alt="{{template.name}}" src="{{template.mockup}}" />
         </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Próximo</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
+        <!-- <div class="template-cell__body">
+          <h4 class="mt-2 mb-1 p-0">{{template.name}}</h4>
+          <p class="mt-0 p-0">{{template.description}}</p>
+        </div> -->
+      </div>
     </div>
   </div>
 </div>
