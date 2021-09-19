@@ -12,7 +12,10 @@ export class NewProjectComponent implements OnInit {
   templates: Template[];
   messages: string[];
 
-  constructor(private templatesRetrievingService: TemplatesRetrievingService) { }
+  constructor(
+    private templatesRetrievingService: TemplatesRetrievingService
+
+  ) { }
 
   ngOnInit(): void {
 
