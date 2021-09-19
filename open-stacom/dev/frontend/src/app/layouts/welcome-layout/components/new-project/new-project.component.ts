@@ -19,7 +19,8 @@ export class NewProjectComponent implements OnInit {
     this.templatesRetrievingService.retrieving().subscribe(
 
       response => {
-        this.templates = response;
+        this.templates = TemplatesRetrievingService.buildSources(response);
+        console.log(this.templates);
       }
 
     );

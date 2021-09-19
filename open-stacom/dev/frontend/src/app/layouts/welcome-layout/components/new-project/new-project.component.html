@@ -3,25 +3,25 @@
     <h4 class=" card-title">Novo Projeto</h4>
   </div>
   <div class=" card-body">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" *ngIf="templates">
       <ol class="carousel-indicators">
         <li
-          data-target="#carouselExampleIndicators" data-slide-to="{{i}}" class="active"
+          data-target="#{{ template.id }}" data-slide-to="{{i}}" class="active"
           *ngFor="let template of templates; let i = index"
         ></li>
       </ol>
-      <div class="carousel-inner">
+      <div *ngFor="let template of templates" class="carousel-inner">
         <div
-          class="carousel-item active"
-          *ngFor="let template of templates"
+          [routerLink]="['/inicio', template.id]"
+          class="carousel-item template-item active"
         >
-          <img class="d-block w-100" src="{{template.avatar}}" alt="{{template.description}}">
+          <img class="d-block w-100 page-mockup" [routerLink]="['/inicio', template.id]" src="{{template.mockup}}" alt="{{template.description}}">
         </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#{{ template.id }}" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Próximo</span>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#{{ template.id }}" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Anterior</span>
       </a>

@@ -5,6 +5,7 @@ export class Template {
   author?:      string;
   path?:        string;
   description?: string;
+  mockup?:      string;
   sections?:    string;
 
 }
