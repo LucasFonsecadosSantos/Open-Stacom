@@ -36,5 +36,25 @@
 
             ]
         }
+    ],
+    "person": [
+        {
+            "id": "238284",
+            "name": "Lucas Fonseca dos Santos",
+            "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
+            "job": "System Analyst",
+            "brief": "nao tem descricao ainda",
+            "academicFormation": "Computer Science Degree at UFLA",
+            "institution": "ANPD - Agencia Nacional de Proteção de Dados",
+            "location": {
+                "city": "Ribeirão Preto",
+                "state": "São Paulo",
+                "country": "Brazil"
+            },
+            "socialNetworks": {
+                "facebook": "aisjdiajsid",
+                "twitter": "sadok"
+            }
+        }
     ]
 }
