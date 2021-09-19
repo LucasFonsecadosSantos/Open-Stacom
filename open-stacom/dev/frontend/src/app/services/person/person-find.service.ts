@@ -15,4 +15,10 @@ export class PersonFindService {
   list(): Observable<Person[]> {
     return this.http.get<Person[]>(`${environment.API_MOCK_URL.BASE}/${environment.API_URL.PERSON}`);
   }
+
+  // static buildSources(personArray: Person[]): Person[] {
+
+
+
+  // }
 }

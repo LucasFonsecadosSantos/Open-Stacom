@@ -16,11 +16,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Dakota Rice</td>
-            <td>Niger</td>
-            <td>Niger</td>
-            <td>Oud-Turnhout</td>
+          <tr
+            *ngFor="let person of personArray"
+          >
+            <td title="Fotografia de {{person.name}}">
+              <img src="{{person.avatar}}" alt="{{person.name}}" />
+            </td>
+            <td>{{person.name}}</td>
+            <td>
+              <div class="row" *ngIf="person.job">{{person.job}} at {{person.institution}}</div>
+              <div class="row" *ngIf="person.academicFormation">{{person.academicFormation}}</div>
+              <div class="row" *ngIf="person.brief">{{person.brief}}</div>
+            </td>
+            <td>
+              <i class="fab fa-facebook-square col-md-1"></i>
+            </td>
             <td class=" text-center">$36,738</td>
           </tr>
         </tbody>
