@@ -1,60 +1,57 @@
 {
-    "templates": [
-        {
-            "id": "aidjiaosjdioasjdjoiasd",
-            "name": "Teste de template 01",
-            "path": "/template01",
-            "author": "lucas fonseca dos santos",
-            "description": "asldlsadasd",
-            "avatar": "aasdasd",
-            "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
-            "sections": [
-
-            ]
-        },
-        {
-            "id": "id02",
-            "name": "Teste de template 02",
-            "path": "/template01",
-            "author": "lucas fonseca dos santos",
-            "description": "asldlsadasd",
-            "avatar": "aasdasd",
-            "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
-            "sections": [
-
-            ]
-        },
-        {
-            "id": "id03",
-            "name": "Teste de template 03",
-            "path": "/template01",
-            "author": "lucas fonseca dos santos",
-            "description": "asldlsadasd",
-            "avatar": "aasdasd",
-            "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
-            "sections": [
-
-            ]
-        }
-    ],
-    "person": [
-        {
-            "id": "238284",
-            "name": "Lucas Fonseca dos Santos",
-            "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
-            "job": "System Analyst",
-            "brief": "nao tem descricao ainda",
-            "academicFormation": "Computer Science Degree at UFLA",
-            "institution": "ANPD - Agencia Nacional de Proteção de Dados",
-            "location": {
-                "city": "Ribeirão Preto",
-                "state": "São Paulo",
-                "country": "Brazil"
-            },
-            "socialNetworks": {
-                "facebook": "aisjdiajsid",
-                "twitter": "sadok"
-            }
-        }
-    ]
+  "templates": [
+    {
+      "id": "aidjiaosjdioasjdjoiasd",
+      "name": "Teste de template 01",
+      "path": "/template01",
+      "author": "lucas fonseca dos santos",
+      "description": "asldlsadasd",
+      "avatar": "aasdasd",
+      "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+      "sections": []
+    },
+    {
+      "id": "id02",
+      "name": "Teste de template 02",
+      "path": "/template01",
+      "author": "lucas fonseca dos santos",
+      "description": "asldlsadasd",
+      "avatar": "aasdasd",
+      "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+      "sections": []
+    },
+    {
+      "id": "id03",
+      "name": "Teste de template 03",
+      "path": "/template01",
+      "author": "lucas fonseca dos santos",
+      "description": "asldlsadasd",
+      "avatar": "aasdasd",
+      "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+      "sections": []
+    }
+  ],
+  "person": [
+    {
+      "id": "238284",
+      "name": "Lucas Fonseca dos Santos",
+      "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
+      "job": "System Analyst",
+      "brief": "nao tem descricao ainda",
+      "academicFormation": "Computer Science Degree at UFLA",
+      "institution": "ANPD - Agencia Nacional de Proteção de Dados",
+      "location": {
+        "city": "Ribeirão Preto",
+        "state": "São Paulo",
+        "country": "Brazil"
+      },
+      "socialNetworks": {
+        "facebook": "aisjdiajsid",
+        "twitter": "sadok"
+      }
+    }
+  ],
+  "event": {
+    "templateID": "aidjiaosjdioasjdjoiasd"
+  }
 }
