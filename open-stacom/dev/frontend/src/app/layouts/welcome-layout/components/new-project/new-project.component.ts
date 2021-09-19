@@ -20,7 +20,6 @@ export class NewProjectComponent implements OnInit {
 
       response => {
         this.templates = TemplatesRetrievingService.buildSources(response);
-        console.log(this.templates);
       }
 
     );
