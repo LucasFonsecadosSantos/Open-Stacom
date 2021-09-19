@@ -23,7 +23,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "inicio",
+    path: "inicio/:id",
     component: AdminLayoutComponent,
     children: [
       {

@@ -25,12 +25,12 @@ export const AdminLayoutRoutes: Routes = [
   // { path: "dashboard", component: DashboardComponent },
   { path: "", component: DashboardComponent },
   { path: "home", component: DashboardComponent },
-  { path: "inicio", component: DashboardComponent },
+  { path: "inicio/:id", component: DashboardComponent },
 
   { path: "sobre", component: AboutComponent },
   { path: "about", component: AboutComponent },
 
-  { path: "pessoa", component: PersonComponent },
+  { path: ":eventID/pessoa", component: PersonComponent },
   { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
 
