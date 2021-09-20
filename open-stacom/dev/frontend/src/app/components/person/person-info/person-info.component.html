@@ -10,9 +10,9 @@
       <a href="javascript:void(0)">
         <img alt="..." class=" avatar" src="assets/img/emilyz.jpg" />
 
-        <h5 class=" title">Mike Andrew</h5>
+        <h5 class=" title"></h5>
       </a>
-      <p class=" description">Ceo/Co-Founder</p>
+      <p *ngIf="person" class=" description">{{person.name}}</p>
     </div>
     <div class=" card-description">
       Do not be scared of the truth because we need to restart the human

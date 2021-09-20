@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { PersonListInfoSharedService } from './../../../services/person/person-list-info-shared.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Person } from 'src/app/models';
 
 @Component({
   selector: 'app-person-info',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonInfoComponent implements OnInit {
 
-  constructor() { }
+  person: Person;
+
+  constructor(
+    private personListInfoSharedService: PersonListInfoSharedService
+  ) { }
 
   ngOnInit(): void {
+    this.person = this.personListInfoSharedService.getPerson();
   }
+
 
 }

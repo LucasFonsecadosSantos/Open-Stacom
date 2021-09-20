@@ -18,9 +18,10 @@
         <tbody>
           <tr
             *ngFor="let person of personArray"
+            (click)="selectPerson(person)"
           >
             <td title="Fotografia de {{person.name}}">
-              <img class="w-100" src="{{person.avatar}}" alt="{{person.name}}" />
+              <img class="avatar" src="{{person.avatar}}" alt="{{person.name}}" />
             </td>
             <td>{{person.name}}</td>
             <td>
@@ -28,10 +29,19 @@
               <div class="row" *ngIf="person.academicFormation">{{person.academicFormation}}</div>
               <div class="row" *ngIf="person.brief">{{person.brief}}</div>
             </td>
-            <td>
-              <i class="fab fa-facebook-square col-md-1"></i>
+            <td class="d-flex justify-content-left align-items-center">
+              <a *ngIf="person.socialNetworks.facebook" href="{{person.socialNetworks.facebook}}"><i class="fab fa-facebook-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.twitter" href="{{person.socialNetworks.twitter}}"><i class="fab fa-twitter-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.linkedin" href="{{person.socialNetworks.linkedin}}"><i class="fab fa-linkedin col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.youtube" href="{{person.socialNetworks.youtube}}"><i class="fab fa-youtube col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.spotify" href="{{person.socialNetworks.spotify}}"><i class="fab fa-spotify col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.email" href="{{person.socialNetworks.email}}"><i class="fab fa-envelope-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.whatsapp" href="{{person.socialNetworks.whatsapp}}"><i class="fab fa-whatsapp-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.github" href="{{person.socialNetworks.github}}"><i class="fab fa-github-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.behance" href="{{person.socialNetworks.behance}}"><i class="fab fa-behance-square col-md-1"></i></a>
+              <a *ngIf="person.socialNetworks.website" href="{{person.socialNetworks.website}}"><i class="fab fa-link col-md-1"></i></a>
             </td>
-            <td class=" text-center">$36,738</td>
+            <td (onclick)="selectPerson(person)" class=" text-center">$36,738</td>
           </tr>
         </tbody>
       </table>

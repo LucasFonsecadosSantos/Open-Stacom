@@ -1,3 +1,4 @@
+import { PersonListInfoSharedService } from './../services/person/person-list-info-shared.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -50,6 +51,9 @@ import {
     SponsorshipComponent,
     PreviousEditionsComponent,
     CallsComponent
+  ],
+  providers: [
+    PersonListInfoSharedService
   ]
 })
 export class PagesModule { }

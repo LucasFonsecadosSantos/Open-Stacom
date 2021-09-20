@@ -1,7 +1,8 @@
+import { PersonListInfoSharedService } from './../../../services/person/person-list-info-shared.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { EventFindService } from './../../../services/event/event-find.service';
 import { PersonFindService } from './../../../services/person/person-find.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {
   Event,
   Person,
@@ -19,22 +20,28 @@ import {
 })
 export class PersonListComponent implements OnInit {
 
-  template:     Template;
-  event:        Event;
-  personArray:  Person[];
+  template:       Template;
+  event:          Event;
+  personArray:    Person[];
+  personSelected: Person;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private eventFindService:     EventFindService,
-    private templateFindService:  TemplateFindService,
-    private personFindService:    PersonFindService,
+    private route:                        ActivatedRoute,
+    private router:                       Router,
+    private eventFindService:             EventFindService,
+    private templateFindService:          TemplateFindService,
+    private personFindService:            PersonFindService,
+    private personListInfoSharedService:  PersonListInfoSharedService
   ) { }
 
   ngOnInit(): void {
 
     this._getTemplate(this._getEventIDFromRoute());
     this._listPeople();
+  }
+
+  selectPerson(person: Person): void {
+    this.personListInfoSharedService.updatePersonSelected(person);
   }
 
   private _getTemplate(eventID: string): void {
@@ -53,8 +60,6 @@ export class PersonListComponent implements OnInit {
       .subscribe(
         templateReponse => {
           this.template = templateReponse;
-          console.log(this.template);
-          console.log(this.event);
         }
       );
 
@@ -74,6 +79,7 @@ export class PersonListComponent implements OnInit {
 
         //TODO Build sources of person object
         this.personArray = response;
+        this.personListInfoSharedService.updatePersonSelected(response[0]);
 
       }
 
