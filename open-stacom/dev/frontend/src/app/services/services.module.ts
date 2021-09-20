@@ -65,7 +65,8 @@ import {
 } from './welcome';
 
 import {
-  TemplatesRetrievingService
+  TemplatesRetrievingService,
+  TemplateFindService
 } from './templates';
 
 
@@ -126,7 +127,8 @@ import { CommonModule } from '@angular/common';
 
     ProjectUploadService,
 
-    TemplatesRetrievingService
+    TemplatesRetrievingService,
+    TemplateFindService
   ]
 })
 export class ServicesModule { }
