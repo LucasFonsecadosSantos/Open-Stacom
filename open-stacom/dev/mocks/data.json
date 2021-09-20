@@ -51,8 +51,10 @@
       }
     }
   ],
-  "event": {
-    "id": "bce00bc1-e7c0-4c74-93ce-972323613df0",
-    "templateID": "aidjiaosjdioasjdjoiasd"
-  }
+  "event": [
+    {
+      "id": "bce00bc1-e7c0-4c74-93ce-972323613df0",
+      "templateID": "aidjiaosjdioasjdjoiasd"
+    }
+  ]
 }
