@@ -3,12 +3,12 @@ import { EventFindService } from './../../../services/event/event-find.service';
 import { PersonFindService } from './../../../services/person/person-find.service';
 import { Component, OnInit } from '@angular/core';
 import {
+  Event,
   Person,
   Template
 } from 'src/app/models';
 import {
   ActivatedRoute,
-  ParamMap,
   Router
 } from '@angular/router';
 
@@ -20,13 +20,12 @@ import {
 export class PersonListComponent implements OnInit {
 
   template:     Template;
-  eventID:      string;
+  event:        Event;
   personArray:  Person[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private paramMap: ParamMap,
     private eventFindService:     EventFindService,
     private templateFindService:  TemplateFindService,
     private personFindService:    PersonFindService,
@@ -34,42 +33,36 @@ export class PersonListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._getEventIDFromRoute();
-    this._getTemplate(this._getTemplateID());
+    this._getTemplate(this._getEventIDFromRoute());
     this._listPeople();
-
   }
 
-  private _getTemplate(templateID: string): void {
+  private _getTemplate(eventID: string): void {
+
+    this.eventFindService.find(eventID).subscribe(
+      response => {
+        this.event = response;
+        this._getTemplateById(response.templateID);
+      }
+    );
+  }
+
+  private _getTemplateById(templateID: string) {
 
     this.templateFindService.find(templateID)
       .subscribe(
-        response => {
-          this.template = response;
+        templateReponse => {
+          this.template = templateReponse;
+          console.log(this.template);
+          console.log(this.event);
         }
       );
 
   }
 
-  private _getTemplateID(): string {
+  private _getEventIDFromRoute(): string {
 
-    let templateID: string;
-
-    this.eventFindService.find(this.eventID)
-      .subscribe(
-        response => {
-          templateID = response.templateID;
-        }
-      );
-
-    return templateID;
-  }
-
-  private  _getEventIDFromRoute(): void {
-
-    this.route.queryParamMap.subscribe(params => {
-      this.eventID = params['eventID'];
-    });
+    return this.route.snapshot.params['eventID']
 
   }
 

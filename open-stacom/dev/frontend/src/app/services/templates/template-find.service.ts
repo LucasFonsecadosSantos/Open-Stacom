@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { Template } from './../../models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,9 +13,14 @@ export class TemplateFindService {
     private http: HttpClient
   ) { }
 
-  find(eventID: string): Observable<Template> {
+  find(templateID: string): Observable<Template> {
 
-    return this.http.get<Template>(`${environment.API_URL.EVENT}${environment.API_URL.EVENT}/${eventID}`);
+    return this.http.get<Template>(
+      `${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}/${templateID}`,
+      {
+        responseType: 'json'
+      }
+    );
 
   }
 }

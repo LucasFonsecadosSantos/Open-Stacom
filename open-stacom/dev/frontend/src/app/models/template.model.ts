@@ -2,10 +2,11 @@ export class Template {
 
   id?:          string;
   name?:        string;
-  author?:      string;
   path?:        string;
+  author?:      string;
   description?: string;
+  avatar?:      string;
   mockup?:      string;
-  sections?:    string;
+  sections?:    [];
 
 }

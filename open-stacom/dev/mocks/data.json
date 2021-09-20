@@ -54,7 +54,56 @@
   "event": [
     {
       "id": "bce00bc1-e7c0-4c74-93ce-972323613df0",
-      "templateID": "aidjiaosjdioasjdjoiasd"
+      "templateID": "id02",
+      "name": "tste",
+      "edition": "xii",
+      "subject": "test",     
+      "eventType": "teste",
+      "targetPublic": "test",
+      "logo": "test",
+      "description": "dfsf",
+      "brief": "asdasd",
+      "website": "adfdf",       
+      "email": "ad",
+      "telephones": [
+        {
+          "name":   "principal",
+          "number": "9912398123"
+        }
+      ],
+      "poweredBy": {
+        "institution": "string",
+        "departament": "string"
+      },
+      "days": [
+        {
+          "date":  "string",
+          "month": "string",
+          "year":  "string"
+        }
+      ],
+      "location": {
+        "street":      "string",
+        "number":      "string",
+        "neiborhood":  "string",
+        "city":        "string",
+        "state":       "string",
+        "country":     "string",
+        "latLong":     "string"
+      },
+      "socialNetworks": {
+        "facebook":  "string",
+        "twitter":   "string",
+        "website":   "string",
+        "github":    "string",
+        "linkedin":  "string",
+        "spotify":   "string",
+        "lattes":    "string",
+        "email":           "string",
+        "whatsapp":        "string",
+        "behance":         "string",
+        "youtubeChannel":  "string"
+      }
     }
   ]
 }
