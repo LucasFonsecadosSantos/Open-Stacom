@@ -13,7 +13,7 @@ export class PersonFindService {
   constructor(private http: HttpClient) { }
 
   list(): Observable<Person[]> {
-    return this.http.get<Person[]>(`${environment.API_MOCK_URL.BASE}/${environment.API_URL.PERSON}`);
+    return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`);
   }
 
   // static buildSources(personArray: Person[]): Person[] {

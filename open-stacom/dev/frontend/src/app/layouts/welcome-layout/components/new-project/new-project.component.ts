@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EventCreateService } from './../../../../services/event/event-create.service';
 import { Component, OnInit } from '@angular/core';
 import { Template } from 'src/app/models';
@@ -15,7 +16,8 @@ export class NewProjectComponent implements OnInit {
 
   constructor(
     private templatesRetrievingService: TemplatesRetrievingService,
-    private eventCreateService: EventCreateService
+    private eventCreateService: EventCreateService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class NewProjectComponent implements OnInit {
       .create(templateID)
       .subscribe(
         response => {
-          //TODO here
+          this.router.navigate([`inicio/${response.id}`]);
         }
       );
 

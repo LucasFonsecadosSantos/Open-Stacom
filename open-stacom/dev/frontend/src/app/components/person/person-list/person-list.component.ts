@@ -11,9 +11,13 @@ export class PersonListComponent implements OnInit {
 
   personArray: Person[];
 
-  constructor(private personFindService: PersonFindService) { }
+  constructor(
+
+    private personFindService: PersonFindService
+  ) { }
 
   ngOnInit(): void {
+
 
     this._listPeople();
 
