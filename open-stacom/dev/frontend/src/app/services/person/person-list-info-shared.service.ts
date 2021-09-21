@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 import { Person } from 'src/app/models';
 
 @Injectable({
@@ -6,17 +7,19 @@ import { Person } from 'src/app/models';
 })
 export class PersonListInfoSharedService {
 
-  person: Person = undefined;
+  private subject: Subject<Person> = new Subject<Person>();
 
   constructor() {
 
   }
 
   updatePersonSelected(person: Person) {
-    this.person = person;
-    console.log(person);
+    this.subject.next(person);
   }
 
-  getPerson(): Person { return this.person; }
+  getSelectedPerson(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
 
 }

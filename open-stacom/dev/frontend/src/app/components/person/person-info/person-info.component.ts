@@ -16,7 +16,11 @@ export class PersonInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.person = this.personListInfoSharedService.getPerson();
+    this.personListInfoSharedService
+          .getSelectedPerson()
+          .subscribe(person => {
+            this.person = person;
+          });
   }
 
 

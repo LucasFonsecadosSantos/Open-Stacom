@@ -19,6 +19,7 @@
           <tr
             *ngFor="let person of personArray"
             (click)="selectPerson(person)"
+            (mouseenter)="selectPerson(person)"
           >
             <td title="Fotografia de {{person.name}}">
               <img class="avatar" src="{{person.avatar}}" alt="{{person.name}}" />

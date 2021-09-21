@@ -49,6 +49,24 @@
         "facebook": "aisjdiajsid",
         "twitter": "sadok"
       }
+    },
+    {
+      "id": "238285",
+      "name": "Marco aurelio ferreira de sousa",
+      "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
+      "job": "System Analyst",
+      "brief": "nao tem descricao ainda",
+      "academicFormation": "Computer Science Degree at UFLA",
+      "institution": "ANPD - Agencia Nacional de Proteção de Dados",
+      "location": {
+        "city": "Ribeirão Preto",
+        "state": "São Paulo",
+        "country": "Brazil"
+      },
+      "socialNetworks": {
+        "facebook": "aisjdiajsid",
+        "twitter": "sadok"
+      }
     }
   ],
   "event": [
@@ -57,17 +75,17 @@
       "templateID": "id02",
       "name": "tste",
       "edition": "xii",
-      "subject": "test",     
+      "subject": "test",
       "eventType": "teste",
       "targetPublic": "test",
       "logo": "test",
       "description": "dfsf",
       "brief": "asdasd",
-      "website": "adfdf",       
+      "website": "adfdf",
       "email": "ad",
       "telephones": [
         {
-          "name":   "principal",
+          "name": "principal",
           "number": "9912398123"
         }
       ],
@@ -77,33 +95,37 @@
       },
       "days": [
         {
-          "date":  "string",
+          "date": "string",
           "month": "string",
-          "year":  "string"
+          "year": "string"
         }
       ],
       "location": {
-        "street":      "string",
-        "number":      "string",
-        "neiborhood":  "string",
-        "city":        "string",
-        "state":       "string",
-        "country":     "string",
-        "latLong":     "string"
+        "street": "string",
+        "number": "string",
+        "neiborhood": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "latLong": "string"
       },
       "socialNetworks": {
-        "facebook":  "string",
-        "twitter":   "string",
-        "website":   "string",
-        "github":    "string",
-        "linkedin":  "string",
-        "spotify":   "string",
-        "lattes":    "string",
-        "email":           "string",
-        "whatsapp":        "string",
-        "behance":         "string",
-        "youtubeChannel":  "string"
+        "facebook": "string",
+        "twitter": "string",
+        "website": "string",
+        "github": "string",
+        "linkedin": "string",
+        "spotify": "string",
+        "lattes": "string",
+        "email": "string",
+        "whatsapp": "string",
+        "behance": "string",
+        "youtubeChannel": "string"
       }
+    },
+    {
+      "id": "3ba3d005-9cdc-4534-83f3-92911ebddccf",
+      "templateID": "aidjiaosjdioasjdjoiasd"
     }
   ]
 }
