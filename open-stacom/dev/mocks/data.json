@@ -37,7 +37,7 @@
       "name": "Lucas Fonseca dos Santos",
       "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
       "job": "System Analyst",
-      "brief": "nao tem descricao ainda",
+      "brief": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.",
       "academicFormation": "Computer Science Degree at UFLA",
       "institution": "ANPD - Agencia Nacional de Proteção de Dados",
       "location": {
@@ -47,17 +47,18 @@
       },
       "socialNetworks": {
         "facebook": "aisjdiajsid",
-        "twitter": "sadok"
+        "twitter": "sadok",
+        "linkedin": "asjdoaskd"
       }
     },
     {
       "id": "238285",
       "name": "Marco aurelio ferreira de sousa",
-      "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
+      "avatar": "https://avatars.githubusercontent.com/u/26443642?v=4",
       "job": "System Analyst",
-      "brief": "nao tem descricao ainda",
-      "academicFormation": "Computer Science Degree at UFLA",
-      "institution": "ANPD - Agencia Nacional de Proteção de Dados",
+      "brief": "Lorem ipsum dolorasdd sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+      "academicFormation": "Sysadmin and DevOps operator.",
+      "institution": "Agencia Zetta",
       "location": {
         "city": "Ribeirão Preto",
         "state": "São Paulo",
@@ -125,6 +126,14 @@
     },
     {
       "id": "3ba3d005-9cdc-4534-83f3-92911ebddccf",
+      "templateID": "aidjiaosjdioasjdjoiasd"
+    },
+    {
+      "id": "44a42d0e-b564-411c-ac28-9b1f484cba07",
+      "templateID": "aidjiaosjdioasjdjoiasd"
+    },
+    {
+      "id": "78580db8-ec3b-4ae2-be49-0c57ca2ddcbc",
       "templateID": "aidjiaosjdioasjdjoiasd"
     }
   ]

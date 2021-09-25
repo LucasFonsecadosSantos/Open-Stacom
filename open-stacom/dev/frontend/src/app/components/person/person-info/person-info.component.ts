@@ -1,4 +1,4 @@
-import { PersonListInfoSharedService } from './../../../services/person/person-list-info-shared.service';
+import { PersonPageService } from './../../../pages/person/person-page.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Person } from 'src/app/models';
 
@@ -12,11 +12,12 @@ export class PersonInfoComponent implements OnInit {
   person: Person;
 
   constructor(
-    private personListInfoSharedService: PersonListInfoSharedService
+    private personPageService: PersonPageService
   ) { }
 
   ngOnInit(): void {
-    this.personListInfoSharedService
+
+    this.personPageService
           .getSelectedPerson()
           .subscribe(person => {
             this.person = person;

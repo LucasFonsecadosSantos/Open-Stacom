@@ -1,4 +1,4 @@
-import { PersonListInfoSharedService } from './../../../services/person/person-list-info-shared.service';
+import { PersonPageService } from './../../../pages/person/person-page.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { EventFindService } from './../../../services/event/event-find.service';
 import { PersonFindService } from './../../../services/person/person-find.service';
@@ -26,12 +26,12 @@ export class PersonListComponent implements OnInit {
   personSelected: Person;
 
   constructor(
-    private route:                        ActivatedRoute,
-    private router:                       Router,
-    private eventFindService:             EventFindService,
-    private templateFindService:          TemplateFindService,
-    private personFindService:            PersonFindService,
-    private personListInfoSharedService:  PersonListInfoSharedService
+    private route:                ActivatedRoute,
+    private router:               Router,
+    private eventFindService:     EventFindService,
+    private templateFindService:  TemplateFindService,
+    private personFindService:    PersonFindService,
+    private personPageService:    PersonPageService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class PersonListComponent implements OnInit {
   }
 
   selectPerson(person: Person): void {
-    this.personListInfoSharedService.updatePersonSelected(person);
+    this.personPageService.updatePersonSelected(person);
   }
 
   private _getTemplate(eventID: string): void {
@@ -79,7 +79,7 @@ export class PersonListComponent implements OnInit {
 
         //TODO Build sources of person object
         this.personArray = response;
-        this.personListInfoSharedService.updatePersonSelected(response[0]);
+        // this.personPageService.updatePersonSelected(response[0]);
 
       }
 

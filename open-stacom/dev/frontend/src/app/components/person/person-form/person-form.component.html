@@ -6,14 +6,16 @@
     <form>
       <div class=" row">
         <div class=" col-md-5 pr-md-1">
-          <div class=" form-group">
-            <label> Company (disabled) </label>
+          <div *ngIf="template.objects['person']['name']" class=" form-group">
+            <label> Nome Completo </label>
             <input
               class=" form-control"
-              disabled=""
-              placeholder="Company"
+              placeholder="Ex.: João da Silva"
               type="text"
-              value="Creative Code Inc."
+              value="{{person.name || ''}}"
+              maxlength="{{template.objects['person']['name']['maxlength']}}"
+              minlength="{{template.objects['person']['name']['minlength']}}"
+              required="{{template.objects['person']['name']['required']}}"
             />
           </div>
         </div>

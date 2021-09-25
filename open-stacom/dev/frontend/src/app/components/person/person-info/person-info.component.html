@@ -1,44 +1,125 @@
 
+
 <div class=" card card-user">
   <div class=" card-body">
     <p class=" card-text"></p>
     <div class=" author">
-      <div class=" block block-one"></div>
-      <div class=" block block-two"></div>
-      <div class=" block block-three"></div>
-      <div class=" block block-four"></div>
       <a href="javascript:void(0)">
-        <img alt="..." class=" avatar" src="assets/img/emilyz.jpg" />
-
-        <h5 class=" title"></h5>
+        <img alt="Fotografia de {{person.name}}" class=" avatar" src="{{person.avatar}}" />
+        <h5 class=" title">{{person.name}}</h5>
       </a>
-      <p *ngIf="person" class=" description">{{person.name}}</p>
+      <p *ngIf="person.job" class=" description">{{person.job}} - {{person.institution || ""}}</p>
+      <small><p *ngIf="person.academicFormation" class=" description">{{person.academicFormation}}</p></small>
     </div>
-    <div class=" card-description">
-      Do not be scared of the truth because we need to restart the human
-      foundation in truth And I love you like Kanye loves Kanye I love
-      Rick Owens’ bed design but the back is...
-    </div>
+    <div *ngIf="person.brief" class=" card-description">{{person.brief}}</div>
+    <div *ngIf="!person.brief" class=" card-description">Nenhuma descrição informada sobre {{person.name}}.</div>
   </div>
   <div class=" card-footer">
     <div class=" button-container">
       <button
+        *ngIf="person.socialNetworks.facebook"
+        title="Clique para acessar o facebook de {{person.name}}"
+        alt="Botão com link para acessar o facebook de {{person.name}}"
         class=" btn btn-icon btn-round btn-facebook"
-        href="javascript:void(0)"
+        href="{{person.socialNetworks.facebook})"
       >
         <i class=" fab fa-facebook"> </i>
       </button>
       <button
+        *ngIf="person.socialNetworks.twitter"
+        title="Clique para acessar o twitter de {{person.name}}"
+        alt="Botão com link para acessar o twitter de {{person.name}}"
         class=" btn btn-icon btn-round btn-twitter"
-        href="javascript:void(0)"
+        href="{{person.socialNetworks.twitter}}"
       >
         <i class=" fab fa-twitter"> </i>
       </button>
       <button
-        class=" btn btn-icon btn-round btn-google"
-        href="javascript:void(0)"
+        *ngIf="person.socialNetworks.linkedin"
+        class=" btn btn-icon btn-round btn-linkedin"
+        title="Clique para acessar o linkedin de {{person.name}}"
+        alt="Botão com link para acessar o linkedin de {{person.name}}"
+        href="{{person.socialNetworks.linkedin}}"
       >
-        <i class=" fab fa-google-plus"> </i>
+        <i class=" fab fa-linkedin-in"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.behance"
+        class=" btn btn-icon btn-round btn-behance"
+        title="Clique para acessar o behance de {{person.name}}"
+        alt="Botão com link para acessar o behance de {{person.name}}"
+        href="{{person.socialNetworks.behance}}"
+      >
+        <i class=" fab fa-behance"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.email"
+        alt="Botão com link para acessar o email de {{person.name}}"
+        title="Clique para acessar o email de {{person.name}}"
+        class=" btn btn-icon btn-round btn-email"
+        href="{{person.socialNetworks.email}}"
+      >
+        <i class=" fab fa-at"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.github"
+        alt="Botão com link para acessar o github de {{person.name}}"
+        title="Clique para acessar o github de {{person.name}}"
+        class=" btn btn-icon btn-round btn-github"
+        href="{{person.socialNetworks.github}}"
+      >
+        <i class=" fab fa-github"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.spotify"
+        alt="Botão com link para acessar o spotify de {{person.name}}"
+        title="Clique para acessar o spotify de {{person.name}}"
+        class=" btn btn-icon btn-round btn-github"
+        href="{{person.socialNetworks.spotify}}"
+      >
+        <i class=" fab fa-spotify"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.website"
+        alt="Botão com link para acessar o website de {{person.name}}"
+        title="Clique para acessar o website de {{person.name}}"
+        class=" btn btn-icon btn-round btn-website"
+        href="{{person.socialNetworks.website}}"
+      >
+        <i class=" fab fa-link"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.whatsapp"
+        alt="Botão com link para acessar o whatsapp de {{person.name}}"
+        title="Clique para acessar o whatsapp de {{person.name}}"
+        class=" btn btn-icon btn-round btn-whatsapp"
+        href="{{person.socialNetworks.whatsapp}}"
+      >
+        <i class=" fab fa-whatsapp"> </i>
+      </button>
+      <button
+        *ngIf="person.socialNetworks.youtubeChannel"
+        alt="Botão com link para acessar o canal do youtube de {{person.name}}"
+        title="Clique para acessar o canal do youtube de {{person.name}}"
+        class=" btn btn-icon btn-round btn-youtube"
+        href="{{person.socialNetworks.youtubeChannel}}"
+      >
+        <i class=" fab fa-youtube"> </i>
+      </button>
+    </div>
+    <div class="button-container">
+      <button
+        title="Clique aqui para editar e atualziar as informações de {{person.name}}. Ex. Nome, formação, fotografia, redes sociais..."
+        class="btn btn-default mr-1">
+        <i class="tim-icons icon-pencil"></i>
+        Editar
+      </button>
+      <button
+        [routerLink]=""
+        title="Clique aqui para remover o registro de {{person.name}} do sistema."
+        class="btn btn-danger">
+        <i class="tim-icons icon-simple-remove"></i>
+        Remover
       </button>
     </div>
   </div>

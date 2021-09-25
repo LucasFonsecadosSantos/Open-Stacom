@@ -1,3 +1,4 @@
+import { PersonCreateService } from './../../services/person/person-create.service';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -57,7 +58,8 @@ import { EventCreateService } from "src/app/services/event";
   ],
   providers: [
     TemplatesRetrievingService,
-    EventCreateService
+    EventCreateService,
+    PersonCreateService
   ]
 })
 export class AdminLayoutModule {}

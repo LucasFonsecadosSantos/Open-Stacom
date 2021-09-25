@@ -1,4 +1,4 @@
-import { PersonListInfoSharedService } from './../services/person/person-list-info-shared.service';
+import { PersonPageService } from './person';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -53,7 +53,7 @@ import {
     CallsComponent
   ],
   providers: [
-    PersonListInfoSharedService
+    PersonPageService
   ]
 })
 export class PagesModule { }

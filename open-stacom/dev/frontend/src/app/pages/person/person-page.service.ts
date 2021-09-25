@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { Person } from 'src/app/models';
+import { Observable, Subject } from 'rxjs';
+
+import { Person } from './../../models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonListInfoSharedService {
+export class PersonPageService {
 
   private subject: Subject<Person> = new Subject<Person>();
 
-  constructor() {
+  constructor() { }
 
-  }
 
   updatePersonSelected(person: Person) {
     this.subject.next(person);
@@ -20,6 +20,4 @@ export class PersonListInfoSharedService {
   getSelectedPerson(): Observable<any> {
     return this.subject.asObservable();
   }
-
-
 }
