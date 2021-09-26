@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { EventFindService } from './../../../services/event/event-find.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { PersonCreateService } from './../../../services/person';
@@ -39,16 +40,14 @@ export class PersonFormComponent implements OnInit {
   ngOnInit(): void {
 
     this._getEvent();
-    this._getTemplate();
-    this._buildFormFields();
     this._getSelectedPerson();
 
   }
 
-  private _getTemplate(): void {
+  private _getTemplate(templateID: string): void {
 
     this.templateFindService
-          .find(this.event.templateID)
+          .find(templateID)
           .subscribe(template => this.template = template);
 
   }
@@ -70,7 +69,12 @@ export class PersonFormComponent implements OnInit {
   private _getEvent(): void {
 
     this.eventFind.find(this._getEventIDFromRoute())
-                    .subscribe(event => this.event = event);
+                    .subscribe(
+                      event => {
+                        this.event = event;
+                        this._getTemplate(event.templateID);
+                      }
+                    );
 
   }
 

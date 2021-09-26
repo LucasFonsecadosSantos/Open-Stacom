@@ -6,16 +6,16 @@
     <form>
       <div class=" row">
         <div class=" col-md-5 pr-md-1">
-          <div *ngIf="template.objects['person']['name']" class=" form-group">
+          <div *ngIf="template.objects.person.name" class=" form-group">
             <label> Nome Completo </label>
             <input
               class=" form-control"
               placeholder="Ex.: João da Silva"
               type="text"
-              value="{{person.name || ''}}"
-              maxlength="{{template.objects['person']['name']['maxlength']}}"
-              minlength="{{template.objects['person']['name']['minlength']}}"
-              required="{{template.objects['person']['name']['required']}}"
+              value="{{person ? person.name : ''}}"
+              maxlength="{{template.objects.person.name.maxlength || ''}}"
+              minlength="{{template.objects.person.name.minlength || ''}}"
+              required="{{template.objects.person.name.required || ''}}"
             />
           </div>
         </div>

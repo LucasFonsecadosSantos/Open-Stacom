@@ -37,7 +37,7 @@ export class PersonListComponent implements OnInit {
   ngOnInit(): void {
 
     this._getTemplate(this._getEventIDFromRoute());
-    this._listPeople();
+    this._listPeople(this._getEventIDFromRoute());
   }
 
   selectPerson(person: Person): void {
@@ -58,31 +58,19 @@ export class PersonListComponent implements OnInit {
 
     this.templateFindService.find(templateID)
       .subscribe(
-        templateReponse => {
-          this.template = templateReponse;
-        }
+        templateReponse => this.template = templateReponse
       );
 
   }
 
   private _getEventIDFromRoute(): string {
-
     return this.route.snapshot.params['eventID']
-
   }
 
-  private _listPeople(): void {
+  private _listPeople(eventID: string): void {
 
-    this.personFindService.list().subscribe(
-
-      response => {
-
-        //TODO Build sources of person object
-        this.personArray = response;
-        // this.personPageService.updatePersonSelected(response[0]);
-
-      }
-
+    this.personFindService.list(eventID).subscribe(
+      response => this.personArray = response
     );
 
   }

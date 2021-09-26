@@ -8,7 +8,51 @@
       "description": "asldlsadasd",
       "avatar": "aasdasd",
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
-      "sections": []
+      "sections": [],
+      "objects": {
+        "person": {
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": true
+          },
+          "avatar": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "job": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": true
+          },
+          "academicFormation": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": false
+          },
+          "institution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": false
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": true
+          },
+          "locationState": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "require": true
+          }
+        }
+      }
     },
     {
       "id": "id02",
@@ -73,7 +117,7 @@
   "event": [
     {
       "id": "bce00bc1-e7c0-4c74-93ce-972323613df0",
-      "templateID": "id02",
+      "templateID": "aidjiaosjdioasjdjoiasd",
       "name": "tste",
       "edition": "xii",
       "subject": "test",
@@ -134,6 +178,10 @@
     },
     {
       "id": "78580db8-ec3b-4ae2-be49-0c57ca2ddcbc",
+      "templateID": "aidjiaosjdioasjdjoiasd"
+    },
+    {
+      "id": "ae557251-8174-4a4c-b897-bc8343a5f384",
       "templateID": "aidjiaosjdioasjdjoiasd"
     }
   ]

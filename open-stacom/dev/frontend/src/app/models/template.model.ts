@@ -8,5 +8,49 @@ export class Template {
   avatar?:      string;
   mockup?:      string;
   sections?:    [];
+  objects?:     {
+    person?: {
+      name?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      avatar?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      job?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      academicFormation?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      institution?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCity?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationState?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCountry?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      }
+    }
+  };
 
 }
