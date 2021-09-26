@@ -48,7 +48,7 @@ export class PersonFormComponent implements OnInit {
 
     this.templateFindService
           .find(templateID)
-          .subscribe(template => this.template = template);
+          .subscribe(template => {this.template = template; console.log(template)});
 
   }
 
