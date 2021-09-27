@@ -69,6 +69,7 @@ import {
   TemplateFindService
 } from './templates';
 
+import { ExcelExportService } from './utils';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -128,7 +129,9 @@ import { CommonModule } from '@angular/common';
     ProjectUploadService,
 
     TemplatesRetrievingService,
-    TemplateFindService
+    TemplateFindService,
+
+    ExcelExportService
   ]
 })
 export class ServicesModule { }
