@@ -53,7 +53,13 @@ import {
   VideoGalleryViewModalComponent
 } from './video-gallery';
 import { WelcomeComponent } from './welcome';
-import { TemplateChoiceComponent } from './template-choice';
+import {
+  TemplateChoiceComponent
+} from './template-choice';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogService
+} from './dialog';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -98,7 +104,9 @@ import { TemplateChoiceComponent } from './template-choice';
     VideoGalleryViewModalComponent,
 
     WelcomeComponent,
-    TemplateChoiceComponent
+    TemplateChoiceComponent,
+    ConfirmDialogComponent
+
 ],
   exports: [
     FooterComponent,
@@ -142,7 +150,12 @@ import { TemplateChoiceComponent } from './template-choice';
     VideoGalleryViewModalComponent,
 
     WelcomeComponent,
-    TemplateChoiceComponent
+    TemplateChoiceComponent,
+
+    ConfirmDialogComponent
+  ],
+  providers: [
+    ConfirmDialogService
   ]
 })
 export class ComponentsModule {}

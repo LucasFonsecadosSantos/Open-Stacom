@@ -1,3 +1,4 @@
+import { ConfirmDialogService } from './../../components/dialog/confirm-dialog/confirm-dialog.service';
 import { UrlService } from './../../services/utils/url.service';
 import { PersonDeleteService } from './../../services/person/person-delete.service';
 import { ExcelExportService } from './../../services/utils/excel-export.service';
@@ -24,10 +25,11 @@ export class PersonComponent implements OnInit {
   closeResult: string;
 
   constructor(
-    private _modalService:        NgbModal,
-    private _exportExcelService:  ExcelExportService,
-    private _personDeleteService: PersonDeleteService,
-    private _urlService:          UrlService
+    private _modalService:          NgbModal,
+    private _exportExcelService:    ExcelExportService,
+    private _personDeleteService:   PersonDeleteService,
+    private _urlService:            UrlService,
+    private _confirmDialogService:  ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -54,10 +56,14 @@ export class PersonComponent implements OnInit {
     this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
   }
 
-  public confirmDeleteAllPeople(dialog: any): void {
-    this._modalService.open(dialog,
+  public confirmDeleteAllPeople(): void {
+
+    this._confirmDialogService.launchConfirmDialog(
       {
-        size: 'md'
+        acceptButton: 'Sim, estou ciente e desejo continuar.',
+        cancelButton: 'Cancelar',
+        message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
+        title: 'Antes de prosseguir...'
       }
     );
   }

@@ -16,25 +16,7 @@
     </div> -->
   </ng-template>
 
-  <ng-template #personDelete let-modal class="modal-dialog-custom">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Uma dúvida antes de prosseguir...</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h4 class="text-muted"> Realmente deseja <strong>DELETAR TODOS AS PESSOAS</strong> no sistema?</h4>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger d-flex align-items-center" (click)="deleteAllPeople()">Sim, estou ciente, quero continuar</button>
-      <button type="button" class="btn btn-outline-dark d-flex align-items-center" (click)="modal.close()">Cancelar</button>
-    </div>
-  </ng-template>
+  <app-confirm-dialog></app-confirm-dialog>
 
   <div class="row">
     <div class="col-md-12">
@@ -44,7 +26,7 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Nova Pessoa
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllPeople(personDelete)">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllPeople()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todas as Pessoas
           </button>
