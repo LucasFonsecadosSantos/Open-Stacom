@@ -1,3 +1,4 @@
+import { UrlService } from './../../../services/utils/url.service';
 import { PersonPageService } from './../../../pages/person/person-page.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { EventFindService } from './../../../services/event/event-find.service';
@@ -8,10 +9,6 @@ import {
   Person,
   Template
 } from 'src/app/models';
-import {
-  ActivatedRoute,
-  Router
-} from '@angular/router';
 
 @Component({
   selector: 'app-person-list',
@@ -26,27 +23,26 @@ export class PersonListComponent implements OnInit {
   personSelected: Person;
 
   constructor(
-    private route:                ActivatedRoute,
-    private router:               Router,
-    private eventFindService:     EventFindService,
-    private templateFindService:  TemplateFindService,
-    private personFindService:    PersonFindService,
-    private personPageService:    PersonPageService
+    private _eventFindService:     EventFindService,
+    private _templateFindService:  TemplateFindService,
+    private _personFindService:    PersonFindService,
+    private _personPageService:    PersonPageService,
+    private _urlService:          UrlService
   ) { }
 
   ngOnInit(): void {
 
-    this._getTemplate(this._getEventIDFromRoute());
-    this._listPeople(this._getEventIDFromRoute());
+    this._getTemplate(this._urlService.getEventIDFromRoute());
+    this._listPeople(this._urlService.getEventIDFromRoute());
   }
 
   selectPerson(person: Person): void {
-    this.personPageService.updatePersonSelected(person);
+    this._personPageService.updatePersonSelected(person);
   }
 
   private _getTemplate(eventID: string): void {
 
-    this.eventFindService.find(eventID).subscribe(
+    this._eventFindService.find(eventID).subscribe(
       response => {
         this.event = response;
         this._getTemplateById(response.templateID);
@@ -56,20 +52,16 @@ export class PersonListComponent implements OnInit {
 
   private _getTemplateById(templateID: string) {
 
-    this.templateFindService.find(templateID)
+    this._templateFindService.find(templateID)
       .subscribe(
         templateReponse => this.template = templateReponse
       );
 
   }
 
-  private _getEventIDFromRoute(): string {
-    return this.route.snapshot.params['eventID']
-  }
-
   private _listPeople(eventID: string): void {
 
-    this.personFindService.list(eventID).subscribe(
+    this._personFindService.list(eventID).subscribe(
       response => this.personArray = response
     );
 

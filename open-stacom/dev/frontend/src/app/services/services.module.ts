@@ -1,3 +1,4 @@
+import { UrlService } from './utils/url.service';
 import {
   PersonCreateService,
   PersonDeleteService,
@@ -131,7 +132,9 @@ import { CommonModule } from '@angular/common';
     TemplatesRetrievingService,
     TemplateFindService,
 
-    ExcelExportService
+    ExcelExportService,
+
+    UrlService
   ]
 })
 export class ServicesModule { }

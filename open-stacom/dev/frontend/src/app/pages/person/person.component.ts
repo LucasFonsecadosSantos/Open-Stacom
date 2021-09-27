@@ -1,3 +1,5 @@
+import { UrlService } from './../../services/utils/url.service';
+import { PersonDeleteService } from './../../services/person/person-delete.service';
 import { ExcelExportService } from './../../services/utils/excel-export.service';
 import { PersonListComponent } from './../../components/person/person-list/person-list.component';
 import { PersonPageService } from './person-page.service';
@@ -22,8 +24,10 @@ export class PersonComponent implements OnInit {
   closeResult: string;
 
   constructor(
-    private modalService: NgbModal,
-    private exportExcelService: ExcelExportService
+    private _modalService:        NgbModal,
+    private _exportExcelService:  ExcelExportService,
+    private _personDeleteService: PersonDeleteService,
+    private _urlService:          UrlService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +35,8 @@ export class PersonComponent implements OnInit {
 
   }
 
-  open(content: any): void {
-    this.modalService.open(content,
+  public open(content: any): void {
+    this._modalService.open(content,
       {
         ariaLabelledBy: 'modal-basic-title',
         windowClass: 'modal-custom',
@@ -45,17 +49,22 @@ export class PersonComponent implements OnInit {
     )
   }
 
-  exportExcel(): void {
+  public exportExcel(): void {
     this._personArray = this.personListComponent.personArray;
-    this.exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
+    this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
   }
 
-  confirmDeleteAllPeople(dialog: any): void {
-    this.modalService.open(dialog,
+  public confirmDeleteAllPeople(dialog: any): void {
+    this._modalService.open(dialog,
       {
         size: 'md'
       }
-    )
+    );
   }
+
+  public deleteAllPeople(): void {
+    this._personDeleteService.deleteAll(this._urlService.getEventIDFromRoute());
+  }
+
 
 }
