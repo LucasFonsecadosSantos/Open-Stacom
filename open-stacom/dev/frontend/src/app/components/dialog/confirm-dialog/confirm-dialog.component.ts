@@ -31,6 +31,12 @@ export class ConfirmDialogComponent implements OnInit {
 
   }
 
+  public acceptButton(): void {
+
+    this._confirmDialogService.acceptOperation();
+
+  }
+
   private _launchDialog(): void {
 
     this._modalService.open(this.dialog,

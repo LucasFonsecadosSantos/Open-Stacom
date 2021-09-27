@@ -8,7 +8,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ConfirmDialogService {
 
-  private subject: Subject<any> = new Subject<any>();
+  private subject:          Subject<any> = new Subject<any>();
+  private subjectResponse:  Subject<any> = new Subject<any>();
 
   public confirmDialog: ConfirmDialog;
 
@@ -25,7 +26,15 @@ export class ConfirmDialogService {
     this.subject.next(confirmDialogModel);
   }
 
+  public acceptOperation(): void {
+    this.subjectResponse.next(true);
+  }
+
   public getObservable(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  public getResponseObservable(): Observable<any> {
+    return this.subjectResponse.asObservable();
   }
 }

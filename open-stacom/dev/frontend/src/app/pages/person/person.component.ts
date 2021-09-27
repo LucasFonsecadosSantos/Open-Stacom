@@ -34,6 +34,8 @@ export class PersonComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this._confirmDialogService.getResponseObservable()
+                                .subscribe(operation => this._deleteAllPeople());
 
   }
 
@@ -68,8 +70,9 @@ export class PersonComponent implements OnInit {
     );
   }
 
-  public deleteAllPeople(): void {
-    this._personDeleteService.deleteAll(this._urlService.getEventIDFromRoute());
+  private _deleteAllPeople(): void {
+    console.log('operacao aceita');
+    // this._personDeleteService.deleteAll(this._urlService.getEventIDFromRoute());
   }
 
 
