@@ -8,7 +8,7 @@
         <img alt="Fotografia de {{person.name}}" class=" avatar" src="{{person.avatar}}" />
         <h5 class=" title">{{person.name}}</h5>
       </a>
-      <p *ngIf="person.job" class=" description">{{person.job}} - {{person.institution || ""}}</p>
+      <p *ngIf="person.job" class=" description">{{person.job}} - {{person.institution ? person.institution : ''}}</p>
       <small><p *ngIf="person.academicFormation" class=" description">{{person.academicFormation}}</p></small>
     </div>
     <div *ngIf="person.brief" class=" card-description">{{person.brief}}</div>
@@ -110,14 +110,17 @@
     <div class="button-container">
       <button
         title="Clique aqui para editar e atualziar as informações de {{person.name}}. Ex. Nome, formação, fotografia, redes sociais..."
-        class="btn btn-default mr-1">
+        class="btn btn-default mr-1"
+        (click)="editPerson(person)"
+      >
         <i class="tim-icons icon-pencil"></i>
         Editar
       </button>
       <button
-        [routerLink]=""
+        (click)="deletePerson(person)"
         title="Clique aqui para remover o registro de {{person.name}} do sistema."
-        class="btn btn-danger">
+        class="btn btn-danger"
+      >
         <i class="tim-icons icon-simple-remove"></i>
         Remover
       </button>
