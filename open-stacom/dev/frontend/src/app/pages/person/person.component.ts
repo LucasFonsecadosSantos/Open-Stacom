@@ -1,3 +1,4 @@
+import { ExcelExportService } from './../../services/utils/excel-export.service';
 import { PersonListComponent } from './../../components/person/person-list/person-list.component';
 import { PersonPageService } from './person-page.service';
 
@@ -21,7 +22,8 @@ export class PersonComponent implements OnInit {
   closeResult: string;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private exportExcelService: ExcelExportService
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class PersonComponent implements OnInit {
 
   exportExcel(): void {
     this._personArray = this.personListComponent.personArray;
-
+    this.exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
   }
 
   confirmDeleteAllPeople(dialog: any): void {
