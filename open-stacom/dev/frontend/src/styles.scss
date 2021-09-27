@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-.modal-dialog {
+.modal-dialog-custom {
   transform: translate(0 ,0 ) !important;
-}
-.modal-content {
-  background: transparent !important;
+  .modal-content {
+    background: transparent !important;
+  }
 }
 .modal-custom {
   top: 0px;
