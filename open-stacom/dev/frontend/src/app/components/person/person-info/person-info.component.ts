@@ -35,7 +35,6 @@ export class PersonInfoComponent implements OnInit {
 
   public deletePerson(person: Person): void {
 
-
     this._personDeleteService.delete(person.id, this._urlService.getEventIDFromRoute());
 
   }

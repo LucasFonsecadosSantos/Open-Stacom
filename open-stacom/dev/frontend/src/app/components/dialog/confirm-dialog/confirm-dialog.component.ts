@@ -37,9 +37,9 @@ export class ConfirmDialogComponent implements OnInit {
       {
         ariaLabelledBy: 'modal-basic-title',
         windowClass: 'modal-custom',
-        size: 'lg',
+        size: 'md',
         centered: true,
-        modalDialogClass: 'modal-dialog-custom'
+        // modalDialogClass: 'modal-dialog-custom'
 
       }
     );

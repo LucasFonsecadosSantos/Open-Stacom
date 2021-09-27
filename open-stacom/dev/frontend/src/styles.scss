@@ -8,7 +8,9 @@
   }
 }
 .modal-custom {
-  top: 0px;
+  .modal-dialog {
+    transform: translate(0 ,0 ) !important;
+  }
   background: linear-gradient(to bottom left,  rgba(253,93,147,.5), rgba(236,37,13,.5), rgba(253,93,157,.5));
   .modal-body {
     padding: 0px;
