@@ -1,4 +1,8 @@
+import { PersonForm } from './../../../models/person-form.model';
+import { PersonFormService } from './person-form.service';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { EventFindService } from './../../../services/event/event-find.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { PersonCreateService } from './../../../services/person';
@@ -10,7 +14,8 @@ import {
 } from './../../../models';
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import {
   Router,
@@ -24,31 +29,48 @@ import {
 })
 export class PersonFormComponent implements OnInit {
 
-  event:    Event;
-  template: Template;
-  person: Person;
+  @ViewChild('personForm') personForm;
+  personFormModel:  PersonForm;
+  event:            Event;
+  template:         Template;
+  person:           Person;
 
   constructor(
-    private router:               Router,
-    private route:                ActivatedRoute,
-    private eventFind:            EventFindService,
+    private _modalService:        NgbModal,
+    private _personFormService:   PersonFormService,
     private templateFindService:  TemplateFindService,
-    private personPageService:    PersonPageService,
     private personCreateService:  PersonCreateService
   ) { }
 
   ngOnInit(): void {
 
-    this._getEvent();
-    this._getSelectedPerson();
+    this._getFormObservable();
 
   }
 
-  private _getTemplate(templateID: string): void {
+  private _getFormObservable(): void {
 
-    this.templateFindService
-          .find(templateID)
-          .subscribe(template => {this.template = template; console.log(template)});
+    this._personFormService.getObservable()
+                              .subscribe(data => {
+                                this.personForm = data;
+                                this._launchModal();
+                              })
+
+  }
+
+  private _launchModal(): void {
+
+    this._modalService.open(this.personForm,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        windowClass: 'modal-custom',
+        size: 'lg',
+        centered: true,
+        modalDialogClass: 'modal-dialog-custom'
+
+
+      }
+    )
 
   }
 
@@ -58,30 +80,5 @@ export class PersonFormComponent implements OnInit {
 
   // }
 
-  private _getSelectedPerson(): void {
-
-    this.personPageService
-          .getSelectedPerson()
-          .subscribe(person => this.person = person);
-
-  }
-
-  private _getEvent(): void {
-
-    this.eventFind.find(this._getEventIDFromRoute())
-                    .subscribe(
-                      event => {
-                        this.event = event;
-                        this._getTemplate(event.templateID);
-                      }
-                    );
-
-  }
-
-  private _getEventIDFromRoute(): string {
-
-    return this.route.snapshot.params['eventID']
-
-  }
 
 }

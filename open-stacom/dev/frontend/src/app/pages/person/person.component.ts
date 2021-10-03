@@ -1,3 +1,4 @@
+import { PersonFormService } from './../../components/person/person-form/person-form.service';
 import { ConfirmDialogService } from './../../components/dialog/confirm-dialog/confirm-dialog.service';
 import { UrlService } from './../../services/utils/url.service';
 import { PersonDeleteService } from './../../services/person/person-delete.service';
@@ -5,10 +6,10 @@ import { ExcelExportService } from './../../services/utils/excel-export.service'
 import { PersonListComponent } from './../../components/person/person-list/person-list.component';
 import { PersonPageService } from './person-page.service';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Person } from 'src/app/models';
+import { Operation } from 'src/app/enums';
 
 @Component({
   selector: 'app-person',
@@ -25,8 +26,8 @@ export class PersonComponent implements OnInit {
   closeResult: string;
 
   constructor(
-    private _modalService:          NgbModal,
     private _exportExcelService:    ExcelExportService,
+    private _personFormService:     PersonFormService,
     private _personDeleteService:   PersonDeleteService,
     private _urlService:            UrlService,
     private _confirmDialogService:  ConfirmDialogService
@@ -34,23 +35,17 @@ export class PersonComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._confirmDialogService.getResponseObservable()
-                                .subscribe(operation => this._deleteAllPeople());
+    this._getResponseObservables();
 
   }
 
-  public open(content: any): void {
-    this._modalService.open(content,
-      {
-        ariaLabelledBy: 'modal-basic-title',
-        windowClass: 'modal-custom',
-        size: 'lg',
-        centered: true,
-        modalDialogClass: 'modal-dialog-custom'
+  public openAddPersonForm(personToAdd: Person): void {
 
+    this._personFormService.launchModal({
+      person: personToAdd,
+      operation: Operation.Create
+    });
 
-      }
-    )
   }
 
   public exportExcel(): void {
@@ -70,8 +65,23 @@ export class PersonComponent implements OnInit {
     );
   }
 
+  private _getResponseObservables(): void {
+
+    this._personFormService.getResponseObservable()
+                              .subscribe(operationResult => this._showToast(operationResult));
+
+    this._confirmDialogService.getResponseObservable()
+                                .subscribe(operation => this._deleteAllPeople());
+
+  }
+
+  private _showToast(message: String): void {
+    //TODO here
+    alert("imeplemtanr aqui" + message);
+  }
+
   private _deleteAllPeople(): void {
-    console.log('operacao aceita');
+    alert('operacao aceita');
     // this._personDeleteService.deleteAll(this._urlService.getEventIDFromRoute());
   }
 

@@ -13,7 +13,8 @@ import {
 import {
   PersonFormComponent,
   PersonListComponent,
-  PersonInfoComponent
+  PersonInfoComponent,
+  PersonFormService
 } from './person';
 import {
   SponsorListComponent,
@@ -155,7 +156,8 @@ import {
     ConfirmDialogComponent
   ],
   providers: [
-    ConfirmDialogService
+    ConfirmDialogService,
+    PersonFormService
   ]
 })
 export class ComponentsModule {}

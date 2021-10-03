@@ -1,3 +1,4 @@
+import { ConfirmDialogService } from './../../dialog/confirm-dialog/confirm-dialog.service';
 import { UrlService } from './../../../services/utils/url.service';
 import { PersonDeleteService } from './../../../services/person/person-delete.service';
 import { PersonPageService } from './../../../pages/person/person-page.service';
@@ -14,9 +15,10 @@ export class PersonInfoComponent implements OnInit {
   person: Person;
 
   constructor(
-    private _personPageService:   PersonPageService,
-    private _personDeleteService: PersonDeleteService,
-    private _urlService:          UrlService
+    private _personPageService:     PersonPageService,
+    private _personDeleteService:   PersonDeleteService,
+    private _urlService:            UrlService,
+    private _confirmDialogService:  ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,9 @@ export class PersonInfoComponent implements OnInit {
 
   public deletePerson(person: Person): void {
 
+    this._confirmDialogService.launchConfirmDialog({
+      title: 'Antes de prosseguit..'
+    });
     this._personDeleteService.delete(person.id, this._urlService.getEventIDFromRoute());
 
   }
