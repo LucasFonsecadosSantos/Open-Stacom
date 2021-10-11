@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { UrlService } from './../../../services/utils/url.service';
 import { PersonPageService } from './../../../pages/person/person-page.service';
 import { TemplateFindService } from './../../../services/templates/template-find.service';
@@ -27,17 +28,27 @@ export class PersonListComponent implements OnInit {
     private _templateFindService:  TemplateFindService,
     private _personFindService:    PersonFindService,
     private _personPageService:    PersonPageService,
-    private _urlService:          UrlService
+    private _activatedRoute:       ActivatedRoute
   ) { }
 
   ngOnInit(): void {
 
-    this._getTemplate(this._urlService.getEventIDFromRoute());
-    this._listPeople(this._urlService.getEventIDFromRoute());
+    this._getEventID();
+
   }
 
-  selectPerson(person: Person): void {
+  public selectPerson(person: Person): void {
     this._personPageService.updatePersonSelected(person);
+  }
+
+  private _getEventID(): void {
+
+    this._activatedRoute.paramMap.subscribe(
+      params => {
+        this._getTemplate(params.get('eventID'));
+        this._listPeople(params.get('eventID'));
+      }
+    );
   }
 
   private _getTemplate(eventID: string): void {

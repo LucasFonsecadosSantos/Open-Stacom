@@ -20,12 +20,6 @@ export class PersonFormService {
 
   constructor() { }
 
-  public open(personFormModel: PersonForm): void {
-
-    this.personForm = personFormModel;
-
-  }
-
   public launchModal(personFormModel: PersonForm) {
     this.subject.next(personFormModel);
   }

@@ -14,7 +14,7 @@
           "name": {
             "minlength": 4,
             "maxlength": 50,
-            "require": true
+            "required": true
           },
           "avatar": {
             "minlength": 4,
@@ -24,32 +24,87 @@
           "job": {
             "minlength": 4,
             "maxlength": 50,
-            "require": true
+            "required": true
           },
           "academicFormation": {
             "minlength": 4,
             "maxlength": 50,
-            "require": false
+            "required": false
           },
           "institution": {
             "minlength": 4,
             "maxlength": 50,
-            "require": false
+            "required": false
           },
           "locationCity": {
             "minlength": 4,
             "maxlength": 50,
-            "require": true
+            "required": true
           },
           "locationState": {
             "minlength": 4,
             "maxlength": 50,
-            "require": true
+            "required": true
           },
           "locationCountry": {
             "minlength": 4,
             "maxlength": 50,
-            "require": true
+            "required": true
+          },
+          "socialNetworkFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWebsite": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLattes": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkEmail": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
           }
         }
       }

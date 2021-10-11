@@ -29,7 +29,7 @@ export class PersonComponent implements OnInit {
     private _exportExcelService:    ExcelExportService,
     private _personFormService:     PersonFormService,
     private _personDeleteService:   PersonDeleteService,
-    private _urlService:            UrlService,
+    // private _urlService:            UrlService,
     private _confirmDialogService:  ConfirmDialogService
   ) { }
 
@@ -39,11 +39,12 @@ export class PersonComponent implements OnInit {
 
   }
 
-  public openAddPersonForm(personToAdd: Person): void {
+  public openAddPersonForm(): void {
 
     this._personFormService.launchModal({
-      person: personToAdd,
-      operation: Operation.Create
+      operation:  Operation.Create,
+      template:   this.personListComponent.template,
+      eventID:    this.personListComponent.event.id
     });
 
   }

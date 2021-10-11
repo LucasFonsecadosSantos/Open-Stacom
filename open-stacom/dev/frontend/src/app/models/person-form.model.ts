@@ -6,7 +6,8 @@ export class PersonForm {
 
   title?:     string;
   person?:    Person;
-  template?:  Template
-  operation?: Operation
+  template?:  Template;
+  operation?: Operation;
+  eventID?:   string;
 
 }

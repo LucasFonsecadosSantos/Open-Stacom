@@ -4,7 +4,7 @@ export const environment = {
     BASE: "./../../mocks"
   },
   API_URL: {
-    BASE: 'http://localhost:3000',
+    BASE: 'http://192.168.100.9:3000',
     TEMPLATES: '/templates',
     PERSON: '/person',
     CALLS: '/calls',
