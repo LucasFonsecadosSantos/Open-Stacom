@@ -63,12 +63,11 @@ export class PersonFormComponent implements OnInit {
 
     this.personFormModel = model;
 
-    if (!model.template) {
-      alert("tem");
+    //if (!model.template) {
       this._getEvent(model.eventID);
-    } else {
-      this.template = model.template;
-    }
+    // } else {
+    //   this.template = model.template;
+    // }
 
   }
 

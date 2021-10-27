@@ -11,9 +11,7 @@ export class Template {
   objects?:     {
     person?: {
       name?: {
-        minlength?: number,
-        maxlength?: number,
-        required?: boolean,
+
       },
       avatar?: {
         minlength?: number,
