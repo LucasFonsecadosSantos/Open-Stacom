@@ -28,6 +28,7 @@ export class PersonFormComponent implements OnInit {
   public personFormModel: PersonForm;
   public person: Person;
   public template: Template;
+  public static readonly operation: Operation;
 
   constructor(
     private _modalService: NgbModal,
@@ -60,7 +61,7 @@ export class PersonFormComponent implements OnInit {
 
                                   personResponse => {
 
-                                    alert(this.template.id);
+                                    alert(personResponse.id);
                                     this._setPerson(personResponse, data.operation);
                                     this._setPersonFormModel(data);
                                     this._launchModal();
@@ -72,6 +73,14 @@ export class PersonFormComponent implements OnInit {
 
                               });
 
+  }
+
+  public get operationUpdate() {
+    return Operation.Update;
+  }
+
+  public get operationCreate() {
+    return Operation.Create;
   }
 
   private _setPerson(person: Person, operation: Operation): void {

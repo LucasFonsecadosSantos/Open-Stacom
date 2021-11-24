@@ -49,7 +49,8 @@ export class PersonInfoComponent implements OnInit {
     });
 
     this._sharedEventService.getEventObservable().subscribe(
-      eventResponse => this._personDeleteService.delete(person.id, eventResponse.id)
+      eventResponse => {this._personDeleteService.delete(person.id, eventResponse.id);console.log(eventResponse);}
+
     );
 
 
