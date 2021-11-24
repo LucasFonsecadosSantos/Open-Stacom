@@ -74,6 +74,7 @@ import { ExcelExportService } from './utils';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedInformationService } from './shared';
 
 
 
@@ -134,7 +135,9 @@ import { CommonModule } from '@angular/common';
 
     ExcelExportService,
 
-    UrlService
+    UrlService,
+
+    SharedInformationService
   ]
 })
 export class ServicesModule { }

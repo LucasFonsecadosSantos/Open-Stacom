@@ -21,7 +21,7 @@ export class PersonComponent implements OnInit {
   @ViewChild(PersonListComponent)
   private personListComponent: PersonListComponent;
 
-  private _personArray: Person[];
+  public personArray: Person[];
 
   closeResult: string;
 
@@ -29,7 +29,6 @@ export class PersonComponent implements OnInit {
     private _exportExcelService:    ExcelExportService,
     private _personFormService:     PersonFormService,
     private _personDeleteService:   PersonDeleteService,
-    // private _urlService:            UrlService,
     private _confirmDialogService:  ConfirmDialogService
   ) { }
 
