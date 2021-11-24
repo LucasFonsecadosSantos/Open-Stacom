@@ -12,11 +12,11 @@ export class PersonFindService {
 
   constructor(private http: HttpClient) { }
 
-  list(eventID: string): Observable<Person[]> {
+  public list(eventID: string): Observable<Person[]> {
     return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`)
                       .pipe(map(result => {
                           const personArray = <any[]>result;
-                          this._buildSources(personArray, eventID);
+                          //this._buildSources(personArray, eventID);
                           return personArray;
                       }));
   }
@@ -31,7 +31,7 @@ export class PersonFindService {
 
   }
 
-  private _buildPersonAvatarSource(personAvatar: string, eventID: string) {
+  private _buildPersonAvatarSource(personAvatar: string, eventID: string): string {
 
     return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
             personAvatar = `/data/${eventID}/img/avatar/${personAvatar}` :

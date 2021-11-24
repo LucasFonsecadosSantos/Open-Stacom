@@ -1,7 +1,7 @@
 
 
 <div class=" card card-user">
-  <div class=" card-body">
+  <div class=" card-body" *ngIf="person">
     <p class=" card-text"></p>
     <div class=" author">
       <a href="javascript:void(0)">
@@ -14,8 +14,8 @@
     <div *ngIf="person.brief" class=" card-description">{{person.brief}}</div>
     <div *ngIf="!person.brief" class=" card-description">Nenhuma descrição informada sobre {{person.name}}.</div>
   </div>
-  <div class=" card-footer">
-    <div class=" button-container">
+  <div class=" card-footer" *ngIf="person">
+    <div class=" button-container" *ngIf="person.socialNetworks">
       <button
         *ngIf="person.socialNetworks.facebook"
         title="Clique para acessar o facebook de {{person.name}}"

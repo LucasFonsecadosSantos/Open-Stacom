@@ -31,4 +31,5 @@ export class ConfirmDialogService {
   public getResponseObservable(): Observable<any> {
     return this.subjectResponse.asObservable();
   }
+
 }

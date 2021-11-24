@@ -30,7 +30,7 @@
               <div class="row" *ngIf="person.academicFormation">{{person.academicFormation}}</div>
               <div class="row" *ngIf="person.brief">{{person.brief}}</div>
             </td>
-            <td class="d-flex justify-content-left align-items-center">
+            <td class="d-flex justify-content-left align-items-center" *ngIf="person.socialNetworks">
               <a *ngIf="person.socialNetworks.facebook" href="{{person.socialNetworks.facebook}}"><i class="fab fa-facebook-square col-md-1"></i></a>
               <a *ngIf="person.socialNetworks.twitter" href="{{person.socialNetworks.twitter}}"><i class="fab fa-twitter-square col-md-1"></i></a>
               <a *ngIf="person.socialNetworks.linkedin" href="{{person.socialNetworks.linkedin}}"><i class="fab fa-linkedin col-md-1"></i></a>

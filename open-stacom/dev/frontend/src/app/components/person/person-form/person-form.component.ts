@@ -2,9 +2,6 @@ import { PersonUpdateService } from './../../../services/person/person-update.se
 import { PersonForm } from './../../../models/person-form.model';
 import { PersonFormService } from './person-form.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { EventFindService } from './../../../services/event/event-find.service';
-import { TemplateFindService } from './../../../services/templates/template-find.service';
 import { PersonCreateService } from './../../../services/person';
 import {
   Person,
@@ -13,10 +10,12 @@ import {
 } from './../../../models';
 import {
   Component,
-  ElementRef,
   OnInit,
   ViewChild
 } from '@angular/core';
+import { SharedEventService, SharedPersonService, SharedTemplateService } from 'src/app/services/shared';
+import { Operation } from 'src/app/enums';
+import { isThisTypeNode } from 'typescript';
 
 @Component({
   selector: 'app-person-form',
@@ -26,36 +25,58 @@ import {
 export class PersonFormComponent implements OnInit {
 
   @ViewChild('personForm') personForm;
-
-  personFormModel:  PersonForm;
-  event:            Event;
-  template:         Template;
-  person:           Person  = undefined;
+  public personFormModel: PersonForm;
+  public person: Person;
+  public template: Template;
 
   constructor(
-    private _modalService:        NgbModal,
-    private _personFormService:   PersonFormService,
+    private _modalService: NgbModal,
+    private _personFormService: PersonFormService,
     private _personCreateService: PersonCreateService,
-    private _eventFindService:    EventFindService,
-    private _templateFindService: TemplateFindService,
-    private _personUpdateService: PersonUpdateService
+    private _personUpdateService: PersonUpdateService,
+    private _sharedTemplateService: SharedTemplateService,
+    private _sharedPersonService: SharedPersonService
   ) { }
 
   ngOnInit(): void {
 
-    this._getFormObservable();
+    this._getTemplateObservable();
+    this._getFormObservables();
 
   }
 
-  private _getFormObservable(): void {
+  private _getTemplateObservable(): void {
+    this._sharedTemplateService.getTemplateObservable().subscribe(
+      templateResponse => this.template = templateResponse
+    );
+  }
+
+  private _getFormObservables(): void {
 
     this._personFormService.getObservable()
                               .subscribe(data => {
-                                this.person = data.person ? data.person : undefined;
-                                this._setPersonFormModel(data);
-                                this._launchModal();
-                                this._buildFormFields();
-                              })
+
+                                this._sharedPersonService.getPersonObservable().subscribe(
+
+                                  personResponse => {
+
+                                    alert(this.template.id);
+                                    this._setPerson(personResponse, data.operation);
+                                    this._setPersonFormModel(data);
+                                    this._launchModal();
+                                    this._buildFormFields();
+
+                                  }
+
+                                );
+
+                              });
+
+  }
+
+  private _setPerson(person: Person, operation: Operation): void {
+
+    this.person = (operation == Operation.Update) ? person : null;
 
   }
 
@@ -63,35 +84,10 @@ export class PersonFormComponent implements OnInit {
 
     this.personFormModel = model;
 
-    //if (!model.template) {
-      this._getEvent(model.eventID);
-    // } else {
-    //   this.template = model.template;
-    // }
-
-  }
-
-  private _getEvent(eventID: string): void {
-
-    this._eventFindService.find(eventID)
-                              .subscribe(event => {
-                                this.event = event;
-                                this._getTemplate(event.templateID);
-                              });
-  }
-
-  private _getTemplate(templateID: string): void {
-
-    this._templateFindService.find(templateID)
-                              .subscribe(template => {
-                                this.template = template;
-                                // this._buildFormFields();
-                              })
-
   }
 
   private _launchModal(): void {
-9
+
     this._modalService.open(this.personForm,
       {
         ariaLabelledBy: 'modal-basic-title',
@@ -99,8 +95,6 @@ export class PersonFormComponent implements OnInit {
         size: 'lg',
         centered: true,
         modalDialogClass: 'modal-dialog-custom'
-
-
       }
     )
 

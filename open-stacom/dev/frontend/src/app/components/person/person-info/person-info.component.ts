@@ -1,12 +1,14 @@
 import { ActivatedRoute } from '@angular/router';
 import { PersonFormService } from './../person-form/person-form.service';
 import { ConfirmDialogService } from './../../dialog/confirm-dialog/confirm-dialog.service';
-import { UrlService } from './../../../services/utils/url.service';
 import { PersonDeleteService } from './../../../services/person/person-delete.service';
-import { PersonPageService } from './../../../pages/person/person-page.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
+import {
+  SharedEventService,
+  SharedPersonService,
+} from 'src/app/services/shared';
 
 @Component({
   selector: 'app-person-info',
@@ -18,38 +20,25 @@ export class PersonInfoComponent implements OnInit {
   person: Person;
 
   constructor(
-    private _personPageService:     PersonPageService,
-    private _personFormService:     PersonFormService,
-    private _personDeleteService:   PersonDeleteService,
-    // private _urlService:            UrlService,
-    private _activatedRoute:        ActivatedRoute,
-    private _confirmDialogService:  ConfirmDialogService
+    private _sharedPersonService: SharedPersonService,
+    private _sharedEventService: SharedEventService,
+    private _personFormService: PersonFormService,
+    private _personDeleteService: PersonDeleteService,
+    private _confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
 
     this._getResponseObservables();
 
-    this._personPageService
-
-          .getSelectedPerson()
-
-          .subscribe(data => {
-            this.person = data;
-          });
-
   }
 
   public editPerson(person: Person): void {
-    this._activatedRoute.paramMap.subscribe(
-      params => {
-        this._personFormService.launchModal({
-          operation:  Operation.Update,
-          person:     person,
-          eventID:    params.get('eventID')
-        });
-      }
-    );
+
+    this._sharedPersonService.setPerson(person);
+    this._personFormService.launchModal({
+      operation:  Operation.Update,
+    });
 
   }
 
@@ -59,20 +48,20 @@ export class PersonInfoComponent implements OnInit {
       title: 'Antes de prosseguit..'
     });
 
-    this._activatedRoute.paramMap.subscribe(params => {
-      this._personDeleteService.delete(person.id, params.get('eventID'));
-    });
+    this._sharedEventService.getEventObservable().subscribe(
+      eventResponse => this._personDeleteService.delete(person.id, eventResponse.id)
+    );
+
 
   }
 
   private _getResponseObservables(): void {
 
-    this._personFormService.getResponseObservable()
-                              .subscribe(data => {
-
-                                //TODO Here - Implements a toast here
-
-                              });
+    this._sharedPersonService.getPersonObservable().subscribe(
+      personResponse => {
+        this.person = personResponse ? personResponse : null;
+      }
+    );
 
   }
 

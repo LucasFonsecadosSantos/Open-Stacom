@@ -10,6 +10,9 @@ import { PersonPageService } from './person-page.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { EventFindService } from 'src/app/services/event';
+import { TemplateFindService } from 'src/app/services/templates';
 
 @Component({
   selector: 'app-person',
@@ -20,16 +23,16 @@ export class PersonComponent implements OnInit {
 
   @ViewChild(PersonListComponent)
   private personListComponent: PersonListComponent;
-
-  public personArray: Person[];
-
-  closeResult: string;
+  private _personArray: Person[];
+  public event: Event;
+  public template: Template;
+  public closeResult: string;
 
   constructor(
-    private _exportExcelService:    ExcelExportService,
-    private _personFormService:     PersonFormService,
-    private _personDeleteService:   PersonDeleteService,
-    private _confirmDialogService:  ConfirmDialogService
+    private _exportExcelService: ExcelExportService,
+    private _personFormService: PersonFormService,
+    private _personDeleteService: PersonDeleteService,
+    private _confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +44,7 @@ export class PersonComponent implements OnInit {
   public openAddPersonForm(): void {
 
     this._personFormService.launchModal({
-      operation:  Operation.Create,
-      template:   this.personListComponent.template,
-      eventID:    this.personListComponent.event.id
+      operation: Operation.Create
     });
 
   }
