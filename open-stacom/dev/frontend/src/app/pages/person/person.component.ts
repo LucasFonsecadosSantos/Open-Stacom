@@ -1,18 +1,14 @@
 import { PersonFormService } from './../../components/person/person-form/person-form.service';
 import { ConfirmDialogService } from './../../components/dialog/confirm-dialog/confirm-dialog.service';
-import { UrlService } from './../../services/utils/url.service';
 import { PersonDeleteService } from './../../services/person/person-delete.service';
 import { ExcelExportService } from './../../services/utils/excel-export.service';
 import { PersonListComponent } from './../../components/person/person-list/person-list.component';
-import { PersonPageService } from './person-page.service';
 
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
 import { Template } from '@angular/compiler/src/render3/r3_ast';
-import { EventFindService } from 'src/app/services/event';
-import { TemplateFindService } from 'src/app/services/templates';
 
 @Component({
   selector: 'app-person',

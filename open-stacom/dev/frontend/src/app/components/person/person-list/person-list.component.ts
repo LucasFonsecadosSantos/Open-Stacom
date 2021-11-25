@@ -5,7 +5,8 @@ import {
   Person,
   Template
 } from 'src/app/models';
-import { SharedEventService, SharedPersonService } from 'src/app/services/shared';
+import { SharedEventService } from 'src/app/services/shared';
+import { SharedPersonService } from 'src/app/pages';
 
 @Component({
   selector: 'app-person-list',
@@ -30,16 +31,12 @@ export class PersonListComponent implements OnInit {
   }
 
   public selectPerson(person: Person): void {
-    this._sharedPersonService.setPerson(person);
+    this._sharedPersonService.sharedPersonFromListToInfo(person);
   }
 
   private _getEventAndBuildComponent(): void {
 
-    this._sharedEventService.getEventObservable().subscribe(
-
-      event => this._listPeople(event.id)
-
-    );
+    this._listPeople(this._sharedEventService.getEvent().id);
 
   }
 
@@ -48,7 +45,7 @@ export class PersonListComponent implements OnInit {
     this._personFindService.list(eventID).subscribe(
       response => {
         this.personArray = response;
-        this._sharedPersonService.setPerson(response[0] ? response[0] : null);
+        this._sharedPersonService.sharedPersonFromListToInfo(response[0] ? response[0] : null);
       }
     );
 

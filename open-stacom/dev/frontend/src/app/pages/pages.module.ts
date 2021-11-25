@@ -1,4 +1,3 @@
-import { PersonPageService } from './person';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,6 +17,7 @@ import {
   PreviousEditionsComponent,
   CallsComponent
 } from './';
+import { SharedPersonService } from './person';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,7 @@ import {
     CallsComponent
   ],
   providers: [
-    PersonPageService
+    SharedPersonService
   ]
 })
 export class PagesModule { }

@@ -13,9 +13,8 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { SharedEventService, SharedPersonService, SharedTemplateService } from 'src/app/services/shared';
+import { SharedEventService, SharedTemplateService } from 'src/app/services/shared';
 import { Operation } from 'src/app/enums';
-import { isThisTypeNode } from 'typescript';
 
 @Component({
   selector: 'app-person-form',
@@ -35,8 +34,7 @@ export class PersonFormComponent implements OnInit {
     private _personFormService: PersonFormService,
     private _personCreateService: PersonCreateService,
     private _personUpdateService: PersonUpdateService,
-    private _sharedTemplateService: SharedTemplateService,
-    private _sharedPersonService: SharedPersonService
+    private _sharedTemplateService: SharedTemplateService
   ) { }
 
   ngOnInit(): void {
@@ -50,28 +48,21 @@ export class PersonFormComponent implements OnInit {
     this._sharedTemplateService.getTemplateObservable().subscribe(
       templateResponse => this.template = templateResponse
     );
+    this.template = this._sharedTemplateService.getTemplate();
+    console.log(this.template);
   }
 
   private _getFormObservables(): void {
 
     this._personFormService.getObservable()
-                              .subscribe(data => {
+                            .subscribe(data => {
 
-                                this._sharedPersonService.getPersonObservable().subscribe(
+                              this._setPerson(data.person, data.operation);
+                              this._setPersonFormModel(data);
+                              this._launchModal();
+                              this._buildFormFields();
 
-                                  personResponse => {
-
-                                    alert(personResponse.id);
-                                    this._setPerson(personResponse, data.operation);
-                                    this._setPersonFormModel(data);
-                                    this._launchModal();
-                                    this._buildFormFields();
-
-                                  }
-
-                                );
-
-                              });
+                            });
 
   }
 

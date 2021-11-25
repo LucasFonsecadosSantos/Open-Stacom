@@ -75,7 +75,6 @@ import { ExcelExportService } from './utils';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  SharedPersonService,
   SharedTemplateService,
   SharedEventService
 } from './shared';
@@ -141,7 +140,6 @@ import {
 
     UrlService,
 
-    SharedPersonService,
     SharedTemplateService,
     SharedEventService
   ]

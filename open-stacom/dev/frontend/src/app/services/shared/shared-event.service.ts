@@ -16,8 +16,12 @@ export class SharedEventService {
     this._subject.next(event);
   }
 
+  public getEvent(): Event {
+    return this._behaviorSubject.getValue();
+  }
+
   public getEventObservable(): Observable<Event> {
-    return this._behaviorSubject.asObservable()
+    return this._subject.asObservable()
   }
 
 }

@@ -6,9 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
 import {
-  SharedEventService,
-  SharedPersonService,
+  SharedEventService
 } from 'src/app/services/shared';
+import { SharedPersonService } from 'src/app/pages';
 
 @Component({
   selector: 'app-person-info',
@@ -35,9 +35,9 @@ export class PersonInfoComponent implements OnInit {
 
   public editPerson(person: Person): void {
 
-    this._sharedPersonService.setPerson(person);
     this._personFormService.launchModal({
       operation:  Operation.Update,
+      person: person
     });
 
   }
@@ -49,7 +49,7 @@ export class PersonInfoComponent implements OnInit {
     });
 
     this._sharedEventService.getEventObservable().subscribe(
-      eventResponse => {this._personDeleteService.delete(person.id, eventResponse.id);console.log(eventResponse);}
+      eventResponse => this._personDeleteService.delete(person.id, eventResponse.id)
 
     );
 
@@ -58,9 +58,9 @@ export class PersonInfoComponent implements OnInit {
 
   private _getResponseObservables(): void {
 
-    this._sharedPersonService.getPersonObservable().subscribe(
+    this._sharedPersonService.getPersonFromListObservable().subscribe(
       personResponse => {
-        this.person = personResponse ? personResponse : null;
+        {this.person = personResponse ? personResponse : null; console.log(personResponse);}
       }
     );
 
