@@ -31,8 +31,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: "about", component: AboutComponent },
 
   { path: "pessoa", component: PersonComponent },
-  { path: ":eventID/pessoas", component: PersonComponent },
-  { path: ":eventID/person", component: PersonComponent },
+  { path: "pessoas", component: PersonComponent },
+  { path: "person", component: PersonComponent },
 
   { path: "evento", component: EventComponent },
   { path: "event", component: EventComponent },

@@ -6,6 +6,8 @@ import {
   Person,
   Template
 } from 'src/app/models';
+import { PersonFormService } from '..';
+import { Operation } from 'src/app/enums';
 
 @Component({
   selector: 'app-person-list',
@@ -25,6 +27,7 @@ export class PersonListComponent implements OnInit {
   public personSelected: Person;
 
   constructor(
+    private _personFormService: PersonFormService,
     private _personFindService: PersonFindService,
     private _sharedPersonService: SharedPersonService
   ) { }
@@ -39,9 +42,22 @@ export class PersonListComponent implements OnInit {
     this._sharedPersonService.sharedPersonFromListToInfo(person);
   }
 
+  public formatBrief(brief: string): string {
+    return (brief.length > 0) ? brief.substring(0, 80) + "..." : brief;
+  }
+
   private _getEventAndBuildComponent(): void {
 
     this._listPeople(this.event.id);
+
+  }
+
+  public editPerson(person: Person): void {
+
+    this._personFormService.launchModal({
+      operation: Operation.Update,
+      person: person
+    });
 
   }
 

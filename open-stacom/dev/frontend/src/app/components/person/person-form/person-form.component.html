@@ -20,9 +20,9 @@
                   placeholder="Ex.: João da Silva"
                   type="text"
                   [value]="(person && person != null && person.name) ? person.name : ''"
-                  [maxlength]="template.objects.person.name.maxlength"
-                  [minlength]="template.objects.person.name.minlength"
-                  [required]="template.objects.person.name.required"
+                  maxlength="{{template.objects.person.name.maxlength}}"
+                  minlength="{{template.objects.person.name.minlength}}"
+                  required="{{template.objects.person.name.required}}"
                 />
               </div>
             </div>

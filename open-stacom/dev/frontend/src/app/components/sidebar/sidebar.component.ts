@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { Event, Template } from "src/app/models";
 
 declare interface RouteInfo {
   path: string;
@@ -72,17 +73,51 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ["./sidebar.component.css"]
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+
+  @Input()
+  public event: Event;
+
+  @Input()
+  public template: Template;
+
+  public menuItems: any[];
 
   constructor() {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+
+    this._buildNavbar();
+    //this.menuItems = ROUTES.filter(menuItem => menuItem);
+
   }
-  isMobileMenu() {
-    if (window.innerWidth > 991) {
-      return false;
-    }
-    return true;
+
+  public isMobileMenu(): boolean {
+
+    return (window.innerWidth <= 991);
+
   }
+
+  private _buildNavbar(): void {
+
+    this.menuItems = new Array();
+    Object.keys(this.template.objects).forEach(
+      entity => this._buildNavbarItem(this.template.objects[entity])
+    );
+
+  }
+
+  private _buildNavbarItem(entity: any): void {
+
+    console.log(entity);
+    this.menuItems.push(
+      {
+        path: entity.path,
+        title: entity.title,
+        icon: entity.icon,
+        class: ""
+      }
+    );
+
+  }
+
 }

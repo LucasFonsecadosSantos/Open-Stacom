@@ -18,29 +18,30 @@
         <tbody>
           <tr
             *ngFor="let person of personArray"
-            (click)="selectPerson(person)"
+            (click)="editPerson(person)"
             (mouseenter)="selectPerson(person)"
+            class="personList__row"
           >
-            <td title="Fotografia de {{person.name}}">
+            <td title="Fotografia de {{person.name}}" class="col-md-1">
               <img class="avatar" src="{{person.avatar}}" alt="{{person.name}}" />
             </td>
-            <td>{{person.name}}</td>
-            <td>
-              <div class="row" *ngIf="person.job">{{person.job}} at {{person.institution}}</div>
-              <div class="row" *ngIf="person.academicFormation">{{person.academicFormation}}</div>
-              <div class="row" *ngIf="person.brief">{{person.brief}}</div>
+            <td class="col-md-3">{{person.name}}</td>
+            <td class="col-md-6" style="font-size: 1em">
+              <div class="row" *ngIf="person.job"><p>{{person.job}} em {{person.institution}}</p></div>
+              <div class="row" *ngIf="person.academicFormation"><p>{{person.academicFormation}}</p></div>
+              <div class="row" *ngIf="person.brief"><p class="text-muted">{{formatBrief(person.brief)}}</p></div>
             </td>
-            <td class="d-flex justify-content-left align-items-center" *ngIf="person.socialNetworks">
-              <a *ngIf="person.socialNetworks.facebook" href="{{person.socialNetworks.facebook}}"><i class="fab fa-facebook-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.twitter" href="{{person.socialNetworks.twitter}}"><i class="fab fa-twitter-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.linkedin" href="{{person.socialNetworks.linkedin}}"><i class="fab fa-linkedin col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.youtube" href="{{person.socialNetworks.youtube}}"><i class="fab fa-youtube col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.spotify" href="{{person.socialNetworks.spotify}}"><i class="fab fa-spotify col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.email" href="{{person.socialNetworks.email}}"><i class="fab fa-envelope-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.whatsapp" href="{{person.socialNetworks.whatsapp}}"><i class="fab fa-whatsapp-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.github" href="{{person.socialNetworks.github}}"><i class="fab fa-github-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.behance" href="{{person.socialNetworks.behance}}"><i class="fab fa-behance-square col-md-1"></i></a>
-              <a *ngIf="person.socialNetworks.website" href="{{person.socialNetworks.website}}"><i class="fab fa-link col-md-1"></i></a>
+            <td class="d-flex justify-content-left align-items-center" *ngIf="person.socialNetworks" class="col-md-2">
+              <a *ngIf="person.socialNetworks.facebook" href="{{person.socialNetworks.facebook}}"><i class="fab fa-facebook-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.twitter" href="{{person.socialNetworks.twitter}}"><i class="fab fa-twitter-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.linkedin" href="{{person.socialNetworks.linkedin}}"><i class="fab fa-linkedin col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.youtube" href="{{person.socialNetworks.youtube}}"><i class="fab fa-youtube col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.spotify" href="{{person.socialNetworks.spotify}}"><i class="fab fa-spotify col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.email" href="{{person.socialNetworks.email}}"><i class="fab fa-envelope-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.whatsapp" href="{{person.socialNetworks.whatsapp}}"><i class="fab fa-whatsapp-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.github" href="{{person.socialNetworks.github}}"><i class="fab fa-github-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.behance" href="{{person.socialNetworks.behance}}"><i class="fab fa-behance-square col-md-2"></i></a>
+              <a *ngIf="person.socialNetworks.website" href="{{person.socialNetworks.website}}"><i class="fab fa-link col-md-2"></i></a>
             </td>
             <!-- <td (onclick)="selectPerson(person)" class=" text-center">$36,738</td> -->
           </tr>

@@ -11,6 +11,9 @@
       "sections": [],
       "objects": {
         "person": {
+          "title": "Pessoas",
+          "path": "/pessoas",
+          "icon": "icon-single-02",
           "name": {
             "minlength": 4,
             "maxlength": 50,
@@ -173,7 +176,7 @@
     {
       "id": "bce00bc1-e7c0-4c74-93ce-972323613df0",
       "templateID": "aidjiaosjdioasjdjoiasd",
-      "name": "tste",
+      "name": "congresso de iniciação cientifica da ufla",
       "edition": "xii",
       "subject": "test",
       "eventType": "teste",

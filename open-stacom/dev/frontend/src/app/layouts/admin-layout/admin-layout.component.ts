@@ -20,6 +20,8 @@ export class AdminLayoutComponent implements OnInit {
 
   public sidebarColor: string = "red";
   public isDataLoaded: boolean = false;
+  public event: Event;
+  public template: Template;
 
   constructor(
     private _eventFindService: EventFindService,
@@ -75,7 +77,8 @@ export class AdminLayoutComponent implements OnInit {
 
     this._eventFindService.find(eventID).subscribe(event => {
 
-      this._sharedEventService.setEvent(event);
+      // this._sharedEventService.setEvent(event);
+      this.event = event;
       this._getTemplateById(event.templateID);
 
     });
@@ -88,7 +91,8 @@ export class AdminLayoutComponent implements OnInit {
 
       template =>
          {
-           this._sharedTemplateService.setTemplate(template);
+          //  this._sharedTemplateService.setTemplate(template);
+          this.template = template;
            this.isDataLoaded = true;
           }
 
