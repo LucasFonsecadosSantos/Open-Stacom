@@ -11,9 +11,11 @@
       "sections": [],
       "objects": {
         "person": {
-          "title": "Pessoas",
-          "path": "/pessoas",
-          "icon": "icon-single-02",
+          "configRoute": {
+            "title": "Pessoas",
+            "path": "/pessoas",
+            "icon": "icon-single-02"
+          },
           "name": {
             "minlength": 4,
             "maxlength": 50,

@@ -108,12 +108,11 @@ export class SidebarComponent implements OnInit {
 
   private _buildNavbarItem(entity: any): void {
 
-    console.log(entity);
     this.menuItems.push(
       {
-        path: entity.path,
-        title: entity.title,
-        icon: entity.icon,
+        path: entity.configRoute.path,
+        title: entity.configRoute.title,
+        icon: entity.configRoute.icon,
         class: ""
       }
     );
