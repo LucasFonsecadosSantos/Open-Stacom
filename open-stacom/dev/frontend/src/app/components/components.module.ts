@@ -13,7 +13,8 @@ import {
 import {
   PersonFormComponent,
   PersonListComponent,
-  PersonInfoComponent
+  PersonInfoComponent,
+  PersonFormService
 } from './person';
 import {
   SponsorListComponent,
@@ -53,7 +54,15 @@ import {
   VideoGalleryViewModalComponent
 } from './video-gallery';
 import { WelcomeComponent } from './welcome';
-import { TemplateChoiceComponent } from './template-choice';
+import {
+  TemplateChoiceComponent
+} from './template-choice';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogService
+} from './dialog';
+import { SharedEventService, SharedTemplateService } from "../services/shared";
+import { SharedPersonService } from "../pages";
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [
@@ -98,7 +107,9 @@ import { TemplateChoiceComponent } from './template-choice';
     VideoGalleryViewModalComponent,
 
     WelcomeComponent,
-    TemplateChoiceComponent
+    TemplateChoiceComponent,
+    ConfirmDialogComponent
+
 ],
   exports: [
     FooterComponent,
@@ -142,7 +153,13 @@ import { TemplateChoiceComponent } from './template-choice';
     VideoGalleryViewModalComponent,
 
     WelcomeComponent,
-    TemplateChoiceComponent
+    TemplateChoiceComponent,
+
+    ConfirmDialogComponent
+  ],
+  providers: [
+    ConfirmDialogService,
+    PersonFormService
   ]
 })
 export class ComponentsModule {}

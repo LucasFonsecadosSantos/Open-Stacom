@@ -1,3 +1,4 @@
+import { PersonCreateService } from './../../services/person/person-create.service';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -30,6 +31,12 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+import {
+  ServicesModule
+} from './../../services';
+import { TemplatesRetrievingService } from "src/app/services/templates";
+import { EventCreateService } from "src/app/services/event";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +44,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     FormsModule,
     HttpClientModule,
     NgbModule,
-    PagesModule
+    PagesModule,
+    ServicesModule
   ],
   declarations: [
 
@@ -47,6 +55,11 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     TypographyComponent,
     NotificationsComponent,
     MapComponent
+  ],
+  providers: [
+    TemplatesRetrievingService,
+    EventCreateService,
+    PersonCreateService
   ]
 })
 export class AdminLayoutModule {}

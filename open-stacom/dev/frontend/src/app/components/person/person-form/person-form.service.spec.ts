@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ActivityListService } from './activity-list.service';
+import { PersonFormService } from './person-form.service';
 
-describe('ActivityListService', () => {
-  let service: ActivityListService;
+describe('PersonFormService', () => {
+  let service: PersonFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ActivityListService);
+    service = TestBed.inject(PersonFormService);
   });
 
   it('should be created', () => {

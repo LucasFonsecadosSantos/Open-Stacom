@@ -1,6 +1,8 @@
-import { TemplatesRetrievingService } from './../../../../services/templates/templates-retrieving.service';
+import { Router } from '@angular/router';
+import { EventCreateService } from './../../../../services/event/event-create.service';
 import { Component, OnInit } from '@angular/core';
 import { Template } from 'src/app/models';
+import { TemplatesRetrievingService } from 'src/app/services/templates';
 
 @Component({
   selector: 'app-new-project',
@@ -12,9 +14,19 @@ export class NewProjectComponent implements OnInit {
   templates: Template[];
   messages: string[];
 
-  constructor(private templatesRetrievingService: TemplatesRetrievingService) { }
+  constructor(
+    private templatesRetrievingService: TemplatesRetrievingService,
+    private eventCreateService: EventCreateService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+    this._getTemplates();
+
+  }
+
+  private _getTemplates(): void {
 
     this.templatesRetrievingService.retrieving().subscribe(
 
@@ -23,6 +35,17 @@ export class NewProjectComponent implements OnInit {
       }
 
     );
+  }
+
+  createEvent(templateID: string): void {
+
+    this.eventCreateService
+      .create(templateID)
+      .subscribe(
+        response => {
+          this.router.navigate([`inicio/${response.id}`]);
+        }
+      );
 
   }
 

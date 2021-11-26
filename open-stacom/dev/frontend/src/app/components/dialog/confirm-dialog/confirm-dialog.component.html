@@ -1,0 +1,19 @@
+<ng-template #dialog let-modal class="modal-dialog-custom">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{confirmDialogModel.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h4 class="text-muted">{{confirmDialogModel.message}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger d-flex align-items-center" (click)="acceptButton()">{{confirmDialogModel.acceptButton}}</button>
+    <button type="button" class="btn btn-outline-dark d-flex align-items-center" (click)="modal.close()">{{confirmDialogModel.cancelButton}}</button>
+  </div>
+</ng-template>

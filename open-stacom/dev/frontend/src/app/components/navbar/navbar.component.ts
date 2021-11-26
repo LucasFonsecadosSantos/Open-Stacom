@@ -1,8 +1,11 @@
 import { Component, OnInit, ElementRef, OnDestroy } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Template, Event } from "./../../models";
+import { EventFindService } from "src/app/services/event";
+import { TemplateFindService } from "src/app/services/templates";
 
 @Component({
   selector: "app-navbar",
@@ -10,36 +13,42 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  private listTitles: any[];
-  location: Location;
-  mobile_menu_visible: any = 0;
+
+  public location: Location;
+  public isCollapsed = true;
+  public mobile_menu_visible: any = 0;
+  public closeResult: string;
+  public event: Event;
+  public template: Template;
+  public isDataLoaded: boolean = false;
   private toggleButton: any;
   private sidebarVisible: boolean;
-
-  public isCollapsed = true;
-
-  closeResult: string;
+  private listTitles: any[];
 
   constructor(
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _activatedRoute: ActivatedRoute,
+    private _eventFindService: EventFindService,
+    private _templateFindService: TemplateFindService
   ) {
     this.location = location;
     this.sidebarVisible = false;
   }
+
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
-   updateColor = () => {
-   var navbar = document.getElementsByClassName('navbar')[0];
-     if (window.innerWidth < 993 && !this.isCollapsed) {
-       navbar.classList.add('bg-white');
-       navbar.classList.remove('navbar-transparent');
-     } else {
-       navbar.classList.remove('bg-white');
-       navbar.classList.add('navbar-transparent');
-     }
-   };
+  updateColor = () => {
+    var navbar = document.getElementsByClassName('navbar')[0];
+    if (window.innerWidth < 993 && !this.isCollapsed) {
+      navbar.classList.add('bg-white');
+      navbar.classList.remove('navbar-transparent');
+    } else {
+      navbar.classList.remove('bg-white');
+      navbar.classList.add('navbar-transparent');
+      }
+    };
   ngOnInit() {
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
@@ -53,9 +62,46 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.mobile_menu_visible = 0;
       }
     });
+    this._getEventAndTemplate();
   }
 
-  collapse() {
+  private _getEventAndTemplate(): void {
+
+    this._activatedRoute.paramMap.subscribe(
+
+      params => {
+        this._getEvent(params.get('eventID'));
+      }
+
+    );
+  }
+
+  private _getEvent(eventID: string): void {
+
+    this._eventFindService.find(eventID).subscribe(event => {
+
+      this.event = event;
+      this._getTemplateById(event.templateID);
+
+    });
+
+  }
+
+  private _getTemplateById(templateID: string) {
+
+    this._templateFindService.find(templateID).subscribe(
+
+      template =>
+         {
+           this.template = template;
+           this.isDataLoaded = true;
+          }
+
+    );
+
+  }
+
+  public collapse(): void {
     this.isCollapsed = !this.isCollapsed;
     const navbar = document.getElementsByTagName("nav")[0];
     if (!this.isCollapsed) {
@@ -67,7 +113,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  sidebarOpen() {
+  public sidebarOpen(): void {
     const toggleButton = this.toggleButton;
     const mainPanel = <HTMLElement>(
       document.getElementsByClassName("main-panel")[0]
@@ -170,7 +216,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         return this.listTitles[item].title;
       }
     }
-    return "Dashboard";
+    return "open stacom";
   }
 
   open(content) {

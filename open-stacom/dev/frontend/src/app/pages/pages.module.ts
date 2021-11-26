@@ -17,6 +17,8 @@ import {
   PreviousEditionsComponent,
   CallsComponent
 } from './';
+import { SharedPersonService } from './person';
+import { SharedEventService, SharedTemplateService } from '../services/shared';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,11 @@ import {
     SponsorshipComponent,
     PreviousEditionsComponent,
     CallsComponent
+  ],
+  providers: [
+    SharedPersonService,
+    SharedEventService,
+    SharedTemplateService
   ]
 })
 export class PagesModule { }

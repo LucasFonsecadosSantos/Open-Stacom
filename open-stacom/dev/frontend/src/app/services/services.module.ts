@@ -1,3 +1,4 @@
+import { UrlService } from './utils/url.service';
 import {
   PersonCreateService,
   PersonDeleteService,
@@ -65,12 +66,18 @@ import {
 } from './welcome';
 
 import {
-  TemplatesRetrievingService
+  TemplatesRetrievingService,
+  TemplateFindService
 } from './templates';
 
+import { ExcelExportService } from './utils';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  SharedTemplateService,
+  SharedEventService
+} from './shared';
 
 
 
@@ -126,7 +133,15 @@ import { CommonModule } from '@angular/common';
 
     ProjectUploadService,
 
-    TemplatesRetrievingService
+    TemplatesRetrievingService,
+    TemplateFindService,
+
+    ExcelExportService,
+
+    UrlService,
+
+    SharedTemplateService,
+    SharedEventService
   ]
 })
 export class ServicesModule { }

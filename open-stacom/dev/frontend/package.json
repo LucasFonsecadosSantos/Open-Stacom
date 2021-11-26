@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mock:server": "json-server --watch ./../mocks/data.json",
+    "mock:server": "json-server --watch ./../mocks/data.json --host 0.0.0.0",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "repository": {
@@ -74,10 +74,12 @@
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
     "chart.js": "2.9.4",
     "core-js": "3.15.2",
+    "file-saver": "^2.0.5",
     "material-design-icons": "^3.0.1",
     "ngx-toastr": "14.0.0",
     "rxjs": "7.2.0",
     "tslib": "2.3.0",
+    "xlsx": "^0.17.2",
     "zone.js": "0.11.4"
   },
   "devDependencies": {
@@ -87,6 +89,7 @@
     "@angular/language-service": "12.1.2",
     "@types/jasmine": "3.8.1",
     "@types/jasminewd2": "2.0.10",
+    "@types/jquery": "^3.5.6",
     "@types/node": "16.3.2",
     "codelyzer": "6.0.2",
     "jasmine-core": "3.8.0",
@@ -100,6 +103,7 @@
     "protractor": "7.0.0",
     "ts-node": "10.1.0",
     "tslint": "6.1.3",
-    "typescript": "4.3.5"
+    "typescript": "4.3.5",
+    "uuid": "^8.3.2"
   }
 }
