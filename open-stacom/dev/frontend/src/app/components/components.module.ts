@@ -61,6 +61,8 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogService
 } from './dialog';
+import { SharedEventService, SharedTemplateService } from "../services/shared";
+import { SharedPersonService } from "../pages";
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
   declarations: [

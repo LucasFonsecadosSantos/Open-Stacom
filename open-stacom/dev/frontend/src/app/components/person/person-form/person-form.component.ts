@@ -10,10 +10,10 @@ import {
 } from './../../../models';
 import {
   Component,
+  Input,
   OnInit,
   ViewChild
 } from '@angular/core';
-import { SharedEventService, SharedTemplateService } from 'src/app/services/shared';
 import { Operation } from 'src/app/enums';
 
 @Component({
@@ -25,31 +25,28 @@ export class PersonFormComponent implements OnInit {
 
   @ViewChild('personForm') personForm;
   public personFormModel: PersonForm;
-  public person: Person;
+
+  @Input()
   public template: Template;
+
+  @Input()
+  public event: Event;
+
+  public person: Person;
+
   public static readonly operation: Operation;
 
   constructor(
     private _modalService: NgbModal,
     private _personFormService: PersonFormService,
     private _personCreateService: PersonCreateService,
-    private _personUpdateService: PersonUpdateService,
-    private _sharedTemplateService: SharedTemplateService
+    private _personUpdateService: PersonUpdateService
   ) { }
 
   ngOnInit(): void {
 
-    this._getTemplateObservable();
     this._getFormObservables();
 
-  }
-
-  private _getTemplateObservable(): void {
-    this._sharedTemplateService.getTemplateObservable().subscribe(
-      templateResponse => this.template = templateResponse
-    );
-    this.template = this._sharedTemplateService.getTemplate();
-    console.log(this.template);
   }
 
   private _getFormObservables(): void {

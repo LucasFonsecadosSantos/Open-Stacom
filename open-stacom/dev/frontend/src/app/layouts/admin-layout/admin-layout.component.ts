@@ -19,6 +19,7 @@ import {
 export class AdminLayoutComponent implements OnInit {
 
   public sidebarColor: string = "red";
+  public isDataLoaded: boolean = false;
 
   constructor(
     private _eventFindService: EventFindService,
@@ -88,6 +89,7 @@ export class AdminLayoutComponent implements OnInit {
       template =>
          {
            this._sharedTemplateService.setTemplate(template);
+           this.isDataLoaded = true;
           }
 
     );

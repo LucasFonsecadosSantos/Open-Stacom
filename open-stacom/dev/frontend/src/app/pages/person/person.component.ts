@@ -1,4 +1,4 @@
-import { PersonFormService } from './../../components/person/person-form/person-form.service';
+import { PersonFormService } from './../../components/person';
 import { ConfirmDialogService } from './../../components/dialog/confirm-dialog/confirm-dialog.service';
 import { PersonDeleteService } from './../../services/person/person-delete.service';
 import { ExcelExportService } from './../../services/utils/excel-export.service';
@@ -8,7 +8,11 @@ import { PersonListComponent } from './../../components/person/person-list/perso
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { Template, Event } from './../../models';
+import { SharedEventService, SharedTemplateService } from 'src/app/services/shared';
+import { TemplateFindService } from 'src/app/services/templates';
+import { EventFindService } from 'src/app/services/event';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-person',
@@ -23,18 +27,59 @@ export class PersonComponent implements OnInit {
   public event: Event;
   public template: Template;
   public closeResult: string;
+  public isDataLoaded: boolean = false;
 
   constructor(
     private _exportExcelService: ExcelExportService,
     private _personFormService: PersonFormService,
     private _personDeleteService: PersonDeleteService,
+    private _templateFindService: TemplateFindService,
+    private _eventFindService: EventFindService,
+    private _activatedRoute: ActivatedRoute,
     private _confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
 
+    this._getEventAndTemplate();
     this._getResponseObservables();
 
+  }
+
+
+  private _getEventAndTemplate(): void {
+
+    this._activatedRoute.paramMap.subscribe(
+
+      params => {
+        this._getEvent(params.get('eventID'));
+      }
+
+    );
+  }
+
+  private _getEvent(eventID: string): void {
+
+    this._eventFindService.find(eventID).subscribe(event => {
+
+      this.event = event;
+      this._getTemplateById(event.templateID);
+
+    });
+
+  }
+
+  private _getTemplateById(templateID: string) {
+
+    this._templateFindService.find(templateID).subscribe(
+
+      template =>
+         {
+           this.template = template;
+           this.isDataLoaded = true;
+          }
+
+    );
   }
 
   public openAddPersonForm(): void {

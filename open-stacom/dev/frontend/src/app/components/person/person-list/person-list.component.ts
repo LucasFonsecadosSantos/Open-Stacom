@@ -1,12 +1,11 @@
 import { PersonFindService } from './../../../services/person/person-find.service';
+import { SharedPersonService } from 'src/app/pages';
 import { Component, Input, OnInit} from '@angular/core';
 import {
   Event,
   Person,
   Template
 } from 'src/app/models';
-import { SharedEventService } from 'src/app/services/shared';
-import { SharedPersonService } from 'src/app/pages';
 
 @Component({
   selector: 'app-person-list',
@@ -15,12 +14,18 @@ import { SharedPersonService } from 'src/app/pages';
 })
 export class PersonListComponent implements OnInit {
 
+  @Input()
+  public event: Event;
+
+  @Input()
+  public template: Template;
+
   public personArray: Person[];
+
   public personSelected: Person;
 
   constructor(
     private _personFindService: PersonFindService,
-    private _sharedEventService: SharedEventService,
     private _sharedPersonService: SharedPersonService
   ) { }
 
@@ -36,7 +41,7 @@ export class PersonListComponent implements OnInit {
 
   private _getEventAndBuildComponent(): void {
 
-    this._listPeople(this._sharedEventService.getEvent().id);
+    this._listPeople(this.event.id);
 
   }
 

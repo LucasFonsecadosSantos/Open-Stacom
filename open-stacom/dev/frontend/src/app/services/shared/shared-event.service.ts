@@ -1,5 +1,6 @@
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Event } from 'src/app/models';
 
 @Injectable({
@@ -7,17 +8,17 @@ import { Event } from 'src/app/models';
 })
 export class SharedEventService {
 
-  private _subject: Subject<any> = new Subject<any>();
-  private _behaviorSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this._subject);
+  private _subject: BehaviorSubject<Event> = new BehaviorSubject<Event>(undefined);
 
   constructor() { }
 
   public setEvent(event: Event): void {
+    console.log(event.id);
     this._subject.next(event);
   }
 
   public getEvent(): Event {
-    return this._behaviorSubject.getValue();
+    return this._subject.value;
   }
 
   public getEventObservable(): Observable<Event> {

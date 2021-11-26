@@ -17,7 +17,7 @@ export class SharedTemplateService {
   }
 
   public getTemplateObservable(): Observable<Template> {
-    return this._subject.asObservable()
+    return this._subject.asObservable();
   }
 
   public getTemplate(): Template {
