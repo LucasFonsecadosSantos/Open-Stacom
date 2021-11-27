@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Template, Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
 import { TemplateFindService } from 'src/app/services/templates';
+import { ExcelExportService } from 'src/app/services/utils';
 
 @Component({
   selector: 'app-event',
@@ -17,6 +18,7 @@ export class EventComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _exportService: ExcelExportService,
     private _eventFindService: EventFindService,
     private _templateFindService: TemplateFindService
   ) { }
@@ -27,6 +29,16 @@ export class EventComponent implements OnInit {
 
   }
 
+
+  public exportToExcel(event: Event): void {
+
+    this._exportService.exportExcel([event], `DADOS_DE_${event.name}`);
+
+  }
+
+  public exportToPDF(event: Event): void {
+    //TODO
+  }
 
   private _getEventAndTemplate(): void {
 

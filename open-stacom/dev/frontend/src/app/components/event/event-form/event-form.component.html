@@ -139,6 +139,93 @@
           </div>
         </div>
       </div>
+      <div class="row">
+
+        <div class=" col-md-6 pr-md-1">
+          <div class="row">
+            <div class="col-md-5">
+              <div class=" form-group">
+                <label> Contato </label>
+                <input
+                  #contactField
+                  class=" form-control"
+                  placeholder="Ex.: Comissão A"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class=" form-group">
+                <label> Número de Telefone </label>
+                <input
+                  #telephoneField
+                  class=" form-control"
+                  placeholder="Ex.: (16) 99235-9954"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-sm btn-outline-primary" (click)="addTelephoneToList(contactField.value, telephoneField.value)">
+                <i class="tim-icons icon-simple-add mr-1"></i>
+              </button>
+            </div>
+
+            <div class=" col-md-12">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Contato</th>
+                    <th>Número</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="event && event.telephones" >
+                  <tr *ngFor="let telephone of event.telephones">
+                    <td>{{ telephone.name }}</td>
+                    <td>{{ telephone.number }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-md-1">
+          <div class="row">
+            <div class="col-md-10">
+              <div class=" form-group">
+                <label> Datas de ocorrencia do evento </label>
+                <input
+                  #dateField
+                  class=" form-control"
+                  placeholder="Ex.: 13/02/2021"
+                  type="date"
+                />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-sm btn-outline-primary" (click)="addDateToList(dateField.value)">
+                <i class="tim-icons icon-simple-add mr-1"></i>
+              </button>
+            </div>
+
+            <div class=" col-md-12">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Data</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="event && event.days" >
+                  <tr *ngFor="let day of event.days">
+                    <td>{{ day }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <div class=" row">
         <div class=" col-md-6 pr-md-1">
           <div class=" form-group">
@@ -161,6 +248,11 @@
               [value]="event && event.email ? event.email : ''"
             />
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-12">
+          <h4 class=" card-title">Redes sociais do evento</h4>
         </div>
       </div>
       <div class=" row">
@@ -251,6 +343,113 @@
               placeholder="Ex.: www.youtube.com/NomeDoEvento"
               type="text"
               [value]="event && event.socialNetworks && event.socialNetworks.youtubeChannel? event.socialNetworks.youtubeChannel : ''"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-12">
+          <h4 class=" card-title">Local de realização</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-3 pr-md-1">
+          <div class=" form-group">
+            <label> CEP: </label>
+            <input
+              #cep
+              class=" form-control"
+              placeholder="Ex.: 14075-662"
+              type="text"
+              [value]="event && event.location && event.location.cep ? event.location.cep : ''"
+              (change)="fetchCEPInformations(cep.value)"
+            />
+          </div>
+        </div>
+        <div class=" col-md-3 px-md-1">
+          <div class=" form-group">
+            <label> Endereço: </label>
+            <input
+              #streetField
+              class=" form-control"
+              placeholder="Ex.: Avenida exemplo"
+              type="text"
+              [value]="event && event.location && event.location.street ? event.location.street : ''"
+            />
+          </div>
+        </div>
+        <div class=" col-md-3 px-md-1">
+          <div class=" form-group">
+            <label> number: </label>
+            <input
+              #numberField
+              class=" form-control"
+              placeholder="Ex.: 3425"
+              type="text"
+              [value]="event && event.location && event.location.number ? event.location.number : ''"
+            />
+          </div>
+        </div>
+        <div class=" col-md-3 pl-md-1">
+          <div class=" form-group">
+            <label> Bairro: </label>
+            <input
+              #neiborhoodField
+              class=" form-control"
+              placeholder="Ex.: Parque do Exemplo"
+              type="text"
+              [value]="event && event.location && event.location.neiborhood ? event.location.neiborhood : ''"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-4 pr-md-1">
+          <div class=" form-group">
+            <label> Cidade: </label>
+            <input
+              #cityField
+              class=" form-control"
+              placeholder="Ex.: Ribeirão Preto"
+              type="text"
+              [value]="event && event.location && event.location.city ? event.location.city : ''"
+            />
+          </div>
+        </div>
+        <div class=" col-md-2 px-md-1">
+          <div class=" form-group">
+            <label> UF: </label>
+            <select
+              #ufField
+              class=" form-control"
+              placeholder="Ex.: SP"
+              type="text"
+              [value]="event && event.location && event.location.state ? event.location.state : ''"
+            >
+              <option value="">- SELECIONE -</option>
+            </select>
+          </div>
+        </div>
+        <div class=" col-md-3 px-md-1">
+          <div class=" form-group">
+            <label> País: </label>
+            <input
+              #countryField
+              class=" form-control"
+              placeholder="Ex.: Brasil"
+              type="text"
+              [value]="event && event.location && event.location.country ? event.location.country : ''"
+            />
+          </div>
+        </div>
+        <div class=" col-md-3 pl-md-1">
+          <div class=" form-group">
+            <label> Coordenadas de Mapa (Latitude/Logitude): </label>
+            <input
+              class=" form-control"
+              placeholder="Ex.: 545568566488"
+              type="text"
+              [value]="event && event.location && event.location.latLong ? event.location.latLong : ''"
             />
           </div>
         </div>

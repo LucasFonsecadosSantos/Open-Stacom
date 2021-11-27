@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { EventUpdateService } from 'src/app/services/event';
-import { ExcelExportService } from 'src/app/services/utils';
+import { CepService } from 'src/app/services/utils';
 import {
   Event,
   Template
@@ -22,7 +22,7 @@ export class EventFormComponent implements OnInit {
   public eventType: any[];
 
   constructor(
-    private _exportService: ExcelExportService,
+    private _cepService: CepService,
     private _eventUpdateService: EventUpdateService
   ) { }
 
@@ -32,14 +32,36 @@ export class EventFormComponent implements OnInit {
 
   }
 
-  private _setEventTypes(): void {
-    this.eventType = [
-      'Congresso',
-      'Simpósio',
-      'Encontro',
-      'Ciclo de Eventos',
-      'Palestra'
-    ]
+  public addTelephoneToList(contact: string, telephone: string): void {
+      this.event.telephones.push(
+        {
+          "name": contact,
+          "number": telephone
+        }
+      );
+  }
+
+  public addDateToList(date: string): void {
+
+  }
+
+  public fetchCEPInformations(cep: string): void {
+
+    this._cepService
+          .fetchInformationFromCEP(cep)
+          .subscribe(
+            response => {
+              this.event.location = {
+                "cep": response.cep,
+                "city": response.localidade,
+                "street": response.logradouro,
+                "state": response.uf,
+                "neiborhood": response.bairro,
+                "country": "Brasil"
+              }
+            }
+          );
+
   }
 
   public update(event: Event): void {
@@ -52,10 +74,14 @@ export class EventFormComponent implements OnInit {
 
   }
 
-  public exportToExcel(event: Event): void {
-
-    this._exportService.exportExcel([event], `DADOS_DE_${event.name}`);
-
+  private _setEventTypes(): void {
+    this.eventType = [
+      'Congresso',
+      'Simpósio',
+      'Encontro',
+      'Ciclo de Eventos',
+      'Palestra'
+    ]
   }
 
 }

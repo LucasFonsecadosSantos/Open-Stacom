@@ -30,6 +30,7 @@ export class Event {
     }
   ];
   location?: {
+    cep?:         string;
     street?:      string;
     number?:      string;
     neiborhood?:  string;
@@ -41,12 +42,9 @@ export class Event {
   socialNetworks?: {
     facebook?:        string,
     twitter?:         string,
-    website?:         string,
     github?:          string,
     linkedin?:        string,
     spotify?:         string,
-    lattes?:          string,
-    email?:           string,
     whatsapp?:        string,
     behance?:         string,
     youtubeChannel?:  string
