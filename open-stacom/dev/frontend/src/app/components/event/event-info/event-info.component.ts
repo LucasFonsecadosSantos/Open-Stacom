@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  Event,
+  Template
+} from './../../../models';
 
 @Component({
   selector: 'app-event-info',
@@ -6,6 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-info.component.scss']
 })
 export class EventInfoComponent implements OnInit {
+
+  @Input()
+  public event: Event;
+
+  @Input()
+  public template: Template;
 
   constructor() { }
 

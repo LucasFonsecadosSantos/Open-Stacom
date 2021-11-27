@@ -1,6 +1,6 @@
 
 <div class=" card card-user">
-  <div class=" card-body">
+  <div class=" card-body" *ngIf="event">
     <p class=" card-text"></p>
     <div class=" author">
       <div class=" block block-one"></div>
@@ -10,35 +10,77 @@
       <a href="javascript:void(0)">
         <img alt="..." class=" avatar" src="assets/img/emilyz.jpg" />
 
-        <h5 class=" title">Mike Andrew</h5>
+        <h5 class=" title">{{event.name ? event.name : ''}}</h5>
       </a>
-      <p class=" description">Ceo/Co-Founder</p>
+      <p class=" description">{{ event.poweredBy && event.poweredBy.institution ? event.poweredBy.institution : ''}}</p>
     </div>
-    <div class=" card-description">
-      Do not be scared of the truth because we need to restart the human
-      foundation in truth And I love you like Kanye loves Kanye I love
-      Rick Owens’ bed design but the back is...
+    <div class=" card-description text-center">
+      {{ event.brief ? event.brief : '' }}
+    </div>
+    <div class="row text-center">
+      <p>{{ event.days ? event.days.date + '/' + event.days.month + '/' + event.days.year : '' }}</p>
     </div>
   </div>
   <div class=" card-footer">
-    <div class=" button-container">
+    <div
+      class=" button-container"
+      *ngIf="event.socialNetworks"
+    >
       <button
-        class=" btn btn-icon btn-round btn-facebook"
-        href="javascript:void(0)"
+        *ngIf="event.socialNetworks.facebook"
+        class=" btn btn-icon btn-round btn-facebook pr-md-1"
+        href="{{event.socialNetworks.facebook}}"
       >
-        <i class=" fab fa-facebook"> </i>
+        <i class=" fab fa-facebook"></i>
       </button>
       <button
-        class=" btn btn-icon btn-round btn-twitter"
-        href="javascript:void(0)"
+        *ngIf="event.socialNetworks.twitter"
+        href="{{event.socialNetworks.facebook}}"
+        class=" btn btn-icon btn-round btn-twitter px-md-1"
       >
-        <i class=" fab fa-twitter"> </i>
+        <i class=" fab fa-twitter"></i>
       </button>
       <button
-        class=" btn btn-icon btn-round btn-google"
-        href="javascript:void(0)"
+        *ngIf="event.socialNetworks.github"
+        href="{{event.socialNetworks.github}}"
+        class=" btn btn-icon btn-round btn-github px-md-1"
       >
-        <i class=" fab fa-google-plus"> </i>
+        <i class=" fab fa-github"></i>
+      </button>
+      <button
+        *ngIf="event.socialNetworks.linkedin"
+        href="{{event.socialNetworks.linkedin}}"
+        class=" btn btn-icon btn-round btn-linkedin px-md-1"
+      >
+        <i class=" fab fa-linkedin"></i>
+      </button>
+      <button
+        *ngIf="event.socialNetworks.spotify"
+        href="{{event.socialNetworks.spotify}}"
+        class=" btn btn-icon btn-round btn-spotify px-md-1"
+      >
+        <i class=" fab fa-spotify"></i>
+      </button>
+      <button
+        *ngIf="event.socialNetworks.whatsapp"
+        href="{{event.socialNetworks.whatsapp}}"
+        class=" btn btn-icon btn-round btn-whatsapp px-md-1"
+      >
+        <i class=" fab fa-whatsapp"></i>
+      </button>
+      <button
+        *ngIf="event.socialNetworks.behance"
+        href="{{event.socialNetworks.behance}}"
+        class=" btn btn-icon btn-round btn-behance px-md-1"
+      >
+        <i class=" fab fa-behance"></i>
+      </button>
+      <button
+        *ngIf="event.socialNetworks.youtubeChannel"
+        href="{{event.socialNetworks.youtubeChannel}}"
+        class=" btn btn-icon btn-round btn-google pl-md-1"
+      >
+        <i class=" fab fa-youtube"></i>
       </button>
     </div>
   </div>
