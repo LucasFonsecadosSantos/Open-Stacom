@@ -14,12 +14,14 @@ export class EventUpdateService {
     private _http: HttpClient
   ) { }
 
-  public update(event: Event): Observable<Event> {
+  public update(event: Event): Observable<any> {
 
-    return this._http.put<Event>(
-      `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
+    console.log(event);
+
+    return this._http.put<any>(
+      `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${event.id}`,
       event
-    )
+    );
 
   }
 }

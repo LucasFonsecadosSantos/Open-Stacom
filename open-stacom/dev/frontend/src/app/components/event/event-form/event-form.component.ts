@@ -68,7 +68,8 @@ export class EventFormComponent implements OnInit {
 
     this._eventUpdateService
       .update(event)
-      .subscribe(
+      .subscribe( resp =>
+        console.log(resp)
         //show toast message
       );
 
