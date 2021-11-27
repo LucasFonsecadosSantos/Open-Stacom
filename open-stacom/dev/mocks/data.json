@@ -10,11 +10,11 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
-        "template": {
+        "event": {
           "configRoute": {
             "title": "Evento",
             "path": "/evento",
-            "icon": "icon-atom"
+            "icon": "icon-settings-gear-63"
           }
         },
         "person": {
@@ -117,6 +117,55 @@
             "minlength": 4,
             "maxlength": 50,
             "required": true
+          }
+        },
+        "committees": {
+          "configRoute": {
+            "title": "Comitês",
+            "path": "/comite",
+            "icon": "icon-paper"
+          }
+        },
+        "videoGallery": {
+          "configRoute": {
+            "title": "Galeria de Videos",
+            "path": "/videos",
+            "icon": "icon-video-66"
+          }
+        },
+        "photoGallery": {
+          "configRoute": {
+            "title": "Galeria de Fotos",
+            "path": "/fotos",
+            "icon": "icon-camera-18"
+          }
+        },
+        "actvities": {
+          "configRoute": {
+            "title": "Atividades",
+            "path": "/atividades",
+            "icon": "icon-palette"
+          }
+        },
+        "scheduling": {
+          "configRoute": {
+            "title": "Programação",
+            "path": "/programacao",
+            "icon": "icon-calendar-60"
+          }
+        },
+        "prices": {
+          "configRoute": {
+            "title": "Preços & Valores",
+            "path": "/precos",
+            "icon": "icon-basket-simple"
+          }
+        },
+        "sponsor": {
+          "configRoute": {
+            "title": "Patrocinadores",
+            "path": "/patrocinadores",
+            "icon": "icon-money-coins"
           }
         }
       }
