@@ -61,10 +61,9 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogService
 } from './dialog';
-import { SharedEventService, SharedTemplateService } from "../services/shared";
-import { SharedPersonService } from "../pages";
+import { NgxMaskModule, IConfig } from "ngx-mask";
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule],
+  imports: [CommonModule, RouterModule, NgbModule, NgxMaskModule.forRoot()],
   declarations: [
     FooterComponent,
     NavbarComponent,

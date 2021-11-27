@@ -14,11 +14,11 @@
       </a>
       <p class=" description">{{ event.poweredBy && event.poweredBy.institution ? event.poweredBy.institution : ''}}</p>
     </div>
-    <div class=" card-description">
+    <div class=" card-description text-center">
       {{ event.brief ? event.brief : '' }}
     </div>
-    <div class="row">
-      <p>{{ event.days ? event.days : '' }}</p>
+    <div class="row text-center">
+      <p>{{ event.days ? event.days.date + '/' + event.days.month + '/' + event.days.year : '' }}</p>
     </div>
   </div>
   <div class=" card-footer">

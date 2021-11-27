@@ -15,6 +15,168 @@
             "title": "Evento",
             "path": "/evento",
             "icon": "icon-settings-gear-63"
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "edition": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "eventType": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByInstitution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByDepartament": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "subject": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "logo": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "telephoneName": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephoneNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "days": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "website": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworksFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationStreet": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationLatLong": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+        },
+        "pastEditions": {
+          "configRoute": {
+            "title": "Edições Passadas",
+            "path": "/edicoes",
+            "icon": "icon-components"
           }
         },
         "person": {
@@ -138,6 +300,13 @@
             "title": "Galeria de Fotos",
             "path": "/fotos",
             "icon": "icon-camera-18"
+          }
+        },
+        "proceedings": {
+          "configRoute": {
+            "title": "Anais",
+            "path": "/anais",
+            "icon": "icon-align-center"
           }
         },
         "actvities": {

@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { EventUpdateService } from 'src/app/services/event';
 import { CepService } from 'src/app/services/utils';
 import {
@@ -19,6 +20,8 @@ export class EventFormComponent implements OnInit {
   @Input()
   public template: Template;
 
+  public states: any;
+
   public eventType: any[];
 
   constructor(
@@ -28,6 +31,7 @@ export class EventFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.states = getAllStates();
     this._setEventTypes();
 
   }
@@ -42,6 +46,12 @@ export class EventFormComponent implements OnInit {
   }
 
   public addDateToList(date: string): void {
+
+  }
+
+  public getCitiesFromState(state: string): any {
+
+    return this.getCitiesFromState(state);
 
   }
 
