@@ -188,7 +188,7 @@
       "name": "congresso de iniciação cientifica da ufla",
       "edition": "xii",
       "subject": "test",
-      "eventType": "teste",
+      "eventType": "Congresso",
       "targetPublic": "test",
       "logo": "test",
       "description": "dfsf",
@@ -202,8 +202,8 @@
         }
       ],
       "poweredBy": {
-        "institution": "string",
-        "departament": "string"
+        "institution": "universidade federal de lavras",
+        "departament": "departamento de ciencia da computação"
       },
       "days": [
         {

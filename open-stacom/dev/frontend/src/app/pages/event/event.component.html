@@ -1,10 +1,12 @@
 <div class="content">
   <div class="row">
-    <div class="col-md-6">
-      <app-event-form *ngIf="isDataLoaded" [template]="template" [event]="event"></app-event-form>
+    <div class="col-md-12">
+      <app-event-info *ngIf="isDataLoaded" [template]="template" [event]="event"></app-event-info>
     </div>
-    <div class="col-md-6">
-      <app-event-info *ngIf="isDataLoaded" [template="template"] [event]="event"></app-event-info>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-event-form *ngIf="isDataLoaded" [template]="template" [event]="event"></app-event-form>
     </div>
   </div>
 </div>

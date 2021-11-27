@@ -19,12 +19,27 @@ export class EventFormComponent implements OnInit {
   @Input()
   public template: Template;
 
+  public eventType: any[];
+
   constructor(
-    private _exportService: ExcelExportService;
+    private _exportService: ExcelExportService,
     private _eventUpdateService: EventUpdateService
   ) { }
 
   ngOnInit(): void {
+
+    this._setEventTypes();
+
+  }
+
+  private _setEventTypes(): void {
+    this.eventType = [
+      'Congresso',
+      'Simpósio',
+      'Encontro',
+      'Ciclo de Eventos',
+      'Palestra'
+    ]
   }
 
   public update(event: Event): void {
