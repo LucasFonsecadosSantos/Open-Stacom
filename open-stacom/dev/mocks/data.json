@@ -360,6 +360,15 @@
       "sections": []
     }
   ],
+  "past-editions": [
+    {
+      "id": "238284",
+      "name": "Teste de edicao passada",
+      "link": "#",
+      "logo": "#",
+      "date": "00/00/0000"
+    }
+  ],
   "person": [
     {
       "id": "238284",
