@@ -1,11 +1,13 @@
+import { Component, Input, OnInit } from '@angular/core';
 import {
   Template,
   Event,
   PreviousEdition
 } from './../../../models';
-import { Component, Input, OnInit } from '@angular/core';
-import { PreviousEditionCreateService, PreviousEditionUpdateService } from 'src/app/services/previous-edition';
-import { ExcelExportService } from 'src/app/services/utils';
+import {
+  PreviousEditionCreateService,
+  PreviousEditionUpdateService
+} from 'src/app/services/previous-edition';
 
 @Component({
   selector: 'app-previous-edition-form',

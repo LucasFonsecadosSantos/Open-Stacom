@@ -12,6 +12,12 @@ export class PersonFindService {
 
   constructor(private http: HttpClient) { }
 
+  public find(): Observable<Person> {
+
+    return null;
+
+  }
+
   public list(eventID: string): Observable<Person[]> {
     return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`)
                       .pipe(map(result => {

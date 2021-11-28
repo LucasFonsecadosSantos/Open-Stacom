@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventFindService } from 'src/app/services/event';
 import {
@@ -6,6 +6,9 @@ import {
   Template
 }  from './../../models';
 import { TemplateFindService } from 'src/app/services/templates';
+import { ExcelExportService } from 'src/app/services/utils';
+import { PreviousEditionListComponent } from 'src/app/components/previous-editions';
+import { ConfirmDialogService } from 'src/app/components/dialog';
 
 @Component({
   selector: 'app-previous-editions',
@@ -14,14 +17,20 @@ import { TemplateFindService } from 'src/app/services/templates';
 })
 export class PreviousEditionsComponent implements OnInit {
 
+  @Input()
+  public previousEditionListComponent: PreviousEditionListComponent
+
   public template: Template;
   public event: Event;
+  public editionsArray: any[];
   public isDataLoaded: boolean = false;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService
+    private _templateFindService: TemplateFindService,
+    private _exportExcelService: ExcelExportService,
+    private _confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +39,22 @@ export class PreviousEditionsComponent implements OnInit {
 
   }
 
+  public exportExcel(): void {
+    this.editionsArray = this.previousEditionListComponent.editionsArray;
+    this._exportExcelService.exportExcel(this.editionsArray, 'LISTA_DE_EDICOES_PASSADAS');
+  }
+
+  public confirmDeleteAllEditions(): void {
+
+    this._confirmDialogService.launchConfirmDialog(
+      {
+        acceptButton: 'Sim, estou ciente e desejo continuar.',
+        cancelButton: 'Cancelar',
+        message: 'Você realmente deseja EXCLUIR TODAS AS EDIÇÕES registradas no sistema?',
+        title: 'Antes de prosseguir...'
+      }
+    );
+  }
 
   private _getEventAndTemplate(): void {
 

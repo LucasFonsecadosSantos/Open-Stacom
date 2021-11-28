@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PreviousEditionDeleteService, PreviousEditionFindService } from 'src/app/services/previous-edition';
+
+import {
+  Event,
+  PreviousEdition
+} from './../../../models';
 
 @Component({
   selector: 'app-previous-edition-list',
@@ -7,9 +13,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviousEditionListComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  public event: Event;
+
+  public editionsArray: PreviousEdition[]
+
+  constructor(
+    private _fetchService: PreviousEditionFindService,
+    private _deleteService: PreviousEditionDeleteService
+  ) { }
 
   ngOnInit(): void {
+    this._populateList();
+  }
+
+  private _populateList(): void {
+
+    this._fetchService
+          .list(this.event.id)
+          .subscribe(
+            response => {
+              console.log(response);
+              this.editionsArray = response;
+            }
+          );
+
+  }
+
+  public deleteEdition(edition: PreviousEdition): void {
+
+    this._deleteService
+      .delete(edition.id, this.event.id)
+      .subscribe(
+
+        response => console.log
+
+      );
+
   }
 
 }
