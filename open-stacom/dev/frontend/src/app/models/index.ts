@@ -8,5 +8,5 @@ export * from './person-form.model';
 export * from './previous-edition-form.model';
 export * from './previous-edition.model';
 
-export * from './committe-form.model';
-export * from './committe.model';
+export * from './committee-form.model';
+export * from './committee.model';

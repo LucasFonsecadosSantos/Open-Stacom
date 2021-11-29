@@ -28,7 +28,7 @@ export class CommitteComponent implements OnInit {
   ngOnInit(): void {
 
     this._getEventAndTemplate();
-    this._getResponseObservables();
+    // this._getResponseObservables();
 
   }
 
@@ -68,28 +68,28 @@ export class CommitteComponent implements OnInit {
     );
   }
 
-  public openAddPersonForm(): void {
+  // public openAddPersonForm(): void {
 
-    this._personFormService.launchModal({
-      operation: Operation.Create
-    });
+  //   this._personFormService.launchModal({
+  //     operation: Operation.Create
+  //   });
 
-  }
+  // }
 
-  public exportExcel(): void {
-    this._personArray = this.personListComponent.personArray;
-    this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
-  }
+  // public exportExcel(): void {
+  //   this._personArray = this.personListComponent.personArray;
+  //   this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
+  // }
 
-  public confirmDeleteAllPeople(): void {
+  // public confirmDeleteAllPeople(): void {
 
-    this._confirmDialogService.launchConfirmDialog(
-      {
-        acceptButton: 'Sim, estou ciente e desejo continuar.',
-        cancelButton: 'Cancelar',
-        message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
-        title: 'Antes de prosseguir...'
-      }
-    );
-  }
+  //   this._confirmDialogService.launchConfirmDialog(
+  //     {
+  //       acceptButton: 'Sim, estou ciente e desejo continuar.',
+  //       cancelButton: 'Cancelar',
+  //       message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
+  //       title: 'Antes de prosseguir...'
+  //     }
+  //   );
+  // }
 }

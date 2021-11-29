@@ -1,6 +1,6 @@
-import { Committe } from './committe.model';
+import { Committee } from './committee.model';
 
-describe('Committe', () => {
+describe('Committee', () => {
   it('should create an instance', () => {
     expect(new Committe()).toBeTruthy();
   });

@@ -44,4 +44,5 @@ export class PersonFindService {
             `/assets/img/default-avatar.png`;
 
   }
+
 }
