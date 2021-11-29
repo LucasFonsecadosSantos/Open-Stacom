@@ -1,12 +1,83 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class=" card">
-      <div class=" card-body d-flex align-items-center">
-        <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="">
-          <i class="tim-icons icon-paper mr-1"></i>
-          Exportar Lista para Excel
-        </button>
+<div class=" card">
+  <div class=" card-body">
+    <form>
+      <div class="row">
+        <div class=" col-md-12">
+          <h4 class=" card-title">{{ previousEditionFormModel && previousEditionFormModel.title ? previousEditionFormModel.title : 'Registra uma edição passada do evento' }}</h4>
+        </div>
       </div>
-    </div>
+      <div class=" row">
+        <div *ngIf="template.objects.pastEdition.name" class=" col-md-3 pr-md-1">
+          <div class=" form-group">
+            <label> Titulo da edição <span *ngIf="template.objects.pastEdition.name.required">*</span></label>
+            <input
+              #editionNameField
+              class=" form-control"
+              placeholder="Ex.: XX Congresso XPTO"
+              type="text"
+              [value]="(edition && edition != null && edition.name) ? edition.name : ''"
+              maxlength="{{template.objects.pastEdition.name.maxlength}}"
+              minlength="{{template.objects.pastEdition.name.minlength}}"
+              required="{{template.objects.pastEdition.name.required}}"
+            />
+          </div>
+        </div>
+        <div *ngIf="template.objects.pastEdition.date" class=" col-md-3 px-md-1">
+          <div class=" form-group">
+            <label> Data da edição <span *ngIf="template.objects.pastEdition.date.required">*</span></label>
+            <input
+              class=" form-control"
+              placeholder="Ex.: 13/12/2020"
+              type="date"
+              [value]="(edition && edition != null && edition.date) ? edition.date : ''"
+              maxlength="{{template.objects.pastEdition.date.maxlength}}"
+              minlength="{{template.objects.pastEdition.date.minlength}}"
+              required="{{template.objects.pastEdition.date.required}}"
+            />
+          </div>
+        </div>
+        <div *ngIf="template.objects.pastEdition.link" class=" col-md-3 px-md-1">
+          <div class=" form-group">
+            <label> Link do site <span *ngIf="template.objects.pastEdition.link.required">*</span></label>
+            <input
+              class=" form-control"
+              placeholder="Ex.: www.edicao.com.br"
+              type="text"
+              [value]="(edition && edition != null && edition.link) ? edition.link : ''"
+              maxlength="{{template.objects.pastEdition.link.maxlength}}"
+              minlength="{{template.objects.pastEdition.link.minlength}}"
+              required="{{template.objects.pastEdition.link.required}}"
+            />
+          </div>
+        </div>
+        <div *ngIf="template.objects.pastEdition.logo" class=" col-md-3 pl-md-1">
+          <div class=" form-group">
+            <label> Logotipo <span *ngIf="template.objects.pastEdition.logo.required">*</span></label>
+            <input
+              accept="image/png, image/gif, image/jpeg"
+              class="form-control"
+              type="file"
+              [value]=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex align-items-center justify-content-start">
+          <button type="submit" *ngIf="previousEditionFormModel.operation == this.operationCreate" class="btn btn-fill btn-info d-flex align-items-center">
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Adicionar {{editionNameField && editionNameField.value && editionNameField.value != null ? editionNameField.value : 'a nova edição'}} a lista de edições
+          </button>
+          <button type="submit" *ngIf="previousEditionFormModel.operation == this.operationUpdate" class="btn btn-fill btn-info d-flex align-items-center">
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Atualizar as informações da edição {{previousEditionFormModel && previousEditionFormModel.edition && previousEditionFormModel.edition.name ? previousEditionFormModel.edition.name : ''}} no registro
+          </button>
+          <button type="submit" *ngIf="previousEditionFormModel.operation == this.operationUpdate" class="btn btn-fill btn-danger d-flex align-items-center">
+            <i class="tim-icons icon-trash-simple mr-1"></i>
+            Remover a edição {{editionNameField && editionNameField.value && editionNameField.value != null ? editionNameField.value : ''}}
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

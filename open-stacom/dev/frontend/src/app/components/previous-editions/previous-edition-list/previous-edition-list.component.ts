@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Operation } from 'src/app/enums';
 import { PreviousEditionDeleteService, PreviousEditionFindService } from 'src/app/services/previous-edition';
+import { PreviousEditionFormService } from '..';
 
 import {
   Event,
@@ -20,7 +22,8 @@ export class PreviousEditionListComponent implements OnInit {
 
   constructor(
     private _fetchService: PreviousEditionFindService,
-    private _deleteService: PreviousEditionDeleteService
+    private _deleteService: PreviousEditionDeleteService,
+    private _formService: PreviousEditionFormService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,18 @@ export class PreviousEditionListComponent implements OnInit {
               this.editionsArray = response;
             }
           );
+
+  }
+
+  public editEdition(edition: PreviousEdition): void {
+
+    this._formService.submitEdition(
+      {
+        operation: Operation.Update,
+        title: `Atualizar informações de ${edition.name}`,
+        edition: edition
+      }
+    );
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventFindService } from 'src/app/services/event';
 import {
@@ -7,7 +7,7 @@ import {
 }  from './../../models';
 import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
-import { PreviousEditionListComponent } from 'src/app/components/previous-editions';
+import { PreviousEditionFormComponent, PreviousEditionListComponent } from 'src/app/components/previous-editions';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 
 @Component({
@@ -17,7 +17,7 @@ import { ConfirmDialogService } from 'src/app/components/dialog';
 })
 export class PreviousEditionsComponent implements OnInit {
 
-  @Input()
+  @ViewChild(PreviousEditionListComponent)
   public previousEditionListComponent: PreviousEditionListComponent
 
   public template: Template;

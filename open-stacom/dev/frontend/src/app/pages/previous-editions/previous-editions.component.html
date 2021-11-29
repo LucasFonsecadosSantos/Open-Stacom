@@ -20,6 +20,11 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <app-previous-edition-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-previous-edition-form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <app-previous-edition-list [template]="template" [event]="event" *ngIf="isDataLoaded"></app-previous-edition-list>
     </div>
   </div>

@@ -23,10 +23,15 @@ export class PersonComponent implements OnInit {
 
   @ViewChild(PersonListComponent)
   private personListComponent: PersonListComponent;
+
   private _personArray: Person[];
+
   public event: Event;
+
   public template: Template;
+
   public closeResult: string;
+
   public isDataLoaded: boolean = false;
 
   constructor(

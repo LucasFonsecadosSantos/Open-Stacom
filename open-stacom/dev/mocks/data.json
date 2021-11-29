@@ -172,11 +172,31 @@
             "required": true
           }
         },
-        "pastEditions": {
+        "pastEdition": {
           "configRoute": {
             "title": "Edições Passadas",
             "path": "/edicoes",
             "icon": "icon-components"
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "date": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "logo": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "link": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
           }
         },
         "person": {

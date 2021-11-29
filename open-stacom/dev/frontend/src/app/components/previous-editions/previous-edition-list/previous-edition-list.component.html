@@ -18,7 +18,8 @@
           <tr
             *ngFor="let edition of editionsArray"
             (click)="editEdition(edition)"
-            class="editionList+__row"
+            (mouseover)="editEdition(edition)"
+            class="previousEditionList__row"
           >
             <td title="Imagem de {{edition.name ? edition.name : ''}}" class="col-md-2">
               <img class="avatar" src="{{edition.logo ? edition.logo : ''}}" alt="{{edition.name ? edition.name : ''}}" />
