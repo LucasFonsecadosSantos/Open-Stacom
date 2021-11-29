@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Operation } from 'src/app/enums';
 import { CommitteFindService } from 'src/app/services/committee';
+import { CommitteeFormService } from '..';
 
 import {
   Event,
@@ -24,7 +26,8 @@ export class CommitteeListComponent implements OnInit {
   public committeesArray: Committee[]
 
   constructor(
-    private _findService: CommitteFindService
+    private _findService: CommitteFindService,
+    private _formService: CommitteeFormService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,17 @@ export class CommitteeListComponent implements OnInit {
           .subscribe(
             response => this.committeesArray = response
           );
+
+  }
+
+  public editCommittee(committee: Committee): void {
+
+    this._formService.launchModal(
+      {
+        committee: committee,
+        operation: Operation.Update
+      }
+    );
 
   }
 

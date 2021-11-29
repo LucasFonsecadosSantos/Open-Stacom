@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Operation } from 'src/app/enums';
-import { Committee, CommitteeForm, Template, Event } from 'src/app/models';
+import { Committee, CommitteeForm, Template, Event, Person } from 'src/app/models';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
+import { PersonFindService } from 'src/app/services/person';
 import { CommitteeFormService } from '.';
 
 @Component({
@@ -21,6 +22,8 @@ export class CommitteeFormComponent implements OnInit {
   @Input()
   public template: Template;
 
+  public personArray: Person[];
+
   public committee: Committee;
 
   public committeeFormModel: CommitteeForm;
@@ -33,10 +36,23 @@ export class CommitteeFormComponent implements OnInit {
     private _createService: CommitteCreateService,
     private _updateService: CommitteUpdateService,
     private _deleteService: CommitteDeleteService,
+    private _personFindService: PersonFindService
   ) { }
 
   ngOnInit(): void {
+
+    this._populatePerson();
     this._getFormObservables();
+
+  }
+
+  private _populatePerson(): void {
+
+    this._personFindService
+          .list(this.event.id)
+          .subscribe(
+            response => this.personArray = response
+          );
 
   }
 
@@ -51,6 +67,16 @@ export class CommitteeFormComponent implements OnInit {
             this._launchModal();
 
           });
+
+  }
+
+  public addMember(personID: string): void {
+
+    this._personFindService
+          .find(personID)
+          .subscribe(
+            response => this.committee.members.push(response)
+          );
 
   }
 
@@ -84,7 +110,7 @@ export class CommitteeFormComponent implements OnInit {
         centered: true,
         modalDialogClass: 'modal-dialog-custom'
       }
-    )
+    );
 
   }
 
