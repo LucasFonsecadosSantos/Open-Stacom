@@ -1,1 +1,38 @@
-<p>committee-list works!</p>
+
+<div class=" card">
+  <div class=" card-header">
+    <h4 class=" card-title">Comitês Registrados</h4>
+  </div>
+  <div class=" card-body">
+    <div class=" table-responsive">
+      <table class=" table tablesorter" id="">
+        <thead class=" text-primary">
+          <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Membros</th>
+            <th>Contato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let committee of committeesArray"
+            (click)="editCommittee(committee)"
+            class="committeeList__row"
+          >
+            <td title="Imagem de {{committee.name}}" class="col-md-2">
+              <img class="avatar" src="{{committee.picture}}" alt="{{committee.name}}" />
+            </td>
+            <td class="col-md-3">{{committee.name}}</td>
+            <td class="col-md-4" style="font-size: 1em">
+              <p *ngFor="let member of committee.members">{{ member.name }}</p>
+            </td>
+            <td *ngIf="committee.telephone || committee.email" class="col-md-3">
+              {{ committee.telephone ? committee.telephone : ''}} / {{ committee.email ? committee.email : '' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

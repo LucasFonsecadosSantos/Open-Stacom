@@ -4,7 +4,7 @@ import { CommitteFindService } from 'src/app/services/committee';
 import {
   Event,
   Template,
-  Committe,
+  Committee,
   CommitteeForm
 } from './../../../models';
 
@@ -21,7 +21,7 @@ export class CommitteeListComponent implements OnInit {
   @Input()
   public template: Template;
 
-  public committeesArray: Committe[]
+  public committeesArray: Committee[]
 
   constructor(
     private _findService: CommitteFindService
@@ -36,9 +36,9 @@ export class CommitteeListComponent implements OnInit {
   private _listCommittees(): void {
 
     this._findService
-          .find(this.event.id)
+          .list(this.event.id)
           .subscribe(
-            response => this.committeesArray = response;
+            response => this.committeesArray = response
           );
 
   }

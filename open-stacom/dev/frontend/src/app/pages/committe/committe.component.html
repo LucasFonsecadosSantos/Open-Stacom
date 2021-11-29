@@ -2,18 +2,16 @@
 
 <div class="content">
   <app-committee-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-form>
-
   <app-confirm-dialog [template]="template" [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
-
   <div class="row">
     <div class="col-md-12">
       <div class=" card">
         <div class=" card-body d-flex align-items-center">
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="openAddPersonForm()" >
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="openAddCommitteeForm()" >
             <i class="tim-icons icon-simple-add mr-1"></i>
-            Adicionar Nova Pessoa
+            Adicionar Novo Comitê
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllPeople()">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllCommittees()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todas as Pessoas
           </button>
@@ -26,11 +24,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <app-committee-list [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-list>
     </div>
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <app-committee-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-info>
-    </div>
+    </div> -->
   </div>
 </div>

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommitteeFormService, CommitteeListComponent } from 'src/app/components/committee';
+import { ConfirmDialogService } from 'src/app/components/dialog';
+import { Operation } from 'src/app/enums';
 
 import { EventFindService } from 'src/app/services/event';
 import { TemplateFindService } from 'src/app/services/templates';
+import { ExcelExportService } from 'src/app/services/utils';
 import {
   Template,
   Event
@@ -15,13 +19,21 @@ import {
 })
 export class CommitteComponent implements OnInit {
 
+  @ViewChild(CommitteeListComponent)
+  public committeeListComponent: CommitteeListComponent;
+
   public event: Event;
+
   public template: Template;
+
   public isDataLoaded: boolean = false;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _exportExcelService: ExcelExportService,
     private _eventFindService: EventFindService,
+    private _confirmDialogService: ConfirmDialogService,
+    private _committeeFormService: CommitteeFormService,
     private _templateFindService: TemplateFindService
   ) { }
 
@@ -68,28 +80,33 @@ export class CommitteComponent implements OnInit {
     );
   }
 
-  // public openAddPersonForm(): void {
+  public openAddCommitteeForm(): void {
 
-  //   this._personFormService.launchModal({
-  //     operation: Operation.Create
-  //   });
+    this._committeeFormService.launchModal({
+      operation: Operation.Create
+    });
 
-  // }
+  }
 
-  // public exportExcel(): void {
-  //   this._personArray = this.personListComponent.personArray;
-  //   this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
-  // }
+  public exportExcel(): void {
 
-  // public confirmDeleteAllPeople(): void {
+    this._exportExcelService.exportExcel(
+      this.committeeListComponent.committeesArray,
+      'LISTA_DE_COMITES'
+    );
 
-  //   this._confirmDialogService.launchConfirmDialog(
-  //     {
-  //       acceptButton: 'Sim, estou ciente e desejo continuar.',
-  //       cancelButton: 'Cancelar',
-  //       message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
-  //       title: 'Antes de prosseguir...'
-  //     }
-  //   );
-  // }
+  }
+
+  public confirmDeleteAllCommittees(): void {
+
+    this._confirmDialogService.launchConfirmDialog(
+      {
+        acceptButton: 'Sim, estou ciente e desejo continuar.',
+        cancelButton: 'Cancelar',
+        message: 'Você realmente deseja EXCLUIR TODOS OS COMITÊS registrados no sistema?',
+        title: 'Antes de prosseguir...'
+      }
+    );
+  }
+
 }

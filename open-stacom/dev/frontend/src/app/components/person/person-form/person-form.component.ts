@@ -51,15 +51,16 @@ export class PersonFormComponent implements OnInit {
 
   private _getFormObservables(): void {
 
-    this._personFormService.getObservable()
-                            .subscribe(data => {
+    this._personFormService
+          .getObservable()
+          .subscribe(data => {
 
-                              this._setPerson(data.person, data.operation);
-                              this._setPersonFormModel(data);
-                              this._launchModal();
-                              this._buildFormFields();
+            this._setPerson(data.person, data.operation);
+            this._setPersonFormModel(data);
+            this._launchModal();
+            this._buildFormFields();
 
-                            });
+          });
 
   }
 

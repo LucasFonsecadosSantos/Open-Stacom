@@ -12,7 +12,9 @@ import {
 })
 export class CommitteFindService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   public find(): Observable<Committee> {
 
@@ -21,12 +23,14 @@ export class CommitteFindService {
   }
 
   public list(eventID: string): Observable<Committee[]> {
+
     return this.http.get<Committee[]>(`${environment.API_URL.BASE}${environment.API_URL.COMMITTEE}`)
                       .pipe(map(result => {
                           const personArray = <any[]>result;
                           //this._buildSources(personArray, eventID);
                           return personArray;
                       }));
+
   }
 
   // private _buildSources(personArray: Committee[], eventID: string): Committee[] {
