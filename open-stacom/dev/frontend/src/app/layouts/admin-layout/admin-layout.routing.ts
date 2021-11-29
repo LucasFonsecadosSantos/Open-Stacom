@@ -20,6 +20,7 @@ import { NotificationsComponent } from "../../pages/notifications/notifications.
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
+import { CommitteComponent } from "src/app/pages/committe";
 
 export const AdminLayoutRoutes: Routes = [
   // { path: "dashboard", component: DashboardComponent },
@@ -33,6 +34,11 @@ export const AdminLayoutRoutes: Routes = [
   { path: "pessoa", component: PersonComponent },
   { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
+
+  { path: "committee", component: CommitteComponent },
+  { path: "committees", component: CommitteComponent },
+  { path: "comite", component: CommitteComponent },
+  { path: "comites", component: CommitteComponent },
 
   { path: "evento", component: EventComponent },
   { path: "event", component: EventComponent },
