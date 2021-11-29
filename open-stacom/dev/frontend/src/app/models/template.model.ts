@@ -9,6 +9,33 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
+    pastEdition?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      name?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      logo?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean
+      },
+      link?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean
+      },
+      date?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean
+      }
+    },
     event?: {
       configRoute?: {
         title?: string,

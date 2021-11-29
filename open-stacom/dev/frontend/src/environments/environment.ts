@@ -9,6 +9,7 @@ export const environment = {
   },
   API_URL: {
     BASE: 'http://0.0.0.0:3000',
+    PAST_EDITIONS: '/pastEditions',
     TEMPLATES: '/templates',
     PERSON: '/person',
     CALLS: '/calls',

@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Operation } from 'src/app/enums';
+import { PreviousEditionDeleteService, PreviousEditionFindService } from 'src/app/services/previous-edition';
+import { PreviousEditionFormService } from '..';
+
+import {
+  Event,
+  PreviousEdition
+} from './../../../models';
 
 @Component({
   selector: 'app-previous-edition-list',
@@ -7,9 +15,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviousEditionListComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  public event: Event;
+
+  public editionsArray: PreviousEdition[]
+
+  constructor(
+    private _fetchService: PreviousEditionFindService,
+    private _deleteService: PreviousEditionDeleteService,
+    private _formService: PreviousEditionFormService
+  ) { }
 
   ngOnInit(): void {
+    this._populateList();
+  }
+
+  private _populateList(): void {
+
+    this._fetchService
+          .list(this.event.id)
+          .subscribe(
+            response => {
+              console.log(response);
+              this.editionsArray = response;
+            }
+          );
+
+  }
+
+  public editEdition(edition: PreviousEdition): void {
+
+    this._formService.submitEdition(
+      {
+        operation: Operation.Update,
+        title: `Atualizar informações de ${edition.name}`,
+        edition: edition
+      }
+    );
+
+  }
+
+  public deleteEdition(edition: PreviousEdition): void {
+
+    this._deleteService
+      .delete(edition.id, this.event.id)
+      .subscribe(
+
+        response => console.log
+
+      );
+
   }
 
 }

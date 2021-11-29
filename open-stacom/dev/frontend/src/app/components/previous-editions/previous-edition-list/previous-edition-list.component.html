@@ -1,1 +1,43 @@
-<p>previous-edition-list works!</p>
+
+<div class=" card">
+  <div class=" card-header">
+    <h4 class=" card-title">{{event && event.name ? 'Edições Passadas de ' + event.name : 'Edições Passsadas'}}</h4>
+  </div>
+  <div class=" card-body">
+    <div class=" table-responsive">
+      <table class=" table tablesorter" id="">
+        <thead class=" text-primary">
+          <tr>
+            <th>Imagem</th>
+            <th>Edição</th>
+            <th>Data</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let edition of editionsArray"
+            (click)="editEdition(edition)"
+            (mouseover)="editEdition(edition)"
+            class="previousEditionList__row"
+          >
+            <td title="Imagem de {{edition.name ? edition.name : ''}}" class="col-md-2">
+              <img class="avatar" src="{{edition.logo ? edition.logo : ''}}" alt="{{edition.name ? edition.name : ''}}" />
+            </td>
+            <td class="col-md-7">{{edition.name}}</td>
+            <td class="col-md-3">
+              <p>{{ edition.date ? edition.date : '' }}</p>
+            </td>
+            <td>
+              <div class="button-container">
+                <a (click)="deleteEdition(edition)">
+                  <i class="tim-icons icon-trash"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
