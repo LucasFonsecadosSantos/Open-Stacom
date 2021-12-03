@@ -8,7 +8,7 @@ export class Activity {
   title?: string;
   brief?: string;
   poweredBy?: string;
-  responsible?: Person;
+  responsible?: string;
   description?: string;
   picture?: string;
   targetPublic?: string;

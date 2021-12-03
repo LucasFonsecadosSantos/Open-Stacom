@@ -1,15 +1,15 @@
 <div class="content">
   <div class="row">
     <div class="col-md-12">
-      <app-activity-form></app-activity-form>
+      <app-activity-form *ngIf="isDataLoaded" [event]="event" [template]="template"></app-activity-form>
     </div>
   </div>
   <div class="row">
     <div class="col-md-8">
-      <app-activity-list></app-activity-list>
+      <app-activity-list *ngIf="isDataLoaded" [event]="event" [template]="template"></app-activity-list>
     </div>
     <div class="col-md-4">
-      <app-activity-info></app-activity-info>
+      <app-activity-info *ngIf="isDataLoaded" [event]="event" [template]="template"></app-activity-info>
     </div>
   </div>
 </div>
