@@ -110,7 +110,7 @@ export class SidebarComponent implements OnInit {
 
     this.menuItems.push(
       {
-        path: entity.configRoute.path,
+        path: `../${this.event.id}/${entity.configRoute.path}`,
         title: entity.configRoute.title,
         icon: entity.configRoute.icon,
         class: ""

@@ -3,7 +3,7 @@ import { Person } from "."
 export class Committee {
 
   id?: string;
-  members?: Person[];
+  members?: string[];
   picture?: string;
   brief?: string;
   telephone?: string;

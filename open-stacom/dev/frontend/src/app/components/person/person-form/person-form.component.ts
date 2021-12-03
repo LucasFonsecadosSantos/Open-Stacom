@@ -74,7 +74,23 @@ export class PersonFormComponent implements OnInit {
 
   private _setPerson(person: Person, operation: Operation): void {
 
-    this.person = (operation == Operation.Update) ? person : null;
+    this.person = (operation == Operation.Update) ? person : this._getNewPerson();
+
+  }
+
+  private _getNewPerson(): Person {
+
+    return {
+      "id": null,
+      "academicFormation": null,
+      "avatar": null,
+      "brief": null,
+      "institution": null,
+      "job": null,
+      "location": null,
+      "name": null,
+      "socialNetworks": null
+    }
 
   }
 
@@ -86,15 +102,19 @@ export class PersonFormComponent implements OnInit {
 
   private _launchModal(): void {
 
-    this._modalService.open(this.personForm,
-      {
-        ariaLabelledBy: 'modal-basic-title',
-        windowClass: 'modal-custom',
-        size: 'lg',
-        centered: true,
-        modalDialogClass: 'modal-dialog-custom'
-      }
-    )
+    if (!this._modalService.hasOpenModals()) {
+
+      this._modalService.open(this.personForm,
+        {
+          ariaLabelledBy: 'modal-basic-title',
+          windowClass: 'modal-custom',
+          size: 'lg',
+          centered: true,
+          modalDialogClass: 'modal-dialog-custom'
+        }
+      );
+
+    }
 
   }
 

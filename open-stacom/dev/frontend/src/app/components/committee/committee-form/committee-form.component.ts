@@ -22,6 +22,8 @@ export class CommitteeFormComponent implements OnInit {
   @Input()
   public template: Template;
 
+  public committeeMembers: Person[];
+
   public personArray: Person[];
 
   public committee: Committee;
@@ -75,7 +77,11 @@ export class CommitteeFormComponent implements OnInit {
     this._personFindService
           .find(personID)
           .subscribe(
-            response => this.committee.members.push(response)
+            response => {
+              this.committee.members.push(response.id);
+              this.committeeMembers.push(response);
+              this.personArray = this._removePersonFromOptions(personID);
+            }
           );
 
   }
@@ -88,9 +94,28 @@ export class CommitteeFormComponent implements OnInit {
     return Operation.Create;
   }
 
+  private _removePersonFromOptions(personID: string): Person[] {
+
+    return this.personArray.filter(person => person.id != personID);
+
+  }
+
   private _setCommittee(committee: Committee, operation: Operation): void {
 
-    this.committee = (operation == Operation.Update) ? committee : null;
+    this.committee = (operation == Operation.Update) ? committee : this._getNewCommittee();
+
+  }
+
+  private _getNewCommittee(): Committee {
+
+    return {
+      id: null,
+      brief: null,
+      email: null,
+      members: [],
+      picture: null,
+      telephone: null
+    };
 
   }
 
@@ -102,15 +127,19 @@ export class CommitteeFormComponent implements OnInit {
 
   private _launchModal(): void {
 
-    this._modalService.open(this.committeForm,
-      {
-        ariaLabelledBy: 'modal-basic-title',
-        windowClass: 'modal-custom',
-        size: 'lg',
-        centered: true,
-        modalDialogClass: 'modal-dialog-custom'
-      }
-    );
+    if (!this._modalService.hasOpenModals()) {
+
+      this._modalService.open(this.committeForm,
+        {
+          ariaLabelledBy: 'modal-basic-title',
+          windowClass: 'modal-custom',
+          size: 'lg',
+          centered: true,
+          modalDialogClass: 'modal-dialog-custom'
+        }
+      );
+
+    }
 
   }
 

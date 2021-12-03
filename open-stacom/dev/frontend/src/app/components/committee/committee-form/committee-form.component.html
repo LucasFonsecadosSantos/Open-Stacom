@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="row d-flex justify-align-center align-items-center">
-            <div class="col-md-10">
+            <div class="col-md-6 pr-md-1">
               <div class=" form-group">
                 <label> Membros</label>
                 <select
@@ -97,7 +97,7 @@
                 >
                   <option value="">- SELECIONAR -</option>
                   <option
-                    *ngFor="let person of personArray"
+                    *ngFor="let person of committeeMembers"
                     value="{{person.id}}"
                   >{{person.name}}</option>
                 </select>
@@ -116,9 +116,14 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary" (click)="addMember(personField.value)">
-                <i class="tim-icons icon-simple-add"></i>
+            <div class="col-md-6 d-flex align-items-center pl-md-1">
+              <button
+                _ngcontent-eus-c76=""
+                class="btn btn-sm btn-outline-primary d-flex align-items-center"
+                (click)="addMember(personField.value)"
+              >
+                <i _ngcontent-eus-c76="" class="tim-icons icon-simple-add mr-1"></i>
+                Adicionar membro ao comitê
               </button>
             </div>
           </div>
