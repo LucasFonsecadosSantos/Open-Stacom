@@ -12,9 +12,10 @@ export class PersonFindService {
 
   constructor(private http: HttpClient) { }
 
-  public find(): Observable<Person> {
+  public find(id: string): Observable<Person> {
 
-    return null;
+    return this.http
+                .get<Person>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${id}`);
 
   }
 
@@ -44,4 +45,5 @@ export class PersonFindService {
             `/assets/img/default-avatar.png`;
 
   }
+
 }

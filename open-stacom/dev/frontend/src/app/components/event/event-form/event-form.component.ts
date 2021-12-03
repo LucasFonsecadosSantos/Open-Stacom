@@ -37,12 +37,14 @@ export class EventFormComponent implements OnInit {
   }
 
   public addTelephoneToList(contact: string, telephone: string): void {
+
       this.event.telephones.push(
         {
           "name": contact,
           "number": telephone
         }
       );
+
   }
 
   public addDateToList(date: string): void {

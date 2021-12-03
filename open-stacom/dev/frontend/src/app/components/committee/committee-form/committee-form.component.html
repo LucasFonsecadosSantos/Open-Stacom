@@ -1,1 +1,141 @@
-<p>committee-form works!</p>
+
+<ng-template #committeForm let-modal>
+  <!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <div class=" card">
+      <div class=" card-header"><h5 class=" title">{{ committeeFormModel && committeeFormModel.operation &&  committeeFormModel.operation == operationCreate ? 'Adicionar um novo comitê' : 'Atualizar informações'}}</h5></div>
+      <div class=" card-body" *ngIf="template && template.objects && template.objects.committee">
+        <form>
+          <div class=" row">
+            <div *ngIf="template.objects.committee.name" class=" col-md-6 pr-md-1">
+              <div class=" form-group">
+                <label> Nome/Título do Comitê <span *ngIf="template.objects.committee.name.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder="Ex.: Comitê de avaliação cientifica"
+                  type="text"
+                  [value]="(committee && committee != null && committee.name) ? committee.name : ''"
+                  maxlength="{{template.objects.committee.name.maxlength}}"
+                  minlength="{{template.objects.committee.name.minlength}}"
+                  required="{{template.objects.committee.name.required}}"
+                />
+              </div>
+            </div>
+            <div class=" col-md-6 pl-md-1">
+              <div *ngIf="template.objects.committee.picture" class=" form-group">
+                <label> Imagem <span *ngIf="template.objects.committee.picture.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder=""
+                  type="file"
+                  [value]=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="template.objects.committee.brief" class=" col-md-12 pl">
+              <div class=" form-group">
+                <label> Descrição <span *ngIf="template.objects.committee.brief.required">*</span></label>
+                <textarea
+                  rows="5"
+                  class=" form-control"
+                  placeholder="Ex.: Comitê responsável por avaliação xpto"
+                  type="text"
+                  [value]="(committee && committee != null && committee.brief) ? committee.brief : ''"
+                  maxlength="{{template.objects.committee.brief.maxlength}}"
+                  minlength="{{template.objects.committee.brief.minlength}}"
+                  required="{{template.objects.committee.brief.required}}"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="template.objects.committee.telephone" class=" col-md-6 pr-md-1">
+              <div class=" form-group">
+                <label> Telefone para contato <span *ngIf="template.objects.committee.telephone.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder="Ex.: (16) 3969-5545"
+                  type="text"
+                  [value]="(committee && committee != null && committee.telephone) ? committee.telephone : ''"
+                  maxlength="{{template.objects.committee.telephone.maxlength}}"
+                  minlength="{{template.objects.committee.telephone.minlength}}"
+                  required="{{template.objects.committee.telephone.required}}"
+                />
+              </div>
+            </div>
+            <div class=" col-md-6 pl-md-1">
+              <div *ngIf="template.objects.committee.email" class=" form-group">
+                <label> E-Mail <span *ngIf="template.objects.committee.email.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder="Ex.: contato@comite.evento.com.br"
+                  type="text"
+                  [value]="(committee && committee != null && committee.email) ? committee.email : ''"
+                  maxlength="{{template.objects.committee.email.maxlength}}"
+                  minlength="{{template.objects.committee.email.minlength}}"
+                  required="{{template.objects.committee.email.required}}"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-align-center align-items-center">
+            <div class="col-md-6 pr-md-1">
+              <div class=" form-group">
+                <label> Membros</label>
+                <select
+                  #personField
+                  class=" form-control"
+                  type="text"
+                  [value]=""
+                >
+                  <option value="">- SELECIONAR -</option>
+                  <option
+                    *ngFor="let person of committeeMembers"
+                    value="{{person.id}}"
+                  >{{person.name}}</option>
+                </select>
+              </div>
+              <table>
+                <thead>
+                </thead>
+                <tbody *ngIf="committee && committee.members">
+                  <tr *ngFor="let loadedMember of committee.members">
+                    <td>{{ loadedMember.name }}</td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="!committee || !committee.members">
+                  <tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6 d-flex align-items-center pl-md-1">
+              <button
+                _ngcontent-eus-c76=""
+                class="btn btn-sm btn-outline-primary d-flex align-items-center"
+                (click)="addMember(personField.value)"
+              >
+                <i _ngcontent-eus-c76="" class="tim-icons icon-simple-add mr-1"></i>
+                Adicionar membro ao comitê
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" card-footer">
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationUpdate" (click)="create(committee)">{{committeeFormModel.operation}} o registro de {{committee.name}}</button>
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationCreate" (click)="update(committee)">{{committeeFormModel.operation}} esse novo comitê</button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div> -->
+</ng-template>

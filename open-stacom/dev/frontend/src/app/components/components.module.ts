@@ -38,6 +38,7 @@ import {
 } from './previous-editions';
 import {
   CommitteeFormComponent,
+  CommitteeFormService,
   CommitteeInfoComponent,
   CommitteeListComponent
 } from './committee';
@@ -160,7 +161,8 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
   providers: [
     ConfirmDialogService,
     PersonFormService,
-    PreviousEditionFormService
+    PreviousEditionFormService,
+    CommitteeFormService
   ]
 })
 export class ComponentsModule {}

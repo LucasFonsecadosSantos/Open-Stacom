@@ -19,6 +19,7 @@ import {
 } from './';
 import { SharedPersonService } from './person';
 import { SharedEventService, SharedTemplateService } from '../services/shared';
+import { CommitteComponent } from './committe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SharedEventService, SharedTemplateService } from '../services/shared';
     VersioningComponent,
     SponsorshipComponent,
     PreviousEditionsComponent,
-    CallsComponent
+    CallsComponent,
+    CommitteComponent
   ],
   imports: [
     CommonModule,

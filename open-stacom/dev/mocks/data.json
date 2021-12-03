@@ -10,6 +10,38 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
+        "committee": {
+          "configRoute": {
+            "title": "Comitês",
+            "path": "/comites",
+            "icon": "icon-settings-gear-63"
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephone": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          }
+        },
         "event": {
           "configRoute": {
             "title": "Evento",
@@ -301,13 +333,6 @@
             "required": true
           }
         },
-        "committees": {
-          "configRoute": {
-            "title": "Comitês",
-            "path": "/comite",
-            "icon": "icon-paper"
-          }
-        },
         "videoGallery": {
           "configRoute": {
             "title": "Galeria de Videos",
@@ -387,6 +412,16 @@
       "link": "#",
       "logo": "#",
       "date": "00/00/0000"
+    }
+  ],
+  "committees": [
+    {
+      "id": "51564",
+      "name": "Comite cientifico",
+      "picture": "#",
+      "brief": "teste",
+      "telphone": "234",
+      "email": "asd"
     }
   ],
   "person": [
