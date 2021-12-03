@@ -10,3 +10,6 @@ export * from './previous-edition.model';
 
 export * from './committee-form.model';
 export * from './committee.model';
+
+export * from './activity-form.model';
+export * from './activity.model';
