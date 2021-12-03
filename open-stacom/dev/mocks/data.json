@@ -421,7 +421,10 @@
       "picture": "#",
       "brief": "teste",
       "telphone": "234",
-      "email": "asd"
+      "email": "asd",
+      "members": [
+        "238284"
+      ]
     }
   ],
   "person": [
