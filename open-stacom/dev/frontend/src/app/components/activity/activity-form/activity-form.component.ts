@@ -2,9 +2,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivityType, Operation } from 'src/app/enums';
-import { Activity, ActivityForm, Event, Person, Template } from 'src/app/models';
+import { Activity, ActivityForm, Event, Person, PricePlan, Template } from 'src/app/models';
 import { ActivityCreateService, ActivityUpdateService } from 'src/app/services/activity';
 import { PersonFindService } from 'src/app/services/person';
+import { PricePlanFindService } from 'src/app/services/price-plan';
 import { ActivityFormService } from '.';
 
 @Component({
@@ -41,7 +42,7 @@ export class ActivityFormComponent implements OnInit {
     private _createService: ActivityCreateService,
     private _updateService: ActivityUpdateService,
     private _personFindService: PersonFindService,
-    private _pricePlanFindService: PricePlanService
+    private _pricePlanFindService: PricePlanFindService
   ) { }
 
   ngOnInit(): void {
