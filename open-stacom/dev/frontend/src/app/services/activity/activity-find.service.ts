@@ -18,7 +18,16 @@ export class ActivityFindService {
   public find(id: string): Observable<Activity> {
 
     return this.http
-                .get<Activity>(`${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}/${id}`);
+                .get<Activity>(`${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}/${id}`)
+                .pipe(
+                  map(
+                    activity => {
+                      this._findPerson(activity);
+                      //this._buildSources(personArray, eventID);
+                      return activity;
+                    }
+                  )
+                );
 
   }
 
@@ -30,7 +39,7 @@ export class ActivityFindService {
                   map(
                     result => {
                       let activityArray = <any[]>result;
-                      activityArray = this._fetchResponsible(activityArray);
+                      this._fetchResponsible(activityArray);
                       //this._buildSources(personArray, eventID);
                       return activityArray;
                       }
@@ -38,13 +47,11 @@ export class ActivityFindService {
                   );
   }
 
-  private _fetchResponsible(activityArray: Activity[]): Activity[] {
+  private _fetchResponsible(activityArray: Activity[]): void {
 
     activityArray.forEach(
       activity => this._findPerson(activity)
     );
-
-    return activityArray;
 
   }
 

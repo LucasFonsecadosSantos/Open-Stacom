@@ -13,34 +13,65 @@
           <div class=" row">
             <div class=" col-md-5 pr-md-1">
               <div class=" form-group">
-                <label> Company (disabled) </label>
+                <label> Título <span *ngIf="template.objects.activity.title.required">*</span></label>
                 <input
                   class=" form-control"
-                  disabled=""
-                  placeholder="Company"
+                  placeholder="Ex.: Abertura do evento"
                   type="text"
-                  value="Creative Code Inc."
+                  [value]="activity.title"
                 />
               </div>
             </div>
             <div class=" col-md-3 px-md-1">
               <div class=" form-group">
-                <label> Username </label>
-                <input
+                <label> Tipo <span *ngIf="template.objects.activity.type.required">*</span></label>
+                <select
                   class=" form-control"
-                  placeholder="Username"
-                  type="text"
-                  value="michael23"
-                />
+                  [value]="activity.type"
+                >
+                  <option value="" selected>- SELECIONAR -</option>
+                  <option
+                    *ngFor="let type of possibleActivityTypes"
+                    [value]="type"
+                  >{{ type }}</option>
+                </select>
               </div>
             </div>
             <div class=" col-md-4 pl-md-1">
               <div class=" form-group">
-                <label for="exampleInputEmail1"> Email address </label>
+                <label for="exampleInputEmail1"> Responsável pela atividade <span *ngIf="template.objects.activity.responsible.required">*</span></label>
+                <select
+                  class=" form-control"
+                >
+                <option value="" selected>- SELECIONAR -</option>
+                  <option
+                    *ngFor="let person of personArray"
+                    [value]="person.id"
+                  >{{ person.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class=" row">
+            <div class=" col-md-6 pr-md-1">
+              <div class=" form-group">
+                <label> Proporcionado por <span *ngIf="template.objects.activity.poweredBy.required">*</span></label>
                 <input
                   class=" form-control"
-                  placeholder="mike@email.com"
-                  type="email"
+                  placeholder="Ex.: Empresa XPTO"
+                  type="text"
+                  [value]="activity.poweredBy"
+                />
+              </div>
+            </div>
+            <div class=" col-md-6 pl-md-1">
+              <div class=" form-group">
+                <label> Público Alvo <span *ngIf="template.objects.activity.targetPublic.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder="Ex.: Pesquisadores de Biologia"
+                  type="text"
+                  [value]="activity.targetPublic"
                 />
               </div>
             </div>
@@ -48,24 +79,74 @@
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> First Name </label>
-                <input
+                <label> Resumo breve <span *ngIf="template.objects.activity.brief.required">*</span></label>
+                <textarea
+                  rows="6"
                   class=" form-control"
-                  placeholder="Company"
+                  placeholder="Ex.: As práticas decorrente da atividade xpto atualmente, levam em consideração..."
                   type="text"
-                  value="Mike"
+                  [value]="activity.brief"
+                ></textarea>
+              </div>
+            </div>
+            <div class=" col-md-6 pl-md-1">
+              <div class=" form-group">
+                <label> Descrição Detalhada <span *ngIf="template.objects.activity.description.required">*</span></label>
+                <textarea
+                  rows="6"
+                  class=" form-control"
+                  placeholder="Ex.: A presente atividade busca..."
+                  type="text"
+                  [value]="activity.description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class=" row">
+            <div class=" col-md-3 pr-md-1">
+              <div class=" form-check">
+                <label class=" form-check-label">
+                  A participação na atividade é gratuíto
+                <input
+                  #checkPriceField
+                  class=" form-check-input"
+                  type="checkbox"
+                  value=""
+                  checked=""
+                  (change)="priceField.disabled=checkPriceField.checked"
+                />
+                <span class=" form-check-sign">
+                  <span class=" check"></span>
+                </span>
+              </label>
+            </div>
+            </div>
+            <div class=" col-md-3 pr-md-1">
+              <div class=" form-group">
+                <label> Preço <span *ngIf="template.objects.activity.price.required">*</span></label>
+                <input
+                  #priceField
+                  disabled="true"
+                  class=" form-control"
+                  placeholder="Ex.: 00,00"
+                  type="text"
+                  [value]="activity.price"
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
               <div class=" form-group">
-                <label> Last Name </label>
-                <input
+                <label> Pacote <span *ngIf="template.objects.activity.pricePlan.required">*</span></label>
+                <select
+                  [disabled]="checkPriceField.checked"
                   class=" form-control"
-                  placeholder="Last Name"
+                  placeholder="Ex.: Pesquisadores de Biologia"
                   type="text"
-                  value="Andrew"
-                />
+                  [value]="activity.targetPublic"
+                >
+                <option value="" selected>- SELECIONAR -</option>
+                <option *ngFor="let plan of pricePlans" value="plan.id">{{plan.name}}</option>
+                </select>
               </div>
             </div>
           </div>

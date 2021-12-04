@@ -78,6 +78,7 @@ import {
   SharedTemplateService,
   SharedEventService
 } from './shared';
+import { PricePlanCreateService, PricePlanDeleteService, PricePlanFindService, PricePlanUpdateService } from './price-plan';
 
 
 
@@ -141,7 +142,12 @@ import {
     UrlService,
 
     SharedTemplateService,
-    SharedEventService
+    SharedEventService,
+
+    PricePlanCreateService,
+    PricePlanDeleteService,
+    PricePlanFindService,
+    PricePlanUpdateService
   ]
 })
 export class ServicesModule { }

@@ -45,6 +45,7 @@ export class CommitteeFormComponent implements OnInit {
 
     this.personArray = new Array<Person>();
     this._getFormObservables();
+    this._buildAvailablePeopleToSelect();
 
   }
 
@@ -54,16 +55,7 @@ export class CommitteeFormComponent implements OnInit {
     this._personFindService
         .list(this.event.id)
         .subscribe(
-          response => this._buildPeopleSelectField(response)
-        );
-
-  }
-
-  private _buildPeopleSelectField(personArray: Person[]): void {
-
-    this.personArray
-        .filter(
-          person => !this.committee.members.includes(person)
+          response => this.personArray = response
         );
 
   }
@@ -76,7 +68,6 @@ export class CommitteeFormComponent implements OnInit {
           data => {
             this._setCommittee(data.committee, data.operation);
             this._setCommitteeFormModel(data);
-            this._buildAvailablePeopleToSelect();
             this._launchModal();
           }
         );

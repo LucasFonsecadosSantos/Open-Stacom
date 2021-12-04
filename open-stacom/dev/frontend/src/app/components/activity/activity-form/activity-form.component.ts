@@ -1,9 +1,10 @@
 // import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Operation } from 'src/app/enums';
-import { Activity, ActivityForm, Event, Template } from 'src/app/models';
+import { ActivityType, Operation } from 'src/app/enums';
+import { Activity, ActivityForm, Event, Person, Template } from 'src/app/models';
 import { ActivityCreateService, ActivityUpdateService } from 'src/app/services/activity';
+import { PersonFindService } from 'src/app/services/person';
 import { ActivityFormService } from '.';
 
 @Component({
@@ -26,13 +27,21 @@ export class ActivityFormComponent implements OnInit {
 
   public activityFormModel: ActivityForm;
 
+  public personArray: Person[];
+
+  public pricePlans: PricePlan[];
+
   public static readonly operation: Operation;
+
+  public static readonly activityType: ActivityType;
 
   constructor(
     private _modalService: NgbModal,
     private _formService: ActivityFormService,
     private _createService: ActivityCreateService,
-    private _updateService: ActivityUpdateService
+    private _updateService: ActivityUpdateService,
+    private _personFindService: PersonFindService,
+    private _pricePlanFindService: PricePlanService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +71,19 @@ export class ActivityFormComponent implements OnInit {
 
   public get operationCreate() {
     return Operation.Create;
+  }
+
+  public get possibleActivityTypes() {
+    return Object.keys(ActivityType);
+  }
+
+  private _fetchPerson(): void {
+
+    this._personFindService.list(this.event.id)
+                            .subscribe(
+                              fetchedPerson => this.personArray = fetchedPerson
+                            );
+
   }
 
   private _setActivity(activity: Activity, operation: Operation): void {
@@ -99,6 +121,9 @@ export class ActivityFormComponent implements OnInit {
 
     if (!this._modalService.hasOpenModals()) {
 
+      this._fetchPerson();
+      this._fetchPricePlans();
+
       this._modalService.open(this.activityForm,
         {
           ariaLabelledBy: 'modal-basic-title',
@@ -110,6 +135,16 @@ export class ActivityFormComponent implements OnInit {
       );
 
     }
+
+  }
+
+  private _fetchPricePlans(): void {
+
+    this._pricePlanFindService
+          .list(this.event.id)
+          .subscribe(
+            planArray => this.pricePlans = planArray
+          );
 
   }
 
