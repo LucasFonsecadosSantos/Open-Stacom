@@ -41,7 +41,7 @@ export class CommitteeListComponent implements OnInit {
     this._findService
           .list(this.event.id)
           .subscribe(
-            response => this.committeesArray = response
+            response => {this.committeesArray = response;console.log("testeone"); console.log(response)}
           );
 
   }

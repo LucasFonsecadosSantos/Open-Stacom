@@ -105,8 +105,8 @@
               <table>
                 <thead>
                 </thead>
-                <tbody *ngIf="committee && committeeMembers">
-                  <tr *ngFor="let loadedMember of committeeMembers">
+                <tbody *ngIf="committee && committee.members">
+                  <tr *ngFor="let loadedMember of committee.members">
                     <td value="{{loadedMember.id}}">{{ loadedMember.name }}</td>
                   </tr>
                 </tbody>

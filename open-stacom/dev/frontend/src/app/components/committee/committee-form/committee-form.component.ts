@@ -43,45 +43,27 @@ export class CommitteeFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.committeeMembers = new Array<Person>();
-    this._populatePerson();
+    this.personArray = new Array<Person>();
     this._getFormObservables();
 
   }
 
-  private _populatePerson(): void {
-
-    this._buildAvailablePeopleToSelect();
-    this._buildMembersTable();
-
-  }
 
   private _buildAvailablePeopleToSelect(): void {
 
     this._personFindService
         .list(this.event.id)
         .subscribe(
-          response => this.personArray = response
+          response => this._buildPeopleSelectField(response)
         );
 
   }
 
-  private _buildMembersTable(): void {
+  private _buildPeopleSelectField(personArray: Person[]): void {
 
-    if (this.committee && this.committee.members) {
-
-      this.committee.members.forEach(person => this._searchAndListMember(person));
-
-    }
-
-  }
-
-  private _searchAndListMember(memberID: string): void {
-
-    this._personFindService
-        .find(memberID)
-        .subscribe(
-          person => {this.committeeMembers.push(person);console.log(person)}
+    this.personArray
+        .filter(
+          person => !this.committee.members.includes(person)
         );
 
   }
@@ -89,15 +71,15 @@ export class CommitteeFormComponent implements OnInit {
   private _getFormObservables(): void {
 
     this._formService
-          .getObservable()
-          .subscribe(data => {
-
+        .getObservable()
+        .subscribe(
+          data => {
             this._setCommittee(data.committee, data.operation);
             this._setCommitteeFormModel(data);
-            this._populatePerson();
+            this._buildAvailablePeopleToSelect();
             this._launchModal();
-
-          });
+          }
+        );
 
   }
 
@@ -107,8 +89,7 @@ export class CommitteeFormComponent implements OnInit {
           .find(personID)
           .subscribe(
             response => {
-              this.committee.members.push(response.id);
-              this.committeeMembers.push(response);
+              this.committee.members.push(response);
               this.personArray = this._removePersonFromOptions(personID);
             }
           );

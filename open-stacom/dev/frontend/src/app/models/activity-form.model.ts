@@ -4,7 +4,7 @@ import { Operation } from "../enums";
 export class ActivityForm {
 
     title?: string;
-    activity: Activity;
+    activity?: Activity;
     operation: Operation;
 
 }

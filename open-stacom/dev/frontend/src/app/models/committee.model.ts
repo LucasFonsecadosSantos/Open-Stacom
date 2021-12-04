@@ -4,7 +4,7 @@ export class Committee {
 
   id?: string;
   name?: string;
-  members?: string[];
+  members?: Person[];
   picture?: string;
   brief?: string;
   telephone?: string;

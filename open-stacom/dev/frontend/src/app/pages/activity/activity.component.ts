@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActivityListComponent } from 'src/app/components/activity';
+import { ActivityFormService, ActivityListComponent } from 'src/app/components/activity';
 import { ConfirmDialogService } from 'src/app/components/dialog';
+import { Operation } from 'src/app/enums';
 import { EventFindService } from 'src/app/services/event';
 import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
@@ -34,6 +35,7 @@ export class ActivityComponent implements OnInit {
     private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
+    private _formService: ActivityFormService,
     private _confirmDialogService: ConfirmDialogService
   ) { }
 
@@ -80,13 +82,6 @@ export class ActivityComponent implements OnInit {
     );
   }
 
-  // public openAddPersonForm(): void {
-
-  //   this._personFormService.launchModal({
-  //     operation: Operation.Create
-  //   });
-
-  // }
 
   public exportExcel(): void {
     this._exportExcelService.exportExcel(this.activityListComponent.activityArray, 'LISTA_DE_ATIVIDADES');
@@ -102,6 +97,14 @@ export class ActivityComponent implements OnInit {
         title: 'Antes de prosseguir...'
       }
     );
+  }
+
+  public openAddActivityForm(): void {
+
+    this._formService.launchModal({
+      operation: Operation.Create
+    });
+
   }
 
   private _getResponseObservables(): void {

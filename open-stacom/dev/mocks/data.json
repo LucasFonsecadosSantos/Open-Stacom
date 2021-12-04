@@ -478,7 +478,7 @@
       "telphone": "234",
       "email": "asd",
       "members": [
-        "238284"
+        {"id": "238284"}
       ]
     }
   ],
@@ -528,7 +528,7 @@
       "title": "Atividade teste",
       "brief": "brief xpto",
       "poweredBy": "DTI",
-      "responsible": "238284",
+      "responsible": {"id": "238284"},
       "description": "asdopasopdmasodmopasd",
       "picture": "#",
       "targetPublic": "all",
