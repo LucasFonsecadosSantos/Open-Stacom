@@ -9,11 +9,120 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
+    committee?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      name?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      members?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      picture?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      brief?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      telephone?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      email?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      }
+    },
+    activity?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      title?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      brief?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      poweredBy?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      responsible?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      description?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      picture?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      targetPublic?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      location?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      price?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      pricePlan?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      }
+    },
     pastEdition?: {
       configRoute?: {
         title?: string,
         path?: string,
         icon?: string
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
       },
       name?: {
         minlength?: number,
@@ -41,6 +150,11 @@ export class Template {
         title?: string,
         path?: string,
         icon?: string
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
       },
       name?: {
         minlength?: number,
@@ -203,7 +317,12 @@ export class Template {
         title?: string,
         path?: string,
         icon?: string
-      }
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
       name?: {
         minlength?: number,
         maxlength?: number,

@@ -10,6 +10,90 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
+        "pricePlan": {
+          "configRoute": {
+            "title": "Pacotes",
+            "path": "/pacotes",
+            "icon": "icon-palette"
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "value": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+        },
+        "activity": {
+          "configRoute": {
+            "title": "Atividades",
+            "path": "/atividades",
+            "icon": "icon-palette"
+          },
+          "type": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "poweredBy": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "responsible": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "location": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "price": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "pricePlan": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          }
+        },
         "committee": {
           "configRoute": {
             "title": "Comitês",
@@ -354,13 +438,6 @@
             "icon": "icon-align-center"
           }
         },
-        "actvities": {
-          "configRoute": {
-            "title": "Atividades",
-            "path": "/atividades",
-            "icon": "icon-palette"
-          }
-        },
         "scheduling": {
           "configRoute": {
             "title": "Programação",
@@ -405,6 +482,14 @@
       "sections": []
     }
   ],
+  "pricePlans": [
+    {
+      "id": "456894",
+      "name": "XPTO",
+      "value": "51,55",
+      "description": "descricao"
+    }
+  ],
   "pastEditions": [
     {
       "id": "238284",
@@ -421,7 +506,10 @@
       "picture": "#",
       "brief": "teste",
       "telphone": "234",
-      "email": "asd"
+      "email": "asd",
+      "members": [
+        {"id": "238284"}
+      ]
     }
   ],
   "person": [
@@ -461,6 +549,22 @@
         "facebook": "aisjdiajsid",
         "twitter": "sadok"
       }
+    }
+  ],
+  "activities": [
+    {
+      "id": "56464",
+      "type": "Lecture",
+      "title": "Atividade teste",
+      "brief": "brief xpto",
+      "poweredBy": "DTI",
+      "responsible": {"id": "238284"},
+      "description": "asdopasopdmasodmopasd",
+      "picture": "#",
+      "targetPublic": "all",
+      "localtion": "none",
+      "price": "null",
+      "pricePlan": {"id": "456894"}
     }
   ],
   "event": [

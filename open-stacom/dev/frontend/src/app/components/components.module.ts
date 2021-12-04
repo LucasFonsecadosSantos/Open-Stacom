@@ -24,7 +24,8 @@ import {
 import {
   ActivityInfoComponent,
   ActivityFormComponent,
-  ActivityListComponent
+  ActivityListComponent,
+  ActivityFormService
 } from './activity';
 import {
   ScheduleFormComponent,
@@ -162,7 +163,8 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
     ConfirmDialogService,
     PersonFormService,
     PreviousEditionFormService,
-    CommitteeFormService
+    CommitteeFormService,
+    ActivityFormService
   ]
 })
 export class ComponentsModule {}

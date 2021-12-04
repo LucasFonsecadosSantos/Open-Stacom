@@ -97,7 +97,7 @@
                 >
                   <option value="">- SELECIONAR -</option>
                   <option
-                    *ngFor="let person of committeeMembers"
+                    *ngFor="let person of personArray"
                     value="{{person.id}}"
                   >{{person.name}}</option>
                 </select>
@@ -107,7 +107,7 @@
                 </thead>
                 <tbody *ngIf="committee && committee.members">
                   <tr *ngFor="let loadedMember of committee.members">
-                    <td>{{ loadedMember.name }}</td>
+                    <td value="{{loadedMember.id}}">{{ loadedMember.name }}</td>
                   </tr>
                 </tbody>
                 <tbody *ngIf="!committee || !committee.members">

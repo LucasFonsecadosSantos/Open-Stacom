@@ -23,7 +23,9 @@ import { Operation } from 'src/app/enums';
 })
 export class PersonFormComponent implements OnInit {
 
-  @ViewChild('personForm') personForm;
+  @ViewChild('personForm')
+  public personForm: PersonFormComponent;
+
   public personFormModel: PersonForm;
 
   @Input()

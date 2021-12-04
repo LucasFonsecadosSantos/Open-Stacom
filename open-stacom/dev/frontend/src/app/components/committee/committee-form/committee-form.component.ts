@@ -22,7 +22,7 @@ export class CommitteeFormComponent implements OnInit {
   @Input()
   public template: Template;
 
-  public committeeMembers: Person[];
+  public committeeMembers: Array<Person>;
 
   public personArray: Person[];
 
@@ -43,32 +43,34 @@ export class CommitteeFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._populatePerson();
+    this.personArray = new Array<Person>();
     this._getFormObservables();
+    this._buildAvailablePeopleToSelect();
 
   }
 
-  private _populatePerson(): void {
+
+  private _buildAvailablePeopleToSelect(): void {
 
     this._personFindService
-          .list(this.event.id)
-          .subscribe(
-            response => this.personArray = response
-          );
+        .list(this.event.id)
+        .subscribe(
+          response => this.personArray = response
+        );
 
   }
 
   private _getFormObservables(): void {
 
     this._formService
-          .getObservable()
-          .subscribe(data => {
-
+        .getObservable()
+        .subscribe(
+          data => {
             this._setCommittee(data.committee, data.operation);
             this._setCommitteeFormModel(data);
             this._launchModal();
-
-          });
+          }
+        );
 
   }
 
@@ -78,8 +80,7 @@ export class CommitteeFormComponent implements OnInit {
           .find(personID)
           .subscribe(
             response => {
-              this.committee.members.push(response.id);
-              this.committeeMembers.push(response);
+              this.committee.members.push(response);
               this.personArray = this._removePersonFromOptions(personID);
             }
           );
