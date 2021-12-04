@@ -9,7 +9,7 @@ export const environment = {
   },
   API_URL: {
     BASE: 'http://0.0.0.0:3000',
-    PRICE_PLAN: '/pricePlans'
+    PRICE_PLAN: '/pricePlans',
     COMMITTEE: '/committees',
     PAST_EDITIONS: '/pastEditions',
     TEMPLATES: '/templates',

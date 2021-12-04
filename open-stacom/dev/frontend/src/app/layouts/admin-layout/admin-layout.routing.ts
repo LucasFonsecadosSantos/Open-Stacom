@@ -35,6 +35,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
 
+  { path: "pacotes", component: null },
+  { path: "pacote", component: null },
+
   { path: "committee", component: CommitteComponent },
   { path: "committees", component: CommitteComponent },
   { path: "comite", component: CommitteComponent },

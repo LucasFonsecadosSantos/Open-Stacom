@@ -78,7 +78,12 @@ import {
   SharedTemplateService,
   SharedEventService
 } from './shared';
-import { PricePlanCreateService, PricePlanDeleteService, PricePlanFindService, PricePlanUpdateService } from './price-plan';
+import {
+  PricePlanCreateService,
+  PricePlanDeleteService,
+  PricePlanFindService,
+  PricePlanUpdateService
+} from './price-plan';
 
 
 

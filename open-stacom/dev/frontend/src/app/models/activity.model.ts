@@ -1,4 +1,4 @@
-import { Person } from ".";
+import { Person, PricePlan } from ".";
 import { ActivityType } from "../enums";
 
 export class Activity {
@@ -14,6 +14,6 @@ export class Activity {
   targetPublic?: string;
   location?: string;
   price?: string;
-  pricePlan?: string;
+  pricePlan?: PricePlan;
 
 }

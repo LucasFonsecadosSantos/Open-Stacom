@@ -15,13 +15,14 @@
         </thead>
         <tbody>
           <tr
+            class="activityList__row"
             *ngFor="let activity of activityArray"
             (mouseover)="selectActivity(activity)"
             (click)="editActivity(activity)"
           >
             <td>{{activity.name ? activity.name : ''}}</td>
             <td>{{activity.description ? activity.description : ''}}</td>
-            <td>{{activity.responsible ? activity.responsible : ''}}</td>
+            <td>{{activity.responsible ? activity.responsible.name : ''}}</td>
           </tr>
         </tbody>
       </table>

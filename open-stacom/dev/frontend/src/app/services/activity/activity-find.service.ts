@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Activity } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 import { PersonFindService } from '../person';
+import { PricePlanFindService } from '../price-plan';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class ActivityFindService {
 
   constructor(
     private http: HttpClient,
-    private _personFindService: PersonFindService
+    private _personFindService: PersonFindService,
+    private _pricePlanFindService: PricePlanFindService
   ) { }
 
   public find(id: string): Observable<Activity> {
@@ -23,6 +25,7 @@ export class ActivityFindService {
                   map(
                     activity => {
                       this._findPerson(activity);
+                      this._findPricePlan(activity);
                       //this._buildSources(personArray, eventID);
                       return activity;
                     }
@@ -40,11 +43,24 @@ export class ActivityFindService {
                     result => {
                       let activityArray = <any[]>result;
                       this._fetchResponsible(activityArray);
+                      activityArray.forEach(activity => this._findPricePlan);
                       //this._buildSources(personArray, eventID);
                       return activityArray;
                       }
                     )
                   );
+  }
+
+  private _findPricePlan(activity: Activity): void {
+
+    this._pricePlanFindService
+          .find(activity.pricePlan.id)
+          .subscribe(
+            pricePlan => {
+              activity.pricePlan = pricePlan ? pricePlan : activity.pricePlan;
+            }
+          );
+
   }
 
   private _fetchResponsible(activityArray: Activity[]): void {

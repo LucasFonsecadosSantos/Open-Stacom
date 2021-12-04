@@ -113,7 +113,6 @@
                   type="checkbox"
                   value=""
                   checked=""
-                  (change)="priceField.disabled=checkPriceField.checked"
                 />
                 <span class=" form-check-sign">
                   <span class=" check"></span>
@@ -126,7 +125,7 @@
                 <label> Preço <span *ngIf="template.objects.activity.price.required">*</span></label>
                 <input
                   #priceField
-                  disabled="true"
+                  [disabled]="checkPriceField.checked"
                   class=" form-control"
                   placeholder="Ex.: 00,00"
                   type="text"
@@ -164,60 +163,33 @@
             </div>
           </div>
           <div class=" row">
-            <div class=" col-md-4 pr-md-1">
+            <div class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> City </label>
+                <label> Imagem <span *ngIf="template.objects.activity.picture.required">*</span></label>
                 <input
                   class=" form-control"
-                  placeholder="City"
+                  type="file"
+                  [value]=""
+                />
+              </div>
+            </div>
+            <div class=" col-md-6 pl-md-1">
+              <div class=" form-group">
+                <label> Localização <span *ngIf="template.objects.activity.location.required">*</span></label>
+                <input
+                  class=" form-control"
+                  placeholder="Ex.: Sala 23, departamento de Química"
                   type="text"
-                  value="Mike"
+                  [value]="activity.location"
                 />
-              </div>
-            </div>
-            <div class=" col-md-4 px-md-1">
-              <div class=" form-group">
-                <label> Country </label>
-                <input
-                  class=" form-control"
-                  placeholder="Country"
-                  type="text"
-                  value="Andrew"
-                />
-              </div>
-            </div>
-            <div class=" col-md-4 pl-md-1">
-              <div class=" form-group">
-                <label> Postal Code </label>
-                <input
-                  class=" form-control"
-                  placeholder="ZIP Code"
-                  type="number"
-                />
-              </div>
-            </div>
-          </div>
-          <div class=" row">
-            <div class=" col-md-8">
-              <div class=" form-group">
-                <label> About Me </label>
-                <textarea
-                  class=" form-control"
-                  cols="80"
-                  placeholder="Here can be your description"
-                  rows="4"
-                  value="Mike"
-                >
-    Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
-    </textarea
-                >
               </div>
             </div>
           </div>
         </form>
       </div>
       <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit">Save</button>
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationUpdate" (click)="update(activity)">{{activityFormModel.operation}} o registro de {{activity.title}}</button>
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationCreate" (click)="create(activity)">{{activityFormModel.operation}} essa nova atividade</button>
       </div>
     </div>
   </div>

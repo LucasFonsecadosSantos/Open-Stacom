@@ -10,6 +10,28 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
+        "pricePlan": {
+          "configRoute": {
+            "title": "Pacotes",
+            "path": "/pacotes",
+            "icon": "icon-palette"
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "value": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+        },
         "activity": {
           "configRoute": {
             "title": "Atividades",
@@ -460,6 +482,14 @@
       "sections": []
     }
   ],
+  "pricePlans": [
+    {
+      "id": "456894",
+      "name": "XPTO",
+      "value": "51,55",
+      "description": "descricao"
+    }
+  ],
   "pastEditions": [
     {
       "id": "238284",
@@ -534,7 +564,7 @@
       "targetPublic": "all",
       "localtion": "none",
       "price": "null",
-      "pricePlan": "null"
+      "pricePlan": {"id": "456894"}
     }
   ],
   "event": [
