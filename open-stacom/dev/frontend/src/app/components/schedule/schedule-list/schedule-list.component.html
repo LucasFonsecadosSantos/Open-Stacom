@@ -1,0 +1,46 @@
+
+<div class=" card">
+  <div class=" card-header">
+    <h4 class=" card-title">Programação de Atividades</h4>
+  </div>
+  <div class=" card-body">
+    <!-- <div class="div">
+      <button *ngFor="let day of event.days" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="changeListationPerDay(day)" >
+        <i class="tim-icons icon-calendar-60 mr-1"></i>
+        Dia {{day}}
+      </button>
+    </div> -->
+    <div class="row">
+      <div class=" table-responsive {{getColumSize()}}" *ngFor="let day of event.days">
+        <table class=" table tablesorter" id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>Hora</th>
+              <th>Atividade</th>
+              <th>Tipo</th>
+              <th>Responsável</th>
+              <!-- <th class=" text-center">Ação</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let schedule of scheduleArray"
+              (click)="editSchedule(schedule)"
+              (mouseenter)="selectSchedule(schedule)"
+              class="scheduleList__row"
+            >
+              <td class="col-md-2">
+                <p>{{schedule.startTime}} - {{schedule.endTime}}</p>
+              </td>
+              <td class="col-md-4">{{schedule.activity.title}}</td>
+              <td class="col-md-3">{{schedule.activity.type}}</td>
+              <td class="col-md-3" style="font-size: 1em">
+                {{schedule.activity.responsible.name}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

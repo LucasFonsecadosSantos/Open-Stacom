@@ -1,1 +1,41 @@
-<p>schedule works!</p>
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <app-schedule-form *ngIf="isDataLoaded" [event]="event" [template]="template"></app-schedule-form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class=" card">
+        <div class=" card-body d-flex align-items-center">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="scheduleActivity()" >
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Agendar uma Atividade
+          </button>
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" href="#/inicio/{{event.id}}/atividades" >
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Criar uma Atividade
+          </a>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSchedule()">
+            <i class="tim-icons icon-trash-simple mr-1"></i>
+            Remover Toda a Programação
+          </button>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+            <i class="tim-icons icon-paper mr-1"></i>
+            Exportar Lista para Excel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-schedule-list #scheduleListComponent *ngIf="isDataLoaded" [event]="event" [template]="template"></app-schedule-list>
+    </div>
+  </div>
+  <!-- <div>
+    <div class="col-md-4">
+      <app-activity-info *ngIf="isDataLoaded" [event]="event" [template]="template"></app-activity-info>
+    </div>
+  </div> -->
+</div>

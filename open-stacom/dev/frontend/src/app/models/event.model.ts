@@ -23,11 +23,7 @@ export class Event {
     departament?: string;
   }
   days?: [
-    {
-      date?: string;
-      month?: string;
-      year?: string;
-    }
+    date?: Date
   ];
   location?: {
     cep?: string;

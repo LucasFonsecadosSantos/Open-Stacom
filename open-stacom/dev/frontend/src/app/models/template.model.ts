@@ -1,3 +1,5 @@
+import { Activity } from ".";
+
 export class Template {
 
   id?:          string;
@@ -9,6 +11,25 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
+    schedule?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      activity?: {
+        required?: boolean;
+      }
+      startTime?: {
+        required?: boolean;
+      },
+      endTime?: {
+        required?: boolean;
+      },
+      date?: {
+        required?: boolean;
+      }
+    },
     committee?: {
       configRoute?: {
         title?: string,
