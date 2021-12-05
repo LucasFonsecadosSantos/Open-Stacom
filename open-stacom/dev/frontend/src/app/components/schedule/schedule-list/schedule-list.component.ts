@@ -22,6 +22,8 @@ export class ScheduleListComponent implements OnInit {
 
   public currentDateListation: string;
 
+  public isScheduleLoaded: boolean = false;
+
   constructor(
     private _findService: ScheduleFindService,
     private _formService: ScheduleFormService
@@ -54,8 +56,15 @@ export class ScheduleListComponent implements OnInit {
         .subscribe(
           scheduleArray => {
             this.scheduleArray = scheduleArray;
+            this.isScheduleLoaded = true;
           }
         );
+
+  }
+
+  public getScheduleOfDate(day: Date): Schedule[] {
+
+    return this.scheduleArray ? this.scheduleArray.filter(schedule => (schedule.date == day)) : [];
 
   }
 

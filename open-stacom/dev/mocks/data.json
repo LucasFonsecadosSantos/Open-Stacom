@@ -33,7 +33,7 @@
           "configRoute": {
             "title": "Pacotes",
             "path": "/pacotes",
-            "icon": "icon-palette"
+            "icon": "icon-money-coins"
           },
           "name": {
             "minlength": 4,
@@ -55,7 +55,7 @@
           "configRoute": {
             "title": "Atividades",
             "path": "/atividades",
-            "icon": "icon-palette"
+            "icon": "icon-puzzle-10"
           },
           "type": {
             "minlength": 4,
@@ -117,7 +117,7 @@
           "configRoute": {
             "title": "Comitês",
             "path": "/comites",
-            "icon": "icon-settings-gear-63"
+            "icon": "icon-badge"
           },
           "name": {
             "minlength": 4,
@@ -212,8 +212,6 @@
             "required": false
           },
           "days": {
-            "minlength": 4,
-            "maxlength": 50,
             "required": true
           },
           "website": {
@@ -498,8 +496,9 @@
     {
       "id": "45788",
       "activity": {"id":"56464"},
-      "date":"05/12/2021",
-      "hour": "15:00"
+      "date":"1995-12-18T03:24:00",
+      "startTime": {"hours": 15, "minutes": 30},
+      "endTime": {"hours": 16, "minutes": 0}
     }
   ],
   "pricePlans": [
@@ -612,21 +611,9 @@
         "departament": "departamento de ciencia da computação"
       },
       "days": [
-        {
-          "date": "13/02/2021"
-        },
-        {
-          "date": "14/02/2021"
-        },
-        {
-          "date": "15/02/2021"
-        },
-        {
-          "date": "15/02/2021"
-        },
-        {
-          "date": "15/02/2021"
-        }
+        "1995-12-17T03:24:00",
+        "1995-12-18T03:24:00",
+        "1995-12-19T03:24:00"
       ],
       "location": {
         "cep": "string",

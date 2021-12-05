@@ -22,9 +22,7 @@ export class Event {
     institution?: string;
     departament?: string;
   }
-  days?: [
-    date?: Date
-  ];
+  days?: Date[];
   location?: {
     cep?: string;
     street?: string;

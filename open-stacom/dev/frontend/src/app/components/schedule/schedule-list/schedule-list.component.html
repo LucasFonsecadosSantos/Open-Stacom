@@ -1,5 +1,5 @@
 
-<div class=" card">
+<div class=" card" *ngIf="isScheduleLoaded">
   <div class=" card-header">
     <h4 class=" card-title">Programação de Atividades</h4>
   </div>
@@ -10,10 +10,13 @@
         Dia {{day}}
       </button>
     </div> -->
-    <div class="row">
+    <div class="row" *ngIf="event && event.days">
       <div class=" table-responsive {{getColumSize()}}" *ngFor="let day of event.days">
         <table class=" table tablesorter" id="">
           <thead class=" text-primary">
+            <tr>
+              <td colspan="4">{{day | date: 'dd/MM/yyyy'}}</td>
+            </tr>
             <tr>
               <th>Hora</th>
               <th>Atividade</th>
@@ -24,18 +27,18 @@
           </thead>
           <tbody>
             <tr
-              *ngFor="let schedule of scheduleArray"
+              *ngFor="let schedule of getScheduleOfDate(day)"
               (click)="editSchedule(schedule)"
               (mouseenter)="selectSchedule(schedule)"
               class="scheduleList__row"
             >
               <td class="col-md-2">
-                <p>{{schedule.startTime}} - {{schedule.endTime}}</p>
+                <p>{{schedule.startTime.hours}}:{{schedule.startTime.minutes}} - {{schedule.endTime.hours}}:{{schedule.endTime.minutes}}</p>
               </td>
               <td class="col-md-4">{{schedule.activity.title}}</td>
               <td class="col-md-3">{{schedule.activity.type}}</td>
               <td class="col-md-3" style="font-size: 1em">
-                {{schedule.activity.responsible.name}}
+                {{schedule.activity.responsible && schedule.activity.responsible.name ? schedule.activity.responsible.name : ''}}
               </td>
             </tr>
           </tbody>
