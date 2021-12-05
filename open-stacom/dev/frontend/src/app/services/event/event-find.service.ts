@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -21,7 +21,23 @@ export class EventFindService {
       {
         responseType: 'json'
       }
+    ).pipe(
+      map(
+        event => {
+          event.logo = this._buildSources(event);
+          return event;
+        }
+      )
     );
 
   }
+
+  private _buildSources(event: Event): string {
+
+    return (event.logo && (event.logo != null) && (event.logo.length > 0)) ?
+            event.logo = `/data/${event.id}/img/avatar/${event.logo}` :
+            `/assets/img/default-avatar.png`;
+
+  }
+
 }

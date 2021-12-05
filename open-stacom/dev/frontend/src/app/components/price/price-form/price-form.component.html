@@ -10,6 +10,19 @@
       <div class=" card-header"><h5 class=" title">{{pricePlanFormModel && pricePlanFormModel.operation == operationUpdate ? 'Atualizar o pacote' + pricePlan.name : 'Criar novo pacote de valoers'}}</h5></div>
       <div class=" card-body">
         <form>
+          <div class="row" *ngIf="pricePlanFormModel.opertion == operationUpdate">
+            <div class="col-md-12">
+              <div class=" form-group">
+                <label> ID</label>
+                <input
+                  class=" form-control"
+                  type="text"
+                  [value]="pricePlan.id"
+                  disabled="true"
+                />
+              </div>
+            </div>
+          </div>
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group">

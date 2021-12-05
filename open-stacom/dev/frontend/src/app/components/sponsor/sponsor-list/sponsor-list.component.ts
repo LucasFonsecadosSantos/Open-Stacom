@@ -25,15 +25,15 @@ export class SponsorListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._fetchActivities();
+    this._fetchSponsors();
 
   }
 
-  private _fetchActivities(): void {
+  private _fetchSponsors(): void {
 
     this._findService
         .list(this.event.id)
-        .subscribe(activities => this.sponsorArray = activities);
+        .subscribe(activities => {this.sponsorArray = activities; console.log(this.sponsorArray);});
 
   }
 

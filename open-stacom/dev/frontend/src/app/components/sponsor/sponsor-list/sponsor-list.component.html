@@ -19,13 +19,14 @@
             *ngFor="let sponsor of sponsorArray"
             (click)="editSponsor(sponsor)"
             (mouseover)="selectSponsor(sponsor)"
+            class="sponsorList__row"
           >
-            <td>
-              <img src="{{sponsor.picure}}" title="Imagem de {{sponsor.name}}" alt="Imagem de {{sponsor.name}}"/>
+            <td class="col-md-1">
+              <img alt="..." class="avatar" src="{{sponsor.picture}}" />
             </td>
-            <td><p>{{sponsor.name}}</p></td>
-            <td>{{sponsor.sponsorshipPlan}}</td>
-            <td>
+            <td class="col-md-4"><p>{{sponsor.name}}</p></td>
+            <td class="col-md-3">{{sponsor.sponsorshipPlan}}</td>
+            <td class="col-md-3">
               <p>{{sponsor.website}}</p>
               <p>{{sponsor.email}}</p>
               <p>{{sponsor.telephone}}</p>

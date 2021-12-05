@@ -77,7 +77,7 @@ export class CommitteeFormComponent implements OnInit {
   public addMember(personID: string): void {
 
     this._personFindService
-          .find(personID)
+          .find(personID, this.event.id)
           .subscribe(
             response => {
               this.committee.members.push(response);

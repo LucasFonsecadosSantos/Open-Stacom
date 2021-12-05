@@ -32,11 +32,11 @@ export class SponsorInfoComponent implements OnInit {
 
   }
 
-  public editSponsor(activity: Sponsor): void {
+  public editSponsor(sponsor: Sponsor): void {
 
     this._formService.launchModal({
-      operation:  Operation.Update,
-      activity: activity
+      operation: Operation.Update,
+      sponsor: sponsor
     });
 
   }

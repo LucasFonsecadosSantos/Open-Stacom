@@ -229,8 +229,6 @@ export class Template {
         required?: boolean,
       },
       logo?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean
       },
       link?: {
@@ -239,8 +237,6 @@ export class Template {
         required?: boolean
       },
       date?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean
       }
     },

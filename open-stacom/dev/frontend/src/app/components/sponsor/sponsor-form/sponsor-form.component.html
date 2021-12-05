@@ -1,5 +1,5 @@
 
-<ng-template #activityForm let-modal>
+<ng-template #sponsorForm let-modal>
   <!-- <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -8,16 +8,29 @@
   </div> -->
   <div class="modal-body" *ngIf="template && template.objects && template.objects.sponsor">
     <div class=" card">
-      <div class=" card-header"><h5 class=" title">{{sponsorFormModel.operation == operationUpdate ? 'Atualizar informações de' + sponsor.name : 'Registrar novo patrocinador'}</h5></div>
+      <div class=" card-header"><h5 class=" title">{{sponsorFormModel.operation == operationUpdate ? 'Atualizar informações de ' + sponsor.name : 'Registrar novo patrocinador'}}</h5></div>
       <div class=" card-body">
         <form>
+          <div class="row" *ngIf="sponsorFormModel.operation == operationUpdate">
+            <div class="col-md-12">
+              <div class=" form-group" *ngIf="template.objects.sponsor.name">
+                <label> ID</label>
+                <input
+                  disabled="true"
+                  class=" form-control"
+                  placeholder="Company"
+                  type="text"
+                  [value]="sponsor.id"
+                />
+              </div>
+            </div>
+          </div>
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group" *ngIf="template.objects.sponsor.name">
                 <label> Nome <span *ngIf="template.objects.sponsor.name.required">*</span></label>
                 <input
                   class=" form-control"
-                  disabled=""
                   placeholder="Company"
                   type="text"
                   [value]=""
@@ -57,7 +70,7 @@
                 />
               </div>
             </div>
-            <div class=" col-md-6 px-md-1">
+            <div class=" col-md-6 pl-md-1">
               <div class=" form-group" *ngIf="template.objects.sponsor.email">
                 <label> E-Mail <span *ngIf="template.objects.sponsor.email.required">*</span></label>
                 <input

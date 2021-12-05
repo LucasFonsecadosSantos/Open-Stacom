@@ -14,14 +14,14 @@ export class SponsorFindService {
     private http: HttpClient,
   ) { }
 
-  public find(id: string): Observable<Sponsor> {
+  public find(id: string, eventID: string): Observable<Sponsor> {
 
     return this.http
                 .get<Sponsor>(`${environment.API_URL.BASE}${environment.API_URL.SPONSOR}/${id}`)
                 .pipe(
                   map(
                     sponsor => {
-                      //this._buildSources(personArray, eventID);
+                      this._buildSources([sponsor], eventID);
                       return sponsor;
                     }
                   )
@@ -37,11 +37,29 @@ export class SponsorFindService {
                   map(
                     result => {
                       let sponsorArray = <any[]>result;
-                      //this._buildSources(personArray, eventID);
+                      this._buildSources(sponsorArray, eventID);
                       return sponsorArray;
                       }
                     )
                   );
+  }
+
+  private _buildSources(sponsorArray: Sponsor[], eventID: string): Sponsor[] {
+
+    sponsorArray.forEach(sponsor => {
+      sponsor.picture = this._buildPersonAvatarSource(sponsor.picture, eventID);
+    })
+
+    return sponsorArray;
+
+  }
+
+  private _buildPersonAvatarSource(sponsorAvatar: string, eventID: string): string {
+
+    return (sponsorAvatar && (sponsorAvatar != null) && (sponsorAvatar.length > 0)) ?
+            sponsorAvatar = `/data/${eventID}/img/avatar/${sponsorAvatar}` :
+            `/assets/img/default-avatar.png`;
+
   }
 
 }

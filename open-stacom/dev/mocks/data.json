@@ -10,7 +10,7 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
-        "sponsorship": {
+        "sponsor": {
           "configRoute": {
             "title": "Patrocinadores",
             "path": "/patrocinadores",
@@ -393,13 +393,9 @@
             "required": true
           },
           "date": {
-            "minlength": 4,
-            "maxlength": 50,
             "required": true
           },
           "logo": {
-            "minlength": 4,
-            "maxlength": 50,
             "required": false
           },
           "link": {
@@ -420,8 +416,6 @@
             "required": true
           },
           "avatar": {
-            "minlength": 4,
-            "maxlength": 50,
             "required": false
           },
           "job": {
@@ -576,15 +570,15 @@
       "id": "238284",
       "name": "Teste de edicao passada",
       "link": "#",
-      "logo": "#",
-      "date": "00/00/0000"
+      "logo": "",
+      "date": "1995-12-18T03:24:00"
     }
   ],
   "committees": [
     {
       "id": "51564",
       "name": "Comite cientifico",
-      "picture": "#",
+      "picture": "",
       "brief": "teste",
       "telphone": "234",
       "email": "asd",
@@ -597,7 +591,7 @@
     {
       "id": "238284",
       "name": "Lucas Fonseca dos Santos",
-      "avatar": "https://avatars.githubusercontent.com/u/9631932?v=4",
+      "avatar": "",
       "job": "System Analyst",
       "brief": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.",
       "academicFormation": "Computer Science Degree at UFLA",
@@ -616,7 +610,7 @@
     {
       "id": "238285",
       "name": "Marco aurelio ferreira de sousa",
-      "avatar": "https://avatars.githubusercontent.com/u/26443642?v=4",
+      "avatar": "",
       "job": "System Analyst",
       "brief": "Lorem ipsum dolorasdd sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
       "academicFormation": "Sysadmin and DevOps operator.",
@@ -636,7 +630,7 @@
     {
       "id": "56487789",
       "name": "Patrocinador mito",
-      "picture": "#",
+      "picture": "",
       "brief": "Descricao do patrocinador",
       "email": "contato@mito.com.br",
       "telephone": "16991699662",
@@ -658,7 +652,7 @@
       "poweredBy": "DTI",
       "responsible": {"id": "238284"},
       "description": "asdopasopdmasodmopasd",
-      "picture": "#",
+      "picture": "",
       "targetPublic": "all",
       "localtion": "none",
       "price": "null",
@@ -674,7 +668,7 @@
       "subject": "test",
       "eventType": "Congresso",
       "targetPublic": "test",
-      "logo": "test",
+      "logo": "",
       "description": "dfsf",
       "brief": "asdasd",
       "website": "adfdf",

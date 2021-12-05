@@ -11,6 +11,19 @@
       <div class=" card-body">
         <form>
           <div class=" row">
+            <div class="row" *ngIf="activityPlanFormModel.operation == operationUpdate">
+            <div class="col-md-12">
+              <div class=" form-group">
+                <label> ID</label>
+                <input
+                  class=" form-control"
+                  type="text"
+                  [value]="activity.id"
+                  disabled="true"
+                />
+              </div>
+            </div>
+          </div>
             <div class=" col-md-5 pr-md-1">
               <div class=" form-group">
                 <label> Título <span *ngIf="template.objects.activity.title.required">*</span></label>

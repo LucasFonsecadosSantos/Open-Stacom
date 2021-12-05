@@ -15,14 +15,14 @@ export class ScheduleFindService {
     private _activityFindService: ActivityFindService
   ) { }
 
-  public find(id: string): Observable<Schedule> {
+  public find(id: string, eventID: string): Observable<Schedule> {
 
     return this.http
                 .get<Schedule>(`${environment.API_URL.BASE}${environment.API_URL.SCHEDULE}/${id}`)
                 .pipe(
                   map(
                     result => {
-                      this._fetchActivity([result]);
+                      this._fetchActivity([result], eventID);
                       return result;
                     }
                   )
@@ -34,19 +34,18 @@ export class ScheduleFindService {
     return this.http.get<Schedule[]>(`${environment.API_URL.BASE}${environment.API_URL.SCHEDULE}`)
                       .pipe(map(result => {
                           const scheduleArray = <any[]>result;
-                          //this._buildSources(personArray, eventID);
-                          this._fetchActivity(scheduleArray);
+                          this._fetchActivity(scheduleArray, eventID);
                           return scheduleArray;
                       }));
   }
 
-  private _fetchActivity(scheduleArray: Schedule[]): void {
+  private _fetchActivity(scheduleArray: Schedule[], eventID: string): void {
 
     scheduleArray.forEach(
       schedule => {
 
         this._activityFindService
-            .find(schedule.activity.id)
+            .find(schedule.activity.id, eventID)
             .subscribe(
               activity => {
                 schedule.activity = activity ? activity : undefined;
