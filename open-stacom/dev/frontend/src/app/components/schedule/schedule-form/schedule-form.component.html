@@ -1,1 +1,74 @@
-<p>schedule-form works!</p>
+<ng-template #scheduleForm let-modal>
+  <!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <div class=" card">
+      <div class=" card-header"><h5 class=" title">Agendar uma Atividade</h5></div>
+      <div class=" card-body">
+        <form>
+          <div class=" row">
+            <div class=" col-md-3 pr-md-1">
+              <div class=" form-group">
+                <label> Atividade <span *ngIf="template.objects.schedule.activity.required">*</span></label>
+                <select class=" form-control" type="text" [(ngModel)]="schedule.activity">
+                  <!-- <option
+                    value=""
+                    [ngValue]="">- SELECIONAR -</option> -->
+                  <option
+                    *ngFor="let activity of activitiesArray"
+                    [value]="activity.id"
+                    [selected]="schedule && schedule.activity && schedule.activity == activity"
+                  >{{ activity.title }}</option>
+                </select>
+              </div>
+            </div>
+            <div class=" col-md-3 px-md-1">
+              <div class=" form-group">
+                <label> Data <span *ngIf="template.objects.schedule.date.required">*</span></label>
+                <select
+                  type="date"
+                  class=" form-control"
+                >
+                  <option value="" [selected]="!activity || !activity.date">- SELECIONE -</option>
+                  <option
+                    *ngFor="let day of event.days"
+                    [value]="day"
+                    [selected]="activity && activity.date && activity.date == day"
+                  >{{day.toString() | date: 'dd/MM/yyyy' }}</option>
+                </select>
+              </div>
+            </div>
+            <div class=" col-md-3 pl-md-1">
+              <div class=" form-group">
+                <label> Horário de Inicio<span *ngIf="template.objects.schedule.startTime.required">*</span></label>
+                <input
+                  type="time"
+                  class=" form-control"
+                  [value]="schedule.startTime"
+                />
+              </div>
+            </div>
+            <div class=" col-md-3 pl-md-1">
+              <div class=" form-group">
+                <label> Horário de Término<span *ngIf="template.objects.schedule.endTime.required">*</span></label>
+                <input
+                  type="time"
+                  class=" form-control"
+                  [value]="schedule.endTime"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" card-footer">
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="scheduleFormModel.operation == this.operationUpdate" (click)="update(schedule)">{{scheduleFormModel.operation}} o registro de {{schedule.activity.title}}</button>
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="scheduleFormModel.operation == this.operationCreate" (click)="create(schedule)">{{scheduleFormModel.operation}} essa nova atividade</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

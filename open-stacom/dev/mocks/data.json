@@ -10,11 +10,30 @@
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": [],
       "objects": {
+        "schedule": {
+          "configRoute": {
+            "title": "Programação",
+            "path": "/programacao",
+            "icon": "icon-calendar-60"
+          },
+          "date": {
+            "required": true
+          },
+          "startTime": {
+            "required": true
+          },
+          "endTime": {
+            "required": true
+          },
+          "activity": {
+            "required": true
+          }
+        },
         "pricePlan": {
           "configRoute": {
             "title": "Pacotes",
             "path": "/pacotes",
-            "icon": "icon-palette"
+            "icon": "icon-money-coins"
           },
           "name": {
             "minlength": 4,
@@ -36,7 +55,7 @@
           "configRoute": {
             "title": "Atividades",
             "path": "/atividades",
-            "icon": "icon-palette"
+            "icon": "icon-puzzle-10"
           },
           "type": {
             "minlength": 4,
@@ -98,7 +117,7 @@
           "configRoute": {
             "title": "Comitês",
             "path": "/comites",
-            "icon": "icon-settings-gear-63"
+            "icon": "icon-badge"
           },
           "name": {
             "minlength": 4,
@@ -193,8 +212,6 @@
             "required": false
           },
           "days": {
-            "minlength": 4,
-            "maxlength": 50,
             "required": true
           },
           "website": {
@@ -438,13 +455,6 @@
             "icon": "icon-align-center"
           }
         },
-        "scheduling": {
-          "configRoute": {
-            "title": "Programação",
-            "path": "/programacao",
-            "icon": "icon-calendar-60"
-          }
-        },
         "prices": {
           "configRoute": {
             "title": "Preços & Valores",
@@ -480,6 +490,15 @@
       "avatar": "aasdasd",
       "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
       "sections": []
+    }
+  ],
+  "schedule": [
+    {
+      "id": "45788",
+      "activity": {"id":"56464"},
+      "date":"1995-12-18T03:24:00",
+      "startTime": {"hours": 15, "minutes": 30},
+      "endTime": {"hours": 16, "minutes": 0}
     }
   ],
   "pricePlans": [
@@ -592,11 +611,9 @@
         "departament": "departamento de ciencia da computação"
       },
       "days": [
-        {
-          "date": "string",
-          "month": "string",
-          "year": "string"
-        }
+        "1995-12-17T03:24:00",
+        "1995-12-18T03:24:00",
+        "1995-12-19T03:24:00"
       ],
       "location": {
         "cep": "string",

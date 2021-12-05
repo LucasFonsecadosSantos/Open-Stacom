@@ -16,3 +16,6 @@ export * from './activity.model';
 
 export * from './price-plan-form.model';
 export * from './price-plan.model';
+
+export * from './schedule-form.model';
+export * from './price-plan-form.model';

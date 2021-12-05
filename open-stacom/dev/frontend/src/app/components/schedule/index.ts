@@ -1,2 +1,2 @@
 export * from './schedule-form';
-export * from './schedule-table';
+export * from './schedule-list';

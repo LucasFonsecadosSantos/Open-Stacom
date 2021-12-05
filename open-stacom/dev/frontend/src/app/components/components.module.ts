@@ -29,7 +29,8 @@ import {
 } from './activity';
 import {
   ScheduleFormComponent,
-  ScheduleTableComponent
+  ScheduleFormService,
+  ScheduleListComponent
 } from './schedule';
 import {
   PreviousEditionListComponent,
@@ -90,7 +91,7 @@ import { PriceListComponent } from './price/price-list/price-list.component';
     ActivityListComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent,
+    ScheduleListComponent,
 
     CommitteeFormComponent,
     CommitteeInfoComponent,
@@ -139,7 +140,7 @@ import { PriceListComponent } from './price/price-list/price-list.component';
     ActivityFormComponent,
 
     ScheduleFormComponent,
-    ScheduleTableComponent,
+    ScheduleListComponent,
 
     PreviousEditionListComponent,
     PreviousEditionFormComponent,
@@ -172,7 +173,8 @@ import { PriceListComponent } from './price/price-list/price-list.component';
     PersonFormService,
     PreviousEditionFormService,
     CommitteeFormService,
-    ActivityFormService
+    ActivityFormService,
+    ScheduleFormService
   ]
 })
 export class ComponentsModule {}
