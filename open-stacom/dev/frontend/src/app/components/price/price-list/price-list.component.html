@@ -1,0 +1,38 @@
+
+<div class=" card">
+  <div class=" card-header">
+    <h4 class=" card-title">Pacotes de Valores Registrados</h4>
+  </div>
+  <div class=" card-body">
+    <div class=" table-responsive">
+      <table class=" table tablesorter" id="">
+        <thead class=" text-primary">
+          <tr>
+            <th>Nome do Pacote</th>
+            <th>Detalhes</th>
+            <th>Valor</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let pricePlan of pricePlanArray"
+            (click)="editPricePlan(pricePlan)"
+            class="pricePlanList__row"
+          >
+            <td class="col-md-3">{{pricePlan.name}}</td>
+            <td class="col-md-6" style="font-size: 1em">
+              <p>{{pricePlan.description}}</p>
+            </td>
+            <td class="col-md-3">
+              <p>{{pricePlan.value}}</p>
+            </td>
+            <td class="col-md-3">
+              <button class=" btn btn-sm btn-fill btn-danger" (click)="deletePricePlan(pricePlan)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

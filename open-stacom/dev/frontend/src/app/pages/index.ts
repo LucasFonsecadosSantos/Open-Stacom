@@ -11,3 +11,5 @@ export * from './photo-gallery';
 export * from './video-gallery';
 export * from './event';
 export * from './calls';
+export * from './committe';
+export * from './price';

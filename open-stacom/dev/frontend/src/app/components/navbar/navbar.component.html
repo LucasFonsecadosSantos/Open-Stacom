@@ -25,7 +25,7 @@
     </button>
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul class=" navbar-nav ml-auto">
-        <!-- <li class=" search-bar input-group">
+        <li class=" search-bar input-group">
           <button
             class=" btn btn-link"
             data-target="#searchModal"
@@ -36,8 +36,13 @@
             <i class=" tim-icons icon-zoom-split"> </i>
             <span class=" d-lg-none d-md-block"> Search </span>
           </button>
-        </li> -->
-        <li class=" nav-item" ngbDropdown>
+        </li>
+
+
+        <li class="nav-item">
+          <button class=" btn btn-fill btn-danger">GERAR PÁGINA</button>
+        </li>
+        <!-- <li class=" nav-item" ngbDropdown>
           <a
             class=" nav-link"
             data-toggle="dropdown"
@@ -75,8 +80,8 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li class=" nav-item" ngbDropdown>
+        </li> -->
+        <!-- <li class=" nav-item" ngbDropdown>
           <a
             class=" nav-link"
             data-toggle="dropdown"
@@ -107,7 +112,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <li class=" separator d-lg-none"></li>
       </ul>
     </div>

@@ -65,6 +65,8 @@ import {
   ConfirmDialogService
 } from './dialog';
 import { NgxMaskModule, IConfig } from "ngx-mask";
+import { PriceFormComponent } from './price/price-form/price-form.component';
+import { PriceListComponent } from './price/price-list/price-list.component';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule, NgxMaskModule.forRoot()],
   declarations: [
@@ -110,7 +112,10 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
 
     WelcomeComponent,
     TemplateChoiceComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+
+    PriceFormComponent,
+    PriceListComponent
 
 ],
   exports: [
@@ -157,7 +162,10 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
     WelcomeComponent,
     TemplateChoiceComponent,
 
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+
+    PriceFormComponent,
+    PriceListComponent
   ],
   providers: [
     ConfirmDialogService,

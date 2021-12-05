@@ -21,6 +21,7 @@ import { SharedPersonService } from './person';
 import { SharedEventService, SharedTemplateService } from '../services/shared';
 import { CommitteComponent } from './committe';
 import { SharedActivityService } from './activity';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SharedActivityService } from './activity';
     SponsorshipComponent,
     PreviousEditionsComponent,
     CallsComponent,
-    CommitteComponent
+    CommitteComponent,
+    PriceComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { SharedActivityService } from './activity';
     VersioningComponent,
     SponsorshipComponent,
     PreviousEditionsComponent,
-    CallsComponent
+    CallsComponent,
+    PriceComponent
   ],
   providers: [
     SharedPersonService,
