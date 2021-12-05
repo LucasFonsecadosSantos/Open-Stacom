@@ -12,7 +12,10 @@ import {
   ScheduleComponent,
   VersioningComponent,
   PreviousEditionsComponent,
-  CallsComponent
+  CallsComponent,
+  CommitteComponent,
+  PriceComponent
+
 } from "../../pages";
 import { IconsComponent } from "../../pages/icons/icons.component";
 import { MapComponent } from "../../pages/map/map.component";
@@ -20,7 +23,6 @@ import { NotificationsComponent } from "../../pages/notifications/notifications.
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
-import { CommitteComponent } from "src/app/pages/committe";
 
 export const AdminLayoutRoutes: Routes = [
   // { path: "dashboard", component: DashboardComponent },
@@ -35,8 +37,12 @@ export const AdminLayoutRoutes: Routes = [
   { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
 
-  { path: "pacotes", component: null },
-  { path: "pacote", component: null },
+  { path: "pacotes", component: PriceComponent },
+  { path: "pacote", component: PriceComponent },
+  { path: "precos", component: PriceComponent },
+  { path: "prices", component: PriceComponent },
+  { path: "preco", component: PriceComponent },
+  { path: "price", component: PriceComponent },
 
   { path: "committee", component: CommitteComponent },
   { path: "committees", component: CommitteComponent },
