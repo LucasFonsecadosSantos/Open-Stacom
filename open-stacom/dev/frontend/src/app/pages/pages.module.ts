@@ -22,6 +22,7 @@ import { SharedEventService, SharedTemplateService } from '../services/shared';
 import { CommitteComponent } from './committe';
 import { SharedActivityService } from './activity';
 import { PriceComponent } from './price/price.component';
+import { SharedSponsorService } from './sponsorship';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { PriceComponent } from './price/price.component';
     SharedPersonService,
     SharedEventService,
     SharedTemplateService,
-    SharedActivityService
+    SharedActivityService,
+    SharedSponsorService
   ]
 })
 export class PagesModule { }
