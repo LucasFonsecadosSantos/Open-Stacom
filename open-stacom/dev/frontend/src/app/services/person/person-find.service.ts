@@ -12,10 +12,18 @@ export class PersonFindService {
 
   constructor(private http: HttpClient) { }
 
-  public find(id: string): Observable<Person> {
+  public find(id: string, eventID: string): Observable<Person> {
 
     return this.http
-                .get<Person>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${id}`);
+                .get<Person>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${id}`)
+                .pipe(
+                  map(
+                    result => {
+                      this._buildSources([result], eventID);
+                      return result;
+                    }
+                  )
+                );
 
   }
 
@@ -23,7 +31,7 @@ export class PersonFindService {
     return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`)
                       .pipe(map(result => {
                           const personArray = <any[]>result;
-                          //this._buildSources(personArray, eventID);
+                          this._buildSources(personArray, eventID);
                           return personArray;
                       }));
   }

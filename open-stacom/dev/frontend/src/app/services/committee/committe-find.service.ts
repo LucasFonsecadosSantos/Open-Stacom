@@ -18,9 +18,18 @@ export class CommitteFindService {
     private _personFindService: PersonFindService
   ) { }
 
-  public find(): Observable<Committee> {
+  public find(id: string, eventID: string): Observable<Committee> {
 
-    return null;
+    return this.http
+                .get<Committee>(`${environment.API_URL.BASE}${environment.API_URL.COMMITTEE}/${id}`)
+                .pipe(
+                  map(
+                    result => {
+                      this._buildSources([result], eventID);
+                      return result;
+                    }
+                  )
+                );
 
   }
 
@@ -32,7 +41,7 @@ export class CommitteFindService {
                   map(
                     result => {
                       let committeeArray = <any[]>result;
-                      //this._buildSources(personArray, eventID);
+                      this._buildSources(committeeArray, eventID);
                       return committeeArray;
                     }
                   )
@@ -48,8 +57,8 @@ export class CommitteFindService {
                   map(
                     result => {
                       let committeeArray = <any[]>result;
-                      this._fetchMembers(committeeArray);
-                      //this._buildSources(personArray, eventID);
+                      this._fetchMembers(committeeArray, eventID);
+                      this._buildSources(committeeArray, eventID);
                       return committeeArray;
                     }
                   )
@@ -57,22 +66,22 @@ export class CommitteFindService {
 
   }
 
-  private _fetchMembers(committeeArray: Committee[]): void {
+  private _fetchMembers(committeeArray: Committee[], eventID: string): void {
 
     committeeArray.forEach(
       committee => {
         committee.members.forEach(
-          member => this._fetchPerson(member, committee)
+          member => this._fetchPerson(member, committee, eventID)
         );
       }
     );
 
   }
 
-  private _fetchPerson(member: Person, committee: Committee): void {
+  private _fetchPerson(member: Person, committee: Committee, eventID: string): void {
 
     this._personFindService
-        .find(member.id)
+        .find(member.id, eventID)
         .subscribe(
           person => {
             committee.members.splice(0, committee.members.length);
@@ -83,22 +92,22 @@ export class CommitteFindService {
 
   }
 
-  // private _buildSources(personArray: Committee[], eventID: string): Committee[] {
+  private _buildSources(committeeArray: Committee[], eventID: string): Committee[] {
 
-  //   personArray.forEach(person => {
-  //     person.avatar = this._buildPersonAvatarSource(person.avatar, eventID);
-  //   })
+    committeeArray.forEach(committee => {
+      committee.picture = this._buildCommitteeAvatarSource(committee.picture, eventID);
+    })
 
-  //   return personArray;
+    return committeeArray;
 
-  // }
+  }
 
-  // private _buildPersonAvatarSource(personAvatar: string, eventID: string): string {
+  private _buildCommitteeAvatarSource(committeeAvatar: string, eventID: string): string {
 
-  //   return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
-  //           personAvatar = `/data/${eventID}/img/avatar/${personAvatar}` :
-  //           `/assets/img/default-avatar.png`;
+    return (committeeAvatar && (committeeAvatar != null) && (committeeAvatar.length > 0)) ?
+            committeeAvatar = `/data/${eventID}/img/avatar/${committeeAvatar}` :
+            `/assets/img/default-avatar.png`;
 
-  // }
+  }
 
 }

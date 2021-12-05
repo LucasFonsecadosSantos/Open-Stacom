@@ -8,6 +8,7 @@
       <table class=" table tablesorter" id="">
         <thead class=" text-primary">
           <tr>
+            <th>Imagem</th>
             <th>Título</th>
             <th>Descrição</th>
             <th>Responsável/Instituto</th>
@@ -20,9 +21,12 @@
             (mouseover)="selectActivity(activity)"
             (click)="editActivity(activity)"
           >
-            <td>{{activity.name ? activity.name : ''}}</td>
-            <td>{{activity.description ? activity.description : ''}}</td>
-            <td>{{activity.responsible ? activity.responsible.name : ''}}</td>
+            <td title="Imagem de {{activity.title}}" class="col-md-1">
+              <img class="avatar" src="{{activity.picture}}" alt="{{activity.title}}" />
+            </td>
+            <td class="col-md-4">{{activity.title ? activity.title : ''}}</td>
+            <td class="col-md-4">{{activity.description ? activity.description : ''}}</td>
+            <td class="col-md-3">{{activity.responsible ? activity.responsible.name : ''}}</td>
           </tr>
         </tbody>
       </table>

@@ -17,16 +17,16 @@ export class ActivityFindService {
     private _pricePlanFindService: PricePlanFindService
   ) { }
 
-  public find(id: string): Observable<Activity> {
+  public find(id: string, eventID: string): Observable<Activity> {
 
     return this.http
                 .get<Activity>(`${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}/${id}`)
                 .pipe(
                   map(
                     activity => {
-                      this._findPerson(activity);
+                      this._findPerson(activity, eventID);
                       this._findPricePlan(activity);
-                      //this._buildSources(personArray, eventID);
+                      this._buildSources([activity], eventID);
                       return activity;
                     }
                   )
@@ -42,9 +42,9 @@ export class ActivityFindService {
                   map(
                     result => {
                       let activityArray = <any[]>result;
-                      this._fetchResponsible(activityArray);
+                      this._fetchResponsible(activityArray, eventID);
                       activityArray.forEach(activity => this._findPricePlan);
-                      //this._buildSources(personArray, eventID);
+                      this._buildSources(activityArray, eventID);
                       return activityArray;
                       }
                     )
@@ -63,18 +63,18 @@ export class ActivityFindService {
 
   }
 
-  private _fetchResponsible(activityArray: Activity[]): void {
+  private _fetchResponsible(activityArray: Activity[], eventID: string): void {
 
     activityArray.forEach(
-      activity => this._findPerson(activity)
+      activity => this._findPerson(activity, eventID)
     );
 
   }
 
-  private _findPerson(activity: Activity): void {
+  private _findPerson(activity: Activity, eventID: string): void {
 
     this._personFindService
-        .find(activity.responsible.id)
+        .find(activity.responsible.id, eventID)
         .subscribe(
           person => {
             activity.responsible = person ? person : activity.responsible;
@@ -83,22 +83,22 @@ export class ActivityFindService {
 
   }
 
-  // private _buildSources(personArray: Activity[], eventID: string): Activity[] {
+  private _buildSources(activityArray: Activity[], eventID: string): Activity[] {
 
-  //   personArray.forEach(person => {
-  //     person.avatar = this._buildPersonAvatarSource(person.avatar, eventID);
-  //   })
+    activityArray.forEach(activity => {
+      activity.picture = this._buildActivityAvatarSource(activity.picture, eventID);
+    })
 
-  //   return personArray;
+    return activityArray;
 
-  // }
+  }
 
-  // private _buildPersonAvatarSource(personAvatar: string, eventID: string): string {
+  private _buildActivityAvatarSource(avatar: string, eventID: string): string {
 
-  //   return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
-  //           personAvatar = `/data/${eventID}/img/avatar/${personAvatar}` :
-  //           `/assets/img/default-avatar.png`;
-  // }
+    return (avatar && (avatar != null) && (avatar.length > 0)) ?
+            avatar = `/data/${eventID}/img/avatar/${avatar}` :
+            `/assets/img/default-avatar.png`;
+  }
 
 
 }

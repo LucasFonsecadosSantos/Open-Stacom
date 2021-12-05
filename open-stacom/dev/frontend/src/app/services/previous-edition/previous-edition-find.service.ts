@@ -21,10 +21,28 @@ export class PreviousEditionFindService {
                     `${environment.API_URL.BASE}${environment.API_URL.PAST_EDITIONS}`
                   )
                       .pipe(map(result => {
-                          const personArray = <any[]>result;
-                          //this._buildSources(personArray, eventID);
-                          return personArray;
+                          const editionsArray = <any[]>result;
+                          this._buildSources(editionsArray, eventID);
+                          return editionsArray;
                       }));
+
+  }
+
+  private _buildSources(editionsArray: PreviousEdition[], eventID: string): PreviousEdition[] {
+
+    editionsArray.forEach(edition => {
+      edition.logo = this._buildEditionAvatarSource(edition.logo, eventID);
+    })
+
+    return editionsArray;
+
+  }
+
+  private _buildEditionAvatarSource(editionAvatar: string, eventID: string): string {
+
+    return (editionAvatar && (editionAvatar != null) && (editionAvatar.length > 0)) ?
+            editionAvatar = `/data/${eventID}/img/avatar/${editionAvatar}` :
+            `/assets/img/default-avatar.png`;
 
   }
 

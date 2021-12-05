@@ -11,6 +11,84 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
+    sponsorship?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      id?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      name?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      website?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      email?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      telephone?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCity?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCep?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationUF?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCountry?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationAddress?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationNumber?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationNeiborhood?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      brief?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      picture?: {
+        required?: boolean,
+      },
+      sponsorshipPlan?: {
+        required?: boolean,
+      },
+    }
     schedule?: {
       configRoute?: {
         title?: string,
@@ -151,8 +229,6 @@ export class Template {
         required?: boolean,
       },
       logo?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean
       },
       link?: {
@@ -161,8 +237,6 @@ export class Template {
         required?: boolean
       },
       date?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean
       }
     },

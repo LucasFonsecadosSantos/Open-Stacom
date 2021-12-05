@@ -1,15 +1,34 @@
+
+
 <div class="content">
+  <app-sponsor-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-form>
+  <app-confirm-dialog [template]="template" [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
   <div class="row">
     <div class="col-md-12">
-      <app-sponsor-form></app-sponsor-form>
+      <div class=" card">
+        <div class=" card-body d-flex align-items-center">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="openAddSponsorForm()" >
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Adicionar Novo Patrocinador
+          </button>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSponsor()">
+            <i class="tim-icons icon-trash-simple mr-1"></i>
+            Remover Todos os Patrocinadores
+          </button>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+            <i class="tim-icons icon-paper mr-1"></i>
+            Exportar Lista para Excel
+          </button>s
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-8">
-      <app-sponsor-list></app-sponsor-list>
+      <app-sponsor-list #sponsorList [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-list>
     </div>
     <div class="col-md-4">
-      <app-sponsor-info></app-sponsor-info>
+      <app-sponsor-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-info>
     </div>
   </div>
 </div>
