@@ -11,6 +11,39 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
+    proceedings?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      id?: {
+        required?: boolean,
+      },
+      code?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      author?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      title?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      specialty?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      file?: {
+        required?: boolean,
+      },
+    }
     sponsorship?: {
       configRoute?: {
         title?: string,
@@ -18,8 +51,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       name?: {
@@ -115,8 +146,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       name?: {
@@ -157,8 +186,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       title?: {
@@ -219,8 +246,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       name?: {
@@ -247,8 +272,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       name?: {
@@ -414,8 +437,6 @@ export class Template {
         icon?: string
       },
       id?: {
-        minlength?: number,
-        maxlength?: number,
         required?: boolean,
       },
       name?: {

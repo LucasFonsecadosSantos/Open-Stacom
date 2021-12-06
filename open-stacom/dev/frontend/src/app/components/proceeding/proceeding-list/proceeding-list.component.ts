@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Operation } from 'src/app/enums';
 import { SharedProceedingsService } from 'src/app/pages';
+import { ProceedingFindService } from 'src/app/services/proceeding/proceeding-find.service';
 import { ProceedingFormService } from '..';
 import { Event, Proceeding } from './../../../models';
 
