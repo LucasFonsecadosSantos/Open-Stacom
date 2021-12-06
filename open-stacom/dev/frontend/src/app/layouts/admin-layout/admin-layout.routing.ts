@@ -14,7 +14,8 @@ import {
   PreviousEditionsComponent,
   CallsComponent,
   CommitteComponent,
-  PriceComponent
+  PriceComponent,
+  ProceedingsComponent
 
 } from "../../pages";
 import { IconsComponent } from "../../pages/icons/icons.component";
@@ -36,6 +37,11 @@ export const AdminLayoutRoutes: Routes = [
   { path: "pessoa", component: PersonComponent },
   { path: "pessoas", component: PersonComponent },
   { path: "person", component: PersonComponent },
+
+  { path: "anais", component: ProceedingsComponent },
+  { path: "anal", component: ProceedingsComponent },
+  { path: "proceeding", component: ProceedingsComponent },
+  { path: "proceedings", component: ProceedingsComponent },
 
   { path: "pacotes", component: PriceComponent },
   { path: "pacote", component: PriceComponent },

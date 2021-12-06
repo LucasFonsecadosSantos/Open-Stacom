@@ -21,7 +21,7 @@ export class ProceedingFindService {
                   map(
                     proceeding => {
                       // this._buildSources([proceeding], eventID);
-                      return Proceeding;
+                      return proceeding;
                     }
                   )
                 );

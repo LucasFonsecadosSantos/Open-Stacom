@@ -5,6 +5,7 @@ import { ProceedingFormService, ProceedingListComponent } from 'src/app/componen
 import { Operation } from 'src/app/enums';
 import { Template, Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
+import { ProceedingDeleteService } from 'src/app/services/proceeding';
 import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
 
@@ -28,7 +29,7 @@ export class ProceedingsComponent implements OnInit {
   constructor(
     private _exportExcelService: ExcelExportService,
     // private _personFormService: PersonFormService,
-    // private _personDeleteService: PersonDeleteService,
+    private _deleteService: ProceedingDeleteService,
     private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
@@ -84,7 +85,7 @@ export class ProceedingsComponent implements OnInit {
     this._exportExcelService.exportExcel(this.proceedingListComponent.proceedingArray, 'LISTA_DE_ANAIS');
   }
 
-  public confirmDeleteAllActivities(): void {
+  public deleteAllProceedings(): void {
 
     this._confirmDialogService.launchConfirmDialog(
       {
@@ -96,7 +97,7 @@ export class ProceedingsComponent implements OnInit {
     );
   }
 
-  public openAddActivityForm(): void {
+  public addProceeding(): void {
 
     this._formService.launchModal({
       operation: Operation.Create

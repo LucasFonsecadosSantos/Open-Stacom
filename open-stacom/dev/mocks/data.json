@@ -504,6 +504,37 @@
             "required": true
           }
         },
+        "proceeding": {
+          "configRoute": {
+            "title": "Anais",
+            "path": "/anais",
+            "icon": "icon-align-center"
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "author": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "required": true
+          },
+          "specialty": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "code": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+          
+        },
         "videoGallery": {
           "configRoute": {
             "title": "Galeria de Videos",
@@ -516,13 +547,6 @@
             "title": "Galeria de Fotos",
             "path": "/fotos",
             "icon": "icon-camera-18"
-          }
-        },
-        "proceedings": {
-          "configRoute": {
-            "title": "Anais",
-            "path": "/anais",
-            "icon": "icon-align-center"
           }
         }
       }
@@ -657,6 +681,16 @@
       "localtion": "none",
       "price": "null",
       "pricePlan": {"id": "456894"}
+    }
+  ],
+  "proceedings": [
+    {
+      "id": "5156454",
+      "title": "Titulo do anal",
+      "author": "lucas fonseca dos santos",
+      "specialty": "Ciencias",
+      "file": null,
+      "code": null
     }
   ],
   "event": [

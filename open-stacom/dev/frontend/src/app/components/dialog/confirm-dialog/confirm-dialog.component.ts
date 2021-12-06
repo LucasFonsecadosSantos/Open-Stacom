@@ -39,6 +39,7 @@ export class ConfirmDialogComponent implements OnInit {
 
   private _launchDialog(): void {
 
+
     this._modalService.open(this.dialog,
       {
         ariaLabelledBy: 'modal-basic-title',

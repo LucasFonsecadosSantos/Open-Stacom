@@ -178,7 +178,11 @@ import {
     ConfirmDialogComponent,
 
     PriceFormComponent,
-    PriceListComponent
+    PriceListComponent,
+
+    ProceedingFormComponent,
+    ProceedingListComponent,
+    ProceedingInfoComponent
   ],
   providers: [
     ConfirmDialogService,
