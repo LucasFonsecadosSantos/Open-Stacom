@@ -23,6 +23,8 @@ import { CommitteComponent } from './committe';
 import { SharedActivityService } from './activity';
 import { PriceComponent } from './price/price.component';
 import { SharedSponsorService } from './sponsorship';
+import { ProceedingsComponent } from './proceedings';
+import { SharedProceedingsService } from './proceedings';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { SharedSponsorService } from './sponsorship';
     PreviousEditionsComponent,
     CallsComponent,
     CommitteComponent,
-    PriceComponent
+    PriceComponent,
+    ProceedingsComponent
   ],
   imports: [
     CommonModule,
@@ -58,14 +61,16 @@ import { SharedSponsorService } from './sponsorship';
     SponsorshipComponent,
     PreviousEditionsComponent,
     CallsComponent,
-    PriceComponent
+    PriceComponent,
+    ProceedingsComponent
   ],
   providers: [
     SharedPersonService,
     SharedEventService,
     SharedTemplateService,
     SharedActivityService,
-    SharedSponsorService
+    SharedSponsorService,
+    SharedProceedingsService
   ]
 })
 export class PagesModule { }

@@ -68,6 +68,9 @@ import {
 import { NgxMaskModule, IConfig } from "ngx-mask";
 import { PriceFormComponent } from './price/price-form/price-form.component';
 import { PriceListComponent } from './price/price-list/price-list.component';
+import { ProceedingListComponent } from './proceeding/proceeding-list/proceeding-list.component';
+import { ProceedingInfoComponent } from './proceeding/proceeding-info/proceeding-info.component';
+import { ProceedingFormComponent } from './proceeding/proceeding-form/proceeding-form.component';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule, NgxMaskModule.forRoot()],
   declarations: [
@@ -116,7 +119,10 @@ import { PriceListComponent } from './price/price-list/price-list.component';
     ConfirmDialogComponent,
 
     PriceFormComponent,
-    PriceListComponent
+    PriceListComponent,
+    ProceedingListComponent,
+    ProceedingInfoComponent,
+    ProceedingFormComponent
 
 ],
   exports: [

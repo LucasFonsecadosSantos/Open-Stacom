@@ -23,3 +23,5 @@ export * from './price-plan-form.model';
 export * from './sponsor-form.model';
 export * from './sponsor.model';
 
+export * from './proceeding.model';
+export * from './proceeding-form.model';
