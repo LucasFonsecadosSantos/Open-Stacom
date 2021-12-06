@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxMaskModule, IConfig } from "ngx-mask";
 
 import { FooterComponent } from "./footer";
 import { NavbarComponent } from "./navbar";
@@ -65,12 +66,16 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogService
 } from './dialog';
-import { NgxMaskModule, IConfig } from "ngx-mask";
-import { PriceFormComponent } from './price/price-form/price-form.component';
-import { PriceListComponent } from './price/price-list/price-list.component';
-import { ProceedingListComponent } from './proceeding/proceeding-list/proceeding-list.component';
-import { ProceedingInfoComponent } from './proceeding/proceeding-info/proceeding-info.component';
-import { ProceedingFormComponent } from './proceeding/proceeding-form/proceeding-form.component';
+import {
+  PriceFormComponent,
+  PriceListComponent
+} from './price';
+import {
+  ProceedingFormService,
+  ProceedingInfoComponent,
+  ProceedingFormComponent,
+  ProceedingListComponent
+} from './proceeding';
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule, NgxMaskModule.forRoot()],
   declarations: [
@@ -120,6 +125,7 @@ import { ProceedingFormComponent } from './proceeding/proceeding-form/proceeding
 
     PriceFormComponent,
     PriceListComponent,
+
     ProceedingListComponent,
     ProceedingInfoComponent,
     ProceedingFormComponent
@@ -180,7 +186,8 @@ import { ProceedingFormComponent } from './proceeding/proceeding-form/proceeding
     PreviousEditionFormService,
     CommitteeFormService,
     ActivityFormService,
-    ScheduleFormService
+    ScheduleFormService,
+    ProceedingFormService
   ]
 })
 export class ComponentsModule {}
