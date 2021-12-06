@@ -1,0 +1,42 @@
+
+
+<div class=" card card-user">
+  <div class=" card-body" *ngIf="proceeding">
+    <p class=" card-text"></p>
+    <div class=" author">
+      <a href="javascript:void(0)">
+        <button
+        title="Clique aqui para baixar {{proceeding.title}}."
+        class="btn btn-lg btn-danger"
+      >
+        <i class="tim-icons icon-simple-download"></i>
+        Baixar documento
+      </button>
+        <h5 class=" title">{{proceeding.title}}</h5>
+      </a>
+      <p *ngIf="proceeding.author" class=" description">{{proceeding.author}} - {{proceeding.specialty ? proceeding.specialty : ''}}</p>
+      <!-- <small><p *ngIf="person.academicFormation" class=" description">{{person.academicFormation}}</p></small> -->
+    </div>
+  </div>
+  <div class=" card-footer" *ngIf="proceeding">
+
+    <div class="button-container">
+      <button
+        title="Clique aqui para editar e atualizar as informações de {{proceeding.title}}. Ex. Nome, formação, fotografia, redes sociais..."
+        class="btn btn-default mr-1"
+        (click)="editProceeding(proceeding)"
+      >
+        <i class="tim-icons icon-pencil"></i>
+        Editar
+      </button>
+      <button
+        (click)="deleteProceeding(proceeding)"
+        title="Clique aqui para remover o registro de {{proceeding.title}} do sistema."
+        class="btn btn-danger"
+      >
+        <i class="tim-icons icon-simple-remove"></i>
+        Remover
+      </button>
+    </div>
+  </div>
+</div>

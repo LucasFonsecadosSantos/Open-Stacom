@@ -1,0 +1,32 @@
+<div class=" card">
+  <div class=" card-header">
+    <h4 class=" card-title">Anais Registrados</h4>
+  </div>
+  <div class=" card-body">
+    <div class=" table-responsive">
+      <table class=" table tablesorter" id="">
+        <thead class=" text-primary">
+          <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Especialidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="proceedingList__row"
+            *ngFor="let proceeding of proceedingArray"
+            (mouseover)="selectProceeding(proceeding)"
+            (click)="editProceeding(proceeding)"
+          >
+            <td class="col-md-2">{{proceeding.code ? proceeding.code : ''}}</td>
+            <td class="col-md-4">{{proceeding.title ? proceeding.title : ''}}</td>
+            <td class="col-md-4">{{proceeding.author ? proceeding.author : ''}}</td>
+            <td class="col-md-4">{{proceeding.specialty ? proceeding.specialty : ''}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -84,7 +84,12 @@ import {
   PricePlanFindService,
   PricePlanUpdateService
 } from './price-plan';
-
+import {
+  ProceedingFindService,
+  ProceedingUpdateService,
+  ProceedingDeleteService,
+  ProceedingCreateService
+} from './proceeding';
 
 
 @NgModule({
@@ -152,7 +157,12 @@ import {
     PricePlanCreateService,
     PricePlanDeleteService,
     PricePlanFindService,
-    PricePlanUpdateService
+    PricePlanUpdateService,
+
+    ProceedingFindService,
+    ProceedingCreateService,
+    ProceedingDeleteService,
+    ProceedingUpdateService
   ]
 })
 export class ServicesModule { }

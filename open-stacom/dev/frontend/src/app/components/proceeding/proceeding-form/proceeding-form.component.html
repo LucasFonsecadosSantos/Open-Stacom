@@ -1,0 +1,83 @@
+<ng-template #proceedingForm let-modal>
+  <!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <div class=" card">
+      <div class=" card-header"><h5 class=" title">Adicionar um novo registro de anal</h5></div>
+      <div class=" card-body">
+        <form>
+          <div class=" row">
+            <div class="row" *ngIf="proceedingFormModel.operation == operationUpdate">
+              <div class="col-md-12">
+                <div class=" form-group">
+                  <label> ID</label>
+                  <input
+                    class=" form-control"
+                    type="text"
+                    [value]="proceeding.id"
+                    disabled="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class=" col-md-5 pr-md-1">
+                <div class=" form-group">
+                  <label> Título <span *ngIf="template.objects.proceeding.title.required">*</span></label>
+                  <input
+                    class=" form-control"
+                    placeholder="Ex.: Estudo referente a XPTO"
+                    type="text"
+                    [value]="proceeding.title"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-3 px-md-1">
+                <div class=" form-group">
+                  <label> Autor <span *ngIf="template.objects.proceeding.author.required">*</span></label>
+                  <input
+                    class=" form-control"
+                    placeholder="Ex.: Lucas Fonseca"
+                    type="text"
+                    [value]="proceeding.author"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4 pl-md-1">
+                <div class=" form-group">
+                  <label for="exampleInputEmail1"> Especialidade <span *ngIf="template.objects.proceeding.specialty.required">*</span></label>
+                  <input
+                    class=" form-control"
+                    placeholder="Ex.: Química Farmacológica"
+                    type="text"
+                    [value]="proceeding.specialty"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class=" row">
+            <div class=" col-md-12">
+              <div class=" form-group">
+                <label> Arquivo PDF <span *ngIf="template.objects.proceeding.file.required">*</span></label>
+                <input
+                  class=" form-control"
+                  type="file"
+                  [value]="proceeding.file"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" card-footer">
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationUpdate" (click)="update(proceeding)">{{proceedingFormModel.operation}} o registro de {{proceeding.title}}</button>
+        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationCreate" (click)="create(proceeding)">{{proceedingFormModel.operation}} esse novo registro</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <app-proceeding-form *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class=" card">
+        <div class=" card-body d-flex align-items-center">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="addProceeding()" >
+            <i class="tim-icons icon-simple-add mr-1"></i>
+            Adicionar Novo Anal
+          </button>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="deleteAllProceedings()">
+            <i class="tim-icons icon-trash-simple mr-1"></i>
+            Remover Todas os Anais
+          </button>
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+            <i class="tim-icons icon-paper mr-1"></i>
+            Exportar Lista para Excel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <app-proceeding-list #proceedingListComponent *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-list>
+    </div>
+    <div class="col-md-4">
+      <app-proceeding-info *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-info>
+    </div>
+  </div>
+</div>

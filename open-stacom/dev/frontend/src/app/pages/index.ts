@@ -13,3 +13,4 @@ export * from './event';
 export * from './calls';
 export * from './committe';
 export * from './price';
+export * from './proceedings';
