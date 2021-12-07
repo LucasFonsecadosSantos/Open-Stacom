@@ -1,3 +1,5 @@
+import { Template } from "./../models";
+
 export class Event {
 
   id?: string;
@@ -6,7 +8,6 @@ export class Event {
   subject?: string;
   eventType?: string;
   targetPublic?: string;
-  templateID?: string;
   logo?: string;
   description?: string;
   brief?: string;
@@ -43,5 +44,6 @@ export class Event {
     behance?: string,
     youtubeChannel?: string
   };
+  template: Template;
 
 }

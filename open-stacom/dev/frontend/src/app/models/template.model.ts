@@ -1,4 +1,5 @@
-import { Activity } from ".";
+import { Activity, Committee, Person, PreviousEdition, PricePlan, Proceeding, Sponsor } from ".";
+import { Schedule } from "./schedule.model";
 
 export class Template {
 
@@ -11,7 +12,7 @@ export class Template {
   mockup?:      string;
   sections?:    [];
   objects?:     {
-    proceedings?: {
+    proceeding?: {
       configRoute?: {
         title?: string,
         path?: string,
@@ -43,8 +44,9 @@ export class Template {
       file?: {
         required?: boolean,
       },
-    }
-    sponsorship?: {
+      content?: Proceeding[];
+    },
+    sponsor?: {
       configRoute?: {
         title?: string,
         path?: string,
@@ -119,7 +121,8 @@ export class Template {
       sponsorshipPlan?: {
         required?: boolean,
       },
-    }
+      content?: Sponsor[];
+    },
     schedule?: {
       configRoute?: {
         title?: string,
@@ -137,7 +140,8 @@ export class Template {
       },
       date?: {
         required?: boolean;
-      }
+      },
+      content?: Schedule[];
     },
     committee?: {
       configRoute?: {
@@ -177,7 +181,8 @@ export class Template {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
-      }
+      },
+      content?: Committee[];
     },
     activity?: {
       configRoute?: {
@@ -237,7 +242,31 @@ export class Template {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
-      }
+      },
+      content?: Activity[];
+    },
+    pricePlan?: {
+      configRoute?: {
+        title?: string,
+        path?: string,
+        icon?: string
+      },
+      name?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      description?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      value?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      content?: PricePlan[];
     },
     pastEdition?: {
       configRoute?: {
@@ -263,7 +292,8 @@ export class Template {
       },
       date?: {
         required?: boolean
-      }
+      },
+      content?: PreviousEdition[];
     },
     event?: {
       configRoute?: {
@@ -478,7 +508,8 @@ export class Template {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
-      }
+      },
+      content?: Person[];
     }
   };
 

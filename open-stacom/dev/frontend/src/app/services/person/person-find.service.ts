@@ -4,36 +4,50 @@ import { Injectable } from '@angular/core';
 
 import { Person } from './../../models';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonFindService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private _eventFindService: EventFindService) { }
 
   public find(id: string, eventID: string): Observable<Person> {
 
-    return this.http
-                .get<Person>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${id}`)
-                .pipe(
-                  map(
-                    result => {
-                      this._buildSources([result], eventID);
-                      return result;
-                    }
-                  )
-                );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Person = this._getByID(id, result.template.objects.person.content);
+              this._buildSources([fetched], eventID);
+              return fetched;
+            }
+          )
+        );
+  }
+
+  private _getByID(id: string, array: Person[]): Person {
+
+    return array.find(entity => entity.id == id);
 
   }
 
   public list(eventID: string): Observable<Person[]> {
-    return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`)
-                      .pipe(map(result => {
-                          const personArray = <any[]>result;
-                          this._buildSources(personArray, eventID);
-                          return personArray;
-                      }));
+
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Person[] = result.template.objects.person.content;
+              this._buildSources(fetched, eventID);
+              return fetched;
+            }
+          )
+        );
+
   }
 
   private _buildSources(personArray: Person[], eventID: string): Person[] {

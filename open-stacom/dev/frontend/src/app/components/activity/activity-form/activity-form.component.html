@@ -11,7 +11,7 @@
       <div class=" card-body">
         <form>
           <div class=" row">
-            <div class="row" *ngIf="activityPlanFormModel.operation == operationUpdate">
+            <div class="row" *ngIf="activityFormModel.operation == operationUpdate">
             <div class="col-md-12">
               <div class=" form-group">
                 <label> ID</label>
@@ -159,19 +159,6 @@
                 <option value="" selected>- SELECIONAR -</option>
                 <option *ngFor="let plan of pricePlans" value="plan.id">{{plan.name}}</option>
                 </select>
-              </div>
-            </div>
-          </div>
-          <div class=" row">
-            <div class=" col-md-12">
-              <div class=" form-group">
-                <label> Address </label>
-                <input
-                  class=" form-control"
-                  placeholder="Home Address"
-                  type="text"
-                  value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                />
               </div>
             </div>
           </div>

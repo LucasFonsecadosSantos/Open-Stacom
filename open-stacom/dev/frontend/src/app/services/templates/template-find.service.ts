@@ -1,8 +1,10 @@
-import { Observable } from 'rxjs';
+import { map, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Template } from './../../models';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
+import { Event } from 'src/app/models/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +12,21 @@ import { environment } from 'src/environments/environment';
 export class TemplateFindService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private _eventFindService: EventFindService
   ) { }
 
-  find(templateID: string): Observable<Template> {
+  public find(eventID: string): Observable<any> {
 
-    return this.http.get<Template>(
-      `${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}/${templateID}`,
-      {
-        responseType: 'json'
-      }
-    );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              return result.template
+            }
+          )
+        );
 
   }
 }

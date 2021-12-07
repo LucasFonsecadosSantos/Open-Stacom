@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Activity } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
 import { PersonFindService } from '../person';
 import { PricePlanFindService } from '../price-plan';
 
@@ -12,49 +13,57 @@ import { PricePlanFindService } from '../price-plan';
 export class ActivityFindService {
 
   constructor(
-    private http: HttpClient,
+    private _eventFindService: EventFindService,
     private _personFindService: PersonFindService,
     private _pricePlanFindService: PricePlanFindService
   ) { }
 
   public find(id: string, eventID: string): Observable<Activity> {
 
-    return this.http
-                .get<Activity>(`${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}/${id}`)
-                .pipe(
-                  map(
-                    activity => {
-                      this._findPerson(activity, eventID);
-                      this._findPricePlan(activity);
-                      this._buildSources([activity], eventID);
-                      return activity;
-                    }
-                  )
-                );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Activity = this._getByID(id, result.template.objects.activity.content);
+              this._findPerson(fetched, eventID);
+              this._findPricePlan(fetched, eventID);
+              this._buildSources([fetched], eventID);
+              return fetched;
+            }
+          )
+        );
+
+  }
+
+  private _getByID(id: string, array: Activity[]): Activity {
+
+    return array.find(entity => entity.id == id);
 
   }
 
   public list(eventID: string): Observable<Activity[]> {
 
-    return this.http
-                .get<Activity[]>(`${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}`)
-                .pipe(
-                  map(
-                    result => {
-                      let activityArray = <any[]>result;
-                      this._fetchResponsible(activityArray, eventID);
-                      activityArray.forEach(activity => this._findPricePlan);
-                      this._buildSources(activityArray, eventID);
-                      return activityArray;
-                      }
-                    )
-                  );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Activity[] = result.template.objects.activity.content;
+              this._fetchResponsible(fetched, eventID);
+              fetched.forEach(activity => this._findPricePlan(activity, eventID));
+              this._buildSources(fetched, eventID);
+              return fetched;
+            }
+          )
+        );
+
   }
 
-  private _findPricePlan(activity: Activity): void {
+  private _findPricePlan(activity: Activity, eventID: string): void {
 
     this._pricePlanFindService
-          .find(activity.pricePlan.id)
+          .find(activity.pricePlan.id, eventID)
           .subscribe(
             pricePlan => {
               activity.pricePlan = pricePlan ? pricePlan : activity.pricePlan;

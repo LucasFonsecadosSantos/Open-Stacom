@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 
 import { PreviousEdition } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,28 @@ import { environment } from 'src/environments/environment';
 export class PreviousEditionFindService {
 
   constructor(
-    private http: HttpClient
+    private _eventFindService: EventFindService
   ) { }
 
   public list(eventID: string): Observable<PreviousEdition[]> {
 
-    return this.http
-                  .get<PreviousEdition[]>(
-                    `${environment.API_URL.BASE}${environment.API_URL.PAST_EDITIONS}`
-                  )
-                      .pipe(map(result => {
-                          const editionsArray = <any[]>result;
-                          this._buildSources(editionsArray, eventID);
-                          return editionsArray;
-                      }));
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: PreviousEdition[] = result.template.objects.pastEdition.content;
+              this._buildSources(fetched, eventID);
+              return fetched;
+            }
+          )
+        );
+
+  }
+
+  private _getByID(id: string, array: PreviousEdition[]): PreviousEdition {
+
+    return array.find(entity => entity.id == id);
 
   }
 

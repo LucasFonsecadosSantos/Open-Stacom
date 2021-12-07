@@ -58,28 +58,27 @@ export class SponsorshipComponent implements OnInit {
 
   private _getEvent(eventID: string): void {
 
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
-  }
-
-  private _getTemplateById(templateID: string) {
-
-    this._templateFindService.find(templateID).subscribe(
-
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
+    this._eventFindService
+        .find(eventID)
+        .subscribe(
+          event => {
+            this.event = event;
+            this._getTemplateById(event.id);
           }
-
-    );
+        );
   }
 
+  private _getTemplateById(eventID: string): void {
+
+    this._templateFindService
+        .find(eventID)
+        .subscribe(
+          template => {
+            this.template = template;
+            this.isDataLoaded = true;
+          }
+        );
+  }
 
   public exportExcel(): void {
     this._exportExcelService.exportExcel(this.sponsorListComponent.sponsorArray, 'LISTA_DE_ATIVIDADES');

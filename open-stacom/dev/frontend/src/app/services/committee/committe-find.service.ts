@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
 import { PersonFindService } from '../person';
 
 import {
@@ -14,55 +15,63 @@ import {
 export class CommitteFindService {
 
   constructor(
-    private http: HttpClient,
+    private _eventFindService: EventFindService,
     private _personFindService: PersonFindService
   ) { }
 
   public find(id: string, eventID: string): Observable<Committee> {
 
-    return this.http
-                .get<Committee>(`${environment.API_URL.BASE}${environment.API_URL.COMMITTEE}/${id}`)
-                .pipe(
-                  map(
-                    result => {
-                      this._buildSources([result], eventID);
-                      return result;
-                    }
-                  )
-                );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Committee = this._getByID(id, result.template.objects.schedule.content);
+              this._buildSources([fetched], eventID);
+              return fetched;
+            }
+          )
+        );
 
   }
 
   public simpleList(eventID: string): Observable<Committee[]> {
 
-    return this.http
-                .get<Committee[]>(`${environment.API_URL.BASE}${environment.API_URL.COMMITTEE}`)
-                .pipe(
-                  map(
-                    result => {
-                      let committeeArray = <any[]>result;
-                      this._buildSources(committeeArray, eventID);
-                      return committeeArray;
-                    }
-                  )
-                );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Committee[] = result.template.objects.committee.content;
+              this._buildSources(fetched, eventID);
+              return fetched;
+            }
+          )
+        );
 
   }
 
+  private _getByID(id: string, array: Committee[]): Committee {
+
+    return array.find(entity => entity.id == id);
+
+  }
+
+
   public list(eventID: string): Observable<Committee[]> {
 
-    return this.http
-                .get<Committee[]>(`${environment.API_URL.BASE}${environment.API_URL.COMMITTEE}`)
-                .pipe(
-                  map(
-                    result => {
-                      let committeeArray = <any[]>result;
-                      this._fetchMembers(committeeArray, eventID);
-                      this._buildSources(committeeArray, eventID);
-                      return committeeArray;
-                    }
-                  )
-                );
+    return this._eventFindService
+        .find(eventID)
+        .pipe(
+          map(
+            result => {
+              let fetched: Committee[] = result.template.objects.committee.content;
+              this._fetchMembers(fetched, eventID);
+              this._buildSources(fetched, eventID);
+              return fetched;
+            }
+          )
+        );
 
   }
 

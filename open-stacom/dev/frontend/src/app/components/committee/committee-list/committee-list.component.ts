@@ -39,10 +39,10 @@ export class CommitteeListComponent implements OnInit {
   private _listCommittees(): void {
 
     this._findService
-          .list(this.event.id)
-          .subscribe(
-            response => {this.committeesArray = response;console.log("testeone"); console.log(response)}
-          );
+        .list(this.event.id)
+        .subscribe(
+          response => this.committeesArray = response
+        );
 
   }
 

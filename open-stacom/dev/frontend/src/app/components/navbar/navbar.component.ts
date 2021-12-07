@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.mobile_menu_visible = 0;
       }
     });
-    this._getEventAndTemplate();
+    // this._getEventAndTemplate();
   }
 
   private _getEventAndTemplate(): void {
@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._eventFindService.find(eventID).subscribe(event => {
 
       this.event = event;
-      this._getTemplateById(event.templateID);
+      // this._getTemplateById(event.templateID);
 
     });
 

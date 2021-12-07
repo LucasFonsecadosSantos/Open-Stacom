@@ -80,10 +80,11 @@ export class ActivityFormComponent implements OnInit {
 
   private _fetchPerson(): void {
 
-    this._personFindService.list(this.event.id)
-                            .subscribe(
-                              fetchedPerson => this.personArray = fetchedPerson
-                            );
+    this._personFindService
+        .list(this.event.id)
+        .subscribe(
+          fetchedPerson => {this.personArray = fetchedPerson;}
+        );
 
   }
 
