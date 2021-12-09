@@ -9,15 +9,13 @@ export class Sponsor {
   website?: string;
   email?: string;
   telephone?: string;
-  location?: {
-    cep?: string;
-    address?: string;
-    number?: string;
-    neiborhood?: string;
-    city?: string;
-    uf?: string;
-    country?: string;
-  }
+  locationCep?: string
+  locationAddress?: string;
+  locationNumber?: string;
+  locationNeiborhood?: string;
+  locationCity?: string;
+  locationUF?: string;
+  locationCountry?: string;
   sponsorshipPlan?: SponsorshipPlan;
 
 }

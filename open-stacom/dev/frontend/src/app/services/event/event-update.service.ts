@@ -16,8 +16,6 @@ export class EventUpdateService {
 
   public update(event: Event): Observable<any> {
 
-    console.log(event);
-
     return this._http.put<any>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${event.id}`,
       event

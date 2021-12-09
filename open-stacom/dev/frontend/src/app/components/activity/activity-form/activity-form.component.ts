@@ -75,7 +75,7 @@ export class ActivityFormComponent implements OnInit {
   }
 
   public get possibleActivityTypes() {
-    return Object.keys(ActivityType);
+    return Object.keys(ActivityType).filter(key => !isNaN(Number(ActivityType[key])));;
   }
 
   private _fetchPerson(): void {

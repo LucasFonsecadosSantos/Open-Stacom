@@ -33,7 +33,10 @@ export class SponsorListComponent implements OnInit {
 
     this._findService
         .list(this.event.id)
-        .subscribe(activities => {this.sponsorArray = activities; console.log(this.sponsorArray);});
+        .subscribe(sponsorArray => {
+          this.sponsorArray = sponsorArray;
+        }
+      );
 
   }
 

@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule, } from "@angular/forms";
 import { NgxMaskModule, IConfig } from "ngx-mask";
 
 import { FooterComponent } from "./footer";
@@ -77,7 +78,13 @@ import {
   ProceedingListComponent
 } from './proceeding';
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule, NgxMaskModule.forRoot()],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgbModule,
+    FormsModule,
+    NgxMaskModule.forRoot()
+  ],
   declarations: [
     FooterComponent,
     NavbarComponent,

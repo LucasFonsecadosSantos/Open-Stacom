@@ -6,7 +6,9 @@ import { Template, Event } from 'src/app/models';
 import { SponsorForm } from 'src/app/models/sponsor-form.model';
 import { Sponsor } from 'src/app/models/sponsor.model';
 import { SponsorCreateService, SponsorUpdateService } from 'src/app/services/sponsor';
+import { CepService } from 'src/app/services/utils';
 import { SponsorFormService } from './sponsor-form.service';
+import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -30,10 +32,13 @@ export class SponsorFormComponent implements OnInit {
 
   public sponsorArray: Sponsor[];
 
+  public states: any;
+
   public static readonly operation: Operation;
 
   constructor(
     private _modalService: NgbModal,
+    private _cepService: CepService,
     private _formService: SponsorFormService,
     private _createService: SponsorCreateService,
     private _updateService: SponsorUpdateService
@@ -41,9 +46,11 @@ export class SponsorFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.states = getAllStates();
     this._getFormObservables();
 
   }
+
 
   private _getFormObservables(): void {
 
@@ -69,7 +76,7 @@ export class SponsorFormComponent implements OnInit {
   }
 
   public get possibleSponsorPlans() {
-    return Object.keys(SponsorshipPlan);
+    return Object.keys(SponsorshipPlan).filter(key => !isNaN(Number(SponsorshipPlan[key])));
   }
 
   private _setSponsor(sponsor: Sponsor, operation: Operation): void {
@@ -81,18 +88,42 @@ export class SponsorFormComponent implements OnInit {
   private _getNewSponsor(): Sponsor {
 
     return {
-      "id": null,
-      "name": null,
-      "picture": null,
-      "telephone": null,
-      "email": null,
-      "website": null,
+      "id": '',
+      "name": '',
+      "picture": '',
+      "telephone": '',
+      "email": '',
+      "website": '',
       "sponsorshipPlan": null,
-      "brief": null,
-      "location": null
+      "brief": '',
+      "locationCep": '',
+      "locationAddress": '',
+      "locationNeiborhood": '',
+      "locationNumber": '',
+      "locationUF": '',
+      "locationCountry": ''
     }
 
   }
+
+  public fetchCEPInformations(cep: string): void {
+
+    this._cepService
+          .fetchInformationFromCEP(cep)
+          .subscribe(
+            response => {
+              this.sponsor.locationCep = response.cep,
+              this.sponsor.locationCity = response.localidade,
+              this.sponsor.locationAddress = response.logradouro,
+              this.sponsor.locationUF = response.uf,
+              this.sponsor.locationNeiborhood = response.bairro,
+              this.sponsor.locationCountry = "Brasil"
+            }
+          );
+
+  }
+
+  public uploadPicture(): void {}
 
   private _setSponsorFormModel(model: SponsorForm): void {
 
@@ -118,13 +149,42 @@ export class SponsorFormComponent implements OnInit {
 
   }
 
-  public create(sponsor: Sponsor): void {
+  public createOrUpdate(data: any) {
 
     this._createService
-        .create(sponsor)
+        .create(this._loadForm(data), this.event)
         .subscribe(response => {
-          //TODO Here - IMplements a toast with message
+          //TODO Here
+
         });
+
+  }
+
+  public getCitiesFromState(state: string): any {
+
+    return this.getCitiesFromState(state);
+
+  }
+
+
+  private _loadForm(data: any): Sponsor {
+
+    return {
+      "name": data.name ? data.name : '',
+      // "picture": data.picture ? data.picture : '',
+      "brief": data.brief ? data.brief : '',
+      "website": data.website ? data.website : '',
+      "email": data.email ? data.email : '',
+      "telephone": data.telephone ? data.telephone : '',
+      "locationCep": data.locationCep ? data.locationCep : '',
+      "locationAddress": data.locationAddress ? data.locationAddress : '',
+      "locationNumber": data.locationNumber ? data.locationNumber : '',
+      "locationNeiborhood": data.locationNeiborhood ? data.locationNeiborhood : '',
+      "locationCity": data.locationCity ? data.locationCity : '',
+      "locationUF": data.locationUF ? data.locationUF : '',
+      "locationCountry": data.locationCountry ? data.locationCountry : '',
+      "sponsorshipPlan": data.sponsorshipPlan ? data.sponsorshipPlan : ''
+    };
 
   }
 
