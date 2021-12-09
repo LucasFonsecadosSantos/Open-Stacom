@@ -10,7 +10,7 @@ import java.io.IOException;
 @RequestMapping("/api/evento")
 public class EventController {
 
-    @GetMapping("/generate")
+    @PostMapping("/generate")
     public void find(@RequestBody(required = false) Object obj) {
 
         System.out.println(obj);
