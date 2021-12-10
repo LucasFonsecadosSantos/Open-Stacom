@@ -1,10 +1,5 @@
 package com.openstacom.openstacom.rest;
-
-import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.FileWriter;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/evento")

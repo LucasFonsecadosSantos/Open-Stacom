@@ -7,11 +7,13 @@ export class Person {
   brief?:             string;
   academicFormation?: string;
   institution?:       string;
-  location?: {
-    city?:    string,
-    state?:   string,
-    country?: string
-  }
+  locationCep?: string
+  locationAddress?: string;
+  locationNumber?: string;
+  locationNeiborhood?: string;
+  locationCity?: string;
+  locationUF?: string;
+  locationCountry?: string;
   socialNetworks?: {
     facebook?:        string,
     twitter?:         string,

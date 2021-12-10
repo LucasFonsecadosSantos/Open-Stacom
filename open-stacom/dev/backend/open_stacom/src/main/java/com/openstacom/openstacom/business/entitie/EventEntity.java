@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.business.entities;
+package com.openstacom.openstacom.business.entitie;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,19 @@ public class EventEntity {
 
     private Date[] days;
 
-    private LocationEntity location;
+    private String locationCep;
+
+    private String locationAddress;
+
+    private String locationNumber;
+
+    private String locationNeiborhood;
+
+    private String locationCity;
+
+    private String locationUF;
+
+    private String locationCountry;
 
     private SocialNetworkEntity socialNetworks;
 

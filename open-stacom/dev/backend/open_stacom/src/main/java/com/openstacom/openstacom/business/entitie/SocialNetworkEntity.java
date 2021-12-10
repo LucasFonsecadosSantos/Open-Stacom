@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.business.entities;
+package com.openstacom.openstacom.business.entitie;
 
 public class SocialNetworkEntity {
 

@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.business.entities;
+package com.openstacom.openstacom.business.entitie;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
