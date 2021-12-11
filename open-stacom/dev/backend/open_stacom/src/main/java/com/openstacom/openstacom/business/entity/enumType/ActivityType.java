@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.business.entitie.enumType;
+package com.openstacom.openstacom.business.entity.enumType;
 
 public enum ActivityType {
 

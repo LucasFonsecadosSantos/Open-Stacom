@@ -1,15 +1,13 @@
-package com.openstacom.openstacom.business.entitie.templateObjects;
+package com.openstacom.openstacom.business.entity.templateObjects;
 
-import com.openstacom.openstacom.business.entitie.ProceedingEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.openstacom.openstacom.business.entity.ProceedingEntity;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@ToString
 public class ProceedingTemplateObjectEntity implements TemplateObject {
 
     private ConfigRouteTemplateObject configRoute;

@@ -1,14 +1,12 @@
-package com.openstacom.openstacom.business.entitie;
+package com.openstacom.openstacom.business.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@ToString
 public class PricePlanEntity {
 
     private String id;

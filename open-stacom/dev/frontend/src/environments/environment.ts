@@ -22,7 +22,8 @@ export const environment = {
     ACTIVITY: '/activities',
     EVENT: '/event',
     SCHEDULE: '/schedule'
-  }
+  },
+  API_CONNECTIONS_RETRY: 3
 };
 
 /*

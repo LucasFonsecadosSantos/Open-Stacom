@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { SponsorListComponent } from 'src/app/components/sponsor';
 import { SponsorFormService } from 'src/app/components/sponsor/sponsor-form/sponsor-form.service';
 import { Operation } from 'src/app/enums';
 import { Template, Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
+import { SponsorDeleteService } from 'src/app/services/sponsor';
 import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
 
@@ -21,16 +23,13 @@ export class SponsorshipComponent implements OnInit {
 
   public event: Event;
 
-  public template: Template;
-
   public isDataLoaded: boolean = false;
 
 
   constructor(
     private _exportExcelService: ExcelExportService,
-    // private _personFormService: PersonFormService,
-    // private _personDeleteService: PersonDeleteService,
-    private _templateFindService: TemplateFindService,
+    private _deleteService: SponsorDeleteService,
+    private toastr: ToastrService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: SponsorFormService,
@@ -63,18 +62,6 @@ export class SponsorshipComponent implements OnInit {
         .subscribe(
           event => {
             this.event = event;
-            this._getTemplateById(event.id);
-          }
-        );
-  }
-
-  private _getTemplateById(eventID: string): void {
-
-    this._templateFindService
-        .find(eventID)
-        .subscribe(
-          template => {
-            this.template = template;
             this.isDataLoaded = true;
           }
         );
@@ -106,21 +93,40 @@ export class SponsorshipComponent implements OnInit {
 
   private _getResponseObservables(): void {
 
-    // this._personFormService.getResponseObservable()
-    //                           .subscribe(operationResult => this._showToast(operationResult));
+    this._formService
+        .getResponseObservable()
+        .subscribe({
+          next: sponsorName => {
+            this._showToast(`Legal! O patrocinador ${sponsorName} foi adicionado.`)
+          }
+        });
 
-    // this._confirmDialogService.getResponseObservable()
-    //                             .subscribe(operation => this._deleteAllPeople());
+    this._confirmDialogService
+          .getResponseObservable()
+          .subscribe(
+            operation => this._deleteAllPeople()
+          );
 
   }
 
-  private _showToast(message: String): void {
-    //TODO here
-    alert("imeplemtanr aqui" + message);
+  private _showToast(message: string): void {
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}.`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
   }
 
   private _deleteAllPeople(): void {
-    alert('operacao aceita');
-    // this._personDeleteService.deleteAll(this._urlService.getEventIDFromRoute());
+
+    this._deleteService
+        .deleteAll(this.event)
+        .subscribe({
+          next: response => {}
+          //TODO HERE
+        });
+
   }
 }

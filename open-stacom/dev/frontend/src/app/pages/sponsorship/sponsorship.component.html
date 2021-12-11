@@ -1,8 +1,8 @@
 
 
 <div class="content">
-  <app-sponsor-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-form>
-  <app-confirm-dialog [template]="template" [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
+  <app-sponsor-form  [event]="event" *ngIf="isDataLoaded"></app-sponsor-form>
+  <app-confirm-dialog  [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
   <div class="row">
     <div class="col-md-12">
       <div class=" card">
@@ -11,11 +11,11 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Novo Patrocinador
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSponsor()">
+          <button *ngIf="sponsorListComponent && sponsorListComponent.sponsorArray && sponsorListComponent.sponsorArray.length > 0" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSponsor()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todos os Patrocinadores
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button *ngIf="sponsorListComponent && sponsorListComponent.sponsorArray && sponsorListComponent.sponsorArray.length > 0" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
@@ -25,10 +25,10 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <app-sponsor-list #sponsorListComponent [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-list>
+      <app-sponsor-list #sponsorListComponent  [event]="event" *ngIf="isDataLoaded"></app-sponsor-list>
     </div>
     <div class="col-md-4">
-      <app-sponsor-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-sponsor-info>
+      <app-sponsor-info  [event]="event" *ngIf="isDataLoaded"></app-sponsor-info>
     </div>
   </div>
 </div>

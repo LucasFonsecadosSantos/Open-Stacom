@@ -1,16 +1,14 @@
-package com.openstacom.openstacom.business.entitie.templateObjects;
+package com.openstacom.openstacom.business.entity.templateObjects;
 
-import com.openstacom.openstacom.business.entitie.SponsorEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.openstacom.openstacom.business.entity.SponsorEntity;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class SponsorTemplateObjectEntity {
+@ToString
+public class SponsorTemplateObjectEntity implements TemplateObject {
 
     private ConfigRouteTemplateObject configRoute;
 

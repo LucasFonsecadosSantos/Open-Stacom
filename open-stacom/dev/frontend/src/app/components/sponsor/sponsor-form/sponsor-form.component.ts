@@ -2,13 +2,14 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Operation } from 'src/app/enums';
 import { SponsorshipPlan } from 'src/app/enums/sponsorship-plan.enum';
-import { Template, Event } from 'src/app/models';
+import { Event } from 'src/app/models';
 import { SponsorForm } from 'src/app/models/sponsor-form.model';
 import { Sponsor } from 'src/app/models/sponsor.model';
-import { SponsorCreateService, SponsorUpdateService } from 'src/app/services/sponsor';
+import { SponsorCreateService, SponsorDeleteService, SponsorUpdateService } from 'src/app/services/sponsor';
 import { CepService } from 'src/app/services/utils';
 import { SponsorFormService } from './sponsor-form.service';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
+import { OperationResult } from 'src/app/enums/operation-result';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -23,14 +24,9 @@ export class SponsorFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public sponsor: Sponsor;
 
   public sponsorFormModel: SponsorForm;
-
-  public sponsorArray: Sponsor[];
 
   public states: any;
 
@@ -41,6 +37,7 @@ export class SponsorFormComponent implements OnInit {
     private _cepService: CepService,
     private _formService: SponsorFormService,
     private _createService: SponsorCreateService,
+    private _deleteService: SponsorDeleteService,
     private _updateService: SponsorUpdateService
   ) { }
 
@@ -57,12 +54,9 @@ export class SponsorFormComponent implements OnInit {
     this._formService
           .getObservable()
           .subscribe(data => {
-
             this._setSponsor(data.sponsor, data.operation);
             this._setSponsorFormModel(data);
             this._launchModal();
-            // this._buildFormFields();
-
           });
 
   }
@@ -108,6 +102,8 @@ export class SponsorFormComponent implements OnInit {
 
   public fetchCEPInformations(cep: string): void {
 
+    if (this.sponsor) {
+
     this._cepService
           .fetchInformationFromCEP(cep)
           .subscribe(
@@ -120,6 +116,7 @@ export class SponsorFormComponent implements OnInit {
               this.sponsor.locationCountry = "Brasil"
             }
           );
+      }
 
   }
 
@@ -149,14 +146,21 @@ export class SponsorFormComponent implements OnInit {
 
   }
 
+  public delete(sponsor: Sponsor): void {
+
+    this._deleteService.delete(sponsor, this.event);
+    this._modalService.dismissAll('Cross click');
+
+  }
+
   public createOrUpdate(data: any) {
 
-    this._createService
-        .create(this._loadForm(data), this.event)
-        .subscribe(response => {
-          //TODO Here
+    if (this.sponsor && this.sponsor.id && this.sponsor.id != null && this.sponsor.id != '') {
+      this._update(data);
+    } else {
+      this._create(data);
+    }
 
-        });
 
   }
 
@@ -170,6 +174,7 @@ export class SponsorFormComponent implements OnInit {
   private _loadForm(data: any): Sponsor {
 
     return {
+      "id": data.id ? data.id : '',
       "name": data.name ? data.name : '',
       // "picture": data.picture ? data.picture : '',
       "brief": data.brief ? data.brief : '',
@@ -188,12 +193,36 @@ export class SponsorFormComponent implements OnInit {
 
   }
 
-  public update(sponsor: Sponsor): void {
+  private _update(sponsor: Sponsor): void {
 
     this._updateService
-        .update(sponsor)
-        .subscribe(response => {
-          //TODO Here - implement a toast with message
+        .update(this._loadForm(sponsor), this.event)
+        .subscribe({
+          next: response => {
+
+            this._formService.submitOperation(OperationResult.SUCCESS);
+
+          },
+          error: exception => {
+            this._formService.submitOperation(OperationResult.ERROR);
+          }
+        });
+
+  }
+
+  private _create(data): void {
+
+    this._createService
+        .create(this._loadForm(data), this.event)
+        .subscribe({
+          next: response => {
+
+            this._formService.submitOperation(OperationResult.SUCCESS);
+
+          },
+          error: exception => {
+            this._formService.submitOperation(OperationResult.ERROR);
+          }
         });
 
   }

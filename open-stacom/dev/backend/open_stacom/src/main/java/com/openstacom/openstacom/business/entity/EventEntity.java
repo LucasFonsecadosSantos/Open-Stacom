@@ -1,14 +1,14 @@
-package com.openstacom.openstacom.business.entitie;
+package com.openstacom.openstacom.business.entity;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
+@ToString
 public class EventEntity {
 
     private String id;
@@ -35,7 +35,7 @@ public class EventEntity {
 
     private TelephoneEntity[] telephone;
 
-    private PoweredByEntity[] poweredBy;
+    private PoweredByEntity poweredBy;
 
     private Date[] days;
 

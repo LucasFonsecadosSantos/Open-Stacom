@@ -1,14 +1,12 @@
-package com.openstacom.openstacom.business.entitie.templateObjects;
+package com.openstacom.openstacom.business.entity.templateObjects;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class FieldObjectEntity {
 
     private Integer maxlength;

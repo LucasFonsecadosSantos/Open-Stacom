@@ -1,4 +1,4 @@
-import { map, Observable, of, Subscription } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Template } from './../../models';
@@ -12,7 +12,6 @@ import { Event } from 'src/app/models/event.model';
 export class TemplateFindService {
 
   constructor(
-    private http: HttpClient,
     private _eventFindService: EventFindService
   ) { }
 

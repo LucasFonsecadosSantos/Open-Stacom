@@ -1,16 +1,14 @@
-package com.openstacom.openstacom.business.entitie.templateObjects;
+package com.openstacom.openstacom.business.entity.templateObjects;
 
-import com.openstacom.openstacom.business.entitie.ActivityEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.openstacom.openstacom.business.entity.ActivityEntity;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class ScheduleTemplateObjectEntity {
+@ToString
+public class ScheduleTemplateObjectEntity implements TemplateObject {
 
     private ConfigRouteTemplateObject configRoute;
 

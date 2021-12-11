@@ -13,25 +13,12 @@ import { EventFindService, EventUpdateService } from '../event';
 export class SponsorCreateService {
 
   constructor(
-    private _http: HttpClient,
-    private _eventFindService: EventFindService,
     private _eventUpdateService: EventUpdateService
   ) { }
 
   public create(sponsor: Sponsor, event: Event): Observable<any> {
 
-    // const response = await this._eventFindService
-    //     .find(eventId)
-    //     .subscribe(
-
-    //       event => {
-    //         return this._updateEventData(sponsor, event);
-    //       }
-
-    //     );
-
     return this._eventUpdateService.update(this._addDataToEvent(sponsor, event));
-
 
   }
 

@@ -1,14 +1,16 @@
 package com.openstacom.openstacom.rest;
+import com.openstacom.openstacom.business.entity.EventEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/evento")
+@RequestMapping("/api/event")
 public class EventController {
 
+    @CrossOrigin(origins = "${client.frontend_address}")
     @PostMapping("/generate")
-    public void find(@RequestBody(required = false) Object obj) {
+    public void generate(@RequestBody(required = false) EventEntity obj) {
 
-        System.out.println(obj);
+        System.out.println(obj.toString());
 
     }
 

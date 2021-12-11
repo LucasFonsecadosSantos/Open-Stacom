@@ -1,15 +1,13 @@
-package com.openstacom.openstacom.business.entitie;
+package com.openstacom.openstacom.business.entity;
 
-import com.openstacom.openstacom.business.entitie.enumType.SponsorshipPlanType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.openstacom.openstacom.business.entity.enumType.SponsorshipPlanType;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class SponsorEntity {
 
     private String id;

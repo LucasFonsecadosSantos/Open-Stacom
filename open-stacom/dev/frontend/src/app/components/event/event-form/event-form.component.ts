@@ -63,14 +63,12 @@ export class EventFormComponent implements OnInit {
           .fetchInformationFromCEP(cep)
           .subscribe(
             response => {
-              this.event.location = {
-                "cep": response.cep,
-                "city": response.localidade,
-                "street": response.logradouro,
-                "state": response.uf,
-                "neiborhood": response.bairro,
-                "country": "Brasil"
-              }
+              this.event.locationCep = response.cep,
+              this.event.locationCity = response.localidade,
+              this.event.locationAddress = response.logradouro,
+              this.event.locationUF = response.uf,
+              this.event.locationNeiborhood = response.bairro,
+              this.event.locationCountry = 'Brasil'
             }
           );
 

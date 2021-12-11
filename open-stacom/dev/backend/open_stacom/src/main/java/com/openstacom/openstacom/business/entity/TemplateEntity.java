@@ -1,15 +1,13 @@
-package com.openstacom.openstacom.business.entitie;
+package com.openstacom.openstacom.business.entity;
 
-import com.openstacom.openstacom.business.entitie.templateObjects.TemplateObject;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.openstacom.openstacom.business.entity.templateObjects.TemplateObject;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class TemplateEntity {
 
     private String id;

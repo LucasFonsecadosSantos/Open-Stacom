@@ -89,7 +89,13 @@ export class PersonFormComponent implements OnInit {
       "brief": null,
       "institution": null,
       "job": null,
-      "location": null,
+      "locationCep": null,
+      "locationAddress": null,
+      "locationNumber": null,
+      "locationNeiborhood": null,
+      "locationCity": null,
+      "locationUF": null,
+      "locationCountry": null,
       "name": null,
       "socialNetworks": null
     }

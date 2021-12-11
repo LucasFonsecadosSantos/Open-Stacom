@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { OperationResult } from 'src/app/enums/operation-result';
 import { SponsorForm } from 'src/app/models/sponsor-form.model';
 import { Sponsor } from 'src/app/models/sponsor.model';
 
@@ -19,8 +20,8 @@ export class SponsorFormService {
     this.subject.next(sponsorFormModel);
   }
 
-  public submitOperation(sponsor: Sponsor): void {
-    this.subjectResponse.next(true);
+  public submitOperation(operationResult: OperationResult): void {
+    this.subjectResponse.next(operationResult);
   }
 
   public getObservable(): Observable<any> {
