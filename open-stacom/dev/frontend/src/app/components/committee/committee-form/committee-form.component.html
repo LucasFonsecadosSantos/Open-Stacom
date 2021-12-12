@@ -1,16 +1,15 @@
 
 <ng-template #committeForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
-  <div class="modal-body">
-    <div class=" card">
-      <div class=" card-header"><h5 class=" title">{{ committeeFormModel && committeeFormModel.operation &&  committeeFormModel.operation == operationCreate ? 'Adicionar um novo comitê' : 'Atualizar informações'}}</h5></div>
-      <div class=" card-body" *ngIf="template && template.objects && template.objects.committee">
-        <form>
+  <form>
+    <div class="modal-body">
+      <div class=" card">
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">{{ committeeFormModel && committeeFormModel.operation &&  committeeFormModel.operation == operationCreate ? 'Adicionar um novo comitê' : 'Atualizar informações'}}</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class=" card-body" *ngIf="template && template.objects && template.objects.committee">
           <div class="row" *ngIf="committeeFormModel.operation == operationUpdate">
             <div class="col-md-12">
               <div class=" form-group">
@@ -140,15 +139,15 @@
               </button>
             </div>
           </div>
-        </form>
-      </div>
-      <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationUpdate" (click)="create(committee)">{{committeeFormModel.operation}} o registro de {{committee.name}}</button>
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationCreate" (click)="update(committee)">{{committeeFormModel.operation}} esse novo comitê</button>
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationUpdate" (click)="create(committee)">{{committeeFormModel.operation}} o registro de {{committee.name}}</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="committeeFormModel.operation == this.operationCreate" (click)="update(committee)">{{committeeFormModel.operation}} esse novo comitê</button>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div> -->
+  </form>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div> -->
 </ng-template>

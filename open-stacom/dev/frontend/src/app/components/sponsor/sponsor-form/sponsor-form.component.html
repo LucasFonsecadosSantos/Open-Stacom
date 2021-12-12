@@ -1,17 +1,15 @@
 
 <ng-template #sponsorForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
   <form #sponsorForm="ngForm" (ngSubmit)="createOrUpdate(sponsorForm.value)">
     <div class="modal-body">
       <div class=" card">
-        <div class=" card-header"><h5 class=" title">{{sponsorFormModel.operation == operationUpdate ? 'Atualizar informações de ' + sponsor.name : 'Registrar novo patrocinador'}}</h5></div>
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">{{sponsorFormModel.operation == operationUpdate ? 'Atualizar informações de ' + sponsor.name : 'Registrar novo patrocinador'}}</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class=" card-body">
-
             <div class="row" *ngIf="sponsorFormModel.operation == operationUpdate">
               <div class="col-md-12">
                 <div class=" form-group" *ngIf="event.template.objects.sponsor.name">

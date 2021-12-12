@@ -1,14 +1,13 @@
 <ng-template #scheduleForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
   <form #scheduleForm="ngForm" (ngSubmit)="createOrUpdate(scheduleForm.value)">
     <div class="modal-body">
       <div class=" card">
-        <div class=" card-header"><h5 class=" title">Agendar uma Atividade</h5></div>
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">Agendar uma Atividade</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class=" card-body">
           <div class="row" *ngIf="scheduleFormModel.operation == operationUpdate">
             <div class="col-md-12">

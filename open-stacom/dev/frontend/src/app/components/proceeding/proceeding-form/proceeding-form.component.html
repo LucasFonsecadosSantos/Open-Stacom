@@ -1,15 +1,14 @@
 <ng-template #proceedingForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
-  <div class="modal-body">
-    <div class=" card">
-      <div class=" card-header"><h5 class=" title">Adicionar um novo registro de anal</h5></div>
-      <div class=" card-body">
-        <form>
+  <form>
+    <div class="modal-body">
+      <div class=" card">
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">Adicionar um novo registro de anal</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class=" card-body">
           <div class=" row">
             <div class="row" *ngIf="proceedingFormModel.operation == operationUpdate">
               <div class="col-md-12">
@@ -72,12 +71,12 @@
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationUpdate" (click)="update(proceeding)">{{proceedingFormModel.operation}} o registro de {{proceeding.title}}</button>
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationCreate" (click)="create(proceeding)">{{proceedingFormModel.operation}} esse novo registro</button>
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationUpdate" (click)="update(proceeding)">{{proceedingFormModel.operation}} o registro de {{proceeding.title}}</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="proceedingFormModel.operation == this.operationCreate" (click)="create(proceeding)">{{proceedingFormModel.operation}} esse novo registro</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </ng-template>

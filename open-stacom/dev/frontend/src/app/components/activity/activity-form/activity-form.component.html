@@ -1,15 +1,14 @@
 <ng-template #activityForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
-  <div class="modal-body">
-    <div class=" card">
-      <div class=" card-header"><h5 class=" title">Adicionar uma Atividade</h5></div>
-      <div class=" card-body">
-        <form>
+  <form>
+    <div class="modal-body">
+      <div class=" card">
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">Adicionar uma Atividade</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class=" card-body">
           <div class=" row">
             <div class="row" *ngIf="activityFormModel.operation == operationUpdate">
             <div class="col-md-12">
@@ -185,12 +184,13 @@
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationUpdate" (click)="update(activity)">{{activityFormModel.operation}} o registro de {{activity.title}}</button>
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationCreate" (click)="create(activity)">{{activityFormModel.operation}} essa nova atividade</button>
+
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationUpdate" (click)="update(activity)">{{activityFormModel.operation}} o registro de {{activity.title}}</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationCreate" (click)="create(activity)">{{activityFormModel.operation}} essa nova atividade</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </ng-template>
