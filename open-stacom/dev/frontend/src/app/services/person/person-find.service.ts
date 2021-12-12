@@ -64,7 +64,7 @@ export class PersonFindService {
 
     return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
             personAvatar = `/data/${eventID}/img/avatar/${personAvatar}` :
-            `/assets/img/default-avatar.png`;
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

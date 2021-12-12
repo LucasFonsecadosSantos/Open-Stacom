@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Activity } from 'src/app/models';
+import { Activity, Event } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 import { EventFindService } from '../event';
 import { PersonFindService } from '../person';
@@ -106,7 +105,7 @@ export class ActivityFindService {
 
     return (avatar && (avatar != null) && (avatar.length > 0)) ?
             avatar = `/data/${eventID}/img/avatar/${avatar}` :
-            `/assets/img/default-avatar.png`;
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
   }
 
 

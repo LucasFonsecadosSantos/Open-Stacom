@@ -129,6 +129,9 @@ export class Template {
         path?: string,
         icon?: string
       },
+      id?: {
+        required?: boolean,
+      },
       activity?: {
         required?: boolean;
       }
@@ -250,6 +253,9 @@ export class Template {
         title?: string,
         path?: string,
         icon?: string
+      },
+      id?: {
+        required?: boolean,
       },
       name?: {
         minlength?: number,

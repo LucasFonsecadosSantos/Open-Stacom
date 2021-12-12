@@ -20,5 +20,6 @@ export const environment = {
     SCHEDULE: '/schedule',
     GENERATE_BUILD_URL: `http://0.0.0.0:8888/api/event/generate`
   },
-  API_CONNECTIONS_RETRY: 3
+  API_CONNECTIONS_RETRY: 3,
+  DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`
 };

@@ -23,7 +23,8 @@ export const environment = {
     EVENT: '/event',
     SCHEDULE: '/schedule'
   },
-  API_CONNECTIONS_RETRY: 3
+  API_CONNECTIONS_RETRY: 3,
+  DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`
 };
 
 /*

@@ -93,7 +93,6 @@ import {
   ProceedingCreateService
 } from './proceeding';
 
-
 @NgModule({
   declarations: [],
   imports: [

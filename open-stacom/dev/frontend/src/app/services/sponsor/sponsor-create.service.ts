@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Event } from 'src/app/models';
 import { Sponsor } from 'src/app/models/sponsor.model';
-import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
-import { EventFindService, EventUpdateService } from '../event';
+import { EventUpdateService } from '../event';
 
 @Injectable({
   providedIn: 'root'

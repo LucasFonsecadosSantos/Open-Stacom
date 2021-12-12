@@ -109,10 +109,21 @@ export class ScheduleFormComponent implements OnInit {
 
   }
 
-  public create(schedule: Schedule): void {
+  public createOrUpdate(data: any) {
+
+    if (this.schedule && this.schedule.id && this.schedule.id != null && this.schedule.id != '') {
+      this._update(data);
+    } else {
+      this._create(data);
+    }
+
+
+  }
+
+  private _create(schedule: any): void {
 
     this._createService
-        .create(schedule)
+        .create(this._loadForm(schedule), this.event)
         .subscribe(
           response => {
 
@@ -122,10 +133,17 @@ export class ScheduleFormComponent implements OnInit {
 
   }
 
-  public update(schedule: Schedule): void {
+  public delete(schedule: Schedule): void {
+
+    this._deleteService.delete(schedule, this.event);
+    this._modalService.dismissAll('Cross click');
+
+  }
+
+  private _update(schedule: any): void {
 
     this._updateService
-        .update(schedule)
+        .update(this._loadForm(schedule), this.event)
         .subscribe(
           response => {
             //TODO HERE
@@ -141,6 +159,18 @@ export class ScheduleFormComponent implements OnInit {
         .subscribe(
           activitiesArray => {this.activitiesArray = activitiesArray;}
         );
+
+  }
+
+  private _loadForm(data: any): Schedule {
+
+    return {
+      "id": data.id ? data.id : '',
+      "activity": {id: data.activity ? data.activity : ''},
+      "date": data.date ? data.date : '',
+      "startTime": data.startTime ? data.startTime : '',
+      "endTime": data.endTime ? data.endTime : ''
+    };
 
   }
 

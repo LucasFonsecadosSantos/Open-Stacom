@@ -51,7 +51,7 @@ export class PreviousEditionFindService {
 
     return (editionAvatar && (editionAvatar != null) && (editionAvatar.length > 0)) ?
             editionAvatar = `/data/${eventID}/img/avatar/${editionAvatar}` :
-            `/assets/img/default-avatar.png`;
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

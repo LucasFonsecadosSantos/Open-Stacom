@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sponsor } from 'src/app/models/sponsor.model';
-import { environment } from 'src/environments/environment';
 import { EventUpdateService } from '../event';
 import { Event } from './../../models';
 

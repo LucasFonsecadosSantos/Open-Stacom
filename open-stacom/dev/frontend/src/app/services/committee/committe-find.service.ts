@@ -115,7 +115,7 @@ export class CommitteFindService {
 
     return (committeeAvatar && (committeeAvatar != null) && (committeeAvatar.length > 0)) ?
             committeeAvatar = `/data/${eventID}/img/avatar/${committeeAvatar}` :
-            `/assets/img/default-avatar.png`;
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

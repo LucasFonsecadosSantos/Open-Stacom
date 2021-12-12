@@ -107,7 +107,7 @@ export class PriceFormComponent implements OnInit {
   public create(pricePlan: PricePlan): void {
 
     this._createService
-        .create(pricePlan)
+        .create(pricePlan, this.event)
         .subscribe(response => {
           //TODO Here - IMplements a toast with message
         });

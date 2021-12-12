@@ -14,7 +14,7 @@ export class EventFindService {
     private http: HttpClient
   ) { }
 
-  find(eventID: string): Observable<Event> {
+  public find(eventID: string): Observable<Event> {
 
     return this.http.get<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${eventID}`,
@@ -36,7 +36,7 @@ export class EventFindService {
 
     return (event.logo && (event.logo != null) && (event.logo.length > 0)) ?
             event.logo = `/data/${event.id}/img/avatar/${event.logo}` :
-            `/assets/img/default-avatar.png`;
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

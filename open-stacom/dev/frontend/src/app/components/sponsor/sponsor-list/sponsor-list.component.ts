@@ -31,12 +31,8 @@ export class SponsorListComponent implements OnInit {
 
   private _fetchSponsors(): void {
 
-    this._findService
-        .list(this.event.id)
-        .subscribe(sponsorArray => {
-          this.sponsorArray = sponsorArray;
-        }
-      );
+    this.sponsorArray = this._findService
+                            .list(this.event);
 
   }
 
