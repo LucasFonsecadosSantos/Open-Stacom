@@ -80,11 +80,8 @@ export class ActivityFormComponent implements OnInit {
 
   private _fetchPerson(): void {
 
-    this._personFindService
-        .list(this.event.id)
-        .subscribe(
-          fetchedPerson => {this.personArray = fetchedPerson;}
-        );
+    this.personArray = this._personFindService
+                            .list(this.event);
 
   }
 
@@ -142,11 +139,8 @@ export class ActivityFormComponent implements OnInit {
 
   private _fetchPricePlans(): void {
 
-    this._pricePlanFindService
-          .list(this.event.id)
-          .subscribe(
-            planArray => this.pricePlans = planArray
-          );
+    this.pricePlans = this._pricePlanFindService
+                          .list(this.event);
 
   }
 

@@ -10,6 +10,7 @@
             <label> Título do Evento <span *ngIf="template.objects.event.name.required">*</span></label>
             <input
               class=" form-control"
+              readonly="true"
               placeholder="Ex.: Congresso de Tecnologia"
               type="text"
               maxlength="{{template.objects.event.name.maxlength}}"

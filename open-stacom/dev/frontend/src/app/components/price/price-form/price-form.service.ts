@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { OperationResult } from 'src/app/enums';
 import { PricePlanForm } from 'src/app/models';
 
 @Injectable({
@@ -18,8 +19,8 @@ export class PriceFormService {
     this.subject.next(pricePlanForm);
   }
 
-  public submitOperation(pricePlanForm: PricePlanForm): void {
-    this.subjectResponse.next(true);
+  public submitOperation(operationResult: OperationResult): void {
+    this.subjectResponse.next(operationResult);
   }
 
   public getObservable(): Observable<any> {

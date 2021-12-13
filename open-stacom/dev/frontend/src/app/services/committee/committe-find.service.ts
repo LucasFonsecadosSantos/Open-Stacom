@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { EventFindService } from '../event';
+import { Event } from './../../models';
 import { PersonFindService } from '../person';
 
 import {
@@ -15,39 +15,16 @@ import {
 export class CommitteFindService {
 
   constructor(
-    private _eventFindService: EventFindService,
     private _personFindService: PersonFindService
   ) { }
 
-  public find(id: string, eventID: string): Observable<Committee> {
+  public find(id: string, event: Event): Committee {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Committee = this._getByID(id, result.template.objects.schedule.content);
-              this._buildSources([fetched], eventID);
-              return fetched;
-            }
-          )
-        );
+    let committee: Committee = this._getByID(id, event.template.objects.schedule.content);
+    this._buildSources([committee], event);
+    this._fetchMembers([committee], event);
 
-  }
-
-  public simpleList(eventID: string): Observable<Committee[]> {
-
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Committee[] = result.template.objects.committee.content;
-              this._buildSources(fetched, eventID);
-              return fetched;
-            }
-          )
-        );
+    return committee;
 
   }
 
@@ -58,63 +35,52 @@ export class CommitteFindService {
   }
 
 
-  public list(eventID: string): Observable<Committee[]> {
+  public list(event: Event): Committee[] {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Committee[] = result.template.objects.committee.content;
-              this._fetchMembers(fetched, eventID);
-              this._buildSources(fetched, eventID);
-              return fetched;
-            }
-          )
-        );
+    let committee: Committee[] = event.template.objects.committee.content;
+    this._fetchMembers(committee, event);
+    this._buildSources(committee, event);
+
+    return committee;
 
   }
 
-  private _fetchMembers(committeeArray: Committee[], eventID: string): void {
+  private _fetchMembers(committeeArray: Committee[], event: Event): void {
 
     committeeArray.forEach(
       committee => {
         committee.members.forEach(
-          member => this._fetchPerson(member, committee, eventID)
+          member => this._fetchPerson(member, committee, event)
         );
       }
     );
 
   }
 
-  private _fetchPerson(member: Person, committee: Committee, eventID: string): void {
+  private _fetchPerson(member: Person, committee: Committee, event: Event): void {
 
-    this._personFindService
-        .find(member.id, eventID)
-        .subscribe(
-          person => {
-            committee.members.splice(0, committee.members.length);
-            committee.members.push(person);
-          }
-        );
+    let members: Person = this._personFindService
+                                .find(member.id, event)
 
+    committee.members.splice(0, committee.members.length);
+    committee.members.push(members);
 
   }
 
-  private _buildSources(committeeArray: Committee[], eventID: string): Committee[] {
+  private _buildSources(committeeArray: Committee[], event: Event): Committee[] {
 
     committeeArray.forEach(committee => {
-      committee.picture = this._buildCommitteeAvatarSource(committee.picture, eventID);
+      committee.picture = this._buildCommitteeAvatarSource(committee.picture, event);
     })
 
     return committeeArray;
 
   }
 
-  private _buildCommitteeAvatarSource(committeeAvatar: string, eventID: string): string {
+  private _buildCommitteeAvatarSource(committeeAvatar: string, event: Event): string {
 
     return (committeeAvatar && (committeeAvatar != null) && (committeeAvatar.length > 0)) ?
-            committeeAvatar = `/data/${eventID}/img/avatar/${committeeAvatar}` :
+            committeeAvatar = `/data/${event.id}/img/avatar/${committeeAvatar}` :
             environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }

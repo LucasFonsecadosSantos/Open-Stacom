@@ -52,11 +52,8 @@ export class CommitteeFormComponent implements OnInit {
 
   private _buildAvailablePeopleToSelect(): void {
 
-    this._personFindService
-        .list(this.event.id)
-        .subscribe(
-          response => this.personArray = response
-        );
+    this.personArray = this._personFindService
+                            .list(this.event);
 
   }
 
@@ -76,14 +73,12 @@ export class CommitteeFormComponent implements OnInit {
 
   public addMember(personID: string): void {
 
-    this._personFindService
-          .find(personID, this.event.id)
-          .subscribe(
-            response => {
-              this.committee.members.push(response);
-              this.personArray = this._removePersonFromOptions(personID);
-            }
-          );
+    let newMember: Person = this._personFindService
+                            .find(personID, this.event)
+
+    this.committee.members.push(newMember);
+    this.personArray = this._removePersonFromOptions(personID);
+
 
   }
 

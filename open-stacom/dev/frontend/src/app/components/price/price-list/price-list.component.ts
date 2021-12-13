@@ -31,7 +31,7 @@ export class PriceListComponent implements OnInit {
   public deletePricePlan(pricePlan: PricePlan): void {
 
     this._deleteService
-        .delete(pricePlan.id, this.event.id)
+        .delete(pricePlan, this.event)
         .subscribe(
           //TODO here
         );
@@ -50,13 +50,8 @@ export class PriceListComponent implements OnInit {
 
   private _populateList(): void {
 
-    this._findService
-        .list(this.event.id)
-        .subscribe(
-
-          pricePlan => this.pricePlanArray = pricePlan
-
-        );
+    this.pricePlanArray = this._findService
+                              .list(this.event);
 
   }
 

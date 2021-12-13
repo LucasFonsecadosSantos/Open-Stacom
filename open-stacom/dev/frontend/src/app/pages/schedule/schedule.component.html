@@ -1,7 +1,7 @@
 <div class="content">
   <div class="row">
     <div class="col-md-12">
-      <app-schedule-form *ngIf="isDataLoaded" [event]="event" [template]="template"></app-schedule-form>
+      <app-schedule-form *ngIf="isDataLoaded" [event]="event"></app-schedule-form>
     </div>
   </div>
   <div class="row">
@@ -30,7 +30,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <app-schedule-list #scheduleListComponent *ngIf="isDataLoaded" [event]="event" [template]="template"></app-schedule-list>
+      <app-schedule-list #scheduleListComponent *ngIf="isDataLoaded" [event]="event"></app-schedule-list>
     </div>
   </div>
 </div>

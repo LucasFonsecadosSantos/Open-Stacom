@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PricePlan } from 'src/app/models';
+import { Event, PricePlan } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 import { EventFindService } from '../event';
 
@@ -10,20 +10,11 @@ import { EventFindService } from '../event';
 })
 export class PricePlanFindService {
 
-  constructor(private _eventFindService: EventFindService) { }
+  constructor() { }
 
-  public find(id: string, eventID: string): Observable<PricePlan> {
+  public find(id: string, event: Event): PricePlan {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: PricePlan = this._getByID(id, result.template.objects.pricePlan.content);
-              return fetched;
-            }
-          )
-        );
+    return this._getByID(id, event.template.objects.pricePlan.content);
 
   }
 
@@ -33,18 +24,9 @@ export class PricePlanFindService {
 
   }
 
-  public list(eventID: string): Observable<PricePlan[]> {
+  public list(event: Event): PricePlan[] {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: PricePlan[] = result.template.objects.pricePlan.content;
-              return fetched;
-            }
-          )
-        );
+    return event.template.objects.pricePlan.content;
 
   }
 

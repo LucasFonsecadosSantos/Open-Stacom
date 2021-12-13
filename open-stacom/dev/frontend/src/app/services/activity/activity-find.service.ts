@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Activity, Event } from 'src/app/models';
+import { Activity, Event, Person } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 import { EventFindService } from '../event';
 import { PersonFindService } from '../person';
@@ -12,26 +12,18 @@ import { PricePlanFindService } from '../price-plan';
 export class ActivityFindService {
 
   constructor(
-    private _eventFindService: EventFindService,
     private _personFindService: PersonFindService,
     private _pricePlanFindService: PricePlanFindService
   ) { }
 
-  public find(id: string, eventID: string): Observable<Activity> {
+  public find(id: string, event: Event): Activity {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Activity = this._getByID(id, result.template.objects.activity.content);
-              this._findPerson(fetched, eventID);
-              this._findPricePlan(fetched, eventID);
-              this._buildSources([fetched], eventID);
-              return fetched;
-            }
-          )
-        );
+    let activity: Activity = this._getByID(id, event.template.objects.activity.content);
+    this._findPerson(activity, event);
+    this._findPricePlan(activity, event);
+    this._buildSources([activity], event);
+
+    return activity;
 
   }
 
@@ -41,70 +33,57 @@ export class ActivityFindService {
 
   }
 
-  public list(eventID: string): Observable<Activity[]> {
+  public list(event: Event): Activity[] {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Activity[] = result.template.objects.activity.content;
-              this._fetchResponsible(fetched, eventID);
-              fetched.forEach(activity => this._findPricePlan(activity, eventID));
-              this._buildSources(fetched, eventID);
-              return fetched;
-            }
-          )
-        );
+    let activities: Activity[] = event.template.objects.activity.content;
+    this._fetchResponsible(activities, event);
+    activities.forEach(activity => this._findPricePlan(activity, event));
+    this._buildSources(activities, event);
+
+    return activities;
 
   }
 
-  private _findPricePlan(activity: Activity, eventID: string): void {
+  private _findPricePlan(activity: Activity, event: Event): void {
 
-    this._pricePlanFindService
-          .find(activity.pricePlan.id, eventID)
-          .subscribe(
-            pricePlan => {
-              activity.pricePlan = pricePlan ? pricePlan : activity.pricePlan;
-            }
-          );
+    let pricePlanArray = this._pricePlanFindService
+                              .find(activity.pricePlan.id, event);
+
+    activity.pricePlan = pricePlanArray ? pricePlanArray : activity.pricePlan;
 
   }
 
-  private _fetchResponsible(activityArray: Activity[], eventID: string): void {
+  private _fetchResponsible(activityArray: Activity[], event: Event): void {
 
     activityArray.forEach(
-      activity => this._findPerson(activity, eventID)
+      activity => this._findPerson(activity, event)
     );
 
   }
 
-  private _findPerson(activity: Activity, eventID: string): void {
+  private _findPerson(activity: Activity, event: Event): void {
 
-    this._personFindService
-        .find(activity.responsible.id, eventID)
-        .subscribe(
-          person => {
-            activity.responsible = person ? person : activity.responsible;
-          }
-        );
+    let person: Person = this._personFindService
+                              .find(activity.responsible.id, event);
+
+    activity.responsible = person ? person : activity.responsible;
 
   }
 
-  private _buildSources(activityArray: Activity[], eventID: string): Activity[] {
+  private _buildSources(activityArray: Activity[], event: Event): Activity[] {
 
     activityArray.forEach(activity => {
-      activity.picture = this._buildActivityAvatarSource(activity.picture, eventID);
+      activity.picture = this._buildActivityAvatarSource(activity.picture, event);
     })
 
     return activityArray;
 
   }
 
-  private _buildActivityAvatarSource(avatar: string, eventID: string): string {
+  private _buildActivityAvatarSource(avatar: string, event: Event): string {
 
     return (avatar && (avatar != null) && (avatar.length > 0)) ?
-            avatar = `/data/${eventID}/img/avatar/${avatar}` :
+            avatar = `/data/${event.id}/img/avatar/${avatar}` :
             environment.DEFAULT_AVATAR_PICTURE_PATH;
   }
 

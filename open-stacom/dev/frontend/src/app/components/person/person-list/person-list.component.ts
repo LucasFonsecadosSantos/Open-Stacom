@@ -48,7 +48,7 @@ export class PersonListComponent implements OnInit {
 
   private _getEventAndBuildComponent(): void {
 
-    this._listPeople(this.event.id);
+    this._listPeople();
 
   }
 
@@ -61,14 +61,15 @@ export class PersonListComponent implements OnInit {
 
   }
 
-  private _listPeople(eventID): void {
+  private _listPeople(): void {
 
-    this._personFindService.list(eventID).subscribe(
-      response => {
-        this.personArray = response;
-        this._sharedPersonService.sharedPersonFromListToInfo(response[0] ? response[0] : null);
-      }
-    );
+    this.personArray = this._personFindService
+                            .list(this.event)
+
+    this._sharedPersonService
+        .sharedPersonFromListToInfo(
+          this.personArray[0] ? this.personArray[0] : null
+        );
 
   }
 

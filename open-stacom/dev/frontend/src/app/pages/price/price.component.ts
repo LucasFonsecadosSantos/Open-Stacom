@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { PriceFormService, PriceListComponent } from 'src/app/components/price';
 import { Operation } from 'src/app/enums';
-import { Event, Template } from 'src/app/models';
+import { Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
 import { PricePlanDeleteService } from 'src/app/services/price-plan';
-import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
 
 @Component({
@@ -21,14 +20,11 @@ export class PriceComponent implements OnInit {
 
   public event: Event;
 
-  public template: Template;
-
   public isDataLoaded: boolean = false;
 
   constructor(
     private _exportExcelService: ExcelExportService,
     private _priceDeleteService: PricePlanDeleteService,
-    private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: PriceFormService,
@@ -61,18 +57,6 @@ export class PriceComponent implements OnInit {
         .subscribe(
           event => {
             this.event = event;
-            this._getTemplateById(event.id);
-          }
-        );
-  }
-
-  private _getTemplateById(eventID: string): void {
-
-    this._templateFindService
-        .find(eventID)
-        .subscribe(
-          template => {
-            this.template = template;
             this.isDataLoaded = true;
           }
         );

@@ -117,7 +117,6 @@ export class ScheduleFormComponent implements OnInit {
       this._create(data);
     }
 
-
   }
 
   private _create(schedule: any): void {
@@ -154,11 +153,8 @@ export class ScheduleFormComponent implements OnInit {
 
   private _populateActivities(): void {
 
-    this._activityFindService
-        .list(this.event.id)
-        .subscribe(
-          activitiesArray => {this.activitiesArray = activitiesArray;}
-        );
+    this.activitiesArray = this._activityFindService
+                                .list(this.event);
 
   }
 

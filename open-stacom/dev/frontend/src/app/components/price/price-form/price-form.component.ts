@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Operation } from 'src/app/enums';
+import { ToastrService } from 'ngx-toastr';
+import { Operation, OperationResult } from 'src/app/enums';
 import { Template, Event, PricePlan, PricePlanForm } from 'src/app/models';
-import { PricePlanCreateService, PricePlanUpdateService } from 'src/app/services/price-plan';
+import { PricePlanCreateService, PricePlanDeleteService, PricePlanUpdateService } from 'src/app/services/price-plan';
 import { PriceFormService } from '.';
 
 @Component({
@@ -18,9 +19,6 @@ export class PriceFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public pricePlan: PricePlan;
 
   public pricePlanFormModel: PricePlanForm;
@@ -30,6 +28,8 @@ export class PriceFormComponent implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private _formService: PriceFormService,
+    private toastr: ToastrService,
+    private _deleteService: PricePlanDeleteService,
     private _createService: PricePlanCreateService,
     private _updateService: PricePlanUpdateService
   ) { }
@@ -104,23 +104,105 @@ export class PriceFormComponent implements OnInit {
 
   }
 
-  public create(pricePlan: PricePlan): void {
+  public delete(pricePlan: PricePlan): void {
+
+    this._deleteService.delete(pricePlan, this.event);
+    this._modalService.dismissAll('Cross click');
+
+  }
+
+  public createOrUpdate(data: any) {
+
+    if (this.pricePlan && this.pricePlan.id && this.pricePlan.id != null && this.pricePlan.id != '') {
+      this._update(data);
+    } else {
+      this._create(data);
+    }
+
+  }
+
+  private _create(pricePlan: PricePlan): void {
 
     this._createService
-        .create(pricePlan, this.event)
-        .subscribe(response => {
-          //TODO Here - IMplements a toast with message
+        .create(this._loadForm(pricePlan), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `O pacote de preços ${pricePlan.name} foi adicionado com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar o pacote de preços ${pricePlan.name}. ERRO: ${exception}`
+            );
+          }
+
         });
 
   }
 
-  public update(pricePlan: PricePlan): void {
+  private _update(pricePlan: PricePlan): void {
 
     this._updateService
-        .update(pricePlan)
-        .subscribe(response => {
-          //TODO Here - implement a toast with message
+        .update(this._loadForm(pricePlan), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `O pacote de preços ${pricePlan.name} foi atualizado com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar o pacote de preços ${pricePlan.name}. ERRO: ${exception}`
+            );
+          }
+
         });
+
+  }
+
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _loadForm(data: any): PricePlan {
+
+    console.log(data);
+
+    return {
+      "id": data.id ? data.id : '',
+      "name": data.name ? data.name : '',
+      "value": data.value ? data.value : '',
+      "description": data.description ? data.description : ''
+    };
 
   }
 

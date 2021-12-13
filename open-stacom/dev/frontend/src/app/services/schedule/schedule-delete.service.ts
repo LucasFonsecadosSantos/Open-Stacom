@@ -16,14 +16,14 @@ export class ScheduleDeleteService {
   public delete(schedule: Schedule, event: Event): Observable<any> {
 
     return this._eventUpdateService
-                .update(this._getEvent(schedule, event))
+                .update(this._getEvent(schedule, event));
 
   }
 
   public deleteAll(event: Event): Observable<any> {
 
     return this._eventUpdateService
-                .update(this._removeAllSchedule(event))
+                .update(this._removeAllSchedule(event));
 
   }
 

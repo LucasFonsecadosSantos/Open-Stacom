@@ -8,7 +8,6 @@ import { Operation } from 'src/app/enums';
 import { Template, Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
 import { SponsorDeleteService } from 'src/app/services/sponsor';
-import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
 
 @Component({
@@ -92,14 +91,6 @@ export class SponsorshipComponent implements OnInit {
   }
 
   private _getResponseObservables(): void {
-
-    this._formService
-        .getResponseObservable()
-        .subscribe({
-          next: sponsorName => {
-            this._showToast(`Legal! O patrocinador ${sponsorName} foi adicionado.`)
-          }
-        });
 
     this._confirmDialogService
           .getResponseObservable()

@@ -10,6 +10,7 @@ import { CepService } from 'src/app/services/utils';
 import { SponsorFormService } from './sponsor-form.service';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { OperationResult } from 'src/app/enums/operation-result';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -36,6 +37,7 @@ export class SponsorFormComponent implements OnInit {
     private _modalService: NgbModal,
     private _cepService: CepService,
     private _formService: SponsorFormService,
+    private toastr: ToastrService,
     private _createService: SponsorCreateService,
     private _deleteService: SponsorDeleteService,
     private _updateService: SponsorUpdateService
@@ -198,13 +200,20 @@ export class SponsorFormComponent implements OnInit {
     this._updateService
         .update(this._loadForm(sponsor), this.event)
         .subscribe({
+
           next: response => {
 
-            this._formService.submitOperation(OperationResult.SUCCESS);
+            this._showSuccessToast(
+              `O patrocinador ${sponsor.name} foi atualizado com sucesso.`
+            );
 
           },
           error: exception => {
-            this._formService.submitOperation(OperationResult.ERROR);
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar o patrocinador ${sponsor.name}. ERRO: ${exception}`
+            );
+
           }
         });
 
@@ -215,15 +224,47 @@ export class SponsorFormComponent implements OnInit {
     this._createService
         .create(this._loadForm(data), this.event)
         .subscribe({
+
           next: response => {
 
-            this._formService.submitOperation(OperationResult.SUCCESS);
+            this._showSuccessToast(
+              `O patrocinador ${data.name} foi criado com sucesso.`
+            );
 
           },
           error: exception => {
-            this._formService.submitOperation(OperationResult.ERROR);
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar o patrocinador ${data.name}. ERRO: ${exception}`
+            );
+
           }
+
         });
+
+  }
+
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
 
   }
 
