@@ -243,7 +243,7 @@ export class ActivityFormComponent implements OnInit {
       "type": data.type ? data.type : '',
       "brief": data.brief ? data.brief : '',
       "poweredBy": data.poweredBy ? data.poweredBy : '',
-      "responsible": {id: data.responsible.id ? data.responsible.id : ''},
+      "responsible": {id: data.responsible ? data.responsible : ''},
       "description": data.description ? data.description : '',
       "picture": data.picture ? data.picture : '',
       "targetPublic": data.targetPublic ? data.targetPublic : '',

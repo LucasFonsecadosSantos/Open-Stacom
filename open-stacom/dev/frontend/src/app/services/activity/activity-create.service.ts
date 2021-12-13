@@ -24,6 +24,8 @@ export class ActivityCreateService {
   private _addDataToEvent(activity: Activity, event: Event): Event {
 
     activity.id = uuidv4();
+    activity.responsible = { 'id': activity.responsible.id };
+    activity.pricePlan = { 'id': activity.pricePlan.id };
     event.template
           .objects
           .activity
@@ -31,8 +33,8 @@ export class ActivityCreateService {
           .forEach(
             activity => {
 
-              activity.responsible = activity.responsible = { 'id': activity.responsible.id };
-              activity.pricePlan = activity.pricePlan = { 'id': activity.pricePlan.id };
+              activity.responsible = { 'id': activity.responsible.id };
+              activity.pricePlan = { 'id': activity.pricePlan.id };
 
             }
           );

@@ -22,7 +22,6 @@ export class ScheduleCreateService {
 
   private _addDataToEvent(schedule: Schedule, event: Event): Event {
 
-    //let tmpActivity: Activity = {'id': schedule.activity.id};
     schedule.id = uuidv4();
     schedule.activity = {'id': schedule.activity.id};
     event.template

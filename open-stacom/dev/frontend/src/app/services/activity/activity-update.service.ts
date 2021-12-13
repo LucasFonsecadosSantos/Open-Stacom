@@ -31,11 +31,24 @@ export class ActivityUpdateService {
 
     activity.responsible = {'id': activity.responsible.id };
     activity.pricePlan = {'id': activity.pricePlan.id };
+    event.template
+          .objects
+          .activity
+          .content
+          .forEach(
+            activity => {
 
-    event.template.objects
-                .activity
-                .content
-                .push(activity);
+              activity.responsible = { 'id': activity.responsible.id };
+              activity.pricePlan = { 'id': activity.pricePlan.id };
+
+            }
+          );
+
+    event.template
+         .objects
+         .activity
+         .content
+         .push(activity);
 
     return event;
 
