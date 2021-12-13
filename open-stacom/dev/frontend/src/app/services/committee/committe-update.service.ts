@@ -21,38 +21,35 @@ export class CommitteUpdateService {
 
   private _updateDataToEvent(committee: Committee, event: Event): Event {
 
-    event.template.objects.committee.content = event.template.objects
+
+
+
+                  event.template.objects.committee.content = event.template.objects
                   .committee
                   .content
                   .filter(
                     fetchedSchedule => fetchedSchedule.id != committee.id
                   );
 
-    committee.members.forEach(member => {
-      member = {'id': member.id};
-    });
+                  event.template
+                        .objects
+                        .committee
+                        .content
+                        .push(committee);
 
-    event.template
-          .objects
-          .committee
-          .content
-          .forEach(
-            committee => {
 
-              committee.members.forEach(member => {
-                member = {'id': member.id};
-              });
+                  event.template
+                        .objects
+                        .committee
+                        .content
+                        .forEach(instance => {
 
-            }
-          );
+                          instance.members = instance.members.filter(obj =>
+                            Object.keys(obj).length == 1
+                          );
 
-    event.template
-         .objects
-         .committee
-         .content
-         .push(committee);
-
-    return event;
+                        });
+                  return event;
 
   }
 

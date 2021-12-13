@@ -25,14 +25,10 @@ export class CommitteCreateService {
 
 
     committee.id = uuidv4();
-    console.log(committee.members);
-    let membersArray = [];
 
     committee.members.forEach(member => {
       member = {'id': member.id};
     });
-
-    console.log(committee.members);
 
 
           event.template
@@ -48,10 +44,10 @@ export class CommitteCreateService {
           .content
           .forEach(instance => {
 
-
             instance.members = instance.members.filter(obj =>
               Object.keys(obj).length == 1
             );
+
           });
     return event;
 
