@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activity } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import { EventUpdateService } from '../event';
+import { Event } from './../../models';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +12,39 @@ import { environment } from 'src/environments/environment';
 export class ActivityCreateService {
 
   constructor(
-    private _http: HttpClient
+    private _eventUpdateService: EventUpdateService
   ) { }
 
-  public create(activity: Activity): Observable<any> {
-    return this._http.post(
-      `${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}`,
-      activity
-    );
+  public create(activity: Activity, event: Event): Observable<any> {
+
+    return this._eventUpdateService.update(this._addDataToEvent(activity, event));
+
   }
+
+  private _addDataToEvent(activity: Activity, event: Event): Event {
+
+    activity.id = uuidv4();
+    event.template
+          .objects
+          .activity
+          .content
+          .forEach(
+            activity => {
+
+              activity.responsible = activity.responsible = { 'id': activity.responsible.id };
+              activity.pricePlan = activity.pricePlan = { 'id': activity.pricePlan.id };
+
+            }
+          );
+
+    event.template
+          .objects
+          .activity
+          .content
+          .push(activity);
+
+    return event;
+
+  }
+
 }

@@ -1,9 +1,9 @@
-// import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ActivityType, Operation } from 'src/app/enums';
 import { Activity, ActivityForm, Event, Person, PricePlan, Template } from 'src/app/models';
-import { ActivityCreateService, ActivityUpdateService } from 'src/app/services/activity';
+import { ActivityCreateService, ActivityDeleteService, ActivityUpdateService } from 'src/app/services/activity';
 import { PersonFindService } from 'src/app/services/person';
 import { PricePlanFindService } from 'src/app/services/price-plan';
 import { ActivityFormService } from '.';
@@ -21,9 +21,6 @@ export class ActivityFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public activity: Activity;
 
   public activityFormModel: ActivityForm;
@@ -39,6 +36,8 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private _formService: ActivityFormService,
+    private toastr: ToastrService,
+    private _deleteService: ActivityDeleteService,
     private _createService: ActivityCreateService,
     private _updateService: ActivityUpdateService,
     private _personFindService: PersonFindService,
@@ -82,6 +81,7 @@ export class ActivityFormComponent implements OnInit {
 
     this.personArray = this._personFindService
                             .list(this.event);
+
 
   }
 
@@ -157,9 +157,24 @@ export class ActivityFormComponent implements OnInit {
   private _createActivity(activity: Activity): void {
 
     this._createService
-        .create(activity)
-        .subscribe(response => {
-          //TODO Here - IMplements a toast with message
+        .create(this._loadForm(activity), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `A atividade ${activity.title} foi criado com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar a atividade ${activity.title}. ERRO: ${exception}`
+            );
+
+          }
+
         });
 
   }
@@ -167,10 +182,75 @@ export class ActivityFormComponent implements OnInit {
   private _updateActivity(activity: Activity): void {
 
     this._updateService
-        .update(activity)
-        .subscribe(response => {
-          //TODO Here - implement a toast with message
+        .update(this._loadForm(activity), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `A atividade ${activity.title} foi atualizada com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar a atividade ${activity.title}. ERRO: ${exception}`
+            );
+
+          }
+
         });
+
+  }
+
+  public delete(activity: Activity): void {
+
+    this._deleteService.delete(activity, this.event);
+    this._modalService.dismissAll('Cross click');
+
+  }
+
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _loadForm(data: any): Activity {
+
+    return {
+      "id": data.id ? data.id : '',
+      "title": data.title ? data.title : '',
+      "type": data.type ? data.type : '',
+      "brief": data.brief ? data.brief : '',
+      "poweredBy": data.poweredBy ? data.poweredBy : '',
+      "responsible": {id: data.responsible.id ? data.responsible.id : ''},
+      "description": data.description ? data.description : '',
+      "picture": data.picture ? data.picture : '',
+      "targetPublic": data.targetPublic ? data.targetPublic : '',
+      "location": data.loaction ? data.location : '',
+      "price": data.price ? data.price : '',
+      "pricePlan": data.pricePlan ? data.pricePlan : '',
+    };
 
   }
 

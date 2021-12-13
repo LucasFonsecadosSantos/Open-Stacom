@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event } from 'src/app/models';
+import { Activity, Event } from 'src/app/models';
 import { Schedule } from 'src/app/models/schedule.model';
 import { EventUpdateService } from '../event';
 import { v4 as uuidv4 } from 'uuid';
@@ -22,15 +22,26 @@ export class ScheduleCreateService {
 
   private _addDataToEvent(schedule: Schedule, event: Event): Event {
 
+    //let tmpActivity: Activity = {'id': schedule.activity.id};
     schedule.id = uuidv4();
+    schedule.activity = {'id': schedule.activity.id};
     event.template
           .objects
           .schedule
           .content
           .forEach(
             schedule =>
-              schedule.activity = schedule.activity = {'id': schedule.activity.id}
+              schedule.activity = {'id': schedule.activity.id}
             );
+
+    event.template
+            .objects
+            .activity
+            .content
+            .forEach(
+              activity =>
+                activity.responsible = {'id': activity.responsible.id}
+              );
 
     event.template
           .objects

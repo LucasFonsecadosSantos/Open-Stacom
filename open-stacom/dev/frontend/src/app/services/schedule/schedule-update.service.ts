@@ -29,8 +29,23 @@ export class ScheduleUpdateService {
                     fetchedSchedule => fetchedSchedule.id != schedule.id
                   );
 
-    schedule.activity = {id: schedule.activity.id};
-
+    schedule.activity = {'id': schedule.activity.id};
+    event.template
+          .objects
+          .schedule
+          .content
+          .forEach(
+            schedule =>
+              schedule.activity = {'id': schedule.activity.id}
+            );
+    event.template
+          .objects
+          .activity
+          .content
+          .forEach(
+            activity =>
+              activity.responsible = {'id': activity.responsible.id}
+            );
     event.template.objects
                 .schedule
                 .content

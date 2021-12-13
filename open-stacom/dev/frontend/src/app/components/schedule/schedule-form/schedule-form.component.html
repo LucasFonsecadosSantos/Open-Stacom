@@ -26,10 +26,9 @@
           <div class=" row">
             <div class=" col-md-3 pr-md-1">
               <div class=" form-group">
-                <label> Atividade <span *ngIf="template.objects.schedule.activity.required">*</span></label>
+                <label> Atividade <span *ngIf="event.template.objects.schedule.activity.required">*</span></label>
                 <select
                   class=" form-control"
-                  type="text"
                   name="activity"
                   [(ngModel)]="schedule.activity"
                 >
@@ -46,7 +45,7 @@
             </div>
             <div class=" col-md-3 px-md-1">
               <div class=" form-group">
-                <label> Data <span *ngIf="template.objects.schedule.date.required">*</span></label>
+                <label> Data <span *ngIf="event.template.objects.schedule.date.required">*</span></label>
                 <select
                   [(ngModel)]="schedule.date"
                   name="date"
@@ -64,7 +63,7 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Inicio<span *ngIf="template.objects.schedule.startTime.required">*</span></label>
+                <label> Horário de Inicio<span *ngIf="event.template.objects.schedule.startTime.required">*</span></label>
                 <input
                   [(ngModel)]="schedule.startTime"
                   name="startTime"
@@ -76,7 +75,7 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Término<span *ngIf="template.objects.schedule.endTime.required">*</span></label>
+                <label> Horário de Término<span *ngIf="event.template.objects.schedule.endTime.required">*</span></label>
                 <input
                   [(ngModel)]="schedule.endTime"
                   name="endTime"

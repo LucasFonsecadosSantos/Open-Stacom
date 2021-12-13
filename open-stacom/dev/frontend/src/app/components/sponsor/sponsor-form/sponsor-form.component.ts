@@ -9,7 +9,6 @@ import { SponsorCreateService, SponsorDeleteService, SponsorUpdateService } from
 import { CepService } from 'src/app/services/utils';
 import { SponsorFormService } from './sponsor-form.service';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
-import { OperationResult } from 'src/app/enums/operation-result';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -215,6 +214,7 @@ export class SponsorFormComponent implements OnInit {
             );
 
           }
+
         });
 
   }

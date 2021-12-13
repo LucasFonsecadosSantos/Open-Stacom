@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
 import { Activity, Event, ScheduleForm, Template } from 'src/app/models';
 import { Schedule } from 'src/app/models/schedule.model';
@@ -32,6 +33,7 @@ export class ScheduleFormComponent implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private _activityFindService: ActivityFindService,
+    private toastr: ToastrService,
     private _formService: ScheduleFormService,
     private _createService: ScheduleCreateService,
     private _updateService: ScheduleUpdateService,
@@ -123,12 +125,24 @@ export class ScheduleFormComponent implements OnInit {
 
     this._createService
         .create(this._loadForm(schedule), this.event)
-        .subscribe(
-          response => {
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `A programação da atividade ${schedule.activity.title} foi criada com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar a programação da atividade ${schedule.activity.title}. ERRO: ${exception}`
+            );
 
           }
-          //TODO HERE
-        );
+
+        });
 
   }
 
@@ -143,11 +157,24 @@ export class ScheduleFormComponent implements OnInit {
 
     this._updateService
         .update(this._loadForm(schedule), this.event)
-        .subscribe(
-          response => {
-            //TODO HERE
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `A programação da atividade ${schedule.activity.title} foi atualizada com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar a programação da atividade ${schedule.activity.title}. ERRO: ${exception}`
+            );
+
           }
-        );
+
+        });
 
   }
 
@@ -158,11 +185,35 @@ export class ScheduleFormComponent implements OnInit {
 
   }
 
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
   private _loadForm(data: any): Schedule {
 
     return {
       "id": data.id ? data.id : '',
-      "activity": {id: data.activity ? data.activity : ''},
+      "activity": {'id': data.activity ? data.activity : ''},
       "date": data.date ? data.date : '',
       "startTime": data.startTime ? data.startTime : '',
       "endTime": data.endTime ? data.endTime : ''

@@ -66,7 +66,7 @@ export class ActivityFindService {
     let person: Person = this._personFindService
                               .find(activity.responsible.id, event);
 
-    activity.responsible = person ? person : activity.responsible;
+    activity.responsible = person ? person : {id: activity.responsible.id};
 
   }
 

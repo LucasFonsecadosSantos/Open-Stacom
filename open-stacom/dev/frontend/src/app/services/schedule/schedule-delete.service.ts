@@ -54,4 +54,5 @@ export class ScheduleDeleteService {
     return event.template.objects.schedule.content.filter(fetched => fetched.id != schedule.id);
 
   }
+
 }
