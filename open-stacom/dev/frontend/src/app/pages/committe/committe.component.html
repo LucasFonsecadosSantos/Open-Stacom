@@ -1,8 +1,8 @@
 
 
 <div class="content">
-  <app-committee-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-form>
-  <app-confirm-dialog [template]="template" [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
+  <app-committee-form [event]="event" *ngIf="isDataLoaded"></app-committee-form>
+  <app-confirm-dialog [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
   <div class="row">
     <div class="col-md-12">
       <div class=" card">
@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <app-committee-list [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-list>
+      <app-committee-list [event]="event" *ngIf="isDataLoaded"></app-committee-list>
     </div>
     <!-- <div class="col-md-4">
       <app-committee-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-info>

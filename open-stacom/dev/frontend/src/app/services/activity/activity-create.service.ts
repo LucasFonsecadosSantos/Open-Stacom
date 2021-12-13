@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activity } from 'src/app/models';
-import { environment } from 'src/environments/environment';
 import { EventUpdateService } from '../event';
 import { Event } from './../../models';
 import { v4 as uuidv4 } from 'uuid';
