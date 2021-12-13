@@ -122,7 +122,9 @@
                 </thead>
                 <tbody *ngIf="committee && committee.members">
                   <tr *ngFor="let loadedMember of committee.members">
-                    <td value="{{loadedMember.id}}">{{ loadedMember.name }}
+                    <td value="{{loadedMember.id}}">
+                      {{ loadedMember.name }}
+                      <input type="hidden" [(ngModel)]="committee.members" name="members[]" [value]="loadedMember"/>
                     </td>
                   </tr>
                 </tbody>

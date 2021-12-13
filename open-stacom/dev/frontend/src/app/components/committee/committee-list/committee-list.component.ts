@@ -40,6 +40,7 @@ export class CommitteeListComponent implements OnInit {
 
     this.committeesArray = this._findService
                                 .list(this.event);
+    console.log(this.committeesArray);
 
   }
 

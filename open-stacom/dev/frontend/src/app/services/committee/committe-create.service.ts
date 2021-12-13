@@ -22,35 +22,37 @@ export class CommitteCreateService {
 
   private _addDataToEvent(committee: Committee, event: Event): Event {
 
+
+
     committee.id = uuidv4();
-    let members = [];
+    console.log(committee.members);
+    let membersArray = [];
+
     committee.members.forEach(member => {
-      members.push({'id': member.id});
+      member = {'id': member.id};
     });
-    committee.members = members;
-    console.log(committee);
-    event.template
-          .objects
-          .committee
-          .content
-          .forEach(
-            committee => {
 
-              let members = [];
-              committee.members.forEach(member => {
-                members.push({'id': member.id});
-              });
-              committee.members = members;
+    console.log(committee.members);
 
-            }
-          );
 
-    event.template
+          event.template
           .objects
           .committee
           .content
           .push(committee);
 
+
+    event.template
+          .objects
+          .committee
+          .content
+          .forEach(instance => {
+
+
+            instance.members = instance.members.filter(obj =>
+              Object.keys(obj).length == 1
+            );
+          });
     return event;
 
   }

@@ -62,7 +62,6 @@ export class CommitteFindService {
     let members: Person = this._personFindService
                                 .find(member.id, event)
 
-    committee.members.splice(0, committee.members.length);
     committee.members.push(members);
 
   }

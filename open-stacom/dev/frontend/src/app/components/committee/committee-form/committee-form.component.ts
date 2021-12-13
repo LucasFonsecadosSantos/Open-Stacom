@@ -24,6 +24,8 @@ export class CommitteeFormComponent implements OnInit {
 
   public personArray: Person[];
 
+  public committeeTmp: any[];
+
   public committee: Committee;
 
   public committeeFormModel: CommitteeForm;
@@ -76,6 +78,7 @@ export class CommitteeFormComponent implements OnInit {
                             .find(personID, this.event)
 
     this.committee.members.push(newMember);
+    this.committeeTmp.push({'id': newMember.id});
     this.personArray = this._removePersonFromOptions(personID);
 
 
@@ -121,7 +124,7 @@ export class CommitteeFormComponent implements OnInit {
   }
 
   private _launchModal(): void {
-
+    this.committeeTmp = [];
     if (!this._modalService.hasOpenModals()) {
 
       this._modalService.open(this.committeeForm,
@@ -210,7 +213,7 @@ export class CommitteeFormComponent implements OnInit {
     return {
       "id": data.id ? data.id : '',
       "name": data.name ? data.name : '',
-      "members": this.committee.members ? this.committee.members : [],
+      "members": this.committeeTmp ? this.committeeTmp : [],
       "picture": data.picture ? data.picture : '',
       "brief": data.brief ? data.brief : '',
       "telephone": data.telephone ? data.telephone : '',
