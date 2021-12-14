@@ -14,13 +14,16 @@ export class TemplatesRetrievingService {
 
   constructor(private http: HttpClient) { }
 
-  retrieving(): Observable<any> {
+  public retrieving(): Observable<any> {
 
-    return this.http.get<Template[]>(`${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}`);
+    return this.http
+                .get<Template[]>(
+                  `${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}`
+                );
 
   }
 
-  static buildSources(templates: Template[]): Template[] {
+  private static buildSources(templates: Template[]): Template[] {
 
     for (let template of templates ) {
       template = TemplatesRetrievingService._processTemplate(template);

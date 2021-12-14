@@ -430,7 +430,7 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
-      locationStreet?: {
+      locationAddress?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,

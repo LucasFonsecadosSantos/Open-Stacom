@@ -2,7 +2,7 @@ import { catchError, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Event } from './../../models';
+import { Event, Template } from './../../models';
 import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,13 +15,13 @@ export class EventCreateService {
     private http: HttpClient
   ) { }
 
-  create(templateid: string): Observable<Event> {
+  public createEvent(event: Event): Observable<Event> {
 
     return this.http.post<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
         id: uuidv4(),
-        templateID: templateid
+        event: event
       },
       {
         reportProgress: true,
@@ -29,4 +29,20 @@ export class EventCreateService {
       }
     );
   }
+
+  public create(template: Template): Observable<Event> {
+
+    return this.http.post<Event>(
+      `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
+      {
+        id: uuidv4(),
+        template: template
+      },
+      {
+        reportProgress: true,
+        responseType: 'json',
+      }
+    );
+  }
+
 }

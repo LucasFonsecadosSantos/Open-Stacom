@@ -1,41 +1,73 @@
 
 
 <div class=" card">
-  <div class=" card-header"><h5 class=" title">Editar informações {{event && event.name ? 'sobre ' + event.name : 'do seu evento'}}</h5></div>
-  <div class=" card-body" *ngIf="template && template.objects && template.objects.event">
-    <form>
-      <div class=" row">
-        <div class=" col-md-5 pr-md-1" *ngIf="template.objects.event.name">
+  <form #eventForm="ngForm" (ngSubmit)="createOrUpdate(eventForm.value)">
+    <div class=" card-header">
+      <h5 class=" title">Editar informações {{event && event.name ? 'sobre ' + event.name : 'do seu evento'}}</h5>
+    </div>
+    <div class=" card-body" *ngIf="template && event.template.objects && event.template.objects.event">
+      <div class="row">
+        <div class="col-md-12">
           <div class=" form-group">
-            <label> Título do Evento <span *ngIf="template.objects.event.name.required">*</span></label>
+            <label> ID</label>
             <input
-              class=" form-control"
+              [(ngModel)]="event.id"
+              name="id"
               readonly="true"
-              placeholder="Ex.: Congresso de Tecnologia"
+              class=" form-control"
               type="text"
-              maxlength="{{template.objects.event.name.maxlength}}"
-              [value]="event && event.name ? event.name : ''"
             />
           </div>
         </div>
-        <div class=" col-md-2 px-md-1" *ngIf="template.objects.event.edition">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <div class=" form-group">
-            <label> Edição <span *ngIf="template.objects.event.edition.required">*</span></label>
+            <label>Template ID</label>
             <input
+              [(ngModel)]="event.template"
+              name="template"
+              [value]='event.template.id'
+              readonly="true"
+              class=" form-control"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div class=" row">
+        <div class=" col-md-5 pr-md-1" *ngIf="event.template.objects.event.name">
+          <div class=" form-group">
+            <label> Título do Evento <span *ngIf="event.template.objects.event.name.required">*</span></label>
+            <input
+              [(ngModel)]="event.name"
+              name="name"
+              class=" form-control"
+              placeholder="Ex.: Congresso de Tecnologia"
+              type="text"
+              maxlength="{{event.template.objects.event.name.maxlength}}"
+            />
+          </div>
+        </div>
+        <div class=" col-md-2 px-md-1" *ngIf="event.template.objects.event.edition">
+          <div class=" form-group">
+            <label> Edição <span *ngIf="event.template.objects.event.edition.required">*</span></label>
+            <input
+              [(ngModel)]="event.edition"
+              name="edition"
               class=" form-control"
               placeholder="Ex: XXI"
               type="text"
-              [value]="event && event.edition ? event.edition : ''"
             />
           </div>
         </div>
-        <div class=" col-md-5 pl-md-1" *ngIf="template.objects.event.eventType">
+        <div class=" col-md-5 pl-md-1" *ngIf="event.template.objects.event.eventType">
           <div class=" form-group">
-            <label for="exampleInputEmail1"> Tipo de Evento <span *ngIf="template.objects.event.eventType.required">*</span></label>
+            <label for="exampleInputEmail1"> Tipo de Evento <span *ngIf="event.template.objects.event.eventType.required">*</span></label>
             <select
+              [(ngModel)]="event.eventType"
+              name="eventType"
               class=" form-control"
-              placeholder="mike@email.com"
-              type="email"
             >
             <option [value]="" selected="{{!event || !event.eventType}}"
               >-- SELECIONE --</option>
@@ -50,62 +82,65 @@
         </div>
       </div>
       <div class=" row">
-        <div class=" col-md-3 pr-md-1" *ngIf="template.objects.event.subject">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.subject">
           <div class=" form-group">
-            <label> Assunto/Objetivo <span *ngIf="template.objects.event.subject.required">*</span></label>
+            <label> Assunto/Objetivo <span *ngIf="event.template.objects.event.subject.required">*</span></label>
             <input
+              [(ngModel)]="event.subject"
+              name="subject"
               class=" form-control"
               placeholder="Ex.: Politicas Ambientais"
               type="text"
-              [value]="event && event.subject ? event.subject : ''"
             />
           </div>
         </div>
-        <div class=" col-md-4 pl-md-1" *ngIf="template.objects.event.poweredByInstitution">
+        <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.event.poweredByInstitution">
           <div class=" form-group">
-            <label> Realizado por Empresa/Instituto: <span *ngIf="template.objects.event.poweredByInstitution.required">*</span></label>
+            <label> Realizado por Empresa/Instituto: <span *ngIf="event.template.objects.event.poweredByInstitution.required">*</span></label>
             <input
+              [(ngModel)]="event.poweredByInstitution"
+              name="poweredByInstitution"
               class=" form-control"
               placeholder="Ex.: Universidade XPTO"
               type="text"
-              [value]="event && event.poweredBy && event.poweredBy.institution ?  event.poweredBy.institution : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="template.objects.event.poweredByDepartament">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.poweredByDepartament">
           <div class=" form-group">
-            <label> Departamento Realizador: <span *ngIf="template.objects.event.poweredByDepartament.required">*</span></label>
+            <label> Departamento Realizador: <span *ngIf="event.template.objects.event.poweredByDepartament.required">*</span></label>
             <input
+              [(ngModel)]="event.poweredByDepartament"
+              name="poweredByDepartament"
               class=" form-control"
               placeholder="Ex.: Departamento de Ciencias"
               type="text"
-              [value]="event && event.poweredBy && event.poweredBy.departament?  event.poweredBy.departament: ''"
             />
           </div>
         </div>
-        <div class=" col-md-2 pl-md-1" *ngIf="template.objects.event.targetPublic">
+        <div class=" col-md-2 pl-md-1" *ngIf="event.template.objects.event.targetPublic">
           <div class=" form-group">
-            <label> Público Alvo <span *ngIf="template.objects.event.targetPublic.required">*</span></label>
+            <label> Público Alvo <span *ngIf="event.template.objects.event.targetPublic.required">*</span></label>
             <input
+              [(ngModel)]="event.targetPublic"
+              name="targetPublic"
               class=" form-control"
               placeholder="Ex.: Pesquisadores e Estudantes"
               type="text"
-              [value]="event && event.targetPublic ? event.targetPublic : ''"
             />
           </div>
         </div>
       </div>
       <div class=" row">
-        <div class=" col-md-4" *ngIf="template.objects.event.logo">
+        <div class=" col-md-4" *ngIf="event.template.objects.event.logo">
           <div class="row">
             <div class="col-md-12 pr-md-1">
               <div class=" form-group">
-                <label> Logotipo <span *ngIf="template.objects.event.logo.required">*</span></label>
+                <label> Logotipo <span *ngIf="event.template.objects.event.logo.required">*</span></label>
                 <input
                   accept="image/png, image/gif, image/jpeg"
                   class="form-control"
                   type="file"
-                  [value]=""
                 />
               </div>
             </div>
@@ -113,27 +148,29 @@
         </div>
         <div class=" col-md-8">
           <div class="row">
-            <div class="col-md-12 pl-md-1" *ngIf="template.objects.event.brief">
+            <div class="col-md-12 pl-md-1" *ngIf="event.template.objects.event.brief">
               <div class=" form-group">
-                <label> Resumo sobre o evento <span *ngIf="template.objects.event.brief.required">*</span></label>
+                <label> Resumo sobre o evento <span *ngIf="event.template.objects.event.brief.required">*</span></label>
                 <textarea
+                  [(ngModel)]="event.brief"
+                  name="brief"
                   rows=5
                   class=" form-control"
                   placeholder="Ex.: Este evento é realiazdo anualmente, conta com a colaboração de diversas pessoas para que possa ocorrer..."
                   type="text"
-                  [value]="event && event.brief ? event.brief : ''"
                 >{{ event.brief }}</textarea>
               </div>
             </div>
-            <div class="col-md-12 pl-md-1" *ngIf="template.objects.event.description">
+            <div class="col-md-12 pl-md-1" *ngIf="event.template.objects.event.description">
               <div class=" form-group">
-                <label> Descrição detalhada <span *ngIf="template.objects.event.description.required">*</span></label>
+                <label> Descrição detalhada <span *ngIf="event.template.objects.event.description.required">*</span></label>
                 <textarea
+                  [(ngModel)]="event.description"
+                  name="description"
                   rows=5
                   class=" form-control"
                   placeholder="Ex.: Este evento é realiazdo anualmente, conta com a colaboração de diversas pessoas para que possa ocorrer..."
                   type="text"
-                  [value]="event && event.description ? event.description : ''"
                 >{{ event.description }}</textarea>
               </div>
             </div>
@@ -144,9 +181,9 @@
 
         <div class=" col-md-6 pr-md-1">
           <div class="row">
-            <div class="col-md-4" *ngIf="template.objects.event.telephoneName">
+            <div class="col-md-4" *ngIf="event.template.objects.event.telephoneName">
               <div class=" form-group">
-                <label> Contato <span *ngIf="template.objects.event.telephoneName.required">*</span></label>
+                <label> Contato <span *ngIf="event.template.objects.event.telephoneName.required">*</span></label>
                 <input
                   #contactField
                   class=" form-control"
@@ -155,13 +192,12 @@
                 />
               </div>
             </div>
-            <div class="col-md-4" *ngIf="template.objects.event.telephoneNumber">
+            <div class="col-md-4" *ngIf="event.template.objects.event.telephoneNumber">
               <div class=" form-group">
-                <label> Número de Telefone <span *ngIf="template.objects.event.telephoneNumber.required">*</span></label>
+                <label> Número de Telefone <span *ngIf="event.template.objects.event.telephoneNumber.required">*</span></label>
                 <input
                   #telephoneField
                   class=" form-control"
-                  [mask]="0000000-0000"
                   placeholder="Ex.: (16) 99235-9954"
                   type="text"
                 />
@@ -170,6 +206,7 @@
             <div class="col-md-4 d-flex align-items-center">
               <button
                 _ngcontent-eus-c76=""
+                type="button"
                 class="btn btn-sm btn-outline-primary d-flex align-items-center"
                 (click)="addTelephoneToList(contactField.value, telephoneField.value)"
               >
@@ -196,11 +233,11 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 pl-md-1" *ngIf="template.objects.event.days">
+        <div class="col-md-6 pl-md-1" *ngIf="event.template.objects.event.days">
           <div class="row">
             <div class="col-md-8">
               <div class=" form-group">
-                <label> Datas de ocorrencia do evento <span *ngIf="template.objects.event.days.required">*</span></label>
+                <label> Datas de ocorrencia do evento <span *ngIf="event.template.objects.event.days.required">*</span></label>
                 <input
                   #dateField
                   class=" form-control"
@@ -212,6 +249,7 @@
             <div class="col-md-4 d-flex align-items-center">
               <button
                 _ngcontent-eus-c76=""
+                type="button"
                 class="btn btn-sm btn-outline-primary d-flex align-items-center"
                 (click)="addDateToList(dateField.value)"
               >
@@ -229,7 +267,7 @@
                 </thead>
                 <tbody *ngIf="event && event.days" >
                   <tr *ngFor="let day of event.days">
-                    <td>{{ day }}</td>
+                    <td>{{ day | date: 'dd/MM/yyyy' }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -239,25 +277,27 @@
 
       </div>
       <div class=" row">
-        <div class=" col-md-6 pr-md-1" *ngIf="template.objects.event.website">
+        <div class=" col-md-6 pr-md-1" *ngIf="event.template.objects.event.website">
           <div class=" form-group">
-            <label> Website <span *ngIf="template.objects.event.website.required">*</span></label>
+            <label> Website <span *ngIf="event.template.objects.event.website.required">*</span></label>
             <input
+              [(ngModel)]="event.website"
+              name="website"
               class=" form-control"
               placeholder="Ex.: www.sitedoevento.com.br"
               type="text"
-              [value]="event && event.website ? event.website : ''"
             />
           </div>
         </div>
-        <div class=" col-md-6 pl-md-1" *ngIf="template.objects.event.email">
+        <div class=" col-md-6 pl-md-1" *ngIf="event.template.objects.event.email">
           <div class=" form-group">
-            <label> E-mail <span *ngIf="template.objects.event.email.required">*</span></label>
+            <label> E-mail <span *ngIf="event.template.objects.event.email.required">*</span></label>
             <input
+              [(ngModel)]="event.email"
+              name="email"
               class=" form-control"
               placeholder="Ex.: email@instituicao.com.br"
               type="email"
-              [value]="event && event.email ? event.email : ''"
             />
           </div>
         </div>
@@ -268,93 +308,101 @@
         </div>
       </div>
       <div class=" row">
-        <div class=" col-md-3 pr-md-1" *ngIf="template.objects.event.socialNetworksFacebook">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworksFacebook">
           <div class=" form-group">
-            <label> Facebook <span *ngIf="template.objects.event.socialNetworksFacebook.required">*</span></label>
+            <label> Facebook <span *ngIf="event.template.objects.event.socialNetworksFacebook.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksFacebook"
+              name="socialNetworksFacebook"
               class=" form-control"
               placeholder="Ex.: www.facebook.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.facebook ? event.socialNetworks.facebook : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.socialNetworksTwitter">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksTwitter">
           <div class=" form-group">
-            <label> Twitter<span *ngIf="template.objects.event.socialNetworksTwitter.required">*</span> </label>
+            <label> Twitter<span *ngIf="event.template.objects.event.socialNetworksTwitter.required">*</span> </label>
             <input
+              [(ngModel)]="event.socialNetworksTwitter"
+              name="socialNetworksFacebook"
               class=" form-control"
               placeholder="Ex.: www.twitter.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.twitter ? event.socialNetworks.twitter : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.socialNetworksGithub">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksGithub">
           <div class=" form-group">
-            <label> Github <span *ngIf="template.objects.event.socialNetworksGithub.required">*</span></label>
+            <label> Github <span *ngIf="event.template.objects.event.socialNetworksGithub.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksGithub"
+              name="socialNetworksGithub"
               class=" form-control"
               placeholder="Ex.: www.github.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.github ? event.socialNetworks.github : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="template.objects.event.socialNetworksSpotify">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworksSpotify">
           <div class=" form-group">
-            <label> Spotify <span *ngIf="template.objects.event.socialNetworksSpotify.required">*</span></label>
+            <label> Spotify <span *ngIf="event.template.objects.event.socialNetworksSpotify.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksSpotify"
+              name="socialNetworksSpotify"
               class=" form-control"
               placeholder="Ex.: www.spotify.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.spotify ? event.socialNetworks.spotify : ''"
             />
           </div>
         </div>
       </div>
       <div class="row">
-        <div class=" col-md-3 pr-md-1" *ngIf="template.objects.event.socialNetworksLinkedin">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworksLinkedin">
           <div class=" form-group">
-            <label> Linkedin <span *ngIf="template.objects.event.socialNetworksLinkedin.required">*</span></label>
+            <label> Linkedin <span *ngIf="event.template.objects.event.socialNetworksLinkedin.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksLinkedin"
+              name="socialNetworksLinkedin"
               class=" form-control"
               placeholder="Ex.: www.linkedin.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.linkedin ? event.socialNetworks.linkedin : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.socialNetworksWhatsapp">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksWhatsapp">
           <div class=" form-group">
-            <label> Whatsapp <span *ngIf="template.objects.event.socialNetworksWhatsapp.required">*</span></label>
+            <label> Whatsapp <span *ngIf="event.template.objects.event.socialNetworksWhatsapp.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksWhatsapp"
+              name="socialNetworksWhatsapp"
               class=" form-control"
               placeholder="Ex.: www.whats.me/"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.whatsapp ? event.socialNetworks.whatsapp : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.socialNetworksBehance">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksBehance">
           <div class=" form-group">
-            <label> Behance <span *ngIf="template.objects.event.socialNetworksBehance.required">*</span></label>
+            <label> Behance <span *ngIf="event.template.objects.event.socialNetworksBehance.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksBehance"
+              name="socialNetworksBehance"
               class=" form-control"
               placeholder="Ex.: www.behance.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.behance ? event.socialNetworks.behance : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="template.objects.event.socialNetworksYoutubeChannel">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworksYoutubeChannel">
           <div class=" form-group">
-            <label> Youtube <span *ngIf="template.objects.event.socialNetworksYoutubeChannel.required">*</span></label>
+            <label> Youtube <span *ngIf="event.template.objects.event.socialNetworksYoutubeChannel.required">*</span></label>
             <input
+              [(ngModel)]="event.socialNetworksYoutubeChannel"
+              name="socialNetworksYoutubeChannel"
               class=" form-control"
               placeholder="Ex.: www.youtube.com/NomeDoEvento"
               type="text"
-              [value]="event && event.socialNetworks && event.socialNetworks.youtubeChannel? event.socialNetworks.youtubeChannel : ''"
             />
           </div>
         </div>
@@ -365,79 +413,85 @@
         </div>
       </div>
       <div class="row">
-        <div class=" col-md-3 pr-md-1" *ngIf="template.objects.event.locationCep">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.locationCep">
           <div class=" form-group">
-            <label> CEP: <span *ngIf="template.objects.event.locationCep.required">*</span></label>
+            <label> CEP: <span *ngIf="event.template.objects.event.locationCep.required">*</span></label>
             <input
               #cep
+              [(ngModel)]="event.locationCep"
+              name="locationCep"
               class=" form-control"
               placeholder="Ex.: 14075-662"
               type="text"
               [mask]="00000-000"
-              [value]="event && event.location && event.location.cep ? event.location.cep : ''"
               (change)="fetchCEPInformations(cep.value)"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.locationStreet">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.locationAddress">
           <div class=" form-group">
-            <label> Endereço: <span *ngIf="template.objects.event.locationStreet.required">*</span></label>
+            <label> Endereço: <span *ngIf="event.template.objects.event.locationAddress.required">*</span></label>
             <input
               #streetField
+              [(ngModel)]="event.locationAddress"
+              name="locationAddress"
               class=" form-control"
               placeholder="Ex.: Avenida exemplo"
               type="text"
-              [value]="event && event.location && event.location.street ? event.location.street : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.locationNumber">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.locationNumber">
           <div class=" form-group">
-            <label> number: <span *ngIf="template.objects.event.locationNumber.required">*</span></label>
+            <label> number: <span *ngIf="event.template.objects.event.locationNumber.required">*</span></label>
             <input
               #numberField
+              [(ngModel)]="event.locationNumber"
+              name="locationNumber"
               class=" form-control"
               placeholder="Ex.: 3425"
               type="text"
-              [value]="event && event.location && event.location.number ? event.location.number : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="template.objects.event.locationNeiborhood">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.locationNeiborhood">
           <div class=" form-group">
-            <label> Bairro: <span *ngIf="template.objects.event.locationNeiborhood.required">*</span></label>
+            <label> Bairro: <span *ngIf="event.template.objects.event.locationNeiborhood.required">*</span></label>
             <input
               #neiborhoodField
+              [(ngModel)]="event.locationNeiborhood"
+              name="locationNeiborhood"
               class=" form-control"
               placeholder="Ex.: Parque do Exemplo"
               type="text"
-              [value]="event && event.location && event.location.neiborhood ? event.location.neiborhood : ''"
             />
           </div>
         </div>
       </div>
       <div class="row">
-        <div class=" col-md-4 pr-md-1" *ngIf="template.objects.event.locationCity">
+        <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.event.locationCity">
           <div class=" form-group">
-            <label> Cidade: <span *ngIf="template.objects.event.locationCity.required">*</span></label>
+            <label> Cidade: <span *ngIf="event.template.objects.event.locationCity.required">*</span></label>
             <input
               #cityField
+              [(ngModel)]="event.locationCity"
+              name="locationCity"
               class=" form-control"
               placeholder="Ex.: Ribeirão Preto"
               type="text"
-              [value]="event && event.location && event.location.city ? event.location.city : ''"
             />
           </div>
         </div>
-        <div class=" col-md-2 px-md-1" *ngIf="template.objects.event.locationUF">
+        <div class=" col-md-2 px-md-1" *ngIf="event.template.objects.event.locationUF">
           <div class=" form-group">
-            <label> UF: <span *ngIf="template.objects.event.locationUF.required">*</span></label>
+            <label> UF: <span *ngIf="event.template.objects.event.locationUF.required">*</span></label>
             <select
               #ufField
+              [(ngModel)]="event.locationUF"
+              name="locationUF"
               class=" form-control"
               placeholder="Ex.: SP"
               type="text"
-              [value]="event && event.location && event.location.state ? event.location.state : ''"
             >
               <option value="">- SELECIONE -</option>
               <option value="{{uf.id}}" *ngFor="let uf of states"
@@ -445,33 +499,35 @@
             </select>
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="template.objects.event.locationCountry">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.locationCountry">
           <div class=" form-group">
-            <label> País: <span *ngIf="template.objects.event.locationCountry.required">*</span></label>
+            <label> País: <span *ngIf="event.template.objects.event.locationCountry.required">*</span></label>
             <input
               #countryField
+              [(ngModel)]="event.locationCountry"
+              name="locationCountry"
               class=" form-control"
               placeholder="Ex.: Brasil"
               type="text"
-              [value]="event && event.location && event.location.country ? event.location.country : ''"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="template.objects.event.locationLatLong">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.locationLatLong">
           <div class=" form-group">
-            <label> Coordenadas de Mapa (Latitude/Logitude):<span *ngIf="template.objects.event.locationLatLongrequired">*</span> </label>
+            <label> Coordenadas de Mapa (Latitude/Logitude):<span *ngIf="event.template.objects.event.locationLatLongrequired">*</span> </label>
             <input
+              [(ngModel)]="event.locationLatLong"
+              name="locationLatLong"
               class=" form-control"
               placeholder="Ex.: 545568566488"
               type="text"
-              [value]="event && event.location && event.location.latLong ? event.location.latLong : ''"
             />
           </div>
         </div>
       </div>
-    </form>
-  </div>
-  <div class=" card-footer">
-    <button class=" btn btn-fill btn-danger" *ngIf="template && template.objects && template.objects.event" (click)="update(event)" type="submit">Atualizar Informações</button>
-  </div>
+    </div>
+    <div class=" card-footer">
+      <button class=" btn btn-fill btn-danger" *ngIf="template && event.template.objects && event.template.objects.event" type="submit">Atualizar Informações</button>
+    </div>
+  </form>
 </div>

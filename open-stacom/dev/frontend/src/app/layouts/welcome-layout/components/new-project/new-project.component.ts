@@ -37,10 +37,10 @@ export class NewProjectComponent implements OnInit {
     );
   }
 
-  createEvent(templateID: string): void {
+  public createEvent(template: Template): void {
 
     this.eventCreateService
-      .create(templateID)
+      .create(template)
       .subscribe(
         response => {
           this.router.navigate([`inicio/${response.id}`]);
