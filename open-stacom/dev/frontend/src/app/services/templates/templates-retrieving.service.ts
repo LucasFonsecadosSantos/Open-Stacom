@@ -23,7 +23,7 @@ export class TemplatesRetrievingService {
 
   }
 
-  private static buildSources(templates: Template[]): Template[] {
+  public static buildSources(templates: Template[]): Template[] {
 
     for (let template of templates ) {
       template = TemplatesRetrievingService._processTemplate(template);

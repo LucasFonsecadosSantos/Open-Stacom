@@ -1,5 +1,5 @@
 <ng-template #personForm let-modal>
-  <form>
+  <form #personForm="ngForm" (ngSubmit)="createOrUpdate(personForm.value)">
     <div class="modal-body">
       <div class=" card">
         <div class=" card-header d-flex justify-content-between">
@@ -8,301 +8,396 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class=" card-body" *ngIf="template && template.objects">
+        <div class=" card-body" *ngIf="event.template && event.template.objects">
           <div class="row" *ngIf="personFormModel.operation == operationUpdate">
             <div class="col-md-12">
               <div class=" form-group">
                 <label>ID</label>
                 <input
+                  [(ngModel)]="person.id"
+                  name="id"
                   readonly="true"
                   class=" form-control"
                   type="text"
-                  [value]="person.id"
-                  disabled="true"
                 />
               </div>
             </div>
           </div>
           <div class=" row">
-            <div *ngIf="template.objects.person.name" class=" col-md-6 pr-md-1">
+            <div *ngIf="event.template.objects.person.name" class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> Nome Completo <span *ngIf="template.objects.person.name.required">*</span></label>
+                <label> Nome Completo <span *ngIf="event.template.objects.person.name.required">*</span></label>
                 <input
+                  [(ngModel)]="person.name"
+                  name="name"
                   class=" form-control"
                   placeholder="Ex.: João da Silva"
                   type="text"
-                  [value]="(person && person != null && person.name) ? person.name : ''"
-                  maxlength="{{template.objects.person.name.maxlength}}"
-                  minlength="{{template.objects.person.name.minlength}}"
-                  required="{{template.objects.person.name.required}}"
+                  maxlength="{{event.template.objects.person.name.maxlength}}"
+                  minlength="{{event.template.objects.person.name.minlength}}"
+                  required="{{event.template.objects.person.name.required}}"
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
-              <div *ngIf="template.objects.person.job" class=" form-group">
-                <label> Ocupação/Cargo <span *ngIf="template.objects.person.job.required">*</span></label>
+              <div *ngIf="event.template.objects.person.job" class=" form-group">
+                <label> Ocupação/Cargo <span *ngIf="event.template.objects.person.job.required">*</span></label>
                 <input
+                  [(ngModel)]="person.job"
+                  name="job"
                   class=" form-control"
                   placeholder="Ex.: Analista de Sistemas"
                   type="text"
-                  [value]="(person && person != null && person.job) ? person.job : ''"
-                  [maxlength]="template.objects.person.job.maxlength"
-                  [minlength]="template.objects.person.job.minlength"
-                  [required]="template.objects.person.job.required"
+                  [maxlength]="event.template.objects.person.job.maxlength"
+                  [minlength]="event.template.objects.person.job.minlength"
+                  [required]="event.template.objects.person.job.required"
                 />
               </div>
             </div>
           </div>
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
-              <div *ngIf="template.objects.person.institution" class=" form-group">
-                <label> Instituição que Trabalha <span *ngIf="template.objects.person.institution.required">*</span></label>
+              <div *ngIf="event.template.objects.person.institution" class=" form-group">
+                <label> Instituição que Trabalha <span *ngIf="event.template.objects.person.institution.required">*</span></label>
                 <input
+                  [(ngModel)]="person.institution"
+                  name="institution"
                   class=" form-control"
                   placeholder="Ex.: Companhia Siderurgica Nacional"
                   type="text"
-                  [value]="(person && person != null && person.institution) ? person.institution : ''"
-                  [maxlength]="template.objects.person.institution.maxlength"
-                  [minlength]="template.objects.person.institution.minlength"
-                  [required]="template.objects.person.institution.required"
+                  [maxlength]="event.template.objects.person.institution.maxlength"
+                  [minlength]="event.template.objects.person.institution.minlength"
+                  [required]="event.template.objects.person.institution.required"
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
-              <div *ngIf="template.objects.person.academicFormation" class=" form-group">
-                <label> Formação Acadêmica <span *ngIf="template.objects.person.academicFormation.required">*</span></label>
+              <div *ngIf="event.template.objects.person.academicFormation" class=" form-group">
+                <label> Formação Acadêmica <span *ngIf="event.template.objects.person.academicFormation.required">*</span></label>
                 <input
+                  [(ngModel)]="person.academicFormation"
+                  name="academicFormation"
                   class=" form-control"
                   placeholder="Ex.: Mestre em Ciência da Computação pela Universidade Federal de Lavras"
                   type="text"
-                  [value]="(person && person != null && person.academicFormation)? person.academicFormation : ''"
-                  [maxlength]="template.objects.person.academicFormation.maxlength"
-                  [minlength]="template.objects.person.academicFormation.minlength"
-                  [required]="template.objects.person.academicFormation.required"
+                  [maxlength]="event.template.objects.person.academicFormation.maxlength"
+                  [minlength]="event.template.objects.person.academicFormation.minlength"
+                  [required]="event.template.objects.person.academicFormation.required"
                 />
               </div>
             </div>
           </div>
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
-              <div *ngIf="template.objects.person.brief" class=" form-group">
-                <label> Resumo Biográfico<span *ngIf="template.objects.person.brief.required">*</span> </label>
+              <div *ngIf="event.template.objects.person.brief" class=" form-group">
+                <label> Resumo Biográfico<span *ngIf="event.template.objects.person.brief.required">*</span> </label>
                 <textarea
+                  [(ngModel)]="person.brief"
+                  name="brief"
                   rows="15"
                   class=" form-control"
                   placeholder="Ex.: Formado em Ciências Agrárias pela Universidade Federal de Lavras, João é representante comercial nas industrias XPTO há 20 anos..."
-                  [value]="(person && person!=null && person.brief) ? person.brief : ''"
-                  [maxlength]="template.objects.person.brief.maxlength"
-                  [minlength]="template.objects.person.brief.minlength"
-                  [required]="template.objects.person.brief.required"
+                  [maxlength]="event.template.objects.person.brief.maxlength"
+                  [minlength]="event.template.objects.person.brief.minlength"
+                  [required]="event.template.objects.person.brief.required"
                 ></textarea>
               </div>
             </div>
           </div>
           <div class=" row">
-            <div class=" col-md-4 pr-md-1" *ngIf="template.objects.person.locationCity">
+            <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.person.locationCep">
               <div class=" form-group">
-                <label> Cidade <span *ngIf="template.objects.person.locationCity.required">*</span> </label>
+                <label> CEP <span *ngIf="event.template.objects.person.locationCep.required">*</span> </label>
                 <input
+                  #cep
+                  [mask]="00000-000"
+                  (change)="fetchCEPInformations(cep.value)"
+                  [(ngModel)]="person.locationCep"
+                  name="locationCep"
                   class=" form-control"
-                  placeholder="Ex.: Lavras"
+                  placeholder="Ex.: 14075-600"
                   type="text"
-                  [value]="(person && person != null && person.location && person.location.city) ? person.location.city : ''"
-                  [maxlength]="template.objects.person.locationCity.maxlength"
-                  [minlength]="template.objects.person.locationCity.minlength"
-                  [required]="template.objects.person.locationCity.required"
+                  [maxlength]="event.template.objects.person.locationCep.maxlength"
+                  [minlength]="event.template.objects.person.locationCep.minlength"
+                  [required]="event.template.objects.person.locationCep.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 px-md-1" *ngIf="template.objects.person.locationState">
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.locationAddress">
               <div class=" form-group">
-                <label> Estado <span *ngIf="template.objects.person.locationState.required">*</span></label>
+                <label> Endereço <span *ngIf="event.template.objects.person.locationAddress.required">*</span></label>
                 <input
+                  #streetField
+                  [(ngModel)]="person.locationAddress"
+                  name="locationAddress"
                   class=" form-control"
-                  placeholder="Ex.: Minas Gerais"
+                  placeholder="Ex.: Rua Ronan Pereira"
                   type="text"
-                  [value]="(person && person != null && person.location && person.location.state) ? person.location.state : ''"
-                  [maxlength]="template.objects.person.locationState.maxlength"
-                  [minlength]="template.objects.person.locationState.minlength"
-                  [required]="template.objects.person.locationState.required"
+                  [maxlength]="event.template.objects.person.locationAddress.maxlength"
+                  [minlength]="event.template.objects.person.locationAddress.minlength"
+                  [required]="event.template.objects.person.locationAddress.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pl-md-1" *ngIf="template.objects.person.locationCountry">
+            <div class=" col-md-2 pl-md-1" *ngIf="event.template.objects.person.locationNumber">
               <div class=" form-group">
-                <label> Pais <span *ngIf="template.objects.person.locationCountry.required">*</span></label>
+                <label> Número <span *ngIf="event.template.objects.person.locationNumber.required">*</span></label>
                 <input
+                  #numberField
+                  [(ngModel)]="person.locationNumber"
+                  name="locationNumber"
                   class=" form-control"
                   placeholder="Ex.: Brasil"
                   type="text"
-                  [value]="(person && person != null && person.location && person.location.country) ? person.location.country : ''"
-                  [maxlength]="template.objects.person.locationCountry.maxlength"
-                  [minlength]="template.objects.person.locationCountry.minlength"
-                  [required]="template.objects.person.locationCountry.required"
+                  [maxlength]="event.template.objects.person.locationNumber.maxlength"
+                  [minlength]="event.template.objects.person.locationNumber.minlength"
+                  [required]="event.template.objects.person.locationNumber.required"
+                />
+              </div>
+            </div>
+          </div>
+          <div class=" col-md-2 pr-md-1" *ngIf="event.template.objects.person.locationNeiborhood">
+            <div class=" form-group">
+              <label> Bairro <span *ngIf="event.template.objects.person.locationNeiborhood.required">*</span> </label>
+              <input
+                #neiborhoodField
+                [(ngModel)]="person.locationNeiborhood"
+                name="locationNeiborhood"
+                class=" form-control"
+                placeholder="Ex.: Lavras"
+                type="text"
+                [maxlength]="event.template.objects.person.locationNeiborhood.maxlength"
+                [minlength]="event.template.objects.person.locationNeiborhood.minlength"
+                [required]="event.template.objects.person.locationNeiborhood.required"
+              />
+            </div>
+          </div>
+          <div class=" row">
+
+            <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.person.locationCity">
+              <div class=" form-group">
+                <label> Cidade: <span *ngIf="event.template.objects.person.locationCity.required">*</span></label>
+                <input
+                  #cityField
+                  [(ngModel)]="person.locationCity"
+                  name="locationCity"
+                  class=" form-control"
+                  placeholder="Ex.: Ribeirão Preto"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.locationState">
+              <div class=" form-group">
+                <label> Estado <span *ngIf="event.template.objects.person.locationState.required">*</span></label>
+                <select
+                  #ufField
+                  [(ngModel)]="person.locationUF"
+                  name="locationUF"
+                  class=" form-control"
+                  placeholder="Ex.: SP"
+                  type="text"
+                >
+                  <option value="">- SELECIONE -</option>
+                  <option value="{{uf.id}}" *ngFor="let uf of states"
+                  >{{uf.id}}</option>
+                </select>
+              </div>
+            </div>
+            <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.person.locationCountry">
+              <div class=" form-group">
+                <label> Pais <span *ngIf="event.template.objects.person.locationCountry.required">*</span></label>
+                <input
+                  #countryField
+                  [(ngModel)]="person.locationCountry"
+                  name="locationCountry"
+                  class=" form-control"
+                  placeholder="Ex.: Brasil"
+                  type="text"
+                  [maxlength]="event.template.objects.person.locationCountry.maxlength"
+                  [minlength]="event.template.objects.person.locationCountry.minlength"
+                  [required]="event.template.objects.person.locationCountry.required"
                 />
               </div>
             </div>
           </div>
           <div class=" row">
-            <div class=" col-md-4 pr-md-1" *ngIf="template.objects.person.socialNetworkFacebook">
+            <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.person.socialNetworkFacebook">
               <div class=" form-group">
-                <label> Facebook <span *ngIf="template.objects.person.socialNetworkFacebook.required">*</span> </label>
+                <label> Facebook <span *ngIf="event.template.objects.person.socialNetworkFacebook.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkFacebook"
+                  name="socialNetworkFacebook"
                   class=" form-control"
                   placeholder="Ex.: https://www.facebook.com/JOAOARNALDO/"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.facebook) ? person.socialNetworks.facebook : ''"
-                  [maxlength]="template.objects.person.socialNetworkFacebook.maxlength"
-                  [minlength]="template.objects.person.socialNetworkFacebook.minlength"
-                  [required]="template.objects.person.socialNetworkFacebook.required"
+                  [maxlength]="event.template.objects.person.socialNetworkFacebook.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkFacebook.minlength"
+                  [required]="event.template.objects.person.socialNetworkFacebook.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 px-md-1" *ngIf="template.objects.person.socialNetworkTwitter">
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.socialNetworkTwitter">
               <div class=" form-group">
-                <label> Twitter <span *ngIf="template.objects.person.socialNetworkTwitter.required">*</span> </label>
+                <label> Twitter <span *ngIf="event.template.objects.person.socialNetworkTwitter.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkTwitter"
+                  name="socialNetworkTwitter"
                   class=" form-control"
                   placeholder="Ex.: https://twitter.com/joao_paulo?lang=en"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.twitter) ? person.socialNetworks.twitter : ''"
-                  [maxlength]="template.objects.person.socialNetworkTwitter.maxlength"
-                  [minlength]="template.objects.person.socialNetworkTwitter.minlength"
-                  [required]="template.objects.person.socialNetworkTwitter.required"
+                  [maxlength]="event.template.objects.person.socialNetworkTwitter.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkTwitter.minlength"
+                  [required]="event.template.objects.person.socialNetworkTwitter.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pl-md-1" *ngIf="template.objects.person.socialNetworkWebsite">
+            <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.person.socialNetworkWebsite">
               <div class=" form-group">
-                <label> Website <span *ngIf="template.objects.person.socialNetworkWebsite.required">*</span> </label>
+                <label> Website <span *ngIf="event.template.objects.person.socialNetworkWebsite.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkWebsite"
+                  name="socialNetworkWebsite"
                   class=" form-control"
                   placeholder="Ex.: https://www.site.com.br"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.website) ? person.socialNetworks.website : ''"
-                  [maxlength]="template.objects.person.socialNetworkWebsite.maxlength"
-                  [minlength]="template.objects.person.socialNetworkWebsite.minlength"
-                  [required]="template.objects.person.socialNetworkWebsite.required"
+                  [maxlength]="event.template.objects.person.socialNetworkWebsite.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkWebsite.minlength"
+                  [required]="event.template.objects.person.socialNetworkWebsite.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pr-md-1" *ngIf="template.objects.person.socialNetworkGithub">
+            <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.person.socialNetworkGithub">
               <div class=" form-group">
-                <label> Github <span *ngIf="template.objects.person.socialNetworkGithub.required">*</span> </label>
+                <label> Github <span *ngIf="event.template.objects.person.socialNetworkGithub.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkGithub"
+                  name="socialNetworkGithub"
                   class=" form-control"
                   placeholder="Ex.: https://www.github.com/LUCASFONSECADOSSANTOS"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.github) ? person.socialNetworks.github : ''"
-                  [maxlength]="template.objects.person.socialNetworkGithub.maxlength"
-                  [minlength]="template.objects.person.socialNetworkGithub.minlength"
-                  [required]="template.objects.person.socialNetworkGithub.required"
+                  [maxlength]="event.template.objects.person.socialNetworkGithub.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkGithub.minlength"
+                  [required]="event.template.objects.person.socialNetworkGithub.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 px-md-1" *ngIf="template.objects.person.socialNetworkLinkedin">
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.socialNetworkLinkedin">
               <div class=" form-group">
-                <label> Linkedin <span *ngIf="template.objects.person.socialNetworkLinkedin.required">*</span> </label>
+                <label> Linkedin <span *ngIf="event.template.objects.person.socialNetworkLinkedin.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkLinkedin"
+                  name="socialNetworkLinkedin"
                   class=" form-control"
                   placeholder="Ex.: https://www.linkedin.com/LUCASFONSECADOSSANTOS"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.linkedin) ? person.socialNetworks.linkedin : ''"
-                  [maxlength]="template.objects.person.socialNetworkLinkedin.maxlength"
-                  [minlength]="template.objects.person.socialNetworkLinkedin.minlength"
-                  [required]="template.objects.person.socialNetworkLinkedin.required"
+                  [maxlength]="event.template.objects.person.socialNetworkLinkedin.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkLinkedin.minlength"
+                  [required]="event.template.objects.person.socialNetworkLinkedin.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pl-md-1" *ngIf="template.objects.person.socialNetworkSpotify">
+            <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.person.socialNetworkSpotify">
               <div class=" form-group">
-                <label> Spotify <span *ngIf="template.objects.person.socialNetworkSpotify.required">*</span> </label>
+                <label> Spotify <span *ngIf="event.template.objects.person.socialNetworkSpotify.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkSpotify"
+                  name="socialNetworkSpotify"
                   class=" form-control"
                   placeholder="Ex.: https://www.spotify.com/LUCASFONSECADOSSANTOS"
                   type="text"
-                  [value]="(person && person != null &&person.socialNetworks && person.socialNetworks.spotify) ? person.socialNetworks.spotify : ''"
-                  [maxlength]="template.objects.person.socialNetworkSpotify.maxlength"
-                  [minlength]="template.objects.person.socialNetworkSpotify.minlength"
-                  [required]="template.objects.person.socialNetworkSpotify.required"
+                  [maxlength]="event.template.objects.person.socialNetworkSpotify.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkSpotify.minlength"
+                  [required]="event.template.objects.person.socialNetworkSpotify.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pr-md-1" *ngIf="template.objects.person.socialNetworkLattes">
+            <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.person.socialNetworkLattes">
               <div class=" form-group">
-                <label> Lattes <span *ngIf="template.objects.person.socialNetworkLattes.required">*</span> </label>
+                <label> Lattes <span *ngIf="event.template.objects.person.socialNetworkLattes.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkLattes"
+                  name="socialNetworkLattes"
                   class=" form-control"
                   placeholder="Ex.: https://www.lattes.com/2847527743"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.lattes) ? person.socialNetworks.lattes : ''"
-                  [maxlength]="template.objects.person.socialNetworkLattes.maxlength"
-                  [minlength]="template.objects.person.socialNetworkLattes.minlength"
-                  [required]="template.objects.person.socialNetworkLattes.required"
+                  [maxlength]="event.template.objects.person.socialNetworkLattes.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkLattes.minlength"
+                  [required]="event.template.objects.person.socialNetworkLattes.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 px-md-1" *ngIf="template.objects.person.socialNetworkEmail">
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.socialNetworkEmail">
               <div class=" form-group">
-                <label> E-mail <span *ngIf="template.objects.person.socialNetworkEmail.required">*</span> </label>
+                <label> E-mail <span *ngIf="event.template.objects.person.socialNetworkEmail.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkEmail"
+                  name="socialNetworkEmail"
                   class=" form-control"
                   placeholder="Ex.: email@site.com.br"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.email) ? person.socialNetworks.email : ''"
-                  [maxlength]="template.objects.person.socialNetworkEmail.maxlength"
-                  [minlength]="template.objects.person.socialNetworkEmail.minlength"
-                  [required]="template.objects.person.socialNetworkEmail.required"
+                  [maxlength]="event.template.objects.person.socialNetworkEmail.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkEmail.minlength"
+                  [required]="event.template.objects.person.socialNetworkEmail.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pl-md-1" *ngIf="template.objects.person.socialNetworkWhatsapp">
+            <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.person.socialNetworkWhatsapp">
               <div class=" form-group">
-                <label> Whatsapp <span *ngIf="template.objects.person.socialNetworkWhatsapp.required">*</span> </label>
+                <label> Whatsapp <span *ngIf="event.template.objects.person.socialNetworkWhatsapp.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkWhatsapp"
+                  name="socialNetworkWhatsapp"
                   class=" form-control"
                   placeholder="Ex.: (35) 99169-9667"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.whatsapp) ? person.socialNetworks.whatsapp : ''"
-                  [maxlength]="template.objects.person.socialNetworkWhatsapp.maxlength"
-                  [minlength]="template.objects.person.socialNetworkWhatsapp.minlength"
-                  [required]="template.objects.person.socialNetworkWhatsapp.required"
+                  [maxlength]="event.template.objects.person.socialNetworkWhatsapp.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkWhatsapp.minlength"
+                  [required]="event.template.objects.person.socialNetworkWhatsapp.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pr-md-1" *ngIf="template.objects.person.socialNetworkBehance">
+            <div class=" col-md-4 pr-md-1" *ngIf="event.template.objects.person.socialNetworkBehance">
               <div class=" form-group">
-                <label> Behance <span *ngIf="template.objects.person.socialNetworkBehance.required">*</span> </label>
+                <label> Behance <span *ngIf="event.template.objects.person.socialNetworkBehance.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkBehance"
+                  name="socialNetworkBehance"
                   class=" form-control"
                   placeholder="Ex.: https://www.behance.com/2847527743"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.behance) ? person.socialNetworks.behance : ''"
-                  [maxlength]="template.objects.person.socialNetworkBehance.maxlength"
-                  [minlength]="template.objects.person.socialNetworkBehance.minlength"
-                  [required]="template.objects.person.socialNetworkBehance.required"
+                  [maxlength]="event.template.objects.person.socialNetworkBehance.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkBehance.minlength"
+                  [required]="event.template.objects.person.socialNetworkBehance.required"
                 />
               </div>
             </div>
-            <div class=" col-md-4 pl-md-1" *ngIf="template.objects.person.socialNetworkYoutubeChannel">
+            <div class=" col-md-4 pl-md-1" *ngIf="event.template.objects.person.socialNetworkYoutubeChannel">
               <div class=" form-group">
-                <label> YouTube <span *ngIf="template.objects.person.socialNetworkYoutubeChannel.required">*</span> </label>
+                <label> YouTube <span *ngIf="event.template.objects.person.socialNetworkYoutubeChannel.required">*</span> </label>
                 <input
+                  [(ngModel)]="person.socialNetworkYoutubeChannel"
+                  name="socialNetworkYoutubeChannel"
                   class=" form-control"
                   placeholder="Ex.: https://www.youtube.com/2847527743"
                   type="text"
-                  [value]="(person && person != null && person.socialNetworks && person.socialNetworks.youtubeChannel) ? person.socialNetworks.youtubeChannel: ''"
-                  [maxlength]="template.objects.person.socialNetworkYoutubeChannel.maxlength"
-                  [minlength]="template.objects.person.socialNetworkYoutubeChannel.minlength"
-                  [required]="template.objects.person.socialNetworkYoutubeChannel.required"
+                  [maxlength]="event.template.objects.person.socialNetworkYoutubeChannel.maxlength"
+                  [minlength]="event.template.objects.person.socialNetworkYoutubeChannel.minlength"
+                  [required]="event.template.objects.person.socialNetworkYoutubeChannel.required"
                 />
               </div>
             </div>
           </div>
         </div>
         <div class=" card-footer">
-          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="personFormModel.operation == this.operationUpdate" (click)="createOrUpdate(person)">{{personFormModel.operation}} o registro de {{person.name}}</button>
-          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="personFormModel.operation == this.operationCreate" (click)="createOrUpdate(person)">{{personFormModel.operation}} essa nova pessoa</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="personFormModel.operation == this.operationUpdate" (click)="modal.dismiss('Cross click')">{{personFormModel.operation}} o registro de {{person.name}}</button>
+          <button
+              (click)="delete(person)"
+              *ngIf="personFormModel.operation == this.operationUpdate"
+              title="Excluir {{person.name}} do sistema."
+              class="btn btn-danger"
+            >Excluir {{person.name}} do sistema.</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="personFormModel.operation == this.operationCreate" (click)="modal.dismiss('Cross click')">{{personFormModel.operation}} essa nova pessoa</button>
         </div>
       </div>
     </div>

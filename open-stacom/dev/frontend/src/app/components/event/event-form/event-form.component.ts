@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { ToastrService } from 'ngx-toastr';
 import { EventCreateService, EventUpdateService } from 'src/app/services/event';
@@ -21,6 +22,9 @@ export class EventFormComponent implements OnInit {
   @Input()
   public template: Template;
 
+  @Input()
+  public preLoad: boolean;
+
   public tmpTelephones;
 
   public tmpDays: Date[];
@@ -33,6 +37,7 @@ export class EventFormComponent implements OnInit {
     private _cepService: CepService,
     private _updateService: EventUpdateService,
     private _createService: EventCreateService,
+    private _router: Router,
     // private _deleteService: DeleteEventService,
     private toastr: ToastrService,
   ) { }
@@ -115,6 +120,10 @@ export class EventFormComponent implements OnInit {
               `O evento ${event.name} foi criado com sucesso.`
             );
 
+            if (this.preLoad) {
+              this._router.navigate([`inicio/${this.event.id}`]);
+            }
+
           },
           error: exception => {
 
@@ -139,6 +148,10 @@ export class EventFormComponent implements OnInit {
             this._showSuccessToast(
               `O evento ${event.name} foi atualizado com sucesso.`
             );
+
+            if (this.preLoad) {
+              this._router.navigate([`inicio/${this.event.id}`]);
+            }
 
           },
           error: exception => {

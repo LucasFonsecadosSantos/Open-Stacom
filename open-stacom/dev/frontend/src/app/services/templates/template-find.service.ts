@@ -1,8 +1,5 @@
-import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Template } from './../../models';
-import { environment } from 'src/environments/environment';
 import { EventFindService } from '../event';
 import { Event } from 'src/app/models/event.model';
 
@@ -15,17 +12,19 @@ export class TemplateFindService {
     private _eventFindService: EventFindService
   ) { }
 
-  public find(eventID: string): Observable<any> {
+  public find(event: Event): Template {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              return result.template
-            }
-          )
-        );
+    return event.template;
+
+    // return this._eventFindService
+    //     .find(eventID)
+    //     .pipe(
+    //       map(
+    //         result => {
+    //           return result.template
+    //         }
+    //       )
+    //     );
 
   }
 }

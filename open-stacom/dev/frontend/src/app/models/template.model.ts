@@ -500,6 +500,26 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
+      locationNeiborhood?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationNumber?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationAddress?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      locationCep?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
       locationCity?: {
         minlength?: number,
         maxlength?: number,

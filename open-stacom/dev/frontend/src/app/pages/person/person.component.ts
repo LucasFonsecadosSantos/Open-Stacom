@@ -70,21 +70,17 @@ export class PersonComponent implements OnInit {
         .subscribe(
           event => {
             this.event = event;
-            this._getTemplateById(event.id);
+            this._getTemplateById(event);
           }
         );
   }
 
-  private _getTemplateById(eventID: string): void {
+  private _getTemplateById(event: Event): void {
 
-    this._templateFindService
-        .find(eventID)
-        .subscribe(
-          template => {
-            this.template = template;
-            this.isDataLoaded = true;
-          }
-        );
+    this.template = this._templateFindService
+                        .find(event);
+      this.isDataLoaded = true;
+
   }
 
   public openAddPersonForm(): void {

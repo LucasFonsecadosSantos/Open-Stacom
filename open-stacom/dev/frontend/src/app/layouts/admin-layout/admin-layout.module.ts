@@ -6,20 +6,6 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
-// import {
-//   DashboardComponent,
-//   PersonComponent,
-//   SponsorshipComponent,
-//   ActivityComponent,
-//   ScheduleComponent,
-//   AboutComponent,
-//   PreviousEditionsComponent,
-//   VersioningComponent,
-//   PhotoGalleryComponent,
-//   VideoGalleryComponent,
-//   EventComponent
-// } from "../../pages";
-
 import { PagesModule } from "src/app/pages";
 
 import { IconsComponent } from "../../pages/icons/icons.component";

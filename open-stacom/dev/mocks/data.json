@@ -460,6 +460,26 @@
             "maxlength": 50,
             "required": false
           },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
           "locationCity": {
             "minlength": 4,
             "maxlength": 50,
@@ -1069,6 +1089,26 @@
             "minlength": 4,
             "maxlength": 50,
             "required": false
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
           },
           "locationCity": {
             "minlength": 4,
@@ -1889,6 +1929,26 @@
               "maxlength": 50,
               "required": true
             },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
             "locationCountry": {
               "minlength": 4,
               "maxlength": 50,
@@ -2148,6 +2208,1469 @@
     {
       "id": "61c16c5d-69f9-4dbb-97cf-76f1c0e78888",
       "templateID": "1d4684ce-97d3-4a1e-b0f2-018f12f6d5b6"
+    },
+    {
+      "id": "a14e1091-c631-4b7d-a836-b91ebe0ed104",
+      "name": "Novo evento",
+      "edition": "5",
+      "subject": "Teste de um novo evento",
+      "eventType": "Simpósio",
+      "targetPublic": "Todos",
+      "logo": "",
+      "description": "asdasdasd",
+      "brief": "asdasdas",
+      "website": "fghfgh",
+      "email": "fgh@sd.com",
+      "telephones": [],
+      "poweredBy": {
+        "institution": "",
+        "departament": ""
+      },
+      "template": {
+        "id": "1d4684ce-97d3-4a1e-b0f2-018f12f6d5b6",
+        "name": "Teste de template 01",
+        "path": "/template01",
+        "author": "lucas fonseca dos santos",
+        "description": "asldlsadasd",
+        "avatar": "aasdasd",
+        "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+        "sections": [],
+        "objects": {
+          "sponsor": {
+            "configRoute": {
+              "title": "Patrocinadores",
+              "path": "/patrocinadores",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "picture": {
+              "required": true
+            },
+            "sponsorshipPlan": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "schedule": {
+            "configRoute": {
+              "title": "Programação",
+              "path": "/programacao",
+              "icon": "icon-calendar-60"
+            },
+            "id": {
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "startTime": {
+              "required": true
+            },
+            "endTime": {
+              "required": true
+            },
+            "activity": {
+              "required": true
+            },
+            "content": []
+          },
+          "pricePlan": {
+            "configRoute": {
+              "title": "Pacotes",
+              "path": "/pacotes",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "value": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "activity": {
+            "configRoute": {
+              "title": "Atividades",
+              "path": "/atividades",
+              "icon": "icon-puzzle-10"
+            },
+            "id": {
+              "required": true
+            },
+            "type": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "poweredBy": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "responsible": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "location": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "price": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "pricePlan": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": []
+          },
+          "committee": {
+            "configRoute": {
+              "title": "Comitês",
+              "path": "/comites",
+              "icon": "icon-badge"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": []
+          },
+          "event": {
+            "configRoute": {
+              "title": "Evento",
+              "path": "/evento",
+              "icon": "icon-settings-gear-63"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "edition": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "eventType": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByInstitution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByDepartament": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "subject": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "logo": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephoneName": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephoneNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "days": {
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworksFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationLatLong": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            }
+          },
+          "pastEdition": {
+            "configRoute": {
+              "title": "Edições Passadas",
+              "path": "/edicoes",
+              "icon": "icon-components"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "logo": {
+              "required": false
+            },
+            "link": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "person": {
+            "configRoute": {
+              "title": "Pessoas",
+              "path": "/pessoas",
+              "icon": "icon-single-02"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "avatar": {
+              "required": false
+            },
+            "job": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "academicFormation": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "institution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationState": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWebsite": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLattes": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkEmail": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "proceeding": {
+            "configRoute": {
+              "title": "Anais",
+              "path": "/anais",
+              "icon": "icon-align-center"
+            },
+            "id": {
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "author": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "required": true
+            },
+            "specialty": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "code": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "videoGallery": {
+            "configRoute": {
+              "title": "Galeria de Videos",
+              "path": "/videos",
+              "icon": "icon-video-66"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "photoGallery": {
+            "configRoute": {
+              "title": "Galeria de Fotos",
+              "path": "/fotos",
+              "icon": "icon-camera-18"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          }
+        }
+      },
+      "days": [
+        "2021-12-15"
+      ],
+      "locationCep": "14075-610",
+      "locationAddress": "Avenida Marechal Costa e Silva",
+      "locationNumber": "456",
+      "locationNeiborhood": "Vila Brasil",
+      "locationCity": "Ribeirão Preto",
+      "locationUF": "SP",
+      "locationCountry": "Brasil",
+      "locationLatLong": "",
+      "socialNetworks": {
+        "facebook": "",
+        "twitter": "",
+        "github": "",
+        "linkedin": "",
+        "spotify": "",
+        "whatsapp": "",
+        "behance": "",
+        "youtubeChannel": ""
+      }
+    },
+    {
+      "id": "e292916a-553e-4ce1-a6a3-88831a41c115",
+      "name": "Congresso da Pós Graduação da UFLA",
+      "edition": "XXI",
+      "subject": "Ciencia",
+      "eventType": "-- SELECIONE --",
+      "targetPublic": "Todos",
+      "logo": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+      "description": "asdklfjkljsdjciqwejioprjqwervtwevtioerjtioeriowtjiojo",
+      "brief": "ajsdklmaklfjklsdjfjsdklfjkjkl",
+      "website": "www.site.com.br",
+      "email": "teste@teste.com",
+      "telephones": [],
+      "poweredBy": {
+        "institution": "Universidade Federal de Lavras",
+        "departament": "Reitoria"
+      },
+      "template": {
+        "id": "1d4684ce-97d3-4a1e-b0f2-018f12f6d5b6",
+        "name": "Teste de template 01",
+        "path": "/template01",
+        "author": "lucas fonseca dos santos",
+        "description": "asldlsadasd",
+        "avatar": "aasdasd",
+        "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+        "sections": [],
+        "objects": {
+          "sponsor": {
+            "configRoute": {
+              "title": "Patrocinadores",
+              "path": "/patrocinadores",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "picture": {
+              "required": true
+            },
+            "sponsorshipPlan": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "schedule": {
+            "configRoute": {
+              "title": "Programação",
+              "path": "/programacao",
+              "icon": "icon-calendar-60"
+            },
+            "id": {
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "startTime": {
+              "required": true
+            },
+            "endTime": {
+              "required": true
+            },
+            "activity": {
+              "required": true
+            },
+            "content": [
+              {
+                "id": "61b31369-0ec0-4b25-a980-138b52728afb",
+                "activity": {
+                  "id": "d9f7097d-bb6e-414e-bb04-b178c8e915bc"
+                },
+                "date": "2021-12-13",
+                "startTime": "07:00",
+                "endTime": "08:00"
+              },
+              {
+                "id": "03e0d320-7fa7-41d1-982b-1039e3b5f099",
+                "activity": {
+                  "id": "62d928e4-073c-4cec-a6d7-740fef8968d5"
+                },
+                "date": "2021-12-14",
+                "startTime": "15:00",
+                "endTime": "15:30"
+              }
+            ]
+          },
+          "pricePlan": {
+            "configRoute": {
+              "title": "Pacotes",
+              "path": "/pacotes",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "value": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "activity": {
+            "configRoute": {
+              "title": "Atividades",
+              "path": "/atividades",
+              "icon": "icon-puzzle-10"
+            },
+            "id": {
+              "required": true
+            },
+            "type": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "poweredBy": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "responsible": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "location": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "price": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "pricePlan": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": [
+              {
+                "id": "d9f7097d-bb6e-414e-bb04-b178c8e915bc",
+                "title": "Abertura",
+                "type": "EventOpening",
+                "brief": "",
+                "poweredBy": "asdasd",
+                "responsible": {
+                  "id": "b2db6162-45fd-4625-a57a-72a7d6aa6b53"
+                },
+                "description": "",
+                "picture": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+                "targetPublic": "",
+                "location": "",
+                "price": "",
+                "pricePlan": {}
+              },
+              {
+                "id": "62d928e4-073c-4cec-a6d7-740fef8968d5",
+                "title": "Workshop de comida",
+                "type": "Workshop",
+                "brief": "",
+                "poweredBy": "asdasd",
+                "responsible": {
+                  "id": "d025752d-ba58-492d-9c9b-0bf23662777f"
+                },
+                "description": "",
+                "picture": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+                "targetPublic": "",
+                "location": "",
+                "price": "",
+                "pricePlan": {}
+              },
+              {
+                "id": "eeae9dd6-b2a6-4da0-a27c-8191647fc401",
+                "title": "werwer",
+                "type": "EventClosing",
+                "brief": "",
+                "poweredBy": "",
+                "responsible": {
+                  "id": "b2db6162-45fd-4625-a57a-72a7d6aa6b53"
+                },
+                "description": "",
+                "picture": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+                "targetPublic": "",
+                "location": "",
+                "price": "",
+                "pricePlan": {}
+              }
+            ]
+          },
+          "committee": {
+            "configRoute": {
+              "title": "Comitês",
+              "path": "/comites",
+              "icon": "icon-badge"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": []
+          },
+          "event": {
+            "configRoute": {
+              "title": "Evento",
+              "path": "/evento",
+              "icon": "icon-settings-gear-63"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "edition": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "eventType": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByInstitution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByDepartament": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "subject": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "logo": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephoneName": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephoneNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "days": {
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworksFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationLatLong": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            }
+          },
+          "pastEdition": {
+            "configRoute": {
+              "title": "Edições Passadas",
+              "path": "/edicoes",
+              "icon": "icon-components"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "logo": {
+              "required": false
+            },
+            "link": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "person": {
+            "configRoute": {
+              "title": "Pessoas",
+              "path": "/pessoas",
+              "icon": "icon-single-02"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "avatar": {
+              "required": false
+            },
+            "job": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "academicFormation": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "institution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationState": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWebsite": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLattes": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkEmail": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "d025752d-ba58-492d-9c9b-0bf23662777f",
+                "name": "rtyrtytyrrty",
+                "avatar": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+                "brief": "",
+                "job": "",
+                "academicFormation": "",
+                "institution": "",
+                "locationCep": "",
+                "locationAddress": "",
+                "locationNumber": "",
+                "locationNeiborhood": "",
+                "locationCity": "",
+                "locationUF": "",
+                "locationCountry": "",
+                "socialNetworks": {
+                  "facebook": "",
+                  "twitter": "",
+                  "github": "",
+                  "linkedin": "",
+                  "spotify": "",
+                  "whatsapp": "",
+                  "behance": "",
+                  "youtubeChannel": "",
+                  "email": ""
+                }
+              },
+              {
+                "id": "b2db6162-45fd-4625-a57a-72a7d6aa6b53",
+                "name": "Lucas Fonseca do santos",
+                "avatar": "/data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//data/e292916a-553e-4ce1-a6a3-88831a41c115/img/avatar//assets/img/default-avatar.png",
+                "brief": "",
+                "job": "aodjaop",
+                "academicFormation": "",
+                "institution": "iojoj",
+                "locationCep": "14075-620",
+                "locationAddress": "Rua Américo Reis",
+                "locationNumber": "496",
+                "locationNeiborhood": "Parque Industrial Tanquinho",
+                "locationCity": "Ribeirão Preto",
+                "locationUF": "",
+                "locationCountry": "Brasil",
+                "socialNetworks": {
+                  "facebook": "",
+                  "twitter": "",
+                  "github": "",
+                  "linkedin": "",
+                  "spotify": "",
+                  "whatsapp": "",
+                  "behance": "",
+                  "youtubeChannel": "",
+                  "email": ""
+                }
+              }
+            ]
+          },
+          "proceeding": {
+            "configRoute": {
+              "title": "Anais",
+              "path": "/anais",
+              "icon": "icon-align-center"
+            },
+            "id": {
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "author": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "required": true
+            },
+            "specialty": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "code": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "videoGallery": {
+            "configRoute": {
+              "title": "Galeria de Videos",
+              "path": "/videos",
+              "icon": "icon-video-66"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "photoGallery": {
+            "configRoute": {
+              "title": "Galeria de Fotos",
+              "path": "/fotos",
+              "icon": "icon-camera-18"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          }
+        }
+      },
+      "days": [
+        "2021-12-13",
+        "2021-12-13",
+        "2021-12-14"
+      ],
+      "locationCep": "14075-620",
+      "locationAddress": "Rua Américo Reis",
+      "locationNumber": "",
+      "locationNeiborhood": "Parque Industrial Tanquinho",
+      "locationCity": "Ribeirão Preto",
+      "locationUF": "SP",
+      "locationCountry": "Brasil",
+      "locationLatLong": "",
+      "socialNetworks": {
+        "facebook": "",
+        "twitter": "",
+        "github": "",
+        "linkedin": "",
+        "spotify": "",
+        "whatsapp": "",
+        "behance": "",
+        "youtubeChannel": ""
+      }
     }
   ]
 }
