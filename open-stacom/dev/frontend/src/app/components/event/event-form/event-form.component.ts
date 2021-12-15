@@ -71,7 +71,9 @@ export class EventFormComponent implements OnInit {
   public addDateToList(date: Date): void {
 
     this.tmpDays.push(date);
-    this.event.days.push(date);
+    if (this.event) {
+      this.event.days.push(date);
+    }
 
   }
 

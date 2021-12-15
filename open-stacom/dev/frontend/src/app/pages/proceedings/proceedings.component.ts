@@ -63,17 +63,9 @@ export class ProceedingsComponent implements OnInit {
         .subscribe(
           event => {
             this.event = event;
-            this._getTemplateById(event);
+            this.isDataLoaded = true;
           }
         );
-  }
-
-  private _getTemplateById(event: Event): void {
-
-    this.template = this._templateFindService
-                        .find(event);
-      this.isDataLoaded = true;
-
   }
 
   public exportExcel(): void {

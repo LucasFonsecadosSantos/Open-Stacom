@@ -32,14 +32,8 @@ export class PreviousEditionListComponent implements OnInit {
 
   private _populateList(): void {
 
-    this._fetchService
-          .list(this.event.id)
-          .subscribe(
-            response => {
-              console.log(response);
-              this.editionsArray = response;
-            }
-          );
+    this.editionsArray = this._fetchService
+                              .list(this.event);
 
   }
 

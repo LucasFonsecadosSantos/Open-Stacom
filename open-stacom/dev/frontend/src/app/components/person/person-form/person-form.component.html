@@ -227,7 +227,7 @@
               <div class=" form-group">
                 <label> Facebook <span *ngIf="event.template.objects.person.socialNetworkFacebook.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkFacebook"
+                  [(ngModel)]="person.socialNetworks.facebook"
                   name="socialNetworkFacebook"
                   class=" form-control"
                   placeholder="Ex.: https://www.facebook.com/JOAOARNALDO/"
@@ -242,7 +242,7 @@
               <div class=" form-group">
                 <label> Twitter <span *ngIf="event.template.objects.person.socialNetworkTwitter.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkTwitter"
+                  [(ngModel)]="person.socialNetworks.twitter"
                   name="socialNetworkTwitter"
                   class=" form-control"
                   placeholder="Ex.: https://twitter.com/joao_paulo?lang=en"
@@ -257,7 +257,7 @@
               <div class=" form-group">
                 <label> Website <span *ngIf="event.template.objects.person.socialNetworkWebsite.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkWebsite"
+                  [(ngModel)]="person.socialNetworks.website"
                   name="socialNetworkWebsite"
                   class=" form-control"
                   placeholder="Ex.: https://www.site.com.br"
@@ -272,7 +272,7 @@
               <div class=" form-group">
                 <label> Github <span *ngIf="event.template.objects.person.socialNetworkGithub.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkGithub"
+                  [(ngModel)]="person.socialNetworks.github"
                   name="socialNetworkGithub"
                   class=" form-control"
                   placeholder="Ex.: https://www.github.com/LUCASFONSECADOSSANTOS"
@@ -287,7 +287,7 @@
               <div class=" form-group">
                 <label> Linkedin <span *ngIf="event.template.objects.person.socialNetworkLinkedin.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkLinkedin"
+                  [(ngModel)]="person.socialNetworks.linkedin"
                   name="socialNetworkLinkedin"
                   class=" form-control"
                   placeholder="Ex.: https://www.linkedin.com/LUCASFONSECADOSSANTOS"
@@ -302,7 +302,7 @@
               <div class=" form-group">
                 <label> Spotify <span *ngIf="event.template.objects.person.socialNetworkSpotify.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkSpotify"
+                  [(ngModel)]="person.socialNetworks.spotify"
                   name="socialNetworkSpotify"
                   class=" form-control"
                   placeholder="Ex.: https://www.spotify.com/LUCASFONSECADOSSANTOS"
@@ -317,7 +317,7 @@
               <div class=" form-group">
                 <label> Lattes <span *ngIf="event.template.objects.person.socialNetworkLattes.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkLattes"
+                  [(ngModel)]="person.socialNetworks.lattes"
                   name="socialNetworkLattes"
                   class=" form-control"
                   placeholder="Ex.: https://www.lattes.com/2847527743"
@@ -332,7 +332,7 @@
               <div class=" form-group">
                 <label> E-mail <span *ngIf="event.template.objects.person.socialNetworkEmail.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkEmail"
+                  [(ngModel)]="person.socialNetworks.email"
                   name="socialNetworkEmail"
                   class=" form-control"
                   placeholder="Ex.: email@site.com.br"
@@ -347,7 +347,7 @@
               <div class=" form-group">
                 <label> Whatsapp <span *ngIf="event.template.objects.person.socialNetworkWhatsapp.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkWhatsapp"
+                  [(ngModel)]="person.socialNetworks.whatsapp"
                   name="socialNetworkWhatsapp"
                   class=" form-control"
                   placeholder="Ex.: (35) 99169-9667"
@@ -362,7 +362,7 @@
               <div class=" form-group">
                 <label> Behance <span *ngIf="event.template.objects.person.socialNetworkBehance.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkBehance"
+                  [(ngModel)]="person.socialNetworks.behance"
                   name="socialNetworkBehance"
                   class=" form-control"
                   placeholder="Ex.: https://www.behance.com/2847527743"
@@ -377,7 +377,7 @@
               <div class=" form-group">
                 <label> YouTube <span *ngIf="event.template.objects.person.socialNetworkYoutubeChannel.required">*</span> </label>
                 <input
-                  [(ngModel)]="person.socialNetworkYoutubeChannel"
+                  [(ngModel)]="person.socialNetworks.youtubeChannel"
                   name="socialNetworkYoutubeChannel"
                   class=" form-control"
                   placeholder="Ex.: https://www.youtube.com/2847527743"

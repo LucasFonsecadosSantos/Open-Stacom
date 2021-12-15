@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Proceeding } from 'src/app/models';
-import { environment } from 'src/environments/environment';
+import { Proceeding, Event, Template } from 'src/app/models';
 import { EventFindService } from '../event';
 
 @Injectable({
@@ -14,19 +12,12 @@ export class ProceedingFindService {
     private _eventFindService: EventFindService
   ) { }
 
-  public find(id: string, eventID: string): Observable<Proceeding> {
+  public find(id: string, event: Event): Proceeding {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Proceeding = this._getByID(id, result.template.objects.proceeding.content);
-              // this._buildSources([proceeding], eventID);
-              return fetched;
-            }
-          )
-        );
+    let proceeding: Proceeding = this._getByID(id, event.template.objects.proceeding.content);
+    // this._buildSources([proceeding], event);
+
+    return proceeding;
 
   }
 
@@ -36,19 +27,10 @@ export class ProceedingFindService {
 
   }
 
-  public list(eventID: string): Observable<Proceeding[]> {
+  public list(event: Event): Proceeding[] {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: Proceeding[] = result.template.objects.proceeding.content;
-              // this._buildSources([proceeding], eventID);
-              return fetched;
-            }
-          )
-        );
+    return event.template.objects.proceeding.content;
+
   }
 
 

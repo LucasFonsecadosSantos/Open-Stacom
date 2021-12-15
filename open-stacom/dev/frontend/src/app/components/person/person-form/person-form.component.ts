@@ -2,6 +2,7 @@ import { PersonUpdateService } from './../../../services/person/person-update.se
 import { PersonForm } from './../../../models/person-form.model';
 import { PersonFormService } from './person-form.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { PersonCreateService, PersonDeleteService } from './../../../services/person';
 import {
   Person,
@@ -36,6 +37,8 @@ export class PersonFormComponent implements OnInit {
   @Input()
   public event: Event;
 
+  public states: any;
+
   public person: Person;
 
   public static readonly operation: Operation;
@@ -52,6 +55,7 @@ export class PersonFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.states = getAllStates();
     this._getFormObservables();
 
   }

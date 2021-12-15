@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-
-import { PreviousEdition } from 'src/app/models';
+import { PreviousEdition, Event } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 import { EventFindService } from '../event';
 
@@ -15,19 +12,12 @@ export class PreviousEditionFindService {
     private _eventFindService: EventFindService
   ) { }
 
-  public list(eventID: string): Observable<PreviousEdition[]> {
+  public list(event: Event): PreviousEdition[] {
 
-    return this._eventFindService
-        .find(eventID)
-        .pipe(
-          map(
-            result => {
-              let fetched: PreviousEdition[] = result.template.objects.pastEdition.content;
-              this._buildSources(fetched, eventID);
-              return fetched;
-            }
-          )
-        );
+    let edition: PreviousEdition[] = event.template.objects.pastEdition.content;
+    this._buildSources(edition, event);
+
+    return edition;
 
   }
 
@@ -37,10 +27,10 @@ export class PreviousEditionFindService {
 
   }
 
-  private _buildSources(editionsArray: PreviousEdition[], eventID: string): PreviousEdition[] {
+  private _buildSources(editionsArray: PreviousEdition[], event: Event): PreviousEdition[] {
 
     editionsArray.forEach(edition => {
-      edition.logo = this._buildEditionAvatarSource(edition.logo, eventID);
+      edition.logo = this._buildEditionAvatarSource(edition.logo, event.id);
     })
 
     return editionsArray;

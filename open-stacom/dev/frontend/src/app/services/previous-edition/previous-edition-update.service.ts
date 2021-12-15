@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { PreviousEdition } from 'src/app/models';
+import { Event, PreviousEdition } from 'src/app/models';
 import { Observable } from 'rxjs';
+import { EventUpdateService } from '../event';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +9,36 @@ import { Observable } from 'rxjs';
 export class PreviousEditionUpdateService {
 
   constructor(
-    private _http: HttpClient
+    private _eventUpdateService: EventUpdateService
   ) { }
 
-  public update(edition: PreviousEdition): Observable<PreviousEdition> {
+  public update(edition: PreviousEdition, event: Event): Observable<PreviousEdition> {
 
-    return this._http.put<PreviousEdition>(
-      `${environment.API_URL.BASE}${environment.API_URL.PAST_EDITIONS}`,
-      edition
-    );
+    return this._eventUpdateService.update(this._updateDataToEvent(edition, event));
 
   }
+
+  private _updateDataToEvent(edition: PreviousEdition, event: Event): Event {
+
+    event.template
+          .objects
+          .pastEdition
+          .content = event.template
+                          .objects
+                          .pastEdition
+                          .content
+                          .filter(
+                            fetchedSchedule => fetchedSchedule.id != edition.id
+                          );
+
+    event.template
+         .objects
+         .pastEdition
+         .content
+         .push(edition);
+
+    return event;
+
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { EventFindService } from "src/app/services/event";
 import { TemplateFindService } from "src/app/services/templates";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   Template,
   Event
@@ -30,6 +30,7 @@ export class AdminLayoutComponent implements OnInit {
     private _eventFindService: EventFindService,
     private _templateFindService: TemplateFindService,
     private _activatedRoute: ActivatedRoute,
+    private _router: Router,
     private _sharedEventService: SharedEventService,
     private _sharedTemplateService: SharedTemplateService
   ) {}
@@ -80,12 +81,15 @@ export class AdminLayoutComponent implements OnInit {
 
     this._eventFindService
         .find(eventID)
-        .subscribe(
-          event => {
+        .subscribe({
+          next: event => {
             this.event = event;
             this._getTemplateById(event);
+          },
+          error: exception => {
+            this._router.navigate([`/`]);
           }
-        );
+        });
   }
 
   private _getTemplateById(event: Event): void {

@@ -31,9 +31,8 @@ export class ProceedingListComponent implements OnInit {
 
   private _fetchProceedings(): void {
 
-    this._findService
-        .list(this.event.id)
-        .subscribe(proceeding => this.proceedingArray = proceeding);
+    this.proceedingArray = this._findService
+        .list(this.event);
 
   }
 
