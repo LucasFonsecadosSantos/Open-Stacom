@@ -12,6 +12,8 @@ public class ScheduleTemplateObjectEntity implements TemplateObject {
 
     private ConfigRouteTemplateObject configRoute;
 
+    private FieldObjectEntity id;
+
     private FieldObjectEntity activity;
 
     private FieldObjectEntity startTime;

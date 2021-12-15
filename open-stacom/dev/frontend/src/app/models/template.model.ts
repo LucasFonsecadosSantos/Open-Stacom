@@ -525,7 +525,7 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
-      locationState?: {
+      locationUF?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,

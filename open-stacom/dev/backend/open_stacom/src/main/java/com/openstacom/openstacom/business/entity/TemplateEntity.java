@@ -24,6 +24,6 @@ public class TemplateEntity {
 
     private String[] sections;
 
-    private TemplateObject[] objetcs;
+    private Object[] objetcs;
 
 }

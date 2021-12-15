@@ -8,9 +8,9 @@ public class EventController {
 
     @CrossOrigin(origins = "${client.frontend_address}")
     @PostMapping("/generate")
-    public void generate(@RequestBody(required = false) EventEntity obj) {
+    public EventEntity generate(@RequestBody(required = true) EventEntity obj) {
 
-        System.out.println(obj.toString());
+        return obj;
 
     }
 

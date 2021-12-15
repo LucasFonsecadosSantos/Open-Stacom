@@ -155,21 +155,22 @@
                 />
               </div>
             </div>
-          </div>
-          <div class=" col-md-2 pr-md-1" *ngIf="event.template.objects.person.locationNeiborhood">
-            <div class=" form-group">
-              <label> Bairro <span *ngIf="event.template.objects.person.locationNeiborhood.required">*</span> </label>
-              <input
-                #neiborhoodField
-                [(ngModel)]="person.locationNeiborhood"
-                name="locationNeiborhood"
-                class=" form-control"
-                placeholder="Ex.: Lavras"
-                type="text"
-                [maxlength]="event.template.objects.person.locationNeiborhood.maxlength"
-                [minlength]="event.template.objects.person.locationNeiborhood.minlength"
-                [required]="event.template.objects.person.locationNeiborhood.required"
-              />
+
+            <div class=" col-md-2 pr-md-1" *ngIf="event.template.objects.person.locationNeiborhood">
+              <div class=" form-group">
+                <label> Bairro <span *ngIf="event.template.objects.person.locationNeiborhood.required">*</span> </label>
+                <input
+                  #neiborhoodField
+                  [(ngModel)]="person.locationNeiborhood"
+                  name="locationNeiborhood"
+                  class=" form-control"
+                  placeholder="Ex.: Lavras"
+                  type="text"
+                  [maxlength]="event.template.objects.person.locationNeiborhood.maxlength"
+                  [minlength]="event.template.objects.person.locationNeiborhood.minlength"
+                  [required]="event.template.objects.person.locationNeiborhood.required"
+                />
+              </div>
             </div>
           </div>
           <div class=" row">
@@ -187,9 +188,9 @@
                 />
               </div>
             </div>
-            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.locationState">
+            <div class=" col-md-4 px-md-1" *ngIf="event.template.objects.person.locationUF">
               <div class=" form-group">
-                <label> Estado <span *ngIf="event.template.objects.person.locationState.required">*</span></label>
+                <label> Estado <span *ngIf="event.template.objects.person.locationUF.required">*</span></label>
                 <select
                   #ufField
                   [(ngModel)]="person.locationUF"
