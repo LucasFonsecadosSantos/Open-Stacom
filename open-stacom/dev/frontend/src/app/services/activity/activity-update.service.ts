@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activity } from 'src/app/models';
+import { Activity, Event } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import { EventUpdateService } from '../event';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,47 @@ import { environment } from 'src/environments/environment';
 export class ActivityUpdateService {
 
   constructor(
-    private _http: HttpClient
+    private _eventUpdateService: EventUpdateService
   ) { }
 
-  public update(activity: Activity): Observable<any> {
+  public update(activity: Activity, event: Event): Observable<any> {
 
-    return this._http.put(
-      `${environment.API_URL.BASE}${environment.API_URL.ACTIVITY}`,
-      activity
-    );
+    return this._eventUpdateService.update(this._updateDataToEvent(activity, event));
 
   }
+
+  private _updateDataToEvent(activity: Activity, event: Event): Event {
+
+    event.template.objects.activity.content = event.template.objects
+                  .activity
+                  .content
+                  .filter(
+                    fetchedSchedule => fetchedSchedule.id != activity.id
+                  );
+
+    activity.responsible = {'id': activity.responsible.id };
+    activity.pricePlan = {'id': activity.pricePlan.id };
+    event.template
+          .objects
+          .activity
+          .content
+          .forEach(
+            activity => {
+
+              activity.responsible = { 'id': activity.responsible.id };
+              activity.pricePlan = { 'id': activity.pricePlan.id };
+
+            }
+          );
+
+    event.template
+         .objects
+         .activity
+         .content
+         .push(activity);
+
+    return event;
+
+  }
+
 }

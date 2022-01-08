@@ -1,3 +1,5 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { UrlService } from './utils/url.service';
 import {
   PersonCreateService,
@@ -23,7 +25,8 @@ import {
 import {
   EventCreateService,
   EventUpdateService,
-  EventFindService
+  EventFindService,
+  WebpageGenerationService
 } from './event';
 
 import {
@@ -70,10 +73,9 @@ import {
   TemplateFindService
 } from './templates';
 
-import { ExcelExportService } from './utils';
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  ExcelExportService
+} from './utils';
 import {
   SharedTemplateService,
   SharedEventService
@@ -90,7 +92,6 @@ import {
   ProceedingDeleteService,
   ProceedingCreateService
 } from './proceeding';
-
 
 @NgModule({
   declarations: [],
@@ -144,8 +145,8 @@ import {
 
     ProjectUploadService,
 
-    TemplatesRetrievingService,
     TemplateFindService,
+    TemplatesRetrievingService,
 
     ExcelExportService,
 
@@ -162,7 +163,9 @@ import {
     ProceedingFindService,
     ProceedingCreateService,
     ProceedingDeleteService,
-    ProceedingUpdateService
+    ProceedingUpdateService,
+
+    WebpageGenerationService
   ]
 })
 export class ServicesModule { }

@@ -13,7 +13,6 @@ export class SharedEventService {
   constructor() { }
 
   public setEvent(event: Event): void {
-    console.log(event.id);
     this._subject.next(event);
   }
 

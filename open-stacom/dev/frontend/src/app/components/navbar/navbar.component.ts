@@ -1,11 +1,10 @@
-import { Component, OnInit, ElementRef, OnDestroy } from "@angular/core";
+import { Component, OnInit, ElementRef, OnDestroy, Input } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Template, Event } from "./../../models";
-import { EventFindService } from "src/app/services/event";
-import { TemplateFindService } from "src/app/services/templates";
+import { WebpageGenerationService } from "src/app/services/event";
 
 @Component({
   selector: "app-navbar",
@@ -14,15 +13,23 @@ import { TemplateFindService } from "src/app/services/templates";
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  public location: Location;
-  public isCollapsed = true;
-  public mobile_menu_visible: any = 0;
-  public closeResult: string;
+  @Input()
   public event: Event;
-  public template: Template;
+
+  public location: Location;
+
+  public isCollapsed = true;
+
+  public mobile_menu_visible: any = 0;
+
+  public closeResult: string;
+
   public isDataLoaded: boolean = false;
+
   private toggleButton: any;
+
   private sidebarVisible: boolean;
+
   private listTitles: any[];
 
   constructor(
@@ -30,12 +37,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private _activatedRoute: ActivatedRoute,
-    private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService
+    private _generatorService: WebpageGenerationService
   ) {
     this.location = location;
     this.sidebarVisible = false;
+  }
+
+  public generateBuild(): void {
+    this._generatorService.generatesBuild(this.event.id);
   }
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
@@ -50,6 +59,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     };
   ngOnInit() {
+
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
@@ -62,43 +72,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.mobile_menu_visible = 0;
       }
     });
-    this._getEventAndTemplate();
-  }
-
-  private _getEventAndTemplate(): void {
-
-    this._activatedRoute.paramMap.subscribe(
-
-      params => {
-        this._getEvent(params.get('eventID'));
-      }
-
-    );
-  }
-
-  private _getEvent(eventID: string): void {
-
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
-  }
-
-  private _getTemplateById(templateID: string) {
-
-    this._templateFindService.find(templateID).subscribe(
-
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
-          }
-
-    );
-
   }
 
   public collapse(): void {

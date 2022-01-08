@@ -31,9 +31,8 @@ export class ActivityListComponent implements OnInit {
 
   private _fetchActivities(): void {
 
-    this._findService
-        .list(this.event.id)
-        .subscribe(activities => this.activityArray = activities);
+    this.activityArray = this._findService
+                              .list(this.event);
 
   }
 

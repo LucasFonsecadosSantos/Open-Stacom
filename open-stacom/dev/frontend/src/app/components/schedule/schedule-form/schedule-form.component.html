@@ -1,20 +1,37 @@
 <ng-template #scheduleForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
-  <div class="modal-body">
-    <div class=" card">
-      <div class=" card-header"><h5 class=" title">Agendar uma Atividade</h5></div>
-      <div class=" card-body">
-        <form>
+  <form #scheduleForm="ngForm" (ngSubmit)="createOrUpdate(scheduleForm.value)">
+    <div class="modal-body">
+      <div class=" card">
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">Agendar uma Atividade</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class=" card-body">
+          <div class="row" *ngIf="scheduleFormModel.operation == operationUpdate">
+            <div class="col-md-12">
+              <div class=" form-group" *ngIf="event.template.objects.schedule.id">
+                <label> ID</label>
+                <input
+                  [(ngModel)]="schedule.id"
+                  name="id"
+                  readonly="true"
+                  class=" form-control"
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
           <div class=" row">
             <div class=" col-md-3 pr-md-1">
               <div class=" form-group">
-                <label> Atividade <span *ngIf="template.objects.schedule.activity.required">*</span></label>
-                <select class=" form-control" type="text" [(ngModel)]="schedule.activity">
+                <label> Atividade <span *ngIf="event.template.objects.schedule.activity.required">*</span></label>
+                <select
+                  class=" form-control"
+                  name="activity"
+                  [(ngModel)]="schedule.activity"
+                >
                   <!-- <option
                     value=""
                     [ngValue]="">- SELECIONAR -</option> -->
@@ -28,8 +45,10 @@
             </div>
             <div class=" col-md-3 px-md-1">
               <div class=" form-group">
-                <label> Data <span *ngIf="template.objects.schedule.date.required">*</span></label>
+                <label> Data <span *ngIf="event.template.objects.schedule.date.required">*</span></label>
                 <select
+                  [(ngModel)]="schedule.date"
+                  name="date"
                   type="date"
                   class=" form-control"
                 >
@@ -44,8 +63,10 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Inicio<span *ngIf="template.objects.schedule.startTime.required">*</span></label>
+                <label> Horário de Inicio<span *ngIf="event.template.objects.schedule.startTime.required">*</span></label>
                 <input
+                  [(ngModel)]="schedule.startTime"
+                  name="startTime"
                   type="time"
                   class=" form-control"
                   [value]="schedule.startTime"
@@ -54,8 +75,10 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Término<span *ngIf="template.objects.schedule.endTime.required">*</span></label>
+                <label> Horário de Término<span *ngIf="event.template.objects.schedule.endTime.required">*</span></label>
                 <input
+                  [(ngModel)]="schedule.endTime"
+                  name="endTime"
                   type="time"
                   class=" form-control"
                   [value]="schedule.endTime"
@@ -63,12 +86,14 @@
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="scheduleFormModel.operation == this.operationUpdate" (click)="update(schedule)">{{scheduleFormModel.operation}} o registro de {{schedule.activity.title}}</button>
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="scheduleFormModel.operation == this.operationCreate" (click)="create(schedule)">{{scheduleFormModel.operation}} essa nova atividade</button>
+
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="modal.dismiss('Cross click')" type="submit" *ngIf="scheduleFormModel.operation == this.operationUpdate" >{{scheduleFormModel.operation}} o registro de {{schedule.activity.title}}</button>
+          <button class=" btn btn-fill btn-danger" (click)="delete(schedule)" *ngIf="scheduleFormModel.operation == this.operationUpdate">Remover esse agendamento</button>
+          <button class=" btn btn-fill btn-danger" (click)="modal.dismiss('Cross click')" type="submit" *ngIf="scheduleFormModel.operation == this.operationCreate">{{scheduleFormModel.operation}} essa nova atividade</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </ng-template>

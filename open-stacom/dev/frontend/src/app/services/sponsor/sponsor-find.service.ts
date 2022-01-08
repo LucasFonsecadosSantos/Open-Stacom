@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Sponsor } from 'src/app/models/sponsor.model';
+import { Template, Sponsor, Event } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,54 +9,46 @@ export class SponsorFindService {
 
 
   constructor(
-    private http: HttpClient,
+
   ) { }
 
-  public find(id: string, eventID: string): Observable<Sponsor> {
+  public find(id: string, event: Event): Sponsor {
 
-    return this.http
-                .get<Sponsor>(`${environment.API_URL.BASE}${environment.API_URL.SPONSOR}/${id}`)
-                .pipe(
-                  map(
-                    sponsor => {
-                      this._buildSources([sponsor], eventID);
-                      return sponsor;
-                    }
-                  )
-                );
+    let sponsor: Sponsor = this._getByID(id, event.template.objects.sponsor.content);
+    this._buildSources([sponsor], event);
+    return sponsor;
 
   }
 
-  public list(eventID: string): Observable<Sponsor[]> {
+  private _getByID(id: string, array: Sponsor[]): Sponsor {
 
-    return this.http
-                .get<Sponsor[]>(`${environment.API_URL.BASE}${environment.API_URL.SPONSOR}`)
-                .pipe(
-                  map(
-                    result => {
-                      let sponsorArray = <any[]>result;
-                      this._buildSources(sponsorArray, eventID);
-                      return sponsorArray;
-                      }
-                    )
-                  );
+    return array.find(sponsor => sponsor.id == id);
+
   }
 
-  private _buildSources(sponsorArray: Sponsor[], eventID: string): Sponsor[] {
+  public list(event: Event): Sponsor[] {
+
+    let sponsorArray: Sponsor[] = event.template.objects.sponsor.content;
+    this._buildSources(sponsorArray, event);
+    return sponsorArray;
+
+  }
+
+  private _buildSources(sponsorArray: Sponsor[], event: Event): Sponsor[] {
 
     sponsorArray.forEach(sponsor => {
-      sponsor.picture = this._buildPersonAvatarSource(sponsor.picture, eventID);
-    })
+      sponsor.picture = this._buildPersonAvatarSource(sponsor.picture, event);
+    });
 
     return sponsorArray;
 
   }
 
-  private _buildPersonAvatarSource(sponsorAvatar: string, eventID: string): string {
+  private _buildPersonAvatarSource(sponsorAvatar: string, event: Event): string {
 
     return (sponsorAvatar && (sponsorAvatar != null) && (sponsorAvatar.length > 0)) ?
-            sponsorAvatar = `/data/${eventID}/img/avatar/${sponsorAvatar}` :
-            `/assets/img/default-avatar.png`;
+            sponsorAvatar = `/data/${event.id}/img/avatar/${sponsorAvatar}` :
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

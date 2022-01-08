@@ -3,9 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommitteeFormService, CommitteeListComponent } from 'src/app/components/committee';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { Operation } from 'src/app/enums';
-
 import { EventFindService } from 'src/app/services/event';
-import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
 import {
   Template,
@@ -33,8 +31,7 @@ export class CommitteComponent implements OnInit {
     private _exportExcelService: ExcelExportService,
     private _eventFindService: EventFindService,
     private _confirmDialogService: ConfirmDialogService,
-    private _committeeFormService: CommitteeFormService,
-    private _templateFindService: TemplateFindService
+    private _committeeFormService: CommitteeFormService
   ) { }
 
   ngOnInit(): void {
@@ -58,26 +55,14 @@ export class CommitteComponent implements OnInit {
 
   private _getEvent(eventID: string): void {
 
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
-  }
-
-  private _getTemplateById(templateID: string) {
-
-    this._templateFindService.find(templateID).subscribe(
-
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
+    this._eventFindService
+        .find(eventID)
+        .subscribe(
+          event => {
+            this.event = event;
+            this.isDataLoaded = true;
           }
-
-    );
+        );
   }
 
   public openAddCommitteeForm(): void {

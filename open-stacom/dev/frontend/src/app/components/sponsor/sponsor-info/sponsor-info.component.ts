@@ -43,16 +43,14 @@ export class SponsorInfoComponent implements OnInit {
 
   public deleteSponsor(sponsor: Sponsor): void {
 
-    this._confirmDialogService.launchConfirmDialog({
-      title: 'Antes de prosseguit..'
-    });
+    // this._confirmDialogService.launchConfirmDialog({
+    //   title: 'Antes de prosseguir..',
+    //   message: `Deseja realmente excluir o registro de ${sponsor.name}?`,
+    //   acceptButton: 'Sim! Estou ciente',
+    //   cancelButton: 'Cancelar',
 
-    // this._sharedEventService.getEventObservable().subscribe(
-    //   eventResponse => this._personDeleteService.delete(person.id, eventResponse.id)
-
-    // );
-
-    this._deleteService.delete(sponsor.id, this.event.id);
+    // });
+    this._deleteService.delete(sponsor, this.event);
 
 
   }
@@ -64,6 +62,15 @@ export class SponsorInfoComponent implements OnInit {
         this.sponsor = response ? response : null
       }
     );
+
+    this._confirmDialogService
+        .getResponseObservable()
+        .subscribe({
+          next: response => {
+            this._deleteService.delete(this.sponsor, this.event);
+          }
+        });
+
 
   }
 

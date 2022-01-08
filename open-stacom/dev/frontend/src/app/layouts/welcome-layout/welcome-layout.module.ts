@@ -10,7 +10,8 @@ import { ComponentsModule } from 'src/app/components';
 import {
   LoadProjectComponent,
   NewProjectComponent,
-  WelcomeCardComponent
+  WelcomeCardComponent,
+  CadastreEventComponent
 } from './components';
 
 
@@ -20,7 +21,8 @@ import {
     WelcomeLayoutComponent,
     NewProjectComponent,
     LoadProjectComponent,
-    WelcomeCardComponent
+    WelcomeCardComponent,
+    CadastreEventComponent
   ],
   imports: [
     CommonModule,

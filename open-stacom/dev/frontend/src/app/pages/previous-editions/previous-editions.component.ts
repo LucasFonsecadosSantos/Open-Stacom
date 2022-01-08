@@ -5,9 +5,8 @@ import {
   Event,
   Template
 }  from './../../models';
-import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
-import { PreviousEditionFormComponent, PreviousEditionListComponent } from 'src/app/components/previous-editions';
+import {  PreviousEditionListComponent } from 'src/app/components/previous-editions';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 
 @Component({
@@ -28,7 +27,6 @@ export class PreviousEditionsComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService,
     private _exportExcelService: ExcelExportService,
     private _confirmDialogService: ConfirmDialogService
   ) { }
@@ -69,25 +67,14 @@ export class PreviousEditionsComponent implements OnInit {
 
   private _getEvent(eventID: string): void {
 
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
-  }
-
-  private _getTemplateById(templateID: string) {
-
-    this._templateFindService.find(templateID).subscribe(
-
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
+    this._eventFindService
+        .find(eventID)
+        .subscribe(
+          event => {
+            this.event = event;
+            this.isDataLoaded = true;
           }
-
-    );
+        );
   }
+
 }

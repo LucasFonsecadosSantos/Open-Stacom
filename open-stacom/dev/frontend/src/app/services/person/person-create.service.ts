@@ -1,9 +1,8 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-
-import { Person } from 'src/app/models';
+import { Person, Event } from 'src/app/models';
+import { EventUpdateService } from '../event';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +10,27 @@ import { Person } from 'src/app/models';
 export class PersonCreateService {
 
   constructor(
-    private _http: HttpClient
+    private _eventUpdateService: EventUpdateService
   ) { }
 
-  public create(person: Person): Observable<any> {
-    return this._http.post(
-      `${environment.API_URL.BASE}${environment.API_URL.PERSON}`,
-      person
-    );
+  public create(person: Person, event: Event): Observable<any> {
+
+    return this._eventUpdateService.update(this._addDataToEvent(person, event));
+
+  }
+
+  private _addDataToEvent(person: Person, event: Event): Event {
+
+    person.id = uuidv4();
+
+    event.template
+          .objects
+          .person
+          .content
+          .push(person);
+
+    return event;
+
   }
 
 }

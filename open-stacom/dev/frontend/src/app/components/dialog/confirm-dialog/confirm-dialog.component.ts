@@ -34,6 +34,9 @@ export class ConfirmDialogComponent implements OnInit {
   public acceptButton(): void {
 
     this._confirmDialogService.acceptOperation();
+    this._modalService.dismissAll();
+    this.dialog.dismiss('Cross click');
+
 
   }
 

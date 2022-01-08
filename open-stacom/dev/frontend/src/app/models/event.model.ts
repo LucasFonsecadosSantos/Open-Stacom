@@ -1,3 +1,5 @@
+import { Template } from "./../models";
+
 export class Event {
 
   id?: string;
@@ -6,7 +8,6 @@ export class Event {
   subject?: string;
   eventType?: string;
   targetPublic?: string;
-  templateID?: string;
   logo?: string;
   description?: string;
   brief?: string;
@@ -23,16 +24,14 @@ export class Event {
     departament?: string;
   }
   days?: Date[];
-  location?: {
-    cep?: string;
-    street?: string;
-    number?: string;
-    neiborhood?: string;
-    city?: string;
-    state?: string;
-    country?: string;
-    latLong?: string;
-  };
+  locationCep?: string;
+  locationAddress?: string;
+  locationNumber?: string;
+  locationNeiborhood?: string;
+  locationCity?: string;
+  locationUF?: string;
+  locationCountry?: string;
+  locationLatLong?: string;
   socialNetworks?: {
     facebook?: string,
     twitter?: string,
@@ -43,5 +42,6 @@ export class Event {
     behance?: string,
     youtubeChannel?: string
   };
+  template: Template;
 
 }

@@ -24,10 +24,10 @@
               <img alt="..." class=" avatar" src="{{committee.picture}}" />
             </td>
             <td class="col-md-3">{{committee.name}}</td>
-            <td class="col-md-4" style="font-size: 1em">
+            <td class="col-md-5" style="font-size: 1em">
               <p *ngFor="let member of committee.members">{{ member.name }}</p>
             </td>
-            <td *ngIf="committee.telephone || committee.email" class="col-md-3">
+            <td class="col-md-3">
               {{ committee.telephone ? committee.telephone : ''}} / {{ committee.email ? committee.email : '' }}
             </td>
           </tr>

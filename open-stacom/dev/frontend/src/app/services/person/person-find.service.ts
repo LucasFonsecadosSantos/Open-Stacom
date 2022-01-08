@@ -1,8 +1,5 @@
-import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { Person } from './../../models';
+import { Person, Event } from './../../models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,47 +7,46 @@ import { environment } from 'src/environments/environment';
 })
 export class PersonFindService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  public find(id: string, eventID: string): Observable<Person> {
+  public find(id: string, event: Event): Person {
 
-    return this.http
-                .get<Person>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${id}`)
-                .pipe(
-                  map(
-                    result => {
-                      this._buildSources([result], eventID);
-                      return result;
-                    }
-                  )
-                );
+    let person: Person = this._getByID(id, event.template.objects.person.content);
+    this._buildSources([person], event);
+
+    return person;
+  }
+
+  private _getByID(id: string, array: Person[]): Person {
+
+    return array.find(entity => entity.id == id);
 
   }
 
-  public list(eventID: string): Observable<Person[]> {
-    return this.http.get<Person[]>(`${environment.API_URL.BASE}${environment.API_URL.PERSON}`)
-                      .pipe(map(result => {
-                          const personArray = <any[]>result;
-                          this._buildSources(personArray, eventID);
-                          return personArray;
-                      }));
+  public list(event: Event): Person[] {
+
+    let person: Person[] = event.template.objects.person.content;
+    this._buildSources(person, event);
+
+    return person;
+
   }
 
-  private _buildSources(personArray: Person[], eventID: string): Person[] {
+  private _buildSources(personArray: Person[], event: Event): Person[] {
 
     personArray.forEach(person => {
-      person.avatar = this._buildPersonAvatarSource(person.avatar, eventID);
+      person.avatar = this._buildPersonAvatarSource(person.avatar, event);
     })
 
     return personArray;
 
   }
 
-  private _buildPersonAvatarSource(personAvatar: string, eventID: string): string {
+  private _buildPersonAvatarSource(personAvatar: string, event: Event): string {
 
     return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
-            personAvatar = `/data/${eventID}/img/avatar/${personAvatar}` :
-            `/assets/img/default-avatar.png`;
+            personAvatar = `/data/${event.id}/img/avatar/${personAvatar}` :
+            environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }
 

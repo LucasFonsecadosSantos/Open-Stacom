@@ -51,18 +51,20 @@ export class ActivityInfoComponent implements OnInit {
 
     // );
 
-    this._deleteService.delete(activity.id, this.event.id);
+    this._deleteService.delete(activity, this.event);
 
 
   }
 
   private _getResponseObservables(): void {
 
-    this._sharedService.getActivityFromListObservable().subscribe(
-      response => {
-        this.activity = response ? response : null
-      }
-    );
+    this._sharedService
+        .getActivityFromListObservable()
+        .subscribe(
+          response => {
+            this.activity = response ? response : null
+          }
+        );
 
   }
 

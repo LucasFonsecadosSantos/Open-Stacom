@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Proceeding } from 'src/app/models';
-import { environment } from 'src/environments/environment';
+import { Proceeding, Event, Template } from 'src/app/models';
+import { EventFindService } from '../event';
 
 @Injectable({
   providedIn: 'root'
@@ -10,37 +9,28 @@ import { environment } from 'src/environments/environment';
 export class ProceedingFindService {
 
   constructor(
-    private http: HttpClient,
+    private _eventFindService: EventFindService
   ) { }
 
-  public find(id: string, eventID: string): Observable<Proceeding> {
+  public find(id: string, event: Event): Proceeding {
 
-    return this.http
-                .get<Proceeding>(`${environment.API_URL.BASE}${environment.API_URL.PROCEEDING}/${id}`)
-                .pipe(
-                  map(
-                    proceeding => {
-                      // this._buildSources([proceeding], eventID);
-                      return proceeding;
-                    }
-                  )
-                );
+    let proceeding: Proceeding = this._getByID(id, event.template.objects.proceeding.content);
+    // this._buildSources([proceeding], event);
+
+    return proceeding;
 
   }
 
-  public list(eventID: string): Observable<Proceeding[]> {
+  private _getByID(id: string, array: Proceeding[]): Proceeding {
 
-    return this.http
-                .get<Proceeding[]>(`${environment.API_URL.BASE}${environment.API_URL.PROCEEDING}`)
-                .pipe(
-                  map(
-                    result => {
-                      let proceedingArray = <any[]>result;
-                      // this._buildSources(activityArray, eventID);
-                      return proceedingArray;
-                      }
-                    )
-                  );
+    return array.find(entity => entity.id == id);
+
+  }
+
+  public list(event: Event): Proceeding[] {
+
+    return event.template.objects.proceeding.content;
+
   }
 
 

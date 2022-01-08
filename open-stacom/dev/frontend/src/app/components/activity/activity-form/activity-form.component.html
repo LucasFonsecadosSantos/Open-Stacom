@@ -1,46 +1,50 @@
 <ng-template #activityForm let-modal>
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
-  <div class="modal-body">
-    <div class=" card">
-      <div class=" card-header"><h5 class=" title">Adicionar uma Atividade</h5></div>
-      <div class=" card-body">
-        <form>
-          <div class=" row">
-            <div class="row" *ngIf="activityPlanFormModel.operation == operationUpdate">
+  <form #activityForm="ngForm" (ngSubmit)="createOrUpdate(activityForm.value)">
+    <div class="modal-body">
+      <div class=" card">
+        <div class=" card-header d-flex justify-content-between">
+          <h5 class=" title">Adicionar uma Atividade</h5>
+          <button type="button" style="color: #FFF !important" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class=" card-body">
+
+          <div class="row" *ngIf="activityFormModel.operation == operationUpdate">
             <div class="col-md-12">
-              <div class=" form-group">
+              <div class=" form-group" *ngIf="event.template.objects.activity.id">
                 <label> ID</label>
                 <input
+                  [(ngModel)]="activity.id"
+                  name="id"
+                  readonly="true"
                   class=" form-control"
                   type="text"
                   [value]="activity.id"
-                  disabled="true"
                 />
               </div>
             </div>
           </div>
+          <div class="row">
             <div class=" col-md-5 pr-md-1">
               <div class=" form-group">
-                <label> Título <span *ngIf="template.objects.activity.title.required">*</span></label>
+                <label> Título <span *ngIf="event.template.objects.activity.title.required">*</span></label>
                 <input
+                  [(ngModel)]="activity.title"
+                  name="title"
                   class=" form-control"
                   placeholder="Ex.: Abertura do evento"
                   type="text"
-                  [value]="activity.title"
                 />
               </div>
             </div>
             <div class=" col-md-3 px-md-1">
               <div class=" form-group">
-                <label> Tipo <span *ngIf="template.objects.activity.type.required">*</span></label>
+                <label> Tipo <span *ngIf="event.template.objects.activity.type.required">*</span></label>
                 <select
                   class=" form-control"
-                  [value]="activity.type"
+                  [(ngModel)]="activity.type"
+                  name="type"
                 >
                   <option value="" selected>- SELECIONAR -</option>
                   <option
@@ -52,9 +56,11 @@
             </div>
             <div class=" col-md-4 pl-md-1">
               <div class=" form-group">
-                <label for="exampleInputEmail1"> Responsável pela atividade <span *ngIf="template.objects.activity.responsible.required">*</span></label>
+                <label for="exampleInputEmail1"> Responsável pela atividade <span *ngIf="event.template.objects.activity.responsible.required">*</span></label>
                 <select
                   class=" form-control"
+                  [(ngModel)]="activity.responsible"
+                  name="responsible"
                 >
                 <option value="" selected>- SELECIONAR -</option>
                   <option
@@ -68,23 +74,25 @@
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> Proporcionado por <span *ngIf="template.objects.activity.poweredBy.required">*</span></label>
+                <label> Proporcionado por <span *ngIf="event.template.objects.activity.poweredBy.required">*</span></label>
                 <input
+                  [(ngModel)]="activity.poweredBy"
+                  name="poweredBy"
                   class=" form-control"
                   placeholder="Ex.: Empresa XPTO"
                   type="text"
-                  [value]="activity.poweredBy"
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
               <div class=" form-group">
-                <label> Público Alvo <span *ngIf="template.objects.activity.targetPublic.required">*</span></label>
+                <label> Público Alvo <span *ngIf="event.template.objects.activity.targetPublic.required">*</span></label>
                 <input
+                  [(ngModel)]="activity.targetPublic"
+                  name="targetPunblic"
                   class=" form-control"
                   placeholder="Ex.: Pesquisadores de Biologia"
                   type="text"
-                  [value]="activity.targetPublic"
                 />
               </div>
             </div>
@@ -92,25 +100,27 @@
           <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> Resumo breve <span *ngIf="template.objects.activity.brief.required">*</span></label>
+                <label> Resumo breve <span *ngIf="event.template.objects.activity.brief.required">*</span></label>
                 <textarea
+                  [(ngModel)]="activity.brief"
+                  name="brief"
                   rows="6"
                   class=" form-control"
                   placeholder="Ex.: As práticas decorrente da atividade xpto atualmente, levam em consideração..."
                   type="text"
-                  [value]="activity.brief"
                 ></textarea>
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
               <div class=" form-group">
-                <label> Descrição Detalhada <span *ngIf="template.objects.activity.description.required">*</span></label>
+                <label> Descrição Detalhada <span *ngIf="event.template.objects.activity.description.required">*</span></label>
                 <textarea
+                  [(ngModel)]="activity.description"
+                  name="description"
                   rows="6"
                   class=" form-control"
                   placeholder="Ex.: A presente atividade busca..."
                   type="text"
-                  [value]="activity.description"
                 ></textarea>
               </div>
             </div>
@@ -135,26 +145,28 @@
             </div>
             <div class=" col-md-3 pr-md-1">
               <div class=" form-group">
-                <label> Preço <span *ngIf="template.objects.activity.price.required">*</span></label>
+                <label> Preço <span *ngIf="event.template.objects.activity.price.required">*</span></label>
                 <input
                   #priceField
+                  [(ngModel)]="activity.price"
+                  name="price"
                   [disabled]="checkPriceField.checked"
                   class=" form-control"
                   placeholder="Ex.: 00,00"
                   type="text"
-                  [value]="activity.price"
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
               <div class=" form-group">
-                <label> Pacote <span *ngIf="template.objects.activity.pricePlan.required">*</span></label>
+                <label> Pacote <span *ngIf="event.template.objects.activity.pricePlan.required">*</span></label>
                 <select
+                  [(ngModel)]="activity.pricePlan"
+                  name="pricePlan"
                   [disabled]="checkPriceField.checked"
                   class=" form-control"
                   placeholder="Ex.: Pesquisadores de Biologia"
                   type="text"
-                  [value]="activity.targetPublic"
                 >
                 <option value="" selected>- SELECIONAR -</option>
                 <option *ngFor="let plan of pricePlans" value="plan.id">{{plan.name}}</option>
@@ -163,47 +175,36 @@
             </div>
           </div>
           <div class=" row">
-            <div class=" col-md-12">
-              <div class=" form-group">
-                <label> Address </label>
-                <input
-                  class=" form-control"
-                  placeholder="Home Address"
-                  type="text"
-                  value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                />
-              </div>
-            </div>
-          </div>
-          <div class=" row">
             <div class=" col-md-6 pr-md-1">
               <div class=" form-group">
-                <label> Imagem <span *ngIf="template.objects.activity.picture.required">*</span></label>
+                <label> Imagem <span *ngIf="event.template.objects.activity.picture.required">*</span></label>
                 <input
+
                   class=" form-control"
                   type="file"
-                  [value]=""
                 />
               </div>
             </div>
             <div class=" col-md-6 pl-md-1">
               <div class=" form-group">
-                <label> Localização <span *ngIf="template.objects.activity.location.required">*</span></label>
+                <label> Localização <span *ngIf="event.template.objects.activity.location.required">*</span></label>
                 <input
+                  [(ngModel)]="activity.location"
+                  name="location"
                   class=" form-control"
                   placeholder="Ex.: Sala 23, departamento de Química"
                   type="text"
-                  [value]="activity.location"
                 />
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class=" card-footer">
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationUpdate" (click)="update(activity)">{{activityFormModel.operation}} o registro de {{activity.title}}</button>
-        <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationCreate" (click)="create(activity)">{{activityFormModel.operation}} essa nova atividade</button>
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationUpdate" (click)="modal.dismiss('Cross click')">{{activityFormModel.operation}} o registro de {{activity.title}}</button>
+          <button class=" btn btn-fill btn-danger" (click)="delete(activity)" *ngIf="activityFormModel.operation == this.operationUpdate">Remover essa atividade</button>
+          <button class=" btn btn-fill btn-danger" type="submit" *ngIf="activityFormModel.operation == this.operationCreate" (click)="modal.dismiss('Cross click')">{{activityFormModel.operation}} essa nova atividade</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </ng-template>

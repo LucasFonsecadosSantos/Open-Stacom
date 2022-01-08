@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
 import { Schedule } from 'src/app/models/schedule.model';
-import { environment } from 'src/environments/environment';
-import { ActivityFindService } from '../activity';
+import { Event } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,46 +8,54 @@ import { ActivityFindService } from '../activity';
 export class ScheduleFindService {
 
   constructor(
-    private http: HttpClient,
-    private _activityFindService: ActivityFindService
+
   ) { }
 
-  public find(id: string, eventID: string): Observable<Schedule> {
+  public find(id: string, event: Event): Schedule {
 
-    return this.http
-                .get<Schedule>(`${environment.API_URL.BASE}${environment.API_URL.SCHEDULE}/${id}`)
-                .pipe(
-                  map(
-                    result => {
-                      this._fetchActivity([result], eventID);
-                      return result;
-                    }
-                  )
-                );
+    let schedule = this._getByID(id, event.template.objects.schedule.content);
+    this._fetchActivity([schedule], event);
+    return schedule;
 
   }
 
-  public list(eventID: string): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(`${environment.API_URL.BASE}${environment.API_URL.SCHEDULE}`)
-                      .pipe(map(result => {
-                          const scheduleArray = <any[]>result;
-                          this._fetchActivity(scheduleArray, eventID);
-                          return scheduleArray;
-                      }));
+  private _getByID(id: string, array: Schedule[]): Schedule {
+
+    return array.find(entity => entity.id == id);
+
   }
 
-  private _fetchActivity(scheduleArray: Schedule[], eventID: string): void {
+  public list(event: Event): Schedule[] {
+
+    let scheduleArray: Schedule[] = event.template.objects.schedule.content;
+    this._fetchActivity(scheduleArray, event);
+    return scheduleArray;
+
+  }
+
+  private _fetchActivity(scheduleArray: Schedule[], event: Event): void {
 
     scheduleArray.forEach(
+
       schedule => {
 
-        this._activityFindService
-            .find(schedule.activity.id, eventID)
-            .subscribe(
-              activity => {
-                schedule.activity = activity ? activity : undefined;
-              }
-            );
+        schedule.activity = event.template
+              .objects
+              .activity
+              .content
+              .filter(
+                fetched => fetched.id == schedule.activity.id
+              )[0];
+
+        schedule.activity
+                .responsible = event.template
+                                    .objects
+                                    .person
+                                    .content
+                                    .filter(
+                                      person => person.id == schedule.activity.responsible.id
+                                    )[0];
+
 
       }
     );

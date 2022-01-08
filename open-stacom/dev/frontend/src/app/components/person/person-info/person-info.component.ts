@@ -52,7 +52,7 @@ export class PersonInfoComponent implements OnInit {
 
     // );
 
-    this._personDeleteService.delete(person.id, this.event.id);
+    this._personDeleteService.delete(person, this.event);
 
 
   }

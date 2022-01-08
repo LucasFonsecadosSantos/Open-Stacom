@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { EventFindService } from 'src/app/services/event';
-import { TemplateFindService } from 'src/app/services/templates';
 import { Event, Template } from './../../models';
 import { ExcelExportService } from 'src/app/services/utils';
 import { ScheduleFormService, ScheduleListComponent } from 'src/app/components/schedule';
@@ -20,16 +19,12 @@ export class ScheduleComponent implements OnInit {
 
   public event: Event;
 
-  public template: Template;
-
   public isDataLoaded: boolean = false;
 
 
   constructor(
     private _exportExcelService: ExcelExportService,
-    // private _personFormService: PersonFormService,
     // private _personDeleteService: PersonDeleteService,
-    private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: ScheduleFormService,
@@ -57,26 +52,14 @@ export class ScheduleComponent implements OnInit {
 
   private _getEvent(eventID: string): void {
 
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
-  }
-
-  private _getTemplateById(templateID: string) {
-
-    this._templateFindService.find(templateID).subscribe(
-
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
+    this._eventFindService
+        .find(eventID)
+        .subscribe(
+          event => {
+            this.event = event;
+            this.isDataLoaded = true;
           }
-
-    );
+        );
   }
 
   public confirmDeleteAllSchedule(): void {

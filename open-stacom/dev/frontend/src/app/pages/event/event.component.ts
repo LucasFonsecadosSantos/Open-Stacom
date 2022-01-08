@@ -53,26 +53,22 @@ export class EventComponent implements OnInit {
 
   private _getEvent(eventID: string): void {
 
-    this._eventFindService.find(eventID).subscribe(event => {
-
-      this.event = event;
-      this._getTemplateById(event.templateID);
-
-    });
-
+    this._eventFindService
+        .find(eventID)
+        .subscribe(
+          event => {
+            this.event = event;
+            this._getTemplateById(event);
+          }
+        );
   }
 
-  private _getTemplateById(templateID: string) {
+  private _getTemplateById(event: Event): void {
 
-    this._templateFindService.find(templateID).subscribe(
+    this.template = this._templateFindService
+                        .find(event);
+      this.isDataLoaded = true;
 
-      template =>
-         {
-           this.template = template;
-           this.isDataLoaded = true;
-          }
-
-    );
   }
 
 }

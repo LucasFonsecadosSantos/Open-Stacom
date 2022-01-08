@@ -12,6 +12,7 @@ import { TemplatesRetrievingService } from 'src/app/services/templates';
 export class NewProjectComponent implements OnInit {
 
   templates: Template[];
+
   messages: string[];
 
   constructor(
@@ -37,13 +38,13 @@ export class NewProjectComponent implements OnInit {
     );
   }
 
-  createEvent(templateID: string): void {
+  public createEvent(template: Template): void {
 
     this.eventCreateService
-      .create(templateID)
+      .create(template)
       .subscribe(
         response => {
-          this.router.navigate([`inicio/${response.id}`]);
+          this.router.navigate([`pre-carregar/${response.id}`]);
         }
       );
 

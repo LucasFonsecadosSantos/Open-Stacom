@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
 import { Committee, CommitteeForm, Template, Event, Person } from 'src/app/models';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
@@ -13,18 +14,17 @@ import { CommitteeFormService } from '.';
 })
 export class CommitteeFormComponent implements OnInit {
 
-  @ViewChild('committeForm')
-  public committeForm: CommitteeFormComponent;
+  @ViewChild('committeeForm')
+  public committeeForm: CommitteeFormComponent;
 
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public committeeMembers: Array<Person>;
 
   public personArray: Person[];
+
+  public committeeTmp: any[];
 
   public committee: Committee;
 
@@ -34,6 +34,7 @@ export class CommitteeFormComponent implements OnInit {
 
   constructor(
     private _modalService: NgbModal,
+    private toastr: ToastrService,
     private _formService: CommitteeFormService,
     private _createService: CommitteCreateService,
     private _updateService: CommitteUpdateService,
@@ -52,11 +53,8 @@ export class CommitteeFormComponent implements OnInit {
 
   private _buildAvailablePeopleToSelect(): void {
 
-    this._personFindService
-        .list(this.event.id)
-        .subscribe(
-          response => this.personArray = response
-        );
+    this.personArray = this._personFindService
+                            .list(this.event);
 
   }
 
@@ -76,14 +74,13 @@ export class CommitteeFormComponent implements OnInit {
 
   public addMember(personID: string): void {
 
-    this._personFindService
-          .find(personID, this.event.id)
-          .subscribe(
-            response => {
-              this.committee.members.push(response);
-              this.personArray = this._removePersonFromOptions(personID);
-            }
-          );
+    let newMember: Person = this._personFindService
+                            .find(personID, this.event)
+
+    this.committee.members.push(newMember);
+    this.committeeTmp.push({'id': newMember.id});
+    this.personArray = this._removePersonFromOptions(personID);
+
 
   }
 
@@ -110,12 +107,12 @@ export class CommitteeFormComponent implements OnInit {
   private _getNewCommittee(): Committee {
 
     return {
-      id: null,
-      brief: null,
-      email: null,
-      members: [],
-      picture: null,
-      telephone: null
+      'id': '',
+      'brief': '',
+      'email': '',
+      'members': [],
+      'picture': '',
+      'telephone': ''
     };
 
   }
@@ -127,10 +124,10 @@ export class CommitteeFormComponent implements OnInit {
   }
 
   private _launchModal(): void {
-
+    this.committeeTmp = [];
     if (!this._modalService.hasOpenModals()) {
 
-      this._modalService.open(this.committeForm,
+      this._modalService.open(this.committeeForm,
         {
           ariaLabelledBy: 'modal-basic-title',
           windowClass: 'modal-custom',
@@ -144,33 +141,109 @@ export class CommitteeFormComponent implements OnInit {
 
   }
 
-  public create(committee: Committee): void {
+  public createOrUpdate(committee: Committee): void {
 
+    if (committee.id) {
+      this._update(committee);
+    } else {
+      this._create(committee);
+    }
+
+  }
+
+  private _create(committee: Committee): void {
+    console.log(committee);
+    console.log("committee");
     this._createService
-          .create(committee)
-          .subscribe(
-            //TODO toas here
-          );
+          .create(this._loadForm(committee), this.event)
+          .subscribe({
+
+            next: response => {
+
+              this._showSuccessToast(
+                `O comitê ${committee.name} foi criado com sucesso.`
+              );
+
+            },
+            error: exception => {
+
+              this._showErrorToast(
+                `Ops: Parece que houve um erro ao se criar o comitê ${committee.name}. ERRO: ${exception}`
+              );
+
+            }
+
+          });
 
   }
 
   public delete(committee: Committee): void {
 
-    this._deleteService
-          .delete(committee)
-          .subscribe(
-            //TODO toas here
-          );
+    this._deleteService.delete(committee, this.event);
+    this._modalService.dismissAll('Cross click');
 
   }
 
-  public update(committee: Committee): void {
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _loadForm(data: any): Committee {
+
+    return {
+      "id": data.id ? data.id : '',
+      "name": data.name ? data.name : '',
+      "members": this.committeeTmp ? this.committeeTmp : [],
+      "picture": data.picture ? data.picture : '',
+      "brief": data.brief ? data.brief : '',
+      "telephone": data.telephone ? data.telephone : '',
+      "email": data.email ? data.email : ''
+    };
+
+  }
+
+  private _update(committee: Committee): void {
 
     this._updateService
-          .update(committee)
-          .subscribe(
-            //TODO toas here
-          );
+          .update(this._loadForm(committee), this.event)
+          .subscribe({
+
+            next: response => {
+
+              this._showSuccessToast(
+                `O comitê ${committee.name} foi atualizada com sucesso.`
+              );
+
+            },
+            error: exception => {
+
+              this._showErrorToast(
+                `Ops: Parece que houve um erro ao se atualizar o comitê ${committee.name}. ERRO: ${exception}`
+              );
+
+            }
+
+          });
 
   }
 

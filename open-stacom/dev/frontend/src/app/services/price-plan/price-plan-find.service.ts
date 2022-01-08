@@ -1,33 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PricePlan } from 'src/app/models';
+import { Event, PricePlan } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import { EventFindService } from '../event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PricePlanFindService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  public find(id: string): Observable<PricePlan> {
+  public find(id: string, event: Event): PricePlan {
 
-    return this.http
-                .get<PricePlan>(`${environment.API_URL.BASE}${environment.API_URL.PRICE_PLAN}/${id}`);
+    return this._getByID(id, event.template.objects.pricePlan.content);
 
   }
 
-  public list(eventID: string): Observable<PricePlan[]> {
-    return this.http
-                .get<PricePlan[]>(`${environment.API_URL.BASE}${environment.API_URL.PRICE_PLAN}`)
-                .pipe(
-                  map(
-                    result => {
-                      const personArray = <any[]>result;
-                      //this._buildSources(personArray, eventID);
-                      return personArray;
-                  }));
+  private _getByID(id: string, array: PricePlan[]): PricePlan {
+
+    return array.find(entity => entity.id == id);
+
+  }
+
+  public list(event: Event): PricePlan[] {
+
+    return event.template.objects.pricePlan.content;
+
   }
 
 }

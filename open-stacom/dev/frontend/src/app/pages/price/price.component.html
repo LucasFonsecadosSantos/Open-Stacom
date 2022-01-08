@@ -1,6 +1,6 @@
 <div class="content">
-  <app-price-form [template]="template" [event]="event" *ngIf="isDataLoaded"></app-price-form>
-  <app-confirm-dialog [template]="template" [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
+  <app-price-form [event]="event" *ngIf="isDataLoaded"></app-price-form>
+  <app-confirm-dialog [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
   <div class="row">
     <div class="col-md-12">
       <div class=" card">
@@ -23,7 +23,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <app-price-list #pricePlanList [template]="template" [event]="event" *ngIf="isDataLoaded"></app-price-list>
+      <app-price-list #pricePlanList [event]="event" *ngIf="isDataLoaded"></app-price-list>
     </div>
   </div>
 </div>

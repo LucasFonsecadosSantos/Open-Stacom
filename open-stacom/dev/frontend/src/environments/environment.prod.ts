@@ -17,6 +17,9 @@ export const environment = {
     VIDEO_GALLERY: '/video-gallery',
     ACTIVITY: '/activities',
     EVENT: '/event',
-    SCHEDULE: '/schedule'
-  }
+    SCHEDULE: '/schedule',
+    GENERATE_BUILD_URL: `http://0.0.0.0:8888/api/event/generate`
+  },
+  API_CONNECTIONS_RETRY: 3,
+  DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`
 };

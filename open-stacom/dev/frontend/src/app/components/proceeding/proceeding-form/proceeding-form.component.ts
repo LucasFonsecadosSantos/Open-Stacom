@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
 import { Template, Event, Proceeding, ProceedingForm } from 'src/app/models';
 import { ProceedingCreateService, ProceedingUpdateService } from 'src/app/services/proceeding';
@@ -29,6 +30,7 @@ export class ProceedingFormComponent implements OnInit {
 
   constructor(
     private _modalService: NgbModal,
+    private toastr: ToastrService,
     private _formService: ProceedingFormService,
     private _createService: ProceedingCreateService,
     private _updateService: ProceedingUpdateService,
@@ -106,23 +108,102 @@ export class ProceedingFormComponent implements OnInit {
 
   }
 
-  private create(proceeding: Proceeding): void {
+  private _create(proceeding: Proceeding): void {
 
     this._createService
-        .create(proceeding)
-        .subscribe(response => {
-          //TODO Here - IMplements a toast with message
+        .create(this._loadForm(proceeding), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `${proceeding.title} foi adicionado com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao adicionar ${proceeding.title}. ERRO: ${exception}`
+            );
+
+          }
+
         });
 
   }
 
-  private update(proceeding: Proceeding): void {
+  private _update(proceeding: Proceeding): void {
 
     this._updateService
-        .update(proceeding)
-        .subscribe(response => {
-          //TODO Here - implement a toast with message
+        .update(this._loadForm(proceeding), this.event)
+        .subscribe({
+
+          next: response => {
+
+            this._showSuccessToast(
+              `${proceeding.title} foi atualizada com sucesso.`
+            );
+
+          },
+          error: exception => {
+
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar ${proceeding.title}. ERRO: ${exception}`
+            );
+
+          }
+
         });
 
   }
+
+  public delete(proceeding: Proceeding): void {}
+
+  public createOrUpdate(proceeding: Proceeding): void {
+
+    if (proceeding.id) {
+      this._update(proceeding);
+    } else {
+      this._create(proceeding);
+    }
+
+  }
+
+  private _showSuccessToast(message: string): void {
+
+    this.toastr.success(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-success alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _showErrorToast(message: string): void {
+
+    this.toastr.error(`<span class="tim-icons icon-check-2" [data-notify]="icon"></span> ${message}`, '', {
+      disableTimeOut: false,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert alert-error alert-with-icon",
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  private _loadForm(data: any): Proceeding {
+
+    return {
+      "id": data.id ? data.id : '',
+      "title": data.title ? data.title : '',
+      "file": data.file ? data.file : '',
+      "specialty": data.specialty ? data.specialty : '',
+      "author": data.author ? data.author : '',
+      "code": data.code ? data.code : '',
+      }
+    };
+
 }
