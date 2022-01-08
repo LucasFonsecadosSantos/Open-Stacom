@@ -666,7 +666,7 @@
             "required": true
           },
           "website": {
-            "minlength": 4,
+            "minlength": 5,
             "maxlength": 50,
             "required": true
           },
