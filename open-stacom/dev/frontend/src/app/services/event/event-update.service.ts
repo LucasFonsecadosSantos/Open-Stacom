@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
@@ -19,7 +19,11 @@ export class EventUpdateService {
     return this._http
                 .put<any>(
                   `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${event.id}`,
-                  event
+                  event,
+                  {
+                    responseType: 'json',
+                    headers: new HttpHeaders().set('AUTH_TOKEN', `_PUT${event.id}`)
+                  }
                 )
                 .pipe(
                   retry(environment.API_CONNECTIONS_RETRY),

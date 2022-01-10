@@ -3,6 +3,7 @@ import { Template } from "./../models";
 export class Event {
 
   id?: string;
+  token?: string;
   name?: string;
   edition?: string;
   subject?: string;

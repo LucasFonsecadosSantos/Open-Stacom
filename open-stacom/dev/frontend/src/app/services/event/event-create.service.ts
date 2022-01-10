@@ -17,11 +17,14 @@ export class EventCreateService {
 
   public createEvent(event: Event): Observable<Event> {
 
+    const token = uuidv4();
+
     return this.http.post<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
-        id: uuidv4(),
-        event: event
+        id: token,
+        event: event,
+        token: token
       },
       {
         reportProgress: true,
@@ -32,11 +35,14 @@ export class EventCreateService {
 
   public create(template: Template): Observable<Event> {
 
+    const token = uuidv4();
+
     return this.http.post<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
-        id: uuidv4(),
-        template: template
+        id: token,
+        template: template,
+        token: token
       },
       {
         reportProgress: true,
