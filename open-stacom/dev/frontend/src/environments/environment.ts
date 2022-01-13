@@ -24,8 +24,14 @@ export const environment = {
     SCHEDULE: '/schedule'
   },
   API_CONNECTIONS_RETRY: 3,
-  DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`
+  DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`,
+  API_BACKEND_SERVICES: {
+    HOST: 'http://0.0.0.0',
+    PORT: '8888',
+    TEMPLATE: '/api/templates'
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

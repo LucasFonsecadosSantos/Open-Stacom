@@ -45,6 +45,12 @@ server.post('/event/create', (req, res, next) => {
   res.sendStatus(200)
 })
 
+server.get('/templates', (req, res, next) => {
+
+
+
+});
+
 server.get('/close/:id', (req, res, next) => {
 
   fileSystem.unlink(`${req.params.id}.json`, (err) => {
