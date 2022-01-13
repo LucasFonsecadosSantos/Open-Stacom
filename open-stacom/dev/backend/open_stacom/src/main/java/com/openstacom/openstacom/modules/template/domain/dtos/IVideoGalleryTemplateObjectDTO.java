@@ -9,22 +9,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class IProceedingTemplateObjectDTO {
+public class IVideoGalleryTemplateObjectDTO {
 
     private ITemplateObjectRouteConfigDTO configRoute;
 
     private ITemplateObjectFieldDTO id;
 
-    private ITemplateObjectFieldDTO code;
-
-    private ITemplateObjectFieldDTO author;
-
     private ITemplateObjectFieldDTO title;
 
-    private ITemplateObjectFieldDTO specialty;
+    private ITemplateObjectFieldDTO legend;
 
     private ITemplateObjectFieldDTO file;
 
-    private List<IProceedingDTO> content;
+    private List<IVideoGalleryDTO> content;
 
 }

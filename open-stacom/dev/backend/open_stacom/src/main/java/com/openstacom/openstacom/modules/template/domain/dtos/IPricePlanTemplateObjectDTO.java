@@ -2,6 +2,8 @@ package com.openstacom.openstacom.modules.template.domain.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,5 +20,7 @@ public class IPricePlanTemplateObjectDTO {
     private ITemplateObjectFieldDTO description;
 
     private ITemplateObjectFieldDTO value;
+
+    private List<IPricePlanDTO> content;
 
 }

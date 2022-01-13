@@ -2,6 +2,8 @@ package com.openstacom.openstacom.modules.template.domain.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,5 +22,7 @@ public class IScheduleTemplateObjectDTO {
     private ITemplateObjectFieldDTO endTime;
 
     private ITemplateObjectFieldDTO date;
+
+    private List<IPricePlanDTO> content;
 
 }

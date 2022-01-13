@@ -2,6 +2,8 @@ package com.openstacom.openstacom.modules.template.domain.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -40,5 +42,7 @@ public class ISponsorTemplateObjectDTO {
     private ITemplateObjectFieldDTO picture;
 
     private ITemplateObjectFieldDTO sponsorshipPlan;
+
+    private List<ISponsorDTO> content;
 
 }

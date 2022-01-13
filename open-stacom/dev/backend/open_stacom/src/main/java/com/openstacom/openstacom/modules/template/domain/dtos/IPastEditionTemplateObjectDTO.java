@@ -2,6 +2,8 @@ package com.openstacom.openstacom.modules.template.domain.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +22,8 @@ public class IPastEditionTemplateObjectDTO {
     private ITemplateObjectFieldDTO link;
 
     private ITemplateObjectFieldDTO date;
+
+    private List<IPastEditionDTO> content;
 
 
 }

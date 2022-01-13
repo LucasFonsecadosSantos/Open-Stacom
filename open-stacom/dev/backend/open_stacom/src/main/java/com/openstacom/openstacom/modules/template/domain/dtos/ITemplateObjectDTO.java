@@ -28,6 +28,10 @@ public class ITemplateObjectDTO {
 
     private IEventTemplateObjectDTO event;
 
-    private IPersonTemplateObjectDTO personTemplateObjectDTO;
+    private IPersonTemplateObjectDTO person;
+
+    private IPhotoGalleryTemplateObjectDTO photoGallery;
+
+    private IVideoGalleryTemplateObjectDTO videoGallery;
 
 }

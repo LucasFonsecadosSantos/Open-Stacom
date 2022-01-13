@@ -43,7 +43,6 @@ public class ITemplateDTO {
     @NotBlank
     private String[] sections;
 
-    @NotBlank
-    private ITemplateObjectDTO objetcs;
+    private ITemplateObjectDTO objects;
 
 }
