@@ -410,7 +410,7 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksWhatssapp?: {
+      socialNetworksWhatsapp?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,

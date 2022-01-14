@@ -29,7 +29,7 @@ public class TemplateController {
         this.createService = createService;
     }
 
-    //@CrossOrigin(origins = "${client.frontend_address}")
+    @CrossOrigin(origins = "${client.frontend_address}")
     @GetMapping("")
     public ResponseEntity<List<ITemplateDTO>> all() {
 

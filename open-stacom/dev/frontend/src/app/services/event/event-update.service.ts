@@ -22,7 +22,7 @@ export class EventUpdateService {
                   event,
                   {
                     responseType: 'json',
-                    headers: new HttpHeaders().set('AUTH_TOKEN', `_PUT${event.id}`)
+                    headers: new HttpHeaders().set('AUTH_TOKEN', `${event.id}`)
                   }
                 )
                 .pipe(

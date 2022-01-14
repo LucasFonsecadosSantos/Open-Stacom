@@ -9,9 +9,9 @@ const cors = require("cors")
 var databaseSet = [];
 
 var corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: '*',
   optionsSucessStatus: 200,
-  methods: 'POST, PUT, GET'
+  methods: 'PUT, GET'
 }
 
 server.use(cors(corsOptions));
@@ -24,8 +24,8 @@ const getIDFromURL = (url) => {
 
 const isAuthorized = (req) => {
 
-  if (req.method == 'GET') {
-    console.log(databaseSet)
+  if (req.method == 'GET' || req.method == 'PUT') {
+
     for (let i=0; i<databaseSet.length; i++) {
       if (databaseSet[i].token == req.get('AUTH_TOKEN') && databaseSet[i].databaseFileName.substring(0, databaseSet[i].databaseFileName.length - 5) == getIDFromURL(req.originalUrl)) {
         return true;
@@ -33,23 +33,20 @@ const isAuthorized = (req) => {
     }
     return false;
     //return req.get('AUTH_TOKEN') == "aopdjkopaksdopsd";
+  } else if (req.method == 'POST') {
+    return true;
   }
 }
 
-server.post('/event/create', (req, res, next) => {
+server.post('/event/create', cors(corsOptions), (req, res, next) => {
   databaseFile = `${req.body.id}.json`
   databaseSet.push( { "databaseFileName": databaseFile, "token": req.body.token} )
-  fileSystem.writeFile(databaseFile, `{"event":[${JSON.stringify(req.body)}]}`, (err) => console.log(err))
+  fileSystem.writeFile(databaseFile, `{ "event": [${JSON.stringify(req.body)}]}`, (err) => console.log(err));
   router = jsonServer.router(databaseFile)
+  //server.use(cors(corsOptions));
 
-  res.sendStatus(200)
+  res.send(req.body.id)
 })
-
-server.get('/templates', (req, res, next) => {
-
-
-
-});
 
 server.get('/close/:id', (req, res, next) => {
 

@@ -20,7 +20,7 @@ export class EventFindService {
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${eventID}`,
       {
         responseType: 'json',
-        headers: new HttpHeaders().set('AUTH_TOKEN', `aopdjkopaksdopsd`)
+        headers: new HttpHeaders().set('AUTH_TOKEN', `${eventID}`)
       }
     ).pipe(
       map(
