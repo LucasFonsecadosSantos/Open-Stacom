@@ -1,6 +1,6 @@
 import { SponsorshipPlan } from "../enums/sponsorship-plan.enum";
 
-export class Sponsor {
+export class Sponsor implements Model {
 
   id?: string;
   name?: string;

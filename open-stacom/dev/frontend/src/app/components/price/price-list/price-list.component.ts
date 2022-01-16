@@ -43,7 +43,7 @@ export class PriceListComponent implements OnInit {
     this._formService
         .launchModal({
           operation: Operation.Update,
-          pricePlan: pricePlan
+          model: pricePlan
         });
 
   }

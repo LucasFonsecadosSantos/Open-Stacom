@@ -6,10 +6,8 @@ import { PersonListComponent } from './../../components/person/person-list/perso
 
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Person } from 'src/app/models';
 import { Operation } from 'src/app/enums';
-import { Template, Event } from './../../models';
-import { SharedEventService, SharedTemplateService } from 'src/app/services/shared';
+import { Template, Event, Person } from './../../models';
 import { TemplateFindService } from 'src/app/services/templates';
 import { EventFindService } from 'src/app/services/event';
 import { ActivatedRoute } from '@angular/router';

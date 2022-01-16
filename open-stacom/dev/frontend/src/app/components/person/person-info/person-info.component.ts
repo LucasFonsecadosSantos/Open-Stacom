@@ -36,7 +36,7 @@ export class PersonInfoComponent implements OnInit {
 
     this._personFormService.launchModal({
       operation:  Operation.Update,
-      person: person
+      model: person
     });
 
   }

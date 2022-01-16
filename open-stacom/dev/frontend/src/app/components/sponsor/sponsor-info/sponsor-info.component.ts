@@ -36,7 +36,7 @@ export class SponsorInfoComponent implements OnInit {
 
     this._formService.launchModal({
       operation: Operation.Update,
-      sponsor: sponsor
+      model: sponsor
     });
 
   }

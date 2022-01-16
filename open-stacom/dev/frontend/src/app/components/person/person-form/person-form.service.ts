@@ -5,7 +5,7 @@ import {
 } from 'rxjs';
 import {
   Person,
-  PersonForm
+  FormModel
 } from 'src/app/models';
 
 @Injectable({
@@ -16,11 +16,11 @@ export class PersonFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public personForm: PersonForm
+  public personForm: FormModel
 
   constructor() { }
 
-  public launchModal(personFormModel: PersonForm) {
+  public launchModal(personFormModel: FormModel) {
     this.subject.next(personFormModel);
   }
 

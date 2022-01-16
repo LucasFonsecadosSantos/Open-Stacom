@@ -15,11 +15,12 @@ export class WebpageGenerationService {
     private _eventFindService: EventFindService
   ) { }
 
-  public generatesBuild(eventId: string): void {
+  public generatesBuild(event: Event): void {
 
-    this._eventFindService
-        .find(eventId)
-        .subscribe(event => this._processEventData(event));
+    // this._eventFindService
+    //     .find(eventId)
+    //     .subscribe(event => this._processEventData(event));
+    this._processEventData(event);
 
   }
 

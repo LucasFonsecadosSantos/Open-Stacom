@@ -15,94 +15,94 @@
     <div *ngIf="!person.brief" class=" card-description">Nenhuma descrição informada sobre {{person.name}}.</div>
   </div>
   <div class=" card-footer" *ngIf="person">
-    <div class=" button-container" *ngIf="person.socialNetworks">
+    <div class=" button-container">
       <button
-        *ngIf="person.socialNetworks.facebook"
+        *ngIf="person.socialNetworkFacebook"
         title="Clique para acessar o facebook de {{person.name}}"
         alt="Botão com link para acessar o facebook de {{person.name}}"
         class=" btn btn-icon btn-round btn-facebook"
-        href="{{person.socialNetworks.facebook})"
+        href="{{person.socialNetworkFacebook})"
       >
         <i class=" fab fa-facebook"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.twitter"
+        *ngIf="person.socialNetworkTwitter"
         title="Clique para acessar o twitter de {{person.name}}"
         alt="Botão com link para acessar o twitter de {{person.name}}"
         class=" btn btn-icon btn-round btn-twitter"
-        href="{{person.socialNetworks.twitter}}"
+        href="{{person.socialNetworkTwitter}}"
       >
         <i class=" fab fa-twitter"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.linkedin"
+        *ngIf="person.socialNetworkLinkedin"
         class=" btn btn-icon btn-round btn-linkedin"
         title="Clique para acessar o linkedin de {{person.name}}"
         alt="Botão com link para acessar o linkedin de {{person.name}}"
-        href="{{person.socialNetworks.linkedin}}"
+        href="{{person.socialNetworkLinkedin}}"
       >
         <i class=" fab fa-linkedin-in"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.behance"
+        *ngIf="person.socialNetworkBehance"
         class=" btn btn-icon btn-round btn-behance"
         title="Clique para acessar o behance de {{person.name}}"
         alt="Botão com link para acessar o behance de {{person.name}}"
-        href="{{person.socialNetworks.behance}}"
+        href="{{person.socialNetworkBehance}}"
       >
         <i class=" fab fa-behance"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.email"
+        *ngIf="person.socialNetworkEmail"
         alt="Botão com link para acessar o email de {{person.name}}"
         title="Clique para acessar o email de {{person.name}}"
         class=" btn btn-icon btn-round btn-email"
-        href="{{person.socialNetworks.email}}"
+        href="{{person.socialNetworkEmail}}"
       >
         <i class=" fab fa-at"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.github"
+        *ngIf="person.socialNetworkGithub"
         alt="Botão com link para acessar o github de {{person.name}}"
         title="Clique para acessar o github de {{person.name}}"
         class=" btn btn-icon btn-round btn-github"
-        href="{{person.socialNetworks.github}}"
+        href="{{person.socialNetworkGithub}}"
       >
         <i class=" fab fa-github"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.spotify"
+        *ngIf="person.socialNetworkSpotify"
         alt="Botão com link para acessar o spotify de {{person.name}}"
         title="Clique para acessar o spotify de {{person.name}}"
         class=" btn btn-icon btn-round btn-github"
-        href="{{person.socialNetworks.spotify}}"
+        href="{{person.socialNetworkSpotify}}"
       >
         <i class=" fab fa-spotify"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.website"
+        *ngIf="person.socialNetworkWebsite"
         alt="Botão com link para acessar o website de {{person.name}}"
         title="Clique para acessar o website de {{person.name}}"
         class=" btn btn-icon btn-round btn-website"
-        href="{{person.socialNetworks.website}}"
+        href="{{person.socialNetworkWebsite}}"
       >
         <i class=" fab fa-link"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.whatsapp"
+        *ngIf="person.socialNetworkWhatsapp"
         alt="Botão com link para acessar o whatsapp de {{person.name}}"
         title="Clique para acessar o whatsapp de {{person.name}}"
         class=" btn btn-icon btn-round btn-whatsapp"
-        href="{{person.socialNetworks.whatsapp}}"
+        href="{{person.socialNetworkWhatsapp}}"
       >
         <i class=" fab fa-whatsapp"> </i>
       </button>
       <button
-        *ngIf="person.socialNetworks.youtubeChannel"
+        *ngIf="person.socialNetworkYoutubeChannel"
         alt="Botão com link para acessar o canal do youtube de {{person.name}}"
         title="Clique para acessar o canal do youtube de {{person.name}}"
         class=" btn btn-icon btn-round btn-youtube"
-        href="{{person.socialNetworks.youtubeChannel}}"
+        href="{{person.socialNetworkYoutubeChannel}}"
       >
         <i class=" fab fa-youtube"> </i>
       </button>

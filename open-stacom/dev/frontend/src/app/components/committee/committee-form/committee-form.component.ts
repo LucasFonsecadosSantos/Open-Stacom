@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Committee, CommitteeForm, Template, Event, Person } from 'src/app/models';
+import { Committee, Template, Event, Person } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
 import { PersonFindService } from 'src/app/services/person';
 import { CommitteeFormService } from '.';
@@ -28,7 +29,7 @@ export class CommitteeFormComponent implements OnInit {
 
   public committee: Committee;
 
-  public committeeFormModel: CommitteeForm;
+  public committeeFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -64,7 +65,7 @@ export class CommitteeFormComponent implements OnInit {
         .getObservable()
         .subscribe(
           data => {
-            this._setCommittee(data.committee, data.operation);
+            this._setCommittee(data.model, data.operation);
             this._setCommitteeFormModel(data);
             this._launchModal();
           }
@@ -117,7 +118,7 @@ export class CommitteeFormComponent implements OnInit {
 
   }
 
-  private _setCommitteeFormModel(model: CommitteeForm): void {
+  private _setCommitteeFormModel(model: FormModel): void {
 
     this.committeeFormModel = model;
 
@@ -152,8 +153,7 @@ export class CommitteeFormComponent implements OnInit {
   }
 
   private _create(committee: Committee): void {
-    console.log(committee);
-    console.log("committee");
+
     this._createService
           .create(this._loadForm(committee), this.event)
           .subscribe({

@@ -1,5 +1,4 @@
 import { PersonUpdateService } from './../../../services/person/person-update.service';
-import { PersonForm } from './../../../models/person-form.model';
 import { PersonFormService } from './person-form.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
@@ -18,6 +17,7 @@ import {
 import { Operation } from 'src/app/enums';
 import { CepService } from 'src/app/services/utils';
 import { ToastrService } from 'ngx-toastr';
+import { FormModel } from 'src/app/models/form-model.model';
 
 @Component({
   selector: 'app-person-form',
@@ -29,7 +29,7 @@ export class PersonFormComponent implements OnInit {
   @ViewChild('personForm')
   public personForm: PersonFormComponent;
 
-  public personFormModel: PersonForm;
+  public personFormModel: FormModel;
 
   @Input()
   public template: Template;
@@ -66,7 +66,7 @@ export class PersonFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setPerson(data.person, data.operation);
+            this._setPerson(data.model, data.operation);
             this._setPersonFormModel(data);
             this._launchModal();
 
@@ -122,12 +122,21 @@ export class PersonFormComponent implements OnInit {
       "locationUF": null,
       "locationCountry": null,
       "name": null,
-      "socialNetworks": null
+      "socialNetworkFacebook": null,
+      "socialNetworkTwitter": null,
+      "socialNetworkGithub": null,
+      "socialNetworkLinkedin": null,
+      "socialNetworkSpotify": null,
+      "socialNetworkWhatsapp": null,
+      "socialNetworkBehance": null,
+      "socialNetworkYoutubeChannel": null,
+      "socialNetworkEmail": null,
+      "socialNetworkWebsite": null
     }
 
   }
 
-  private _setPersonFormModel(model: PersonForm): void {
+  private _setPersonFormModel(model: FormModel): void {
 
     this.personFormModel = model;
 
@@ -259,17 +268,17 @@ export class PersonFormComponent implements OnInit {
       "locationCity": data.locationCity ? data.locationCity : '',
       "locationUF": data.locationUF ? data.locationUF : '',
       "locationCountry": data.locationCountry ? data.locationCountry : '',
-      "socialNetworks": {
-        "facebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
-        "twitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
-        "github": data.socialNetworkGithub ? data.socialNetworkGithub : '',
-        "linkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
-        "spotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
-        "whatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
-        "behance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
-        "youtubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : '',
-        "email": data.socialNetworkEmail ? data.socialNetworkEmail : ''
-      }
+      "socialNetworkFacebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
+      "socialNetworkTwitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
+      "socialNetworkGithub": data.socialNetworkGithub ? data.socialNetworkGithub : '',
+      "socialNetworkLinkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
+      "socialNetworkSpotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
+      "socialNetworkWhatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
+      "socialNetworkBehance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
+      "socialNetworkYoutubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : '',
+      "socialNetworkEmail": data.socialNetworkEmail ? data.socialNetworkEmail : '',
+      "socialNetworkWebsite": data.socialNetworkWebsite ? data.socialNetworkWebsite : ''
+
     };
 
   }

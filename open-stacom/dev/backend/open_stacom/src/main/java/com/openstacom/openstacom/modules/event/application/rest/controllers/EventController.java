@@ -1,6 +1,7 @@
 package com.openstacom.openstacom.modules.event.application.rest.controllers;
 
 import com.openstacom.openstacom.modules.event.domain.dtos.IEventDTO;
+import com.openstacom.openstacom.modules.event.domain.dtos.IEventRequestDTO;
 import com.openstacom.openstacom.modules.event.domain.services.eventgeneration.IEventGenerationService;
 import com.openstacom.openstacom.modules.event.domain.services.eventvalidator.IEventValidatorService;
 import lombok.AllArgsConstructor;
@@ -42,14 +43,15 @@ public class EventController {
 
     }
 
-    @CrossOrigin(origins = "${client.frontend_address")
+    //@CrossOrigin(origins = "${client.frontend_address")
     @PostMapping("/upload")
-    public ResponseEntity<IEventDTO> loadUploadedEvent(@RequestBody IEventDTO eventDTO) {
+    public ResponseEntity<IEventDTO> loadUploadedEvent(@RequestBody IEventRequestDTO eventDTO) {
 
         try {
 
-            this.validatorService.validate(eventDTO);
-            return ResponseEntity.ok(eventDTO);
+            //this.validatorService.validate(eventDTO);
+            //return ResponseEntity.ok(eventDTO);
+            return null;
 
         } catch(Exception e) {
 

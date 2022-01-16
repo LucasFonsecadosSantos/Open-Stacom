@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Activity, Event, ScheduleForm, Template } from 'src/app/models';
+import { Activity, Event, Template } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { Schedule } from 'src/app/models/schedule.model';
 import { ActivityFindService } from 'src/app/services/activity';
 import { ScheduleCreateService, ScheduleDeleteService, ScheduleUpdateService } from 'src/app/services/schedule';
@@ -26,7 +27,7 @@ export class ScheduleFormComponent implements OnInit {
 
   public schedule: Schedule;
 
-  public scheduleFormModel: ScheduleForm;
+  public scheduleFormModel: FormModel;
 
   public activitiesArray: Activity[];
 
@@ -53,7 +54,7 @@ export class ScheduleFormComponent implements OnInit {
         .getObservable()
         .subscribe(
           data => {
-            this._setSchedule(data.schedule, data.operation);
+            this._setSchedule(data.model, data.operation);
             this._setScheduleFormModel(data);
             this._launchModal();
           }
@@ -87,7 +88,7 @@ export class ScheduleFormComponent implements OnInit {
 
   }
 
-  private _setScheduleFormModel(model: ScheduleForm): void {
+  private _setScheduleFormModel(model: FormModel): void {
 
     this.scheduleFormModel = model;
 

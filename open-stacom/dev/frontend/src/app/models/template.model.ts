@@ -1,7 +1,7 @@
 import { Activity, Committee, Person, PreviousEdition, PricePlan, Proceeding, Sponsor } from ".";
 import { Schedule } from "./schedule.model";
 
-export class Template {
+export class Template implements Model {
 
   id?:          string;
   name?:        string;
@@ -385,42 +385,42 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksFacebook?: {
+      socialNetworkFacebook?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksTwitter?: {
+      socialNetworkTwitter?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksGithub?: {
+      socialNetworkGithub?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksSpotify?: {
+      socialNetworkSpotify?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksLinkedin?: {
+      socialNetworkLinkedin?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksWhatsapp?: {
+      socialNetworkWhatsapp?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksBehance?: {
+      socialNetworkBehance?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
       },
-      socialNetworksYoutubeChannel?: {
+      socialNetworkYoutubeChannel?: {
         minlength?: number,
         maxlength?: number,
         required?: boolean,
@@ -535,6 +535,56 @@ export class Template {
         maxlength?: number,
         required?: boolean,
       },
+      socialNetworkFacebook?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkTwitter?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkGithub?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkSpotify?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkLinkedin?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkWebsite?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkEmail?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkWhatsapp?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkBehance?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      },
+      socialNetworkYoutubeChannel?: {
+        minlength?: number,
+        maxlength?: number,
+        required?: boolean,
+      }
       content?: Person[];
     }
   };

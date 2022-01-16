@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ActivityType, Operation } from 'src/app/enums';
-import { Activity, ActivityForm, Event, Person, PricePlan, Template } from 'src/app/models';
+import { Activity, Event, Person, PricePlan, Template } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { ActivityCreateService, ActivityDeleteService, ActivityUpdateService } from 'src/app/services/activity';
 import { PersonFindService } from 'src/app/services/person';
 import { PricePlanFindService } from 'src/app/services/price-plan';
@@ -23,7 +24,7 @@ export class ActivityFormComponent implements OnInit {
 
   public activity: Activity;
 
-  public activityFormModel: ActivityForm;
+  public activityFormModel: FormModel;
 
   public personArray: Person[];
 
@@ -56,7 +57,7 @@ export class ActivityFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setActivity(data.activity, data.operation);
+            this._setActivity(data.model, data.operation);
             this._setActivityFormModel(data);
             this._launchModal();
             // this._buildFormFields();
@@ -110,7 +111,7 @@ export class ActivityFormComponent implements OnInit {
 
   }
 
-  private _setActivityFormModel(model: ActivityForm): void {
+  private _setActivityFormModel(model: FormModel): void {
 
     this.activityFormModel = model;
 

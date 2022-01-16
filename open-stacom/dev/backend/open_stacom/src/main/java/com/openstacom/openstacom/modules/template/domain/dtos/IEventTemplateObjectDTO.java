@@ -21,7 +21,7 @@ public class IEventTemplateObjectDTO {
 
     private ITemplateObjectFieldDTO poweredByInstitution;
 
-    private ITemplateObjectFieldDTO poweredByDepartament;
+    private ITemplateObjectFieldDTO poweredByDepartment;
 
     private ITemplateObjectFieldDTO subject;
 
@@ -43,21 +43,21 @@ public class IEventTemplateObjectDTO {
 
     private ITemplateObjectFieldDTO email;
 
-    private ITemplateObjectFieldDTO socialNetworksFacebook;
+    private ITemplateObjectFieldDTO socialNetworkFacebook;
 
-    private ITemplateObjectFieldDTO socialNetworksTwitter;
+    private ITemplateObjectFieldDTO socialNetworkTwitter;
 
-    private ITemplateObjectFieldDTO socialNetworksGithub;
+    private ITemplateObjectFieldDTO socialNetworkGithub;
 
-    private ITemplateObjectFieldDTO socialNetworksSpotify;
+    private ITemplateObjectFieldDTO socialNetworkSpotify;
 
-    private ITemplateObjectFieldDTO socialNetworksLinkedin;
+    private ITemplateObjectFieldDTO socialNetworkLinkedin;
 
-    private ITemplateObjectFieldDTO socialNetworksWhatsapp;
+    private ITemplateObjectFieldDTO socialNetworkWhatsapp;
 
-    private ITemplateObjectFieldDTO socialNetworksBehance;
+    private ITemplateObjectFieldDTO socialNetworkBehance;
 
-    private ITemplateObjectFieldDTO socialNetworksYoutubeChannel;
+    private ITemplateObjectFieldDTO socialNetworkYoutubeChannel;
 
     private ITemplateObjectFieldDTO locationCep;
 

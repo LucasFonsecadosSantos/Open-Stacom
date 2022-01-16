@@ -23,7 +23,7 @@ const getIDFromURL = (url) => {
 }
 
 const isAuthorized = (req) => {
-
+  console.log(databaseSet)
   if (req.method == 'GET' || req.method == 'PUT') {
 
     for (let i=0; i<databaseSet.length; i++) {

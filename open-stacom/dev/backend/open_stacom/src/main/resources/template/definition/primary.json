@@ -262,7 +262,7 @@
         "maxlength": 50,
         "required": true
       },
-      "poweredByDepartament": {
+      "poweredByDepartment": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
@@ -315,42 +315,42 @@
         "maxlength": 50,
         "required": true
       },
-      "socialNetworksFacebook": {
+      "socialNetworkFacebook": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksTwitter": {
+      "socialNetworkTwitter": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksGithub": {
+      "socialNetworkGithub": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksSpotify": {
+      "socialNetworkSpotify": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksLinkedin": {
+      "socialNetworkLinkedin": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksWhatsapp": {
+      "socialNetworkWhatsapp": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksBehance": {
+      "socialNetworkBehance": {
         "minlength": 4,
         "maxlength": 50,
         "required": false
       },
-      "socialNetworksYoutubeChannel": {
+      "socialNetworkYoutubeChannel": {
         "minlength": 4,
         "maxlength": 50,
         "required": false

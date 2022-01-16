@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   public generateBuild(): void {
-    this._generatorService.generatesBuild(this.event.id);
+    this._generatorService.generatesBuild(this.event);
   }
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)

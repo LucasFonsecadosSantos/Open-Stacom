@@ -106,12 +106,12 @@
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.poweredByDepartament">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.poweredByDepartment">
           <div class=" form-group">
-            <label> Departamento Realizador: <span *ngIf="event.template.objects.event.poweredByDepartament.required">*</span></label>
+            <label> Departamento Realizador: <span *ngIf="event.template.objects.event.poweredByDepartment.required">*</span></label>
             <input
-              [(ngModel)]="event.poweredByDepartament"
-              name="poweredByDepartament"
+              [(ngModel)]="event.poweredByDepartment"
+              name="poweredByDepartment"
               class=" form-control"
               placeholder="Ex.: Departamento de Ciencias"
               type="text"
@@ -308,48 +308,48 @@
         </div>
       </div>
       <div class=" row">
-        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworksFacebook">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworkFacebook">
           <div class=" form-group">
-            <label> Facebook <span *ngIf="event.template.objects.event.socialNetworksFacebook.required">*</span></label>
+            <label> Facebook <span *ngIf="event.template.objects.event.socialNetworkFacebook.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.facebook"
-              name="socialNetworksFacebook"
+              [(ngModel)]="event.socialNetworkFacebook"
+              name="socialNetworkFacebook"
               class=" form-control"
               placeholder="Ex.: www.facebook.com/NomeDoEvento"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksTwitter">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworkTwitter">
           <div class=" form-group">
-            <label> Twitter<span *ngIf="event.template.objects.event.socialNetworksTwitter.required">*</span> </label>
+            <label> Twitter<span *ngIf="event.template.objects.event.socialNetworkTwitter.required">*</span> </label>
             <input
-              [(ngModel)]="event.socialNetworks.twitter"
-              name="socialNetworksFacebook"
+              [(ngModel)]="event.socialNetworkTwitter"
+              name="socialNetworkFacebook"
               class=" form-control"
               placeholder="Ex.: www.twitter.com/NomeDoEvento"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksGithub">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworkGithub">
           <div class=" form-group">
-            <label> Github <span *ngIf="event.template.objects.event.socialNetworksGithub.required">*</span></label>
+            <label> Github <span *ngIf="event.template.objects.event.socialNetworkGithub.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.github"
-              name="socialNetworksGithub"
+              [(ngModel)]="event.socialNetworkGithub"
+              name="socialNetworkGithub"
               class=" form-control"
               placeholder="Ex.: www.github.com/NomeDoEvento"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworksSpotify">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworkSpotify">
           <div class=" form-group">
-            <label> Spotify <span *ngIf="event.template.objects.event.socialNetworksSpotify.required">*</span></label>
+            <label> Spotify <span *ngIf="event.template.objects.event.socialNetworkSpotify.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.spotify"
-              name="socialNetworksSpotify"
+              [(ngModel)]="event.socialNetworkSpotify"
+              name="socialNetworkSpotify"
               class=" form-control"
               placeholder="Ex.: www.spotify.com/NomeDoEvento"
               type="text"
@@ -358,48 +358,48 @@
         </div>
       </div>
       <div class="row">
-        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworksLinkedin">
+        <div class=" col-md-3 pr-md-1" *ngIf="event.template.objects.event.socialNetworkLinkedin">
           <div class=" form-group">
-            <label> Linkedin <span *ngIf="event.template.objects.event.socialNetworksLinkedin.required">*</span></label>
+            <label> Linkedin <span *ngIf="event.template.objects.event.socialNetworkLinkedin.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.linkedin"
-              name="socialNetworksLinkedin"
+              [(ngModel)]="event.socialNetworkLinkedin"
+              name="socialNetworkLinkedin"
               class=" form-control"
               placeholder="Ex.: www.linkedin.com/NomeDoEvento"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksWhatsapp">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworkWhatsapp">
           <div class=" form-group">
-            <label> Whatsapp <span *ngIf="event.template.objects.event.socialNetworksWhatsapp.required">*</span></label>
+            <label> Whatsapp <span *ngIf="event.template.objects.event.socialNetworkWhatsapp.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.whatsapp"
-              name="socialNetworksWhatsapp"
+              [(ngModel)]="event.socialNetworkWhatsapp"
+              name="socialNetworkWhatsapp"
               class=" form-control"
               placeholder="Ex.: www.whats.me/"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworksBehance">
+        <div class=" col-md-3 px-md-1" *ngIf="event.template.objects.event.socialNetworkBehance">
           <div class=" form-group">
-            <label> Behance <span *ngIf="event.template.objects.event.socialNetworksBehance.required">*</span></label>
+            <label> Behance <span *ngIf="event.template.objects.event.socialNetworkBehance.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.behance"
-              name="socialNetworksBehance"
+              [(ngModel)]="event.socialNetworkBehance"
+              name="socialNetworkBehance"
               class=" form-control"
               placeholder="Ex.: www.behance.com/NomeDoEvento"
               type="text"
             />
           </div>
         </div>
-        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworksYoutubeChannel">
+        <div class=" col-md-3 pl-md-1" *ngIf="event.template.objects.event.socialNetworkYoutubeChannel">
           <div class=" form-group">
-            <label> Youtube <span *ngIf="event.template.objects.event.socialNetworksYoutubeChannel.required">*</span></label>
+            <label> Youtube <span *ngIf="event.template.objects.event.socialNetworkYoutubeChannel.required">*</span></label>
             <input
-              [(ngModel)]="event.socialNetworks.youtubeChannel"
-              name="socialNetworksYoutubeChannel"
+              [(ngModel)]="event.socialNetworkYoutubeChannel"
+              name="socialNetworkYoutubeChannel"
               class=" form-control"
               placeholder="Ex.: www.youtube.com/NomeDoEvento"
               type="text"

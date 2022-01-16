@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Template, Event, Proceeding, ProceedingForm } from 'src/app/models';
+import { Template, Event, Proceeding } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { ProceedingCreateService, ProceedingUpdateService } from 'src/app/services/proceeding';
 import { ProceedingFormService } from '.';
 
@@ -24,7 +25,7 @@ export class ProceedingFormComponent implements OnInit {
 
   public proceeding: Proceeding;
 
-  public proceedingFormModel: ProceedingForm;
+  public proceedingFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -48,7 +49,7 @@ export class ProceedingFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setProceeding(data.proceeding, data.operation);
+            this._setProceeding(data.model, data.operation);
             this._setProceedingFormModel(data);
             this._launchModal();
             // this._buildFormFields();
@@ -84,7 +85,7 @@ export class ProceedingFormComponent implements OnInit {
 
   }
 
-  private _setProceedingFormModel(model: ProceedingForm): void {
+  private _setProceedingFormModel(model: FormModel): void {
 
     this.proceedingFormModel = model;
 

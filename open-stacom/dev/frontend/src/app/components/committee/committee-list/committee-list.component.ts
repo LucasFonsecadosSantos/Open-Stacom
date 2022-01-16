@@ -6,8 +6,7 @@ import { CommitteeFormService } from '..';
 import {
   Event,
   Template,
-  Committee,
-  CommitteeForm
+  Committee
 } from './../../../models';
 
 @Component({
@@ -48,7 +47,7 @@ export class CommitteeListComponent implements OnInit {
 
     this._formService.launchModal(
       {
-        committee: committee,
+        model: committee,
         operation: Operation.Update
       }
     );

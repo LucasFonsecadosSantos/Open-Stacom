@@ -1,22 +1,20 @@
 {
   "event": [
     {
-      "id": "58c03093-d48d-41bf-b270-31b94023300e",
-      "name": "Patrocinador mito 2dfgdfgdfgdfgdfg",
-      "edition": "",
+      "id": "a94ba216-fb04-4301-8dd7-fd8b327d186f",
+      "name": "Teste de Congresso",
+      "edition": "XII",
       "subject": "",
-      "eventType": "",
+      "eventType": "Congresso",
       "targetPublic": "",
-      "logo": "/assets/img/default-avatar.png",
+      "logo": "/data/a94ba216-fb04-4301-8dd7-fd8b327d186f/img/avatar//data/a94ba216-fb04-4301-8dd7-fd8b327d186f/img/avatar//data/a94ba216-fb04-4301-8dd7-fd8b327d186f/img/avatar//assets/img/default-avatar.png",
       "description": "",
       "brief": "",
       "website": "",
       "email": "",
       "telephones": [],
-      "poweredBy": {
-        "institution": "",
-        "departament": ""
-      },
+      "poweredByInstitution": "",
+      "poweredByDepartment": "",
       "template": {
         "id": "1d4684dd-97d3-4a1e-b0f2-018f12f6d5b6",
         "name": "Template 02",
@@ -63,7 +61,24 @@
               "maxlength": 0,
               "minlength": 0
             },
-            "content": []
+            "content": [
+              {
+                "id": "47734b1b-29d4-4a89-a83a-e13724e08b00",
+                "title": "rwarw",
+                "file": "",
+                "specialty": "asd",
+                "author": "4345",
+                "code": ""
+              },
+              {
+                "id": "47734b1b-29d4-4a89-a83a-e13724e08b00",
+                "title": "rwarw",
+                "file": "",
+                "specialty": "asd",
+                "author": "4345",
+                "code": ""
+              }
+            ]
           },
           "sponsor": {
             "configRoute": {
@@ -380,7 +395,7 @@
               "maxlength": 50,
               "minlength": 4
             },
-            "poweredByDepartament": {
+            "poweredByDepartment": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
@@ -435,42 +450,42 @@
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksFacebook": {
+            "socialNetworkFacebook": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksTwitter": {
+            "socialNetworkTwitter": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksGithub": {
+            "socialNetworkGithub": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksSpotify": {
+            "socialNetworkSpotify": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksLinkedin": {
+            "socialNetworkLinkedin": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksWhatsapp": {
+            "socialNetworkWhatsapp": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksBehance": {
+            "socialNetworkBehance": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
             },
-            "socialNetworksYoutubeChannel": {
+            "socialNetworkYoutubeChannel": {
               "required": false,
               "maxlength": 50,
               "minlength": 4
@@ -642,35 +657,7 @@
               "maxlength": 50,
               "minlength": 4
             },
-            "content": [
-              {
-                "id": "de99e1f1-19d6-4582-971d-ec2fae6ac7d2",
-                "name": "rtyrtyrty",
-                "avatar": "",
-                "brief": "",
-                "job": "",
-                "academicFormation": "",
-                "institution": "",
-                "locationCep": "",
-                "locationAddress": "",
-                "locationNumber": "",
-                "locationNeiborhood": "",
-                "locationCity": "",
-                "locationUF": "",
-                "locationCountry": "",
-                "socialNetworks": {
-                  "facebook": "ttgrhrth",
-                  "twitter": "",
-                  "github": "",
-                  "linkedin": "",
-                  "spotify": "",
-                  "whatsapp": "",
-                  "behance": "",
-                  "youtubeChannel": "",
-                  "email": ""
-                }
-              }
-            ]
+            "content": []
           },
           "photoGallery": {
             "configRoute": {
@@ -731,16 +718,14 @@
       "locationUF": "",
       "locationCountry": "",
       "locationLatLong": "",
-      "socialNetworks": {
-        "facebook": "",
-        "twitter": "",
-        "github": "",
-        "linkedin": "",
-        "spotify": "",
-        "whatsapp": "",
-        "behance": "",
-        "youtubeChannel": ""
-      }
+      "socialNetworkFacebook": "",
+      "socialNetworkTwitter": "",
+      "socialNetworkGithub": "",
+      "socialNetworkLinkedin": "",
+      "socialNetworkSpotify": "",
+      "socialNetworkWhatsapp": "",
+      "socialNetworkBehance": "",
+      "socialNetworkYoutubeChannel": ""
     }
   ]
 }

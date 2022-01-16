@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation, OperationResult } from 'src/app/enums';
-import { Template, Event, PricePlan, PricePlanForm } from 'src/app/models';
+import { Template, Event, PricePlan } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { PricePlanCreateService, PricePlanDeleteService, PricePlanUpdateService } from 'src/app/services/price-plan';
 import { PriceFormService } from '.';
 
@@ -21,7 +22,7 @@ export class PriceFormComponent implements OnInit {
 
   public pricePlan: PricePlan;
 
-  public pricePlanFormModel: PricePlanForm;
+  public pricePlanFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -46,7 +47,7 @@ export class PriceFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setPricePlan(data.pricePlan, data.operation);
+            this._setPricePlan(data.model, data.operation);
             this._setPricePlanFormModel(data);
             this._launchModal();
             // this._buildFormFields();
@@ -80,7 +81,7 @@ export class PriceFormComponent implements OnInit {
 
   }
 
-  private _setPricePlanFormModel(model: PricePlanForm): void {
+  private _setPricePlanFormModel(model: FormModel): void {
 
     this.pricePlanFormModel = model;
 

@@ -1,6 +1,6 @@
 import { Template } from "./../models";
 
-export class Event {
+export class Event implements Model {
 
   id?: string;
   token?: string;
@@ -20,10 +20,8 @@ export class Event {
       number: string
     }
   ]
-  poweredBy?: {
-    institution?: string;
-    departament?: string;
-  }
+  poweredByInstitution?: string;
+  poweredByDepartment?: string;
   days?: Date[];
   locationCep?: string;
   locationAddress?: string;
@@ -33,16 +31,14 @@ export class Event {
   locationUF?: string;
   locationCountry?: string;
   locationLatLong?: string;
-  socialNetworks?: {
-    facebook?: string,
-    twitter?: string,
-    github?: string,
-    linkedin?: string,
-    spotify?: string,
-    whatsapp?: string,
-    behance?: string,
-    youtubeChannel?: string
-  };
+  socialNetworkFacebook?: string;
+  socialNetworkTwitter?: string;
+  socialNetworkGithub?: string;
+  socialNetworkLinkedin?: string;
+  socialNetworkSpotify?: string;
+  socialNetworkWhatsapp?: string;
+  socialNetworkBehance?: string;
+  socialNetworkYoutubeChannel?: string;
   template: Template;
 
 }

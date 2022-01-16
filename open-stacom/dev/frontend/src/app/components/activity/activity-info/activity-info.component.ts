@@ -35,7 +35,7 @@ export class ActivityInfoComponent implements OnInit {
 
     this._formService.launchModal({
       operation:  Operation.Update,
-      activity: activity
+      model: activity
     });
 
   }

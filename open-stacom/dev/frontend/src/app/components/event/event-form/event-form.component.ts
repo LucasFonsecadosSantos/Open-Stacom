@@ -224,10 +224,8 @@ export class EventFormComponent implements OnInit {
       "website": data.website ? data.website : '',
       "email": data.email ? data.email : '',
       "telephones": this.tmpTelephones ? this.tmpTelephones : [],
-      "poweredBy": {
-        'institution': data.poweredByInstitution ? data.poweredByInstitution : '',
-        'departament': data.poweredByDepartament ? data.poweredByDepartament : '',
-      },
+      "poweredByInstitution": data.poweredByInstitution ? data.poweredByInstitution : '',
+      "poweredByDepartment": data.poweredByDepartment ? data.poweredByDepartment : '',
       "template": data.template,
       "days": this.tmpDays ? this.tmpDays : [],
       "locationCep": data.locationCep ? data.locationCep : '',
@@ -238,16 +236,14 @@ export class EventFormComponent implements OnInit {
       "locationUF": data.locationUF ? data.locationUF : '',
       "locationCountry": data.locationCountry ? data.locationCountry : '',
       "locationLatLong": data.locationLatLong ? data.locationLatLong : '',
-      "socialNetworks": {
-        "facebook": data.socialNetworksFacebook ? data.socialNetworksFacebook : '',
-        "twitter": data.socialNetworksTwitter ? data.socialNetworksTwitter : '',
-        "github": data.socialNetworksGithub ? data.socialNetworksGithub : '',
-        "linkedin": data.socialNetworksLinkedin ? data.socialNetworksLinkedin : '',
-        "spotify": data.socialNetworksSpotify ? data.socialNetworksSpotify : '',
-        "whatsapp": data.socialNetworksWhatssapp ? data.socialNetworksWhatssapp : '',
-        "behance": data.socialNetworksBehance ? data.socialNetworksBehance : '',
-        "youtubeChannel": data.socialNetworksYoutubeChannel ? data.socialNetworksYoutubeChannel : ''
-      }
+      "socialNetworkFacebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
+      "socialNetworkTwitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
+      "socialNetworkGithub": data.socialNetworkGithub ? data.socialNetworkGithub : '',
+      "socialNetworkLinkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
+      "socialNetworkSpotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
+      "socialNetworkWhatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
+      "socialNetworkBehance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
+      "socialNetworkYoutubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : ''
     };
   }
 

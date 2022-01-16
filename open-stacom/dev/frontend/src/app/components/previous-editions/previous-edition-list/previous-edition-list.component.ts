@@ -43,7 +43,7 @@ export class PreviousEditionListComponent implements OnInit {
       {
         operation: Operation.Update,
         title: `Atualizar informações de ${edition.name}`,
-        edition: edition
+        model: edition
       }
     );
 

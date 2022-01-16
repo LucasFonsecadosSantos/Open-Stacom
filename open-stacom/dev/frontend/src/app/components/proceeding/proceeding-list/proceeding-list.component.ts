@@ -47,7 +47,7 @@ export class ProceedingListComponent implements OnInit {
 
     this._proceedingFormService.launchModal({
       operation: Operation.Update,
-      proceeding: proceeding
+      model: proceeding
     });
 
   }

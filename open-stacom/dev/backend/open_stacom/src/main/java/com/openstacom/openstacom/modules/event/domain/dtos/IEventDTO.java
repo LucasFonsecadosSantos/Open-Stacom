@@ -1,9 +1,6 @@
 package com.openstacom.openstacom.modules.event.domain.dtos;
-
-import com.openstacom.openstacom.business.entity.PoweredByEntity;
-import com.openstacom.openstacom.business.entity.SocialNetworkEntity;
-import com.openstacom.openstacom.business.entity.TelephoneEntity;
-import com.openstacom.openstacom.business.entity.TemplateEntity;
+import com.openstacom.openstacom.modules.template.domain.dtos.ITelephoneDTO;
+import com.openstacom.openstacom.modules.template.domain.dtos.ITemplateDTO;
 import lombok.*;
 
 import javax.validation.constraints.Digits;
@@ -11,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -66,11 +64,15 @@ public class IEventDTO {
 
     @NotBlank
     @Size(max = 20, min = 3)
-    private TelephoneEntity[] telephone;
+    private List<ITelephoneDTO> telephone;
 
     @NotBlank
     @Size(max = 20, min = 3)
-    private PoweredByEntity poweredBy;
+    private String poweredByInstitution;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String poweredByDepartament;
 
     @NotBlank
     @Size(max = 20, min = 3)
@@ -107,10 +109,38 @@ public class IEventDTO {
 
     @NotBlank
     @Size(max = 20, min = 3)
-    private SocialNetworkEntity socialNetworks;
+    private String socialNetworkFacebook;
 
     @NotBlank
     @Size(max = 20, min = 3)
-    private TemplateEntity template;
+    private String socialNetworkTwitter;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkGithub;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkSpotify;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkLinkedin;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkWhatsapp;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkBehance;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private String socialNetworkYoutubeChannel;
+
+    @NotBlank
+    @Size(max = 20, min = 3)
+    private ITemplateDTO template;
 
 }

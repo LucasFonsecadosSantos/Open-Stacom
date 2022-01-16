@@ -9,9 +9,9 @@ import {
   PreviousEditionUpdateService
 } from 'src/app/services/previous-edition';
 import { Operation } from 'src/app/enums';
-import { PreviousEditionForm } from 'src/app/models/previous-edition-form.model';
 import { PreviousEditionFormService } from '.';
 import { ToastrService } from 'ngx-toastr';
+import { FormModel } from 'src/app/models/form-model.model';
 
 @Component({
   selector: 'app-previous-edition-form',
@@ -28,7 +28,7 @@ export class PreviousEditionFormComponent implements OnInit {
 
   public edition: PreviousEdition;
 
-  public previousEditionFormModel: PreviousEditionForm;
+  public previousEditionFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -60,14 +60,14 @@ export class PreviousEditionFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setEdition(data.edition, data.operation);
+            this._setEdition(data.model, data.operation);
             this._setEditionFormModel(data);
 
           });
 
   }
 
-  private _setEditionFormModel(model: PreviousEditionForm): void {
+  private _setEditionFormModel(model: FormModel): void {
 
     if (model) {
       this.previousEditionFormModel = model;

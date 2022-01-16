@@ -36,7 +36,7 @@ export class ProceedingInfoComponent implements OnInit {
 
     this._formService.launchModal({
       operation:  Operation.Update,
-      proceeding: proceeding
+      model: proceeding
     });
 
   }
