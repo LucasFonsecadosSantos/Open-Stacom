@@ -1,7 +1,7 @@
 const jsonServer = require('json-server')
 const fileSystem = require('fs')
 const server = jsonServer.create()
-const router = jsonServer.router('./temp/db.json')
+//const router = jsonServer.router('../mocks/data.json')
 //const middlewares = jsonServer.defaults()
 
 const cors = require("cors")
@@ -16,7 +16,6 @@ var corsOptions = {
 
 server.use(cors(corsOptions));
 server.use(jsonServer.bodyParser)
-
 
 const getIDFromURL = (url) => {
   let tokens = url.split('/');
@@ -40,27 +39,38 @@ const isAuthorized = (req) => {
   // }
 }
 
-// server.get('/close/:id', (req, res, next) => {
+server.post('/event/create', cors(corsOptions), (req, res, next) => {
+  databaseFile = `${req.body.id}.json`
+  databaseSet.push( { "databaseFileName": databaseFile, "token": req.body.token} )
+  fileSystem.writeFile(databaseFile, `{ "event": [${JSON.stringify(req.body)}]}`, (err) => console.log(err));
+  router = jsonServer.router(databaseFile)
+  //server.use(cors(corsOptions));
 
-//   fileSystem.unlink(`${req.params.id}.json`, (err) => {
-//     console.log(err)
-//   })
-//   res.sendStatus(200)
+  res.send(req.body.id)
+})
 
-// })
-server.use(cors(corsOptions));
-server.use(router)
+server.get('/close/:id', (req, res, next) => {
+
+  fileSystem.unlink(`${req.params.id}.json`, (err) => {
+    console.log(err)
+  })
+  res.sendStatus(200)
+
+})
+
 server.use( ( req, res, next ) => {
-  console.log('asd')
+
+  console.log(getIDFromURL(req.originalUrl))
   if (isAuthorized(req)) {
-    console.log('w33')
-    // router = jsonServer.router(`${getIDFromURL(req.originalUrl)}.json`)
-    // server.use(`/event/${req.originalUrl}`, router)
+    router = jsonServer.router(`${getIDFromURL(req.originalUrl)}.json`)
+    server.use(`/event/${req.originalUrl}`, router)
     next()
   } else {
     res.sendStatus(400)
   }
 });
+
+//server.use(router)
 
 server.listen(3000, () => {
   console.log('JSON Server is running')

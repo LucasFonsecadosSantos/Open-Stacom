@@ -21,14 +21,17 @@ export const environment = {
     VIDEO_GALLERY: '/video-gallery',
     ACTIVITY: '/activities',
     EVENT: '/event',
-    SCHEDULE: '/schedule'
+    SCHEDULE: '/schedule',
+    GENERATE_BUILD_URL: `http://0.0.0.0:8888/api/event/generate`,
+    CLOSE_EVENT: '/close'
   },
   API_CONNECTIONS_RETRY: 3,
   DEFAULT_AVATAR_PICTURE_PATH: `/assets/img/default-avatar.png`,
   API_BACKEND_SERVICES: {
     HOST: 'http://0.0.0.0',
     PORT: '8888',
-    TEMPLATE: '/api/templates'
+    TEMPLATE: '/api/templates',
+    CLOSE_EVENT: '/close'
   }
 };
 

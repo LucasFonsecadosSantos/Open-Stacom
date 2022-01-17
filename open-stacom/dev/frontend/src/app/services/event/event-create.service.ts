@@ -38,7 +38,7 @@ export class EventCreateService {
     const token = uuidv4();
 
     return this.http.post(
-      `${environment.API_URL.BASE}${environment.API_URL.EVENT}/create`,
+      `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
         "id": token,
         "template": template,
