@@ -14,13 +14,11 @@ export class EventComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
   public event: Event;
-  public template: Template;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _exportService: ExcelExportService,
-    private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService
+    private _eventFindService: EventFindService
   ) { }
 
   ngOnInit(): void {
@@ -58,17 +56,9 @@ export class EventComponent implements OnInit {
         .subscribe(
           event => {
             this.event = event;
-            this._getTemplateById(event);
+            this.isDataLoaded = true;
           }
         );
-  }
-
-  private _getTemplateById(event: Event): void {
-
-    this.template = this._templateFindService
-                        .find(event);
-      this.isDataLoaded = true;
-
   }
 
 }

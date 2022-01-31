@@ -443,7 +443,7 @@
       "job": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "academicFormation": {
         "minlength": 4,
@@ -458,92 +458,92 @@
       "locationNeiborhood": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationNumber": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationAddress": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationCep": {
-        "minlength": 4,
-        "maxlength": 50,
-        "required": true
+        "minlength": 9,
+        "maxlength": 9,
+        "required": false
       },
       "locationCity": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationUF": {
-        "minlength": 4,
-        "maxlength": 50,
-        "required": true
+        "minlength": 2,
+        "maxlength": 2,
+        "required": false
       },
       "locationCountry": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkFacebook": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkTwitter": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkWebsite": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkGithub": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkLinkedin": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkSpotify": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkLattes": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkEmail": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkWhatsapp": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkBehance": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkYoutubeChannel": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "content": []
     },

@@ -5,7 +5,7 @@
     <div class=" card-header">
       <h5 class=" title">Editar informações {{event && event.name ? 'sobre ' + event.name : 'do seu evento'}}</h5>
     </div>
-    <div class=" card-body" *ngIf="template && event.template.objects && event.template.objects.event">
+    <div class=" card-body" *ngIf="event.template && event.template.objects && event.template.objects.event">
       <div class="row">
         <div class="col-md-12">
           <div class=" form-group">
@@ -527,7 +527,7 @@
       </div>
     </div>
     <div class=" card-footer">
-      <button class=" btn btn-fill btn-danger" *ngIf="template && event.template.objects && event.template.objects.event" type="submit">Atualizar Informações</button>
+      <button class=" btn btn-fill btn-danger" *ngIf="event.template && event.template.objects && event.template.objects.event" type="submit">Atualizar Informações</button>
     </div>
   </form>
 </div>

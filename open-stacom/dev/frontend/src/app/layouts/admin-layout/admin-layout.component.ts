@@ -20,27 +20,24 @@ export class AdminLayoutComponent implements OnInit {
 
   public event: Event;
 
-  public template: Template;
-
   constructor(
     private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService,
     private _activatedRoute: ActivatedRoute,
     private _closeEventService: EventCloseService,
     private _router: Router
   ) {}
 
 
-  @HostListener('window:beforeunload', ['$event'])
-  onWindowClose(event: any): void {
+  // @HostListener('window:beforeunload', ['$event'])
+  // onWindowClose(event: any): void {
 
 
-    event.preventDefault();
-    event.returnValue = false;
-    this._closeEventService.closeEvent(this.event.id);
-    let result = confirm(`Deseja realmente sair e deletar o evento ${this.event.id}`)
+  //   event.preventDefault();
+  //   event.returnValue = false;
+  //   this._closeEventService.closeEvent(this.event.id);
+  //   let result = confirm(`Deseja realmente sair e deletar o evento ${this.event.id}`)
 
-  }
+  // }
 
   public changeSidebarColor(color): void {
 
@@ -88,23 +85,16 @@ export class AdminLayoutComponent implements OnInit {
 
     this._eventFindService
         .find(eventID)
-        .subscribe({
-          next: event => {
-            this.event = event;
-            this._getTemplateById(event);
+        .subscribe(
+          {
+            next: event => {
+              this.event = event;
+              this.isDataLoaded = true;
           },
           error: exception => {
             this._router.navigate([`/`]);
           }
         });
-  }
-
-  private _getTemplateById(event: Event): void {
-
-    this.template = this._templateFindService
-                        .find(event);
-      this.isDataLoaded = true;
-
   }
 
 }

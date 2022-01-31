@@ -6,7 +6,8 @@ import { PersonCreateService, PersonDeleteService } from './../../../services/pe
 import {
   Person,
   Template,
-  Event
+  Event,
+  PersonTemplate
 } from './../../../models';
 import {
   Component,
@@ -15,7 +16,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { Operation } from 'src/app/enums';
-import { CepService } from 'src/app/services/utils';
+import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ToastrService } from 'ngx-toastr';
 import { FormModel } from 'src/app/models/form-model.model';
 
@@ -30,9 +31,6 @@ export class PersonFormComponent implements OnInit {
   public personForm: PersonFormComponent;
 
   public personFormModel: FormModel;
-
-  @Input()
-  public template: Template;
 
   @Input()
   public event: Event;
@@ -50,7 +48,8 @@ export class PersonFormComponent implements OnInit {
     private _deleteService: PersonDeleteService,
     private _personFormService: PersonFormService,
     private _personCreateService: PersonCreateService,
-    private _personUpdateService: PersonUpdateService
+    private _personUpdateService: PersonUpdateService,
+    private _validatorService: TemplateObjectValidatorService
   ) { }
 
   ngOnInit(): void {
@@ -172,8 +171,12 @@ export class PersonFormComponent implements OnInit {
 
   private _create(person: Person): void {
 
-    this._personCreateService
-          .create(this._loadForm(person), this.event)
+    let buildedPerson: Person = this._loadForm(person);
+
+    try {
+      this._validatorService.validate(this.event.template.objects.person, person);
+      this._personCreateService
+          .create(buildedPerson, this.event)
           .subscribe({
 
             next: response => {
@@ -192,32 +195,50 @@ export class PersonFormComponent implements OnInit {
             }
 
           });
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${person.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 
   private _update(person: Person): void {
 
-    this._personUpdateService
-        .update(this._loadForm(person), this.event)
-        .subscribe({
+    let buildedPerson: Person = this._loadForm(person);
 
-          next: response => {
+    try {
+      
+      this._validatorService.validate(this.event.template.objects.person, person);
+      this._personUpdateService
+      .update(buildedPerson, this.event)
+      .subscribe({
 
-            this._showSuccessToast(
-              `${person.name} foi atualizada com sucesso.`
-            );
+        next: response => {
 
-          },
-          error: exception => {
+          this._showSuccessToast(
+            `${person.name} foi atualizada com sucesso.`
+          );
 
-            this._showErrorToast(
-              `Ops: Parece que houve um erro ao se atualizar ${person.name}. ERRO: ${exception}`
-            );
+        },
+        error: exception => {
 
-          }
+          this._showErrorToast(
+            `Ops: Parece que houve um erro ao se atualizar ${person.name}. ERRO: ${exception}`
+          );
 
-        });
+        }
 
+      });
+    
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${person.name}. ERRO: ${exception}`
+      );
+    }
+    
+      
   }
 
   public delete(person: Person): void {

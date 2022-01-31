@@ -15,9 +15,9 @@ export class EventUpdateService {
   ) { }
 
   public update(event: Event): Observable<any> {
-
+    
     return this._http
-                .put<any>(
+                .put(
                   `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${event.id}`,
                   event,
                   {
@@ -42,7 +42,6 @@ export class EventUpdateService {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
-        console.log(errorMessage);
         return new Error(errorMessage);
 
   }

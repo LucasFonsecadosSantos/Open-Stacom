@@ -50,12 +50,10 @@ const isAuthorized = (req) => {
 // })
 server.use(cors(corsOptions));
 server.use(router)
+
 server.use( ( req, res, next ) => {
-  console.log('asd')
+
   if (isAuthorized(req)) {
-    console.log('w33')
-    // router = jsonServer.router(`${getIDFromURL(req.originalUrl)}.json`)
-    // server.use(`/event/${req.originalUrl}`, router)
     next()
   } else {
     res.sendStatus(400)

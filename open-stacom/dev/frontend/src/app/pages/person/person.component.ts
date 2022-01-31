@@ -39,7 +39,7 @@ export class PersonComponent implements OnInit {
     private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
-    private _confirmDialogService: ConfirmDialogService
+    // private _confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -88,14 +88,14 @@ export class PersonComponent implements OnInit {
 
   public confirmDeleteAllPeople(): void {
 
-    this._confirmDialogService.launchConfirmDialog(
-      {
-        acceptButton: 'Sim, estou ciente e desejo continuar.',
-        cancelButton: 'Cancelar',
-        message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
-        title: 'Antes de prosseguir...'
-      }
-    );
+    // this._confirmDialogService.launchConfirmDialog(
+    //   {
+    //     acceptButton: 'Sim, estou ciente e desejo continuar.',
+    //     cancelButton: 'Cancelar',
+    //     message: 'Você realmente deseja EXCLUIR TODAS AS PESSOAS registradas no sistema?',
+    //     title: 'Antes de prosseguir...'
+    //   }
+    // );
   }
 
   private _getResponseObservables(): void {
@@ -103,8 +103,8 @@ export class PersonComponent implements OnInit {
     this._personFormService.getResponseObservable()
                               .subscribe(operationResult => this._showToast(operationResult));
 
-    this._confirmDialogService.getResponseObservable()
-                                .subscribe(operation => this._deleteAllPeople());
+    // this._confirmDialogService.getResponseObservable()
+    //                             .subscribe(operation => this._deleteAllPeople());
 
   }
 

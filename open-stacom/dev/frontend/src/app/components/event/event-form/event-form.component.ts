@@ -20,9 +20,6 @@ export class EventFormComponent implements OnInit {
   public event: Event;
 
   @Input()
-  public template: Template;
-
-  @Input()
   public preLoad: boolean;
 
   public tmpTelephones;
@@ -69,10 +66,12 @@ export class EventFormComponent implements OnInit {
   }
 
   public addDateToList(date: Date): void {
-
-    this.tmpDays.push(date);
-    if (this.event) {
-      this.event.days.push(date);
+    
+    if (!this.tmpDays.includes(date) && this.event.days.includes(date)) {
+      this.tmpDays.push(date);
+      if (this.event) {
+        this.event.days.push(date);
+      }
     }
 
   }
@@ -113,7 +112,7 @@ export class EventFormComponent implements OnInit {
   private _create(event: Event): void {
 
     this._createService
-        .create(this.template)
+        .create(this.event.template)
         .subscribe({
 
           next: response => {

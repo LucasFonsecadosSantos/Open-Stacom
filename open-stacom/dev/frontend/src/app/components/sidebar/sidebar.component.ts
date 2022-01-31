@@ -77,9 +77,6 @@ export class SidebarComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public menuItems: any[];
 
   constructor() {}
@@ -100,8 +97,8 @@ export class SidebarComponent implements OnInit {
   private _buildNavbar(): void {
 
     this.menuItems = new Array();
-    Object.keys(this.template.objects).forEach(
-      entity => this._buildNavbarItem(this.template.objects[entity])
+    Object.keys(this.event.template.objects).forEach(
+      entity => this._buildNavbarItem(this.event.template.objects[entity])
     );
 
   }
