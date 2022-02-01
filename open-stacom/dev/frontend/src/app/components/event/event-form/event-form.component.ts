@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { ToastrService } from 'ngx-toastr';
 import { EventCreateService, EventUpdateService } from 'src/app/services/event';
-import { CepService } from 'src/app/services/utils';
+import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import {
   Event,
   Template
@@ -35,8 +35,9 @@ export class EventFormComponent implements OnInit {
     private _updateService: EventUpdateService,
     private _createService: EventCreateService,
     private _router: Router,
+    private _validatorService: TemplateObjectValidatorService,
     // private _deleteService: DeleteEventService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -111,7 +112,10 @@ export class EventFormComponent implements OnInit {
 
   private _create(event: Event): void {
 
-    this._createService
+
+    try {
+      this._validatorService.validate(this.event.template.objects.event, event);
+      this._createService
         .create(this.event.template)
         .subscribe({
 
@@ -135,35 +139,47 @@ export class EventFormComponent implements OnInit {
           }
 
         });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações de ${event.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
   private _update(event: Event): void {
 
-    this._updateService
-        .update(this._loadForm(event))
-        .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.event, event);
+      this._updateService
+          .update(this._loadForm(event))
+          .subscribe({
 
-          next: response => {
+            next: response => {
 
-            this._showSuccessToast(
-              `O evento ${event.name} foi atualizado com sucesso.`
-            );
+              this._showSuccessToast(
+                `O evento ${event.name} foi atualizado com sucesso.`
+              );
 
-            if (this.preLoad) {
-              this._router.navigate([`inicio/${this.event.id}`]);
+              if (this.preLoad) {
+                this._router.navigate([`inicio/${this.event.id}`]);
+              }
+
+            },
+            error: exception => {
+
+              this._showErrorToast(
+                `Ops: Parece que houve um erro ao se atualizar o evento ${event.name}. ERRO: ${exception}`
+              );
+
             }
 
-          },
-          error: exception => {
-
-            this._showErrorToast(
-              `Ops: Parece que houve um erro ao se atualizar o evento ${event.name}. ERRO: ${exception}`
-            );
-
-          }
-
-        });
+          });
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${event.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

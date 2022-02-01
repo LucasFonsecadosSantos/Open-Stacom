@@ -12,6 +12,7 @@ import { Operation } from 'src/app/enums';
 import { PreviousEditionFormService } from '.';
 import { ToastrService } from 'ngx-toastr';
 import { FormModel } from 'src/app/models/form-model.model';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 
 @Component({
   selector: 'app-previous-edition-form',
@@ -35,6 +36,7 @@ export class PreviousEditionFormComponent implements OnInit {
   constructor(
     private _createService: PreviousEditionCreateService,
     private _updateService: PreviousEditionUpdateService,
+    private _validatorService: TemplateObjectValidatorService,
     private toastr: ToastrService,
     private _formService: PreviousEditionFormService
   ) { }
@@ -115,7 +117,9 @@ export class PreviousEditionFormComponent implements OnInit {
 
   private _create(edition: PreviousEdition): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._createService
           .create(this._loadForm(edition), this.event)
           .subscribe({
 
@@ -135,12 +139,19 @@ export class PreviousEditionFormComponent implements OnInit {
             }
 
           });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações da edição ${edition.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
   private _update(edition: PreviousEdition): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._updateService
           .update(this._loadForm(edition), this.event)
           .subscribe({
 
@@ -160,6 +171,11 @@ export class PreviousEditionFormComponent implements OnInit {
             }
 
           });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações de ${edition.name}. ERRO: ${exception}`
+        );
+      }
   }
 
   private _showSuccessToast(message: string): void {

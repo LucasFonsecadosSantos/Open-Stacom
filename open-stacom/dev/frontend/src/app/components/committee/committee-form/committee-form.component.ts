@@ -6,6 +6,7 @@ import { Committee, Template, Event, Person } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
 import { PersonFindService } from 'src/app/services/person';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { CommitteeFormService } from '.';
 
 @Component({
@@ -37,6 +38,7 @@ export class CommitteeFormComponent implements OnInit {
     private _modalService: NgbModal,
     private toastr: ToastrService,
     private _formService: CommitteeFormService,
+    private _validatorService: TemplateObjectValidatorService,
     private _createService: CommitteCreateService,
     private _updateService: CommitteUpdateService,
     private _deleteService: CommitteDeleteService,
@@ -154,26 +156,34 @@ export class CommitteeFormComponent implements OnInit {
 
   private _create(committee: Committee): void {
 
-    this._createService
-          .create(this._loadForm(committee), this.event)
-          .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._createService
+        .create(this._loadForm(committee), this.event)
+        .subscribe({
 
-            next: response => {
+          next: response => {
 
-              this._showSuccessToast(
-                `O comitê ${committee.name} foi criado com sucesso.`
-              );
+            this._showSuccessToast(
+              `O comitê ${committee.name} foi criado com sucesso.`
+            );
 
-            },
-            error: exception => {
+          },
+          error: exception => {
 
-              this._showErrorToast(
-                `Ops: Parece que houve um erro ao se criar o comitê ${committee.name}. ERRO: ${exception}`
-              );
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar o comitê ${committee.name}. ERRO: ${exception}`
+            );
 
-            }
+          }
 
-          });
+        });
+
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações do comitê ${committee.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
@@ -224,26 +234,34 @@ export class CommitteeFormComponent implements OnInit {
 
   private _update(committee: Committee): void {
 
-    this._updateService
-          .update(this._loadForm(committee), this.event)
-          .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._updateService
+        .update(this._loadForm(committee), this.event)
+        .subscribe({
 
-            next: response => {
+          next: response => {
 
-              this._showSuccessToast(
-                `O comitê ${committee.name} foi atualizada com sucesso.`
-              );
+            this._showSuccessToast(
+              `O comitê ${committee.name} foi atualizada com sucesso.`
+            );
 
-            },
-            error: exception => {
+          },
+          error: exception => {
 
-              this._showErrorToast(
-                `Ops: Parece que houve um erro ao se atualizar o comitê ${committee.name}. ERRO: ${exception}`
-              );
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar o comitê ${committee.name}. ERRO: ${exception}`
+            );
 
-            }
+          }
 
-          });
+        });
+        
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações do comitê ${committee.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

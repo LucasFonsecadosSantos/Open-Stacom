@@ -7,6 +7,7 @@ import { FormModel } from 'src/app/models/form-model.model';
 import { Schedule } from 'src/app/models/schedule.model';
 import { ActivityFindService } from 'src/app/services/activity';
 import { ScheduleCreateService, ScheduleDeleteService, ScheduleUpdateService } from 'src/app/services/schedule';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ScheduleFormService } from '.';
 
 @Component({
@@ -22,9 +23,6 @@ export class ScheduleFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public schedule: Schedule;
 
   public scheduleFormModel: FormModel;
@@ -36,6 +34,7 @@ export class ScheduleFormComponent implements OnInit {
     private _activityFindService: ActivityFindService,
     private toastr: ToastrService,
     private _formService: ScheduleFormService,
+    private _validatorService: TemplateObjectValidatorService,
     private _createService: ScheduleCreateService,
     private _updateService: ScheduleUpdateService,
     private _deleteService: ScheduleDeleteService
@@ -124,7 +123,9 @@ export class ScheduleFormComponent implements OnInit {
 
   private _create(schedule: any): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.schedule, schedule);
+      this._createService
         .create(this._loadForm(schedule), this.event)
         .subscribe({
 
@@ -144,6 +145,12 @@ export class ScheduleFormComponent implements OnInit {
           }
 
         });
+      
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de agendamento da atividade ${schedule.activity.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 
@@ -156,7 +163,9 @@ export class ScheduleFormComponent implements OnInit {
 
   private _update(schedule: any): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.schedule, schedule);
+      this._updateService
         .update(this._loadForm(schedule), this.event)
         .subscribe({
 
@@ -176,6 +185,12 @@ export class ScheduleFormComponent implements OnInit {
           }
 
         });
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de agendamento da atividade ${schedule.activity.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 

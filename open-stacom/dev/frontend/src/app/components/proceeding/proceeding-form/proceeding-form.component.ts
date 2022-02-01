@@ -5,6 +5,7 @@ import { Operation } from 'src/app/enums';
 import { Template, Event, Proceeding } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { ProceedingCreateService, ProceedingUpdateService } from 'src/app/services/proceeding';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ProceedingFormService } from '.';
 
 @Component({
@@ -20,9 +21,6 @@ export class ProceedingFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public proceeding: Proceeding;
 
   public proceedingFormModel: FormModel;
@@ -32,6 +30,7 @@ export class ProceedingFormComponent implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private toastr: ToastrService,
+    private _validatorService: TemplateObjectValidatorService,
     private _formService: ProceedingFormService,
     private _createService: ProceedingCreateService,
     private _updateService: ProceedingUpdateService,
@@ -111,7 +110,9 @@ export class ProceedingFormComponent implements OnInit {
 
   private _create(proceeding: Proceeding): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._createService
         .create(this._loadForm(proceeding), this.event)
         .subscribe({
 
@@ -131,12 +132,19 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
-
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`
+      );
+    }
   }
 
   private _update(proceeding: Proceeding): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._updateService
         .update(this._loadForm(proceeding), this.event)
         .subscribe({
 
@@ -156,6 +164,12 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 

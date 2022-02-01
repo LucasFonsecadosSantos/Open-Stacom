@@ -5,6 +5,7 @@ import { Operation, OperationResult } from 'src/app/enums';
 import { Template, Event, PricePlan } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { PricePlanCreateService, PricePlanDeleteService, PricePlanUpdateService } from 'src/app/services/price-plan';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { PriceFormService } from '.';
 
 @Component({
@@ -30,6 +31,7 @@ export class PriceFormComponent implements OnInit {
     private _modalService: NgbModal,
     private _formService: PriceFormService,
     private toastr: ToastrService,
+    private _validatorService: TemplateObjectValidatorService,
     private _deleteService: PricePlanDeleteService,
     private _createService: PricePlanCreateService,
     private _updateService: PricePlanUpdateService
@@ -124,7 +126,9 @@ export class PriceFormComponent implements OnInit {
 
   private _create(pricePlan: PricePlan): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._createService
         .create(this._loadForm(pricePlan), this.event)
         .subscribe({
 
@@ -144,11 +148,19 @@ export class PriceFormComponent implements OnInit {
 
         });
 
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${pricePlan.name}. ERRO: ${exception}`
+      );
+    }
+
   }
 
   private _update(pricePlan: PricePlan): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._updateService
         .update(this._loadForm(pricePlan), this.event)
         .subscribe({
 
@@ -167,6 +179,12 @@ export class PriceFormComponent implements OnInit {
           }
 
         });
+        
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${pricePlan.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

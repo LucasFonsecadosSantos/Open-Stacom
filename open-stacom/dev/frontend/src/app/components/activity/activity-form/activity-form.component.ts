@@ -7,6 +7,7 @@ import { FormModel } from 'src/app/models/form-model.model';
 import { ActivityCreateService, ActivityDeleteService, ActivityUpdateService } from 'src/app/services/activity';
 import { PersonFindService } from 'src/app/services/person';
 import { PricePlanFindService } from 'src/app/services/price-plan';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ActivityFormService } from '.';
 
 @Component({
@@ -42,6 +43,7 @@ export class ActivityFormComponent implements OnInit {
     private _createService: ActivityCreateService,
     private _updateService: ActivityUpdateService,
     private _personFindService: PersonFindService,
+    private _validatorService: TemplateObjectValidatorService,
     private _pricePlanFindService: PricePlanFindService
   ) { }
 
@@ -157,32 +159,42 @@ export class ActivityFormComponent implements OnInit {
 
   private _createActivity(activity: Activity): void {
 
-    this._createService
-        .create(this._loadForm(activity), this.event)
-        .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.activity, activity);
+      this._createService
+          .create(this._loadForm(activity), this.event)
+          .subscribe({
 
-          next: response => {
+            next: response => {
 
-            this._showSuccessToast(
-              `A atividade ${activity.title} foi criado com sucesso.`
-            );
+              this._showSuccessToast(
+                `A atividade ${activity.title} foi criado com sucesso.`
+              );
 
-          },
-          error: exception => {
+            },
+            error: exception => {
 
-            this._showErrorToast(
-              `Ops: Parece que houve um erro ao se criar a atividade ${activity.title}. ERRO: ${exception}`
-            );
+              this._showErrorToast(
+                `Ops: Parece que houve um erro ao se criar a atividade ${activity.title}. ERRO: ${exception}`
+              );
 
-          }
+            }
 
-        });
+          });
+
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${activity.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 
   private _updateActivity(activity: Activity): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.activity, activity);
+      this._updateService
         .update(this._loadForm(activity), this.event)
         .subscribe({
 
@@ -202,6 +214,12 @@ export class ActivityFormComponent implements OnInit {
           }
 
         });
+
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${activity.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 
