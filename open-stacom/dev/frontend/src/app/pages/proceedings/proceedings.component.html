@@ -4,7 +4,7 @@
       <app-proceeding-form *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-form>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="hasData()">
     <div class="col-md-12">
       <div class=" card">
         <div class=" card-body d-flex align-items-center">
@@ -12,15 +12,15 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Novo Anal
           </button>
-          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="deleteAllProceedings()">
+          <button  class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="deleteAllProceedings()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todas os Anais
           </button>
-          <button *ngIf="hasData()"  class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_anais.json'}}">
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_anais.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>
@@ -28,12 +28,22 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-8">
       <app-proceeding-list #proceedingListComponent *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-list>
     </div>
     <div class="col-md-4">
       <app-proceeding-info *ngIf="isDataLoaded" [event]="event" [template]="template"></app-proceeding-info>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center" style="height: 40vh;" *ngIf="!isDataLoaded || !hasData()">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+      <h1>Ops: Ainda não temos documentos cadastrados.</h1>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+      <button class="btn btn-lg btn-danger mr-2 d-flex align-items-center"(click)="addProceeding()" >
+        Comece adicionando um novo documento ao seu evento
+      </button>
     </div>
   </div>
 </div>

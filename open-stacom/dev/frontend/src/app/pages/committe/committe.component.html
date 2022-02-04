@@ -3,7 +3,7 @@
 <div class="content">
   <app-committee-form [event]="event" *ngIf="isDataLoaded"></app-committee-form>
   <app-confirm-dialog [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
-  <div class="row">
+  <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
       <div class=" card">
         <div class=" card-body d-flex align-items-center">
@@ -11,15 +11,15 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Novo Comitê
           </button>
-          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllCommittees()">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllCommittees()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todos os Comitês
           </button>
-          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_comites.json'}}">
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_comites.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>
@@ -27,12 +27,22 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
       <app-committee-list [event]="event" *ngIf="isDataLoaded"></app-committee-list>
     </div>
     <!-- <div class="col-md-4">
       <app-committee-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-info>
     </div> -->
+  </div>
+  <div class="row d-flex justify-content-center align-items-center" style="height: 40vh;" *ngIf="!isDataLoaded || !hasData()">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+      <h1>Ops: Ainda não temos nenhum comitê cadastrado.</h1>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+      <button class="btn btn-lg btn-danger mr-2 d-flex align-items-center"(click)="openAddCommitteeForm()" >
+        Comece criando um novo comitê para seu evento
+      </button>
+    </div>
   </div>
 </div>
