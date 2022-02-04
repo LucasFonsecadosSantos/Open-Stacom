@@ -1,11 +1,11 @@
-[![star this repo](http://githubbadges.com/star.svg?user=LucasFonsecaDosSantos&repo=Open-Stacom&style=popout-square)](https://github.com/LucasFonsceaDosSantos/Turbo-Fire)
-[![fork this repo](http://githubbadges.com/fork.svg?user=LucasFonsecaDosSantos&repo=Open-Stacom&style=popout-square)](https://github.com/LucasFonsecaDosSantos/Turbo-Fire/fork)
+[![star this repo](http://githubbadges.com/star.svg?user=LucasFonsecaDosSantos&repo=Open-Stacom&style=popout-square)
+[![fork this repo](http://githubbadges.com/fork.svg?user=LucasFonsecaDosSantos&repo=Open-Stacom&style=popout-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/LucasFonsecaDosSantos/Open-Stacom?style=flat-square)
 ![GitHub contributors](https://img.shields.io/github/contributors/LucasFonsecaDosSantos/Open-Stacom?style=flat-square)
 ![GitHub file size in bytes](https://img.shields.io/github/size/LucasFonsecaDosSantos/Turbo-Fire.svg?style=popout-square)
-[![GitHub version](https://badge.fury.io/gh/LucasFonsecaDosSantos%2FOpen-Stacom.svg)](https://badge.fury.io/gh/LucasFonsecaDosSantos%2FOpen-Stacom)
-[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102&style=popout-square)](https://github.com/LucasFonsecaDosSantos/Turbo-Fire/)
-[![Open Source Love](https://badges.frapsoft.com/os/gpl/gpl.svg?v=102&style=popout-square)](https://github.com/LucasFonsecaDosSantos/Turbo-Fire/)
+[![GitHub version](https://badge.fury.io/gh/LucasFonsecaDosSantos%2FOpen-Stacom.svg)
+[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102&style=popout-square)
+[![Open Source Love](https://badges.frapsoft.com/os/gpl/gpl.svg?v=102&style=popout-square)
 
 
 ![Open Stacom - An open source static content management tool.](./docs/fundo-github.png)
