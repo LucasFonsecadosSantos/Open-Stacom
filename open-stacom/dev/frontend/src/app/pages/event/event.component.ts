@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Template, Event } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
@@ -14,11 +15,13 @@ export class EventComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
   public event: Event;
+  public entityDownloadURL: SafeUrl;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _exportService: ExcelExportService,
-    private _eventFindService: EventFindService
+    private _eventFindService: EventFindService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,14 @@ export class EventComponent implements OnInit {
 
   public exportToPDF(event: Event): void {
     //TODO
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   private _getEventAndTemplate(): void {
