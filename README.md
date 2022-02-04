@@ -10,9 +10,10 @@
 [![Open Source Love](https://badges.frapsoft.com/os/gpl/gpl.svg?v=102&style=popout-square)](https://github.com/LucasFonsecaDosSantos/Turbo-Fire/)
 
 
+![Open Stacom - An open source static content management tool.](./docs/fundo-github.png)
 # Open-Stacom
-###### A distributed denial of service attack simulaton tool.
-
+###### An open source static content management tool.
+###### Uma ferramenta open source para gerenciamento de conteúdo estático.
 ## About this project
 Uma ferramenta open source desenvolvida para gerenciamento de conteúdo de forma estática para páginas de eventos diversos.
 
@@ -20,16 +21,6 @@ Uma ferramenta open source desenvolvida para gerenciamento de conteúdo de forma
 You will need to install all system requirements to edit and change any 
 parts of this project. The following are listed all requirements.
 
-## System Requirements
-- Shell Bash
-- Make
-- ...
-
-## How to use
-In first step, enter the directory:
-```
-$ cd Turbo-Fire/
-```
 
 ## Project Structure
 cooming soon
@@ -49,5 +40,5 @@ works.
 University of Lavras* - lucas@lcfcompany.com.br
 
 ## License
-This project is licensed under no license. Copyleft is freedom!
+This project is under GPLv3 - General Public License. Copyleft is freedom!
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, OnDestroy, Input } from "@angular/core";
-import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -61,7 +60,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     window.addEventListener("resize", this.updateColor);
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    //this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
     this.router.events.subscribe(event => {
