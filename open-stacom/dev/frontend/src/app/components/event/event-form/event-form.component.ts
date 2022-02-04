@@ -22,7 +22,7 @@ export class EventFormComponent implements OnInit {
   @Input()
   public preLoad: boolean;
 
-  public tmpTelephones;
+  public tmpTelephones: Array<{name: string, number: string}>;
 
   public tmpDays: Date[];
 
@@ -43,7 +43,7 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.states = getAllStates();
-    this.tmpDays = [];
+    this.tmpDays = this.event.days ? this.event.days : [];
     this._setEventTypes();
 
   }
@@ -52,27 +52,17 @@ export class EventFormComponent implements OnInit {
 
       this.tmpTelephones.push(
         {
-          "name": contact,
-          "number": telephone
-        }
-      );
-
-      this.event.telephones.push(
-        {
-          "name": contact,
-          "number": telephone
+          name: contact,
+          number: telephone
         }
       );
 
   }
 
   public addDateToList(date: Date): void {
-    
-    if (!this.tmpDays.includes(date) && this.event.days.includes(date)) {
+
+    if(!this.tmpDays.includes(date) && date && date != null) {
       this.tmpDays.push(date);
-      if (this.event) {
-        this.event.days.push(date);
-      }
     }
 
   }

@@ -218,7 +218,7 @@
             <div class=" col-md-12">
               <table class=" table tablesorter" id="">
                 <thead class=" text-primary">
-                  <tr>
+                  <tr *ngIf="event.telephones">
                     <th>Contato</th>
                     <th>Número</th>
                   </tr>
@@ -261,12 +261,12 @@
             <div class=" col-md-12">
               <table class=" table tablesorter" id="">
                 <thead class=" text-primary">
-                  <tr>
+                  <tr *ngIf="tmpDays && tmpDays.length != 0">
                     <th>Data</th>
                   </tr>
                 </thead>
-                <tbody *ngIf="event && event.days" >
-                  <tr *ngFor="let day of event.days">
+                <tbody *ngIf="event && tmpDays" >
+                  <tr *ngFor="let day of tmpDays">
                     <td>{{ day | date: 'dd/MM/yyyy' }}</td>
                   </tr>
                 </tbody>
@@ -302,7 +302,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class=" col-md-12">
           <h4 class=" card-title">Redes sociais do evento</h4>
         </div>
@@ -407,7 +407,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class=" col-md-12">
           <h4 class=" card-title">Local de realização</h4>
         </div>

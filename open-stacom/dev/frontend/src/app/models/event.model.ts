@@ -14,12 +14,10 @@ export class Event implements Model {
   brief?: string;
   website?: string;
   email?: string;
-  telephones?: [
-    {
-      name: string,
-      number: string
-    }
-  ]
+  telephones?: {
+    name: string,
+    number: string
+  }[]
   poweredByInstitution?: string;
   poweredByDepartment?: string;
   days?: Date[];
