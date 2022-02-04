@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommitteeFormService, CommitteeListComponent } from 'src/app/components/committee';
 import { ConfirmDialogService } from 'src/app/components/dialog';
@@ -26,12 +27,15 @@ export class CommitteComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
+  public entityDownloadURL: SafeUrl;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _exportExcelService: ExcelExportService,
     private _eventFindService: EventFindService,
     private _confirmDialogService: ConfirmDialogService,
-    private _committeeFormService: CommitteeFormService
+    private _committeeFormService: CommitteeFormService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -80,6 +84,14 @@ export class CommitteComponent implements OnInit {
       'LISTA_DE_COMITES'
     );
 
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.committee.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   public confirmDeleteAllCommittees(): void {
