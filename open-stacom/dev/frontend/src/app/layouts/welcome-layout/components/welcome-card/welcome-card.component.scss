@@ -1,3 +1,6 @@
+.wrapper {
+  overflow: hidden;
+}
 .welcome-button {
   height: 100px;
   // border: solid 1px $red;
@@ -14,5 +17,4 @@
 .logo{
   width: 100%;
   height: 300px;
-  background: #000;
 }
