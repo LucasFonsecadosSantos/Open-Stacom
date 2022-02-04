@@ -240,7 +240,7 @@
         "icon": "icon-settings-gear-63"
       },
       "id": {
-        "required": true
+        "required": false
       },
       "name": {
         "minlength": 4,
@@ -280,7 +280,7 @@
       "logo": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "brief": {
         "minlength": 4,
@@ -303,17 +303,17 @@
         "required": false
       },
       "days": {
-        "required": true
+        "required": false
       },
       "website": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "email": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "socialNetworkFacebook": {
         "minlength": 4,
@@ -358,42 +358,42 @@
       "locationCep": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationAddress": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationNumber": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationNeiborhood": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationCity": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationUF": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationCountry": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       },
       "locationLatLong": {
         "minlength": 4,
         "maxlength": 50,
-        "required": true
+        "required": false
       }
     },
     "pastEdition": {
