@@ -17,6 +17,10 @@
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_valores.json'}}">
+            <i class="tim-icons icon-paper mr-1"></i>
+            Exportar como JSON
+          </a>
         </div>
       </div>
     </div>
