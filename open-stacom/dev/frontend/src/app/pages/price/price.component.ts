@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { PriceFormService, PriceListComponent } from 'src/app/components/price';
@@ -22,13 +23,16 @@ export class PriceComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
+  public entityDownloadURL: SafeUrl;
+
   constructor(
     private _exportExcelService: ExcelExportService,
     private _priceDeleteService: PricePlanDeleteService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: PriceFormService,
-    private _confirmDialogService: ConfirmDialogService
+    private _confirmDialogService: ConfirmDialogService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -70,8 +74,19 @@ export class PriceComponent implements OnInit {
 
   }
 
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.pricePlan.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
+  }
+
   public exportExcel(): void {
-    this._exportExcelService.exportExcel(this.pricePlan.pricePlanArray, 'LISTA_DE_VALORES');
+    this._exportExcelService
+        .exportExcel(
+          this.pricePlan.pricePlanArray, 'LISTA_DE_VALORES'
+        );
   }
 
   public confirmDeleteAllPlans(): void {

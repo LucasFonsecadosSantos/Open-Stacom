@@ -8,6 +8,7 @@ import {
 import { ExcelExportService } from 'src/app/services/utils';
 import {  PreviousEditionListComponent } from 'src/app/components/previous-editions';
 import { ConfirmDialogService } from 'src/app/components/dialog';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-previous-editions',
@@ -23,12 +24,14 @@ export class PreviousEditionsComponent implements OnInit {
   public event: Event;
   public editionsArray: any[];
   public isDataLoaded: boolean = false;
+  public entityDownloadURL: SafeUrl;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _eventFindService: EventFindService,
     private _exportExcelService: ExcelExportService,
-    private _confirmDialogService: ConfirmDialogService
+    private _confirmDialogService: ConfirmDialogService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,14 @@ export class PreviousEditionsComponent implements OnInit {
   public exportExcel(): void {
     this.editionsArray = this.previousEditionListComponent.editionsArray;
     this._exportExcelService.exportExcel(this.editionsArray, 'LISTA_DE_EDICOES_PASSADAS');
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.pastEdition.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   public confirmDeleteAllEditions(): void {

@@ -52,7 +52,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.projectDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );
-
   }
 
   public generateBuild(): void {
