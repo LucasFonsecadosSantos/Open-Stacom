@@ -11,6 +11,7 @@ import { Template, Event, Person } from './../../models';
 import { TemplateFindService } from 'src/app/services/templates';
 import { EventFindService } from 'src/app/services/event';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-person',
@@ -32,6 +33,8 @@ export class PersonComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
+  public entityDownloadURL: SafeUrl;
+
   constructor(
     private _exportExcelService: ExcelExportService,
     private _personFormService: PersonFormService,
@@ -39,6 +42,7 @@ export class PersonComponent implements OnInit {
     private _templateFindService: TemplateFindService,
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
+    private _sanitizer: DomSanitizer
     // private _confirmDialogService: ConfirmDialogService
   ) { }
 
@@ -84,6 +88,14 @@ export class PersonComponent implements OnInit {
   public exportExcel(): void {
     this._personArray = this.personListComponent.personArray;
     this._exportExcelService.exportExcel(this._personArray, 'LISTA_DE_PESSOAS');
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.person.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   public confirmDeleteAllPeople(): void {
