@@ -53,6 +53,16 @@ export class PreviousEditionsComponent implements OnInit {
     );
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.pastEdition &&
+            this.event.template.objects.pastEdition.content &&
+            this.event.template.objects.pastEdition.content.length > 0;
+  }
+
   public confirmDeleteAllEditions(): void {
 
     this._confirmDialogService.launchConfirmDialog(

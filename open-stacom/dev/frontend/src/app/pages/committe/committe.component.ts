@@ -86,6 +86,16 @@ export class CommitteComponent implements OnInit {
 
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.committee &&
+            this.event.template.objects.committee.content &&
+            this.event.template.objects.committee.content.length > 0;
+  }
+
   public downloadEntitySource(): void {
     let fileName: string = this.event.name;
     let data = JSON.stringify(this.event.template.objects.committee.content);

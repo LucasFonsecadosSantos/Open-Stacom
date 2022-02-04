@@ -6,7 +6,6 @@ import { Routes, RouterModule } from "@angular/router";
 
 import {
   AdminLayoutComponent,
-  AuthLayoutComponent,
   WelcomeLayoutComponent
 } from './layouts';
 
@@ -32,26 +31,6 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path: "",
-  //   component: WelcomeLayoutComponent,
-  //   children: [
-  //     {
-  //       path: "",
-  //       loadChildren: () => import ("./layouts/welcome-layout/welcome-layout.module").then(m => m.WelcomeLayoutModule)
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: "",
-  //   component: AuthLayoutComponent,
-  //   children: [
-  //     {
-  //       path: "",
-  //       loadChildren: () => import ("./layouts/auth-layout/auth-layout.module").then(m => m.AuthLayoutModule)
-  //     }
-  //   ]
-  // },
   // {
   //   path: "inicio",
   //   component: AdminLayoutComponent,

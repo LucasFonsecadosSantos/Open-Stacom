@@ -98,6 +98,16 @@ export class PersonComponent implements OnInit {
     );
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.person &&
+            this.event.template.objects.person.content &&
+            this.event.template.objects.person.content.length > 0;
+  }
+
   public confirmDeleteAllPeople(): void {
 
     // this._confirmDialogService.launchConfirmDialog(

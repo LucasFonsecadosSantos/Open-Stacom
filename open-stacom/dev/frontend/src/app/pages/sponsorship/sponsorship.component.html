@@ -11,15 +11,15 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Novo Patrocinador
           </button>
-          <button *ngIf="sponsorListComponent && sponsorListComponent.sponsorArray && sponsorListComponent.sponsorArray.length > 0" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSponsor()">
+          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllSponsor()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todos os Patrocinadores
           </button>
-          <button *ngIf="sponsorListComponent && sponsorListComponent.sponsorArray && sponsorListComponent.sponsorArray.length > 0" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_patrocinadores.json'}}">
+          <a *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_patrocinadores.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>

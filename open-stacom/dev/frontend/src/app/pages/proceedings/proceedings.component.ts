@@ -76,6 +76,16 @@ export class ProceedingsComponent implements OnInit {
     this._exportExcelService.exportExcel(this.proceedingListComponent.proceedingArray, 'LISTA_DE_ANAIS');
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.proceeding &&
+            this.event.template.objects.proceeding.content &&
+            this.event.template.objects.proceeding.content.length > 0;
+  }
+
   public deleteAllProceedings(): void {
 
     this._confirmDialogService.launchConfirmDialog(

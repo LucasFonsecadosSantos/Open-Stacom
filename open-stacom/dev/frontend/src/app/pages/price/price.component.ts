@@ -74,6 +74,16 @@ export class PriceComponent implements OnInit {
 
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.pricePlan &&
+            this.event.template.objects.pricePlan.content &&
+            this.event.template.objects.pricePlan.content.length > 0;
+  }
+
   public downloadEntitySource(): void {
     let fileName: string = this.event.name;
     let data = JSON.stringify(this.event.template.objects.pricePlan.content);

@@ -12,15 +12,15 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Novo Anal
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="deleteAllProceedings()">
+          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="deleteAllProceedings()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todas os Anais
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button *ngIf="hasData()"  class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_anais.json'}}">
+          <a *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_anais.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>

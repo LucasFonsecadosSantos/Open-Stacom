@@ -9,15 +9,15 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Adicionar Pacote de Valores
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllPlans()">
+          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="confirmDeleteAllPlans()">
             <i class="tim-icons icon-trash-simple mr-1"></i>
             Remover Todos os Pacotes
           </button>
-          <button class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
+          <button *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="exportExcel()">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_valores.json'}}">
+          <a *ngIf="hasData()" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_valores.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>

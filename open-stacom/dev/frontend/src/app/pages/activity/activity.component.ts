@@ -79,6 +79,16 @@ export class ActivityComponent implements OnInit {
         );
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.activity &&
+            this.event.template.objects.activity.content &&
+            this.event.template.objects.activity.content.length > 0;
+  }
+
   public downloadEntitySource(): void {
     let fileName: string = this.event.name;
     let data = JSON.stringify(this.event.template.objects.activity.content);

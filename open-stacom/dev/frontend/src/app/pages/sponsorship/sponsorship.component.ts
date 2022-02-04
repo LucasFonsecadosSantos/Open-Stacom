@@ -70,6 +70,16 @@ export class SponsorshipComponent implements OnInit {
         );
   }
 
+  public hasData(): boolean {
+
+    return  this.event &&
+            this.event.template &&
+            this.event.template.objects &&
+            this.event.template.objects.sponsor &&
+            this.event.template.objects.sponsor.content &&
+            this.event.template.objects.sponsor.content.length > 0;
+  }
+
   public exportExcel(): void {
     this._exportExcelService.exportExcel(this.sponsorListComponent.sponsorArray, 'LISTA_DE_ATIVIDADES');
   }

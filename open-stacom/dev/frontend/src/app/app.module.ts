@@ -9,7 +9,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from "./app.component";
 import {
   AdminLayoutComponent,
-  AuthLayoutComponent
 } from "./layouts";
 
   import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -30,8 +29,7 @@ import { ComponentsModule } from "./components/components.module";
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent
+    AdminLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
