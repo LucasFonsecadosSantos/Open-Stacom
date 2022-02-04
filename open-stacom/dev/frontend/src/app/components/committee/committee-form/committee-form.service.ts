@@ -5,7 +5,7 @@ import {
 } from 'rxjs';
 import {
   Committee,
-  CommitteeForm
+  FormModel
 } from 'src/app/models';
 
 @Injectable({
@@ -16,11 +16,11 @@ export class CommitteeFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public personForm: CommitteeForm;
+  public personForm: FormModel;
 
   constructor() { }
 
-  public launchModal(committeFormModel: CommitteeForm) {
+  public launchModal(committeFormModel: FormModel) {
     this.subject.next(committeFormModel);
   }
 

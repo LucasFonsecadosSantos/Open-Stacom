@@ -1,23 +1,31 @@
-<div class=" card">
-  <div class=" card-header">
-    <h4 class=" card-title">Selecione um estilo para sua página</h4>
-  </div>
-  <div class=" card-body">
-    <div class="row">
-      <div
-        *ngFor="let template of templates"
-        title="{{template.name}} - {{template.description}}"
-        alt="{{template.name}}"
-        class="col-md-4 template-cell"
-        (click)="createEvent(template)"
-      >
-        <div class="template-cell__header">
-          <img class="mt-1 mb-1" alt="{{template.name}}" src="{{template.mockup}}" />
+<div class="wrapper d-flex justify-content-center align-items-center overflow-hidden">
+  <div class="content w-100">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8">
+        <div class=" card">
+          <div class=" card-header">
+            <h4 class=" card-title">Selecione um estilo para sua página</h4>
+          </div>
+          <div class=" card-body">
+            <div class="row">
+              <div
+                *ngFor="let template of templates"
+                title="{{template.name}} - {{template.description}}"
+                alt="{{template.name}}"
+                class="col-md-4 template-cell"
+                (click)="createEvent(template)"
+              >
+                <div class="template-cell__header">
+                  <img class="mt-1 mb-1" alt="{{template.name}}" src="{{template.mockup}}" />
+                </div>
+                <!-- <div class="template-cell__body">
+                  <h4 class="mt-2 mb-1 p-0">{{template.name}}</h4>
+                  <p class="mt-0 p-0">{{template.description}}</p>
+                </div> -->
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- <div class="template-cell__body">
-          <h4 class="mt-2 mb-1 p-0">{{template.name}}</h4>
-          <p class="mt-0 p-0">{{template.description}}</p>
-        </div> -->
       </div>
     </div>
   </div>

@@ -38,7 +38,9 @@
           </button>
         </li>
 
-
+        <li class="nav-item">
+          <a class=" btn btn-fill btn-danger" (click)="downloadProject()" [href]="projectDownloadURL" download="{{this.event.name+'.json'}}">SALVAR PROJETO</a>
+        </li>
         <li class="nav-item">
           <button class=" btn btn-fill btn-danger" (click)="generateBuild()">GERAR PÁGINA</button>
         </li>

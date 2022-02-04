@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Proceeding, ProceedingForm } from 'src/app/models';
+import { Proceeding, FormModel } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,11 @@ export class ProceedingFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public model: ProceedingForm
+  public model: FormModel
 
   constructor() { }
 
-  public launchModal(model: ProceedingForm) {
+  public launchModal(model: FormModel) {
     this.subject.next(model);
   }
 

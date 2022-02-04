@@ -3,13 +3,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Operation } from 'src/app/enums';
 import { SponsorshipPlan } from 'src/app/enums/sponsorship-plan.enum';
 import { Event } from 'src/app/models';
-import { SponsorForm } from 'src/app/models/sponsor-form.model';
 import { Sponsor } from 'src/app/models/sponsor.model';
 import { SponsorCreateService, SponsorDeleteService, SponsorUpdateService } from 'src/app/services/sponsor';
-import { CepService } from 'src/app/services/utils';
+import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import { SponsorFormService } from './sponsor-form.service';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { ToastrService } from 'ngx-toastr';
+import { FormModel } from 'src/app/models/form-model.model';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -26,7 +26,7 @@ export class SponsorFormComponent implements OnInit {
 
   public sponsor: Sponsor;
 
-  public sponsorFormModel: SponsorForm;
+  public sponsorFormModel: FormModel;
 
   public states: any;
 
@@ -37,6 +37,7 @@ export class SponsorFormComponent implements OnInit {
     private _cepService: CepService,
     private _formService: SponsorFormService,
     private toastr: ToastrService,
+    private _validatorService: TemplateObjectValidatorService,
     private _createService: SponsorCreateService,
     private _deleteService: SponsorDeleteService,
     private _updateService: SponsorUpdateService
@@ -55,7 +56,7 @@ export class SponsorFormComponent implements OnInit {
     this._formService
           .getObservable()
           .subscribe(data => {
-            this._setSponsor(data.sponsor, data.operation);
+            this._setSponsor(data.model, data.operation);
             this._setSponsorFormModel(data);
             this._launchModal();
           });
@@ -123,7 +124,7 @@ export class SponsorFormComponent implements OnInit {
 
   public uploadPicture(): void {}
 
-  private _setSponsorFormModel(model: SponsorForm): void {
+  private _setSponsorFormModel(model: FormModel): void {
 
     this.sponsorFormModel = model;
 
@@ -196,7 +197,9 @@ export class SponsorFormComponent implements OnInit {
 
   private _update(sponsor: Sponsor): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.sponsor, sponsor);
+      this._updateService
         .update(this._loadForm(sponsor), this.event)
         .subscribe({
 
@@ -216,12 +219,18 @@ export class SponsorFormComponent implements OnInit {
           }
 
         });
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${sponsor.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 
   private _create(data): void {
-
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.sponsor, data);
+      this._createService
         .create(this._loadForm(data), this.event)
         .subscribe({
 
@@ -241,6 +250,12 @@ export class SponsorFormComponent implements OnInit {
           }
 
         });
+
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${data.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

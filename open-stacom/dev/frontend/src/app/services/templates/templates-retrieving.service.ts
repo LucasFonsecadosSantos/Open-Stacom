@@ -18,7 +18,7 @@ export class TemplatesRetrievingService {
 
     return this.http
                 .get<Template[]>(
-                  `${environment.API_URL.BASE}${environment.API_URL.TEMPLATES}`
+                  `${environment.API_BACKEND_SERVICES.HOST}:${environment.API_BACKEND_SERVICES.PORT}${environment.API_BACKEND_SERVICES.TEMPLATE}`
                 );
 
   }

@@ -1,7 +1,7 @@
 import { Person, PricePlan } from ".";
 import { ActivityType } from "../enums";
 
-export class Activity {
+export class Activity implements Model {
 
   id?: string;
   type?: ActivityType;

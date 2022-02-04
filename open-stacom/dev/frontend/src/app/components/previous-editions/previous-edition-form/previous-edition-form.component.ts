@@ -9,9 +9,10 @@ import {
   PreviousEditionUpdateService
 } from 'src/app/services/previous-edition';
 import { Operation } from 'src/app/enums';
-import { PreviousEditionForm } from 'src/app/models/previous-edition-form.model';
 import { PreviousEditionFormService } from '.';
 import { ToastrService } from 'ngx-toastr';
+import { FormModel } from 'src/app/models/form-model.model';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 
 @Component({
   selector: 'app-previous-edition-form',
@@ -28,13 +29,14 @@ export class PreviousEditionFormComponent implements OnInit {
 
   public edition: PreviousEdition;
 
-  public previousEditionFormModel: PreviousEditionForm;
+  public previousEditionFormModel: FormModel;
 
   public static readonly operation: Operation;
 
   constructor(
     private _createService: PreviousEditionCreateService,
     private _updateService: PreviousEditionUpdateService,
+    private _validatorService: TemplateObjectValidatorService,
     private toastr: ToastrService,
     private _formService: PreviousEditionFormService
   ) { }
@@ -60,14 +62,14 @@ export class PreviousEditionFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setEdition(data.edition, data.operation);
+            this._setEdition(data.model, data.operation);
             this._setEditionFormModel(data);
 
           });
 
   }
 
-  private _setEditionFormModel(model: PreviousEditionForm): void {
+  private _setEditionFormModel(model: FormModel): void {
 
     if (model) {
       this.previousEditionFormModel = model;
@@ -115,7 +117,9 @@ export class PreviousEditionFormComponent implements OnInit {
 
   private _create(edition: PreviousEdition): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._createService
           .create(this._loadForm(edition), this.event)
           .subscribe({
 
@@ -135,12 +139,19 @@ export class PreviousEditionFormComponent implements OnInit {
             }
 
           });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações da edição ${edition.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
   private _update(edition: PreviousEdition): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._updateService
           .update(this._loadForm(edition), this.event)
           .subscribe({
 
@@ -160,6 +171,11 @@ export class PreviousEditionFormComponent implements OnInit {
             }
 
           });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações de ${edition.name}. ERRO: ${exception}`
+        );
+      }
   }
 
   private _showSuccessToast(message: string): void {

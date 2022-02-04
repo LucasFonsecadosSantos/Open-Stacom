@@ -1,12 +1,12 @@
-export class Person {
+export class Person implements Model {
 
-  id?:                string;
-  name?:              string;
-  avatar?:            string;
-  job?:               string;
-  brief?:             string;
+  id?: string;
+  name?: string;
+  avatar?: string;
+  job?: string;
+  brief?: string;
   academicFormation?: string;
-  institution?:       string;
+  institution?: string;
   locationCep?: string
   locationAddress?: string;
   locationNumber?: string;
@@ -14,18 +14,16 @@ export class Person {
   locationCity?: string;
   locationUF?: string;
   locationCountry?: string;
-  socialNetworks?: {
-    facebook?:        string,
-    twitter?:         string,
-    website?:         string,
-    github?:          string,
-    linkedin?:        string,
-    spotify?:         string,
-    lattes?:          string,
-    email?:           string,
-    whatsapp?:        string,
-    behance?:         string,
-    youtubeChannel?:  string
-  }
+  socialNetworkFacebook?: string;
+  socialNetworkTwitter?: string;
+  socialNetworkWebsite?: string;
+  socialNetworkGithub?: string;
+  socialNetworkLinkedin?: string;
+  socialNetworkSpotify?: string;
+  socialNetworkLattes?: string;
+  socialNetworkEmail?: string;
+  socialNetworkWhatsapp?: string;
+  socialNetworkBehance?: string;
+  socialNetworkYoutubeChannel?: string;
 
 }

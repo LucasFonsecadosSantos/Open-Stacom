@@ -2,9 +2,11 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Committee, CommitteeForm, Template, Event, Person } from 'src/app/models';
+import { Committee, Template, Event, Person } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
 import { PersonFindService } from 'src/app/services/person';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { CommitteeFormService } from '.';
 
 @Component({
@@ -28,7 +30,7 @@ export class CommitteeFormComponent implements OnInit {
 
   public committee: Committee;
 
-  public committeeFormModel: CommitteeForm;
+  public committeeFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -36,6 +38,7 @@ export class CommitteeFormComponent implements OnInit {
     private _modalService: NgbModal,
     private toastr: ToastrService,
     private _formService: CommitteeFormService,
+    private _validatorService: TemplateObjectValidatorService,
     private _createService: CommitteCreateService,
     private _updateService: CommitteUpdateService,
     private _deleteService: CommitteDeleteService,
@@ -64,7 +67,7 @@ export class CommitteeFormComponent implements OnInit {
         .getObservable()
         .subscribe(
           data => {
-            this._setCommittee(data.committee, data.operation);
+            this._setCommittee(data.model, data.operation);
             this._setCommitteeFormModel(data);
             this._launchModal();
           }
@@ -117,7 +120,7 @@ export class CommitteeFormComponent implements OnInit {
 
   }
 
-  private _setCommitteeFormModel(model: CommitteeForm): void {
+  private _setCommitteeFormModel(model: FormModel): void {
 
     this.committeeFormModel = model;
 
@@ -152,28 +155,35 @@ export class CommitteeFormComponent implements OnInit {
   }
 
   private _create(committee: Committee): void {
-    console.log(committee);
-    console.log("committee");
-    this._createService
-          .create(this._loadForm(committee), this.event)
-          .subscribe({
 
-            next: response => {
+    try {
+      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._createService
+        .create(this._loadForm(committee), this.event)
+        .subscribe({
 
-              this._showSuccessToast(
-                `O comitê ${committee.name} foi criado com sucesso.`
-              );
+          next: response => {
 
-            },
-            error: exception => {
+            this._showSuccessToast(
+              `O comitê ${committee.name} foi criado com sucesso.`
+            );
 
-              this._showErrorToast(
-                `Ops: Parece que houve um erro ao se criar o comitê ${committee.name}. ERRO: ${exception}`
-              );
+          },
+          error: exception => {
 
-            }
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se criar o comitê ${committee.name}. ERRO: ${exception}`
+            );
 
-          });
+          }
+
+        });
+
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações do comitê ${committee.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
@@ -224,26 +234,34 @@ export class CommitteeFormComponent implements OnInit {
 
   private _update(committee: Committee): void {
 
-    this._updateService
-          .update(this._loadForm(committee), this.event)
-          .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._updateService
+        .update(this._loadForm(committee), this.event)
+        .subscribe({
 
-            next: response => {
+          next: response => {
 
-              this._showSuccessToast(
-                `O comitê ${committee.name} foi atualizada com sucesso.`
-              );
+            this._showSuccessToast(
+              `O comitê ${committee.name} foi atualizada com sucesso.`
+            );
 
-            },
-            error: exception => {
+          },
+          error: exception => {
 
-              this._showErrorToast(
-                `Ops: Parece que houve um erro ao se atualizar o comitê ${committee.name}. ERRO: ${exception}`
-              );
+            this._showErrorToast(
+              `Ops: Parece que houve um erro ao se atualizar o comitê ${committee.name}. ERRO: ${exception}`
+            );
 
-            }
+          }
 
-          });
+        });
+        
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações do comitê ${committee.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

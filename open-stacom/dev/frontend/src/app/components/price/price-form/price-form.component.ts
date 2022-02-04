@@ -2,8 +2,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation, OperationResult } from 'src/app/enums';
-import { Template, Event, PricePlan, PricePlanForm } from 'src/app/models';
+import { Template, Event, PricePlan } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { PricePlanCreateService, PricePlanDeleteService, PricePlanUpdateService } from 'src/app/services/price-plan';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { PriceFormService } from '.';
 
 @Component({
@@ -21,7 +23,7 @@ export class PriceFormComponent implements OnInit {
 
   public pricePlan: PricePlan;
 
-  public pricePlanFormModel: PricePlanForm;
+  public pricePlanFormModel: FormModel;
 
   public static readonly operation: Operation;
 
@@ -29,6 +31,7 @@ export class PriceFormComponent implements OnInit {
     private _modalService: NgbModal,
     private _formService: PriceFormService,
     private toastr: ToastrService,
+    private _validatorService: TemplateObjectValidatorService,
     private _deleteService: PricePlanDeleteService,
     private _createService: PricePlanCreateService,
     private _updateService: PricePlanUpdateService
@@ -46,7 +49,7 @@ export class PriceFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setPricePlan(data.pricePlan, data.operation);
+            this._setPricePlan(data.model, data.operation);
             this._setPricePlanFormModel(data);
             this._launchModal();
             // this._buildFormFields();
@@ -80,7 +83,7 @@ export class PriceFormComponent implements OnInit {
 
   }
 
-  private _setPricePlanFormModel(model: PricePlanForm): void {
+  private _setPricePlanFormModel(model: FormModel): void {
 
     this.pricePlanFormModel = model;
 
@@ -123,7 +126,9 @@ export class PriceFormComponent implements OnInit {
 
   private _create(pricePlan: PricePlan): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._createService
         .create(this._loadForm(pricePlan), this.event)
         .subscribe({
 
@@ -143,11 +148,19 @@ export class PriceFormComponent implements OnInit {
 
         });
 
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${pricePlan.name}. ERRO: ${exception}`
+      );
+    }
+
   }
 
   private _update(pricePlan: PricePlan): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._updateService
         .update(this._loadForm(pricePlan), this.event)
         .subscribe({
 
@@ -166,6 +179,12 @@ export class PriceFormComponent implements OnInit {
           }
 
         });
+        
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${pricePlan.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 

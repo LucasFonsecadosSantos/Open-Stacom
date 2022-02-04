@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { OperationResult } from 'src/app/enums/operation-result';
-import { SponsorForm } from 'src/app/models/sponsor-form.model';
-import { Sponsor } from 'src/app/models/sponsor.model';
+import { FormModel } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,11 @@ export class SponsorFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public sponsorForm: SponsorForm
+  public sponsorForm: FormModel
 
   constructor() { }
 
-  public launchModal(sponsorFormModel: SponsorForm) {
+  public launchModal(sponsorFormModel: FormModel) {
     this.subject.next(sponsorFormModel);
   }
 

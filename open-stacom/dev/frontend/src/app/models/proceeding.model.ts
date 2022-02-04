@@ -1,4 +1,4 @@
-export class Proceeding {
+export class Proceeding implements Model {
 
   id?: string;
   title?: string;

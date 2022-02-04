@@ -44,6 +44,7 @@ export class NewProjectComponent implements OnInit {
       .create(template)
       .subscribe(
         response => {
+          response = JSON.parse(response);
           this.router.navigate([`pre-carregar/${response.id}`]);
         }
       );

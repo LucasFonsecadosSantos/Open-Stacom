@@ -12,7 +12,7 @@
 
         <h5 class=" title">{{event.name ? event.name : ''}}</h5>
       </a>
-      <p class=" description">{{ event.poweredBy && event.poweredBy.institution ? event.poweredBy.institution : ''}}</p>
+      <p class=" description">{{ event.poweredByInstitution ? event.poweredByInstitution : ''}}</p>
     </div>
     <div class=" card-description text-center">
       {{ event.brief ? event.brief : '' }}
@@ -24,60 +24,59 @@
   <div class=" card-footer">
     <div
       class=" button-container"
-      *ngIf="event.socialNetworks"
     >
       <button
-        *ngIf="event.socialNetworks.facebook"
+        *ngIf="event.socialNetworkFacebook"
         class=" btn btn-icon btn-round btn-facebook pr-md-1"
-        href="{{event.socialNetworks.facebook}}"
+        href="{{event.socialNetworkFacebook}}"
       >
         <i class=" fab fa-facebook"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.twitter"
-        href="{{event.socialNetworks.facebook}}"
+        *ngIf="event.socialNetworkTwitter"
+        href="{{event.socialNetworkTwitter}}"
         class=" btn btn-icon btn-round btn-twitter px-md-1"
       >
         <i class=" fab fa-twitter"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.github"
-        href="{{event.socialNetworks.github}}"
+        *ngIf="event.socialNetworkGithub"
+        href="{{event.socialNetworkGithub}}"
         class=" btn btn-icon btn-round btn-github px-md-1"
       >
         <i class=" fab fa-github"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.linkedin"
-        href="{{event.socialNetworks.linkedin}}"
+        *ngIf="event.socialNetworkLinkedin"
+        href="{{event.socialNetworkLinkedin}}"
         class=" btn btn-icon btn-round btn-linkedin px-md-1"
       >
         <i class=" fab fa-linkedin"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.spotify"
-        href="{{event.socialNetworks.spotify}}"
+        *ngIf="event.socialNetworkSpotify"
+        href="{{event.socialNetworkSpotify}}"
         class=" btn btn-icon btn-round btn-spotify px-md-1"
       >
         <i class=" fab fa-spotify"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.whatsapp"
-        href="{{event.socialNetworks.whatsapp}}"
+        *ngIf="event.socialNetworkWhatsapp"
+        href="{{event.socialNetworkWhatsapp}}"
         class=" btn btn-icon btn-round btn-whatsapp px-md-1"
       >
         <i class=" fab fa-whatsapp"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.behance"
-        href="{{event.socialNetworks.behance}}"
+        *ngIf="event.socialNetworkBehance"
+        href="{{event.socialNetworkBehance}}"
         class=" btn btn-icon btn-round btn-behance px-md-1"
       >
         <i class=" fab fa-behance"></i>
       </button>
       <button
-        *ngIf="event.socialNetworks.youtubeChannel"
-        href="{{event.socialNetworks.youtubeChannel}}"
+        *ngIf="event.socialNetworkYoutubeChannel"
+        href="{{event.socialNetworkYoutubeChannel}}"
         class=" btn btn-icon btn-round btn-google pl-md-1"
       >
         <i class=" fab fa-youtube"></i>

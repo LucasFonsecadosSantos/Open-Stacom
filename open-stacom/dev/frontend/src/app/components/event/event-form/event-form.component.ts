@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { ToastrService } from 'ngx-toastr';
 import { EventCreateService, EventUpdateService } from 'src/app/services/event';
-import { CepService } from 'src/app/services/utils';
+import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import {
   Event,
   Template
@@ -20,12 +20,9 @@ export class EventFormComponent implements OnInit {
   public event: Event;
 
   @Input()
-  public template: Template;
-
-  @Input()
   public preLoad: boolean;
 
-  public tmpTelephones;
+  public tmpTelephones: Array<{name: string, number: string}>;
 
   public tmpDays: Date[];
 
@@ -38,14 +35,15 @@ export class EventFormComponent implements OnInit {
     private _updateService: EventUpdateService,
     private _createService: EventCreateService,
     private _router: Router,
+    private _validatorService: TemplateObjectValidatorService,
     // private _deleteService: DeleteEventService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
 
     this.states = getAllStates();
-    this.tmpDays = [];
+    this.tmpDays = this.event.days ? this.event.days : [];
     this._setEventTypes();
 
   }
@@ -54,15 +52,8 @@ export class EventFormComponent implements OnInit {
 
       this.tmpTelephones.push(
         {
-          "name": contact,
-          "number": telephone
-        }
-      );
-
-      this.event.telephones.push(
-        {
-          "name": contact,
-          "number": telephone
+          name: contact,
+          number: telephone
         }
       );
 
@@ -70,9 +61,8 @@ export class EventFormComponent implements OnInit {
 
   public addDateToList(date: Date): void {
 
-    this.tmpDays.push(date);
-    if (this.event) {
-      this.event.days.push(date);
+    if(!this.tmpDays.includes(date) && date && date != null) {
+      this.tmpDays.push(date);
     }
 
   }
@@ -112,8 +102,11 @@ export class EventFormComponent implements OnInit {
 
   private _create(event: Event): void {
 
-    this._createService
-        .create(this.template)
+
+    try {
+      this._validatorService.validate(this.event.template.objects.event, event);
+      this._createService
+        .create(this.event.template)
         .subscribe({
 
           next: response => {
@@ -136,35 +129,47 @@ export class EventFormComponent implements OnInit {
           }
 
         });
+      } catch(exception) {
+        this._showErrorToast(
+          `Ops: Parece que houve um erro ao validar as informações de ${event.name}. ERRO: ${exception}`
+        );
+      }
 
   }
 
   private _update(event: Event): void {
 
-    this._updateService
-        .update(this._loadForm(event))
-        .subscribe({
+    try {
+      this._validatorService.validate(this.event.template.objects.event, event);
+      this._updateService
+          .update(this._loadForm(event))
+          .subscribe({
 
-          next: response => {
+            next: response => {
 
-            this._showSuccessToast(
-              `O evento ${event.name} foi atualizado com sucesso.`
-            );
+              this._showSuccessToast(
+                `O evento ${event.name} foi atualizado com sucesso.`
+              );
 
-            if (this.preLoad) {
-              this._router.navigate([`inicio/${this.event.id}`]);
+              if (this.preLoad) {
+                this._router.navigate([`inicio/${this.event.id}`]);
+              }
+
+            },
+            error: exception => {
+
+              this._showErrorToast(
+                `Ops: Parece que houve um erro ao se atualizar o evento ${event.name}. ERRO: ${exception}`
+              );
+
             }
 
-          },
-          error: exception => {
-
-            this._showErrorToast(
-              `Ops: Parece que houve um erro ao se atualizar o evento ${event.name}. ERRO: ${exception}`
-            );
-
-          }
-
-        });
+          });
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${event.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 
@@ -224,10 +229,8 @@ export class EventFormComponent implements OnInit {
       "website": data.website ? data.website : '',
       "email": data.email ? data.email : '',
       "telephones": this.tmpTelephones ? this.tmpTelephones : [],
-      "poweredBy": {
-        'institution': data.poweredByInstitution ? data.poweredByInstitution : '',
-        'departament': data.poweredByDepartament ? data.poweredByDepartament : '',
-      },
+      "poweredByInstitution": data.poweredByInstitution ? data.poweredByInstitution : '',
+      "poweredByDepartment": data.poweredByDepartment ? data.poweredByDepartment : '',
       "template": data.template,
       "days": this.tmpDays ? this.tmpDays : [],
       "locationCep": data.locationCep ? data.locationCep : '',
@@ -238,16 +241,14 @@ export class EventFormComponent implements OnInit {
       "locationUF": data.locationUF ? data.locationUF : '',
       "locationCountry": data.locationCountry ? data.locationCountry : '',
       "locationLatLong": data.locationLatLong ? data.locationLatLong : '',
-      "socialNetworks": {
-        "facebook": data.socialNetworksFacebook ? data.socialNetworksFacebook : '',
-        "twitter": data.socialNetworksTwitter ? data.socialNetworksTwitter : '',
-        "github": data.socialNetworksGithub ? data.socialNetworksGithub : '',
-        "linkedin": data.socialNetworksLinkedin ? data.socialNetworksLinkedin : '',
-        "spotify": data.socialNetworksSpotify ? data.socialNetworksSpotify : '',
-        "whatsapp": data.socialNetworksWhatssapp ? data.socialNetworksWhatssapp : '',
-        "behance": data.socialNetworksBehance ? data.socialNetworksBehance : '',
-        "youtubeChannel": data.socialNetworksYoutubeChannel ? data.socialNetworksYoutubeChannel : ''
-      }
+      "socialNetworkFacebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
+      "socialNetworkTwitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
+      "socialNetworkGithub": data.socialNetworkGithub ? data.socialNetworkGithub : '',
+      "socialNetworkLinkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
+      "socialNetworkSpotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
+      "socialNetworkWhatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
+      "socialNetworkBehance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
+      "socialNetworkYoutubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : ''
     };
   }
 

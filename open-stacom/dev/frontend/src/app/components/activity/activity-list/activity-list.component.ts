@@ -47,7 +47,7 @@ export class ActivityListComponent implements OnInit {
 
     this._activityFormService.launchModal({
       operation: Operation.Update,
-      activity: activity
+      model: activity
     });
 
   }

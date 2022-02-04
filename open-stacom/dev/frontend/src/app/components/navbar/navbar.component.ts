@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, OnDestroy, Input } from "@angular/core";
-import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Template, Event } from "./../../models";
 import { WebpageGenerationService } from "src/app/services/event";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-navbar",
@@ -26,6 +26,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   public isDataLoaded: boolean = false;
 
+  public projectDownloadURL: SafeUrl;
+
   private toggleButton: any;
 
   private sidebarVisible: boolean;
@@ -37,14 +39,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private _generatorService: WebpageGenerationService
+    private _generatorService: WebpageGenerationService,
+    private _sanitizer: DomSanitizer
   ) {
     this.location = location;
     this.sidebarVisible = false;
   }
 
+  public downloadProject(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event);
+    this.projectDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
+
+  }
+
   public generateBuild(): void {
-    this._generatorService.generatesBuild(this.event.id);
+    this._generatorService.generatesBuild(this.event);
   }
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
@@ -61,7 +73,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     window.addEventListener("resize", this.updateColor);
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    //this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
     this.router.events.subscribe(event => {

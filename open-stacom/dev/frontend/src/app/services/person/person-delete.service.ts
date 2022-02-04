@@ -38,16 +38,8 @@ export class PersonDeleteService {
 
   private _getEvent(person: Person, event: Event): Event {
 
-
-    event.template.objects.person.content.forEach(
-      fetched => {
-        if (fetched.id != person.id) {
-          fetched = null;
-        }
-      }
-    );
-
-      return event;
+    event.template.objects.person.content = event.template.objects.person.content.filter(fetchedPerson => fetchedPerson.id != person.id);
+    return event;
 
   }
 

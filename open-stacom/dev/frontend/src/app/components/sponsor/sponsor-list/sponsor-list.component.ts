@@ -49,7 +49,7 @@ export class SponsorListComponent implements OnInit {
 
     this._formService.launchModal({
       operation: Operation.Update,
-      sponsor: sponsor
+      model: sponsor
     });
 
   }

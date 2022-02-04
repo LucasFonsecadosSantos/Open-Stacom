@@ -1,6 +1,6 @@
 import { Person } from "."
 
-export class Committee {
+export class Committee implements Model {
 
   id?: string;
   name?: string;

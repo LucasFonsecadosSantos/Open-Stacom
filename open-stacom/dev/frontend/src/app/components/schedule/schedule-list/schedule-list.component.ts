@@ -43,7 +43,7 @@ export class ScheduleListComponent implements OnInit {
         .launchModal(
           {
             operation: Operation.Update,
-            schedule: schedule
+            model: schedule
           }
         );
 
@@ -53,15 +53,6 @@ export class ScheduleListComponent implements OnInit {
 
     this.scheduleArray = this._findService.list(this.event);
     this.isScheduleLoaded = true;
-    // this._findService
-    //     .list(this.event)
-    //     .subscribe(
-    //       scheduleArray => {
-    //         this.scheduleArray = scheduleArray;
-    //         console.log(scheduleArray);
-    //         this.isScheduleLoaded = true;
-    //       }
-    //     );
 
   }
 

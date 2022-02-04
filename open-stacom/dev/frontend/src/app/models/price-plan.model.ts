@@ -1,4 +1,4 @@
-export class PricePlan {
+export class PricePlan implements Model {
 
   id?: string;
   name?: string;

@@ -1,3 +1,6 @@
+.wrapper {
+  overflow: hidden;
+}
 .welcome-button {
   height: 100px;
   // border: solid 1px $red;
@@ -9,4 +12,9 @@
 
 .tim-icons {
   font-size: 2em;
+}
+
+.logo{
+  width: 50%;
+  //height: 300px;
 }

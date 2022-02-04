@@ -1,5 +1,4 @@
 import { PersonUpdateService } from './../../../services/person/person-update.service';
-import { PersonForm } from './../../../models/person-form.model';
 import { PersonFormService } from './person-form.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
@@ -7,7 +6,8 @@ import { PersonCreateService, PersonDeleteService } from './../../../services/pe
 import {
   Person,
   Template,
-  Event
+  Event,
+  PersonTemplate
 } from './../../../models';
 import {
   Component,
@@ -16,8 +16,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { Operation } from 'src/app/enums';
-import { CepService } from 'src/app/services/utils';
+import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ToastrService } from 'ngx-toastr';
+import { FormModel } from 'src/app/models/form-model.model';
 
 @Component({
   selector: 'app-person-form',
@@ -29,10 +30,7 @@ export class PersonFormComponent implements OnInit {
   @ViewChild('personForm')
   public personForm: PersonFormComponent;
 
-  public personFormModel: PersonForm;
-
-  @Input()
-  public template: Template;
+  public personFormModel: FormModel;
 
   @Input()
   public event: Event;
@@ -50,7 +48,8 @@ export class PersonFormComponent implements OnInit {
     private _deleteService: PersonDeleteService,
     private _personFormService: PersonFormService,
     private _personCreateService: PersonCreateService,
-    private _personUpdateService: PersonUpdateService
+    private _personUpdateService: PersonUpdateService,
+    private _validatorService: TemplateObjectValidatorService
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +65,7 @@ export class PersonFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setPerson(data.person, data.operation);
+            this._setPerson(data.model, data.operation);
             this._setPersonFormModel(data);
             this._launchModal();
 
@@ -122,12 +121,21 @@ export class PersonFormComponent implements OnInit {
       "locationUF": null,
       "locationCountry": null,
       "name": null,
-      "socialNetworks": null
+      "socialNetworkFacebook": null,
+      "socialNetworkTwitter": null,
+      "socialNetworkGithub": null,
+      "socialNetworkLinkedin": null,
+      "socialNetworkSpotify": null,
+      "socialNetworkWhatsapp": null,
+      "socialNetworkBehance": null,
+      "socialNetworkYoutubeChannel": null,
+      "socialNetworkEmail": null,
+      "socialNetworkWebsite": null
     }
 
   }
 
-  private _setPersonFormModel(model: PersonForm): void {
+  private _setPersonFormModel(model: FormModel): void {
 
     this.personFormModel = model;
 
@@ -163,8 +171,12 @@ export class PersonFormComponent implements OnInit {
 
   private _create(person: Person): void {
 
-    this._personCreateService
-          .create(this._loadForm(person), this.event)
+    let buildedPerson: Person = this._loadForm(person);
+
+    try {
+      this._validatorService.validate(this.event.template.objects.person, person);
+      this._personCreateService
+          .create(buildedPerson, this.event)
           .subscribe({
 
             next: response => {
@@ -183,32 +195,50 @@ export class PersonFormComponent implements OnInit {
             }
 
           });
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${person.name}. ERRO: ${exception}`
+      );
+    }
 
   }
 
   private _update(person: Person): void {
 
-    this._personUpdateService
-        .update(this._loadForm(person), this.event)
-        .subscribe({
+    let buildedPerson: Person = this._loadForm(person);
 
-          next: response => {
+    try {
+      
+      this._validatorService.validate(this.event.template.objects.person, person);
+      this._personUpdateService
+      .update(buildedPerson, this.event)
+      .subscribe({
 
-            this._showSuccessToast(
-              `${person.name} foi atualizada com sucesso.`
-            );
+        next: response => {
 
-          },
-          error: exception => {
+          this._showSuccessToast(
+            `${person.name} foi atualizada com sucesso.`
+          );
 
-            this._showErrorToast(
-              `Ops: Parece que houve um erro ao se atualizar ${person.name}. ERRO: ${exception}`
-            );
+        },
+        error: exception => {
 
-          }
+          this._showErrorToast(
+            `Ops: Parece que houve um erro ao se atualizar ${person.name}. ERRO: ${exception}`
+          );
 
-        });
+        }
 
+      });
+    
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${person.name}. ERRO: ${exception}`
+      );
+    }
+    
+      
   }
 
   public delete(person: Person): void {
@@ -259,17 +289,17 @@ export class PersonFormComponent implements OnInit {
       "locationCity": data.locationCity ? data.locationCity : '',
       "locationUF": data.locationUF ? data.locationUF : '',
       "locationCountry": data.locationCountry ? data.locationCountry : '',
-      "socialNetworks": {
-        "facebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
-        "twitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
-        "github": data.socialNetworkGithub ? data.socialNetworkGithub : '',
-        "linkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
-        "spotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
-        "whatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
-        "behance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
-        "youtubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : '',
-        "email": data.socialNetworkEmail ? data.socialNetworkEmail : ''
-      }
+      "socialNetworkFacebook": data.socialNetworkFacebook ? data.socialNetworkFacebook : '',
+      "socialNetworkTwitter": data.socialNetworkTwitter ? data.socialNetworkTwitter : '',
+      "socialNetworkGithub": data.socialNetworkGithub ? data.socialNetworkGithub : '',
+      "socialNetworkLinkedin": data.socialNetworkLinkedin ? data.socialNetworkLinkedin : '',
+      "socialNetworkSpotify": data.socialNetworkSpotify ? data.socialNetworkSpotify : '',
+      "socialNetworkWhatsapp": data.socialNetworkWhatssapp ? data.socialNetworkWhatssapp : '',
+      "socialNetworkBehance": data.socialNetworkBehance ? data.socialNetworkBehance : '',
+      "socialNetworkYoutubeChannel": data.socialNetworkYoutubeChannel ? data.socialNetworkYoutubeChannel : '',
+      "socialNetworkEmail": data.socialNetworkEmail ? data.socialNetworkEmail : '',
+      "socialNetworkWebsite": data.socialNetworkWebsite ? data.socialNetworkWebsite : ''
+
     };
 
   }

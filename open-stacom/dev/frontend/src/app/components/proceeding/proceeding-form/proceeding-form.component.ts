@@ -2,8 +2,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Template, Event, Proceeding, ProceedingForm } from 'src/app/models';
+import { Template, Event, Proceeding } from 'src/app/models';
+import { FormModel } from 'src/app/models/form-model.model';
 import { ProceedingCreateService, ProceedingUpdateService } from 'src/app/services/proceeding';
+import { TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ProceedingFormService } from '.';
 
 @Component({
@@ -19,18 +21,16 @@ export class ProceedingFormComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   public proceeding: Proceeding;
 
-  public proceedingFormModel: ProceedingForm;
+  public proceedingFormModel: FormModel;
 
   public static readonly operation: Operation;
 
   constructor(
     private _modalService: NgbModal,
     private toastr: ToastrService,
+    private _validatorService: TemplateObjectValidatorService,
     private _formService: ProceedingFormService,
     private _createService: ProceedingCreateService,
     private _updateService: ProceedingUpdateService,
@@ -48,7 +48,7 @@ export class ProceedingFormComponent implements OnInit {
           .getObservable()
           .subscribe(data => {
 
-            this._setProceeding(data.proceeding, data.operation);
+            this._setProceeding(data.model, data.operation);
             this._setProceedingFormModel(data);
             this._launchModal();
             // this._buildFormFields();
@@ -84,7 +84,7 @@ export class ProceedingFormComponent implements OnInit {
 
   }
 
-  private _setProceedingFormModel(model: ProceedingForm): void {
+  private _setProceedingFormModel(model: FormModel): void {
 
     this.proceedingFormModel = model;
 
@@ -110,7 +110,9 @@ export class ProceedingFormComponent implements OnInit {
 
   private _create(proceeding: Proceeding): void {
 
-    this._createService
+    try {
+      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._createService
         .create(this._loadForm(proceeding), this.event)
         .subscribe({
 
@@ -130,12 +132,19 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
-
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`
+      );
+    }
   }
 
   private _update(proceeding: Proceeding): void {
 
-    this._updateService
+    try {
+      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._updateService
         .update(this._loadForm(proceeding), this.event)
         .subscribe({
 
@@ -155,6 +164,12 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
+    
+    } catch(exception) {
+      this._showErrorToast(
+        `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`
+      );
+    }
 
   }
 

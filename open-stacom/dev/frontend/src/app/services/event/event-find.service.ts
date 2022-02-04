@@ -1,5 +1,5 @@
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -19,7 +19,8 @@ export class EventFindService {
     return this.http.get<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${eventID}`,
       {
-        responseType: 'json'
+        responseType: 'json',
+        headers: new HttpHeaders().set('AUTH_TOKEN', `${eventID}`)
       }
     ).pipe(
       map(

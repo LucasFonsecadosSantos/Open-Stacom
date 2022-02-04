@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ScheduleForm } from 'src/app/models';
-import { Schedule } from 'src/app/models/schedule.model';
+import { Schedule, FormModel } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +10,11 @@ export class ScheduleFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public scheduleForm: ScheduleForm
+  public scheduleForm: FormModel
 
   constructor() { }
 
-  public launchModal(scheduleFormModel: ScheduleForm) {
+  public launchModal(scheduleFormModel: FormModel) {
     this.subject.next(scheduleFormModel);
   }
 

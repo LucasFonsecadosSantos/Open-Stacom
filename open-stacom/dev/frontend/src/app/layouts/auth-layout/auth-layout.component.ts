@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTES } from '../../components/sidebar/sidebar.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -66,7 +65,7 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
         this.mobile_menu_visible = 0;
       }
     });
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    //this.menuItems = ROUTES.filter(menuItem => menuItem);
     // on this page, we need on the body tag the classes .rtl and .menu-on-right
     document.body.classList.add("rtl", "menu-on-right");
     // we also need the rtl bootstrap

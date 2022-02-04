@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { PreviousEdition } from 'src/app/models';
-import { PreviousEditionForm } from 'src/app/models/previous-edition-form.model';
+import { PreviousEdition, FormModel } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +10,11 @@ export class PreviousEditionFormService {
   private subject:          Subject<any> = new Subject<any>();
   private subjectResponse:  Subject<any> = new Subject<any>();
 
-  public formModel: PreviousEditionForm;
+  public formModel: FormModel;
 
   constructor() { }
 
-  public submitEdition(model: PreviousEditionForm) {
+  public submitEdition(model: FormModel) {
     this.subject.next(model);
   }
 

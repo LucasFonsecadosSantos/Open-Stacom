@@ -26,7 +26,8 @@ import {
   EventCreateService,
   EventUpdateService,
   EventFindService,
-  WebpageGenerationService
+  WebpageGenerationService,
+  EventCloseService
 } from './event';
 
 import {
@@ -142,6 +143,7 @@ import {
     EventCreateService,
     EventUpdateService,
     EventFindService,
+    EventCloseService,
 
     ProjectUploadService,
 

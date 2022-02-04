@@ -1,5 +1,5 @@
 import { catchError, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Event, Template } from './../../models';
@@ -17,11 +17,14 @@ export class EventCreateService {
 
   public createEvent(event: Event): Observable<Event> {
 
+    const token = uuidv4();
+
     return this.http.post<Event>(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
-        id: uuidv4(),
-        event: event
+        "id": token,
+        "event": event,
+        "token": token
       },
       {
         reportProgress: true,
@@ -30,17 +33,23 @@ export class EventCreateService {
     );
   }
 
-  public create(template: Template): Observable<Event> {
+  public create(template: Template): Observable<any> {
 
-    return this.http.post<Event>(
+    const token = uuidv4();
+
+    return this.http.post(
       `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
       {
-        id: uuidv4(),
-        template: template
+        "id": token,
+        "template": template,
+        "token": token
       },
       {
         reportProgress: true,
-        responseType: 'json',
+        responseType: 'text'
+        // headers: new HttpHeaders(
+        //   {"Access-Control-Allow-Origin": "*"}
+        // )
       }
     );
   }

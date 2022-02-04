@@ -1,0 +1,2127 @@
+{
+  "templates": [
+    {
+      "id": "1d4684ce-97d3-4a1e-b0f2-018f12f6d5b6",
+      "name": "Teste de template 01",
+      "path": "/template01",
+      "author": "lucas fonseca dos santos",
+      "description": "asldlsadasd",
+      "avatar": "aasdasd",
+      "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+      "sections": [],
+      "objects": {
+        "sponsor": {
+          "configRoute": {
+            "title": "Patrocinadores",
+            "path": "/patrocinadores",
+            "icon": "icon-money-coins"
+          },
+          "id": {
+            "required": true
+          },
+          "picture": {
+            "required": true
+          },
+          "sponsorshipPlan": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "website": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "telephone": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "schedule": {
+          "configRoute": {
+            "title": "Programação",
+            "path": "/programacao",
+            "icon": "icon-calendar-60"
+          },
+          "id": {
+            "required": true
+          },
+          "date": {
+            "required": true
+          },
+          "startTime": {
+            "required": true
+          },
+          "endTime": {
+            "required": true
+          },
+          "activity": {
+            "required": true
+          },
+          "content": []
+        },
+        "pricePlan": {
+          "configRoute": {
+            "title": "Pacotes",
+            "path": "/pacotes",
+            "icon": "icon-money-coins"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "value": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "activity": {
+          "configRoute": {
+            "title": "Atividades",
+            "path": "/atividades",
+            "icon": "icon-puzzle-10"
+          },
+          "id": {
+            "required": true
+          },
+          "type": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "poweredBy": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "responsible": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "location": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "price": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "pricePlan": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "content": []
+        },
+        "committee": {
+          "configRoute": {
+            "title": "Comitês",
+            "path": "/comites",
+            "icon": "icon-badge"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephone": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "content": []
+        },
+        "event": {
+          "configRoute": {
+            "title": "Evento",
+            "path": "/evento",
+            "icon": "icon-settings-gear-63"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "edition": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "eventType": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByInstitution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByDepartament": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "subject": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "logo": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "telephoneName": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephoneNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "days": {
+            "required": true
+          },
+          "website": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworksFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationLatLong": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+        },
+        "pastEdition": {
+          "configRoute": {
+            "title": "Edições Passadas",
+            "path": "/edicoes",
+            "icon": "icon-components"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "date": {
+            "required": true
+          },
+          "logo": {
+            "required": false
+          },
+          "link": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "person": {
+          "configRoute": {
+            "title": "Pessoas",
+            "path": "/pessoas",
+            "icon": "icon-single-02"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "avatar": {
+            "required": false
+          },
+          "job": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "academicFormation": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "institution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWebsite": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLattes": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkEmail": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "proceeding": {
+          "configRoute": {
+            "title": "Anais",
+            "path": "/anais",
+            "icon": "icon-align-center"
+          },
+          "id": {
+            "required": true
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "author": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "required": true
+          },
+          "specialty": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "code": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "videoGallery": {
+          "configRoute": {
+            "title": "Galeria de Videos",
+            "path": "/videos",
+            "icon": "icon-video-66"
+          },
+          "id": {
+            "required": true
+          },
+          "legend": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "photoGallery": {
+          "configRoute": {
+            "title": "Galeria de Fotos",
+            "path": "/fotos",
+            "icon": "icon-camera-18"
+          },
+          "id": {
+            "required": true
+          },
+          "legend": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        }
+      }
+    },
+    {
+      "id": "87114111-214c-4d9d-8869-f7e2f1bf5d77",
+      "name": "Teste de template 01",
+      "path": "/template02",
+      "author": "lucas fonseca dos santos",
+      "description": "asldlsadasd",
+      "avatar": "aasdasd",
+      "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+      "sections": [],
+      "objects": {
+        "sponsor": {
+          "configRoute": {
+            "title": "Patrocinadores",
+            "path": "/patrocinadores",
+            "icon": "icon-money-coins"
+          },
+          "id": {
+            "required": true
+          },
+          "picture": {
+            "required": true
+          },
+          "sponsorshipPlan": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "website": {
+            "minlength": 5,
+            "maxlength": 50,
+            "required": true
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "telephone": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "schedule": {
+          "configRoute": {
+            "title": "Programação",
+            "path": "/programacao",
+            "icon": "icon-calendar-60"
+          },
+          "id": {
+            "required": true
+          },
+          "date": {
+            "required": true
+          },
+          "startTime": {
+            "required": true
+          },
+          "endTime": {
+            "required": true
+          },
+          "activity": {
+            "required": true
+          },
+          "content": []
+        },
+        "pricePlan": {
+          "configRoute": {
+            "title": "Pacotes",
+            "path": "/pacotes",
+            "icon": "icon-money-coins"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "value": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "activity": {
+          "configRoute": {
+            "title": "Atividades",
+            "path": "/atividades",
+            "icon": "icon-puzzle-10"
+          },
+          "id": {
+            "required": true
+          },
+          "type": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "poweredBy": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "responsible": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "location": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "price": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "pricePlan": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "content": []
+        },
+        "committee": {
+          "configRoute": {
+            "title": "Comitês",
+            "path": "/comites",
+            "icon": "icon-badge"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "picture": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephone": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "content": []
+        },
+        "event": {
+          "configRoute": {
+            "title": "Evento",
+            "path": "/evento",
+            "icon": "icon-settings-gear-63"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "edition": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "eventType": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByInstitution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "poweredByDepartament": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "subject": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "targetPublic": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "logo": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "brief": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "description": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "telephoneName": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "telephoneNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "days": {
+            "required": true
+          },
+          "website": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "email": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworksFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "socialNetworksYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationLatLong": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          }
+        },
+        "pastEdition": {
+          "configRoute": {
+            "title": "Edições Passadas",
+            "path": "/edicoes",
+            "icon": "icon-components"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "date": {
+            "required": true
+          },
+          "logo": {
+            "required": false
+          },
+          "link": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "person": {
+          "configRoute": {
+            "title": "Pessoas",
+            "path": "/pessoas",
+            "icon": "icon-single-02"
+          },
+          "id": {
+            "required": true
+          },
+          "name": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "avatar": {
+            "required": false
+          },
+          "job": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "academicFormation": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "institution": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": false
+          },
+          "locationNeiborhood": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationNumber": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationAddress": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCep": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCity": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationUF": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "locationCountry": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkFacebook": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkTwitter": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWebsite": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkGithub": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLinkedin": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkSpotify": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkLattes": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkEmail": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkWhatsapp": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkBehance": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "socialNetworkYoutubeChannel": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "proceeding": {
+          "configRoute": {
+            "title": "Anais",
+            "path": "/anais",
+            "icon": "icon-align-center"
+          },
+          "id": {
+            "required": true
+          },
+          "title": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "author": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "required": true
+          },
+          "specialty": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "code": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "videoGallery": {
+          "configRoute": {
+            "title": "Galeria de Videos",
+            "path": "/videos",
+            "icon": "icon-video-66"
+          },
+          "id": {
+            "required": true
+          },
+          "legend": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        },
+        "photoGallery": {
+          "configRoute": {
+            "title": "Galeria de Fotos",
+            "path": "/fotos",
+            "icon": "icon-camera-18"
+          },
+          "id": {
+            "required": true
+          },
+          "legend": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "file": {
+            "minlength": 4,
+            "maxlength": 50,
+            "required": true
+          },
+          "content": []
+        }
+      }
+    }
+  ],
+  "event": [
+    {
+      "id": "1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4",
+      "name": "Congresso",
+      "edition": "XX",
+      "subject": "Ciencias",
+      "eventType": "-- SELECIONE --",
+      "targetPublic": "Todos",
+      "logo": "/data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//assets/img/default-avatar.png",
+      "description": "asdasdasd",
+      "brief": "asdasdasd",
+      "website": "qwdqwd",
+      "email": "qwd@asd.com",
+      "telephones": [],
+      "poweredBy": {
+        "institution": "",
+        "departament": ""
+      },
+      "template": {
+        "id": "1d4684ce-97d3-4a1e-b0f2-018f12f6d5b6",
+        "name": "Teste de template 01",
+        "path": "/template01",
+        "author": "lucas fonseca dos santos",
+        "description": "asldlsadasd",
+        "avatar": "aasdasd",
+        "mockup": "https://i.pinimg.com/originals/77/7c/04/777c04aa1d49f5f9f330a95918b6d798.png",
+        "sections": [],
+        "objects": {
+          "sponsor": {
+            "configRoute": {
+              "title": "Patrocinadores",
+              "path": "/patrocinadores",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "picture": {
+              "required": true
+            },
+            "sponsorshipPlan": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "1b078d7f-cc8a-460d-a4d7-e2af8238322e",
+                "name": "Patro4",
+                "brief": "",
+                "website": "",
+                "email": "asd@as.com",
+                "telephone": "1699169962",
+                "locationCep": "14075-620",
+                "locationAddress": "Rua Américo Reis",
+                "locationNumber": "496",
+                "locationNeiborhood": "Parque Industrial Tanquinho",
+                "locationCity": "Ribeirão Preto",
+                "locationUF": "SP",
+                "locationCountry": "Brasil",
+                "sponsorshipPlan": "Gold",
+                "picture": "/data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//assets/img/default-avatar.png"
+              },
+              {
+                "id": "1f20f8bf-755f-482b-9d67-2485d41ab97e",
+                "name": "fasasf",
+                "brief": "",
+                "website": "",
+                "email": "",
+                "telephone": "",
+                "locationCep": "",
+                "locationAddress": "",
+                "locationNumber": "",
+                "locationNeiborhood": "",
+                "locationCity": "",
+                "locationUF": "",
+                "locationCountry": "",
+                "sponsorshipPlan": "",
+                "picture": "/assets/img/default-avatar.png"
+              },
+              {
+                "id": "574af457-82b3-43e0-8ebf-f0bda71907fd",
+                "name": "asas BRANCA",
+                "brief": "",
+                "website": "",
+                "email": "",
+                "telephone": "",
+                "locationCep": "",
+                "locationAddress": "",
+                "locationNumber": "",
+                "locationNeiborhood": "",
+                "locationCity": "",
+                "locationUF": "",
+                "locationCountry": "",
+                "sponsorshipPlan": ""
+              }
+            ]
+          },
+          "schedule": {
+            "configRoute": {
+              "title": "Programação",
+              "path": "/programacao",
+              "icon": "icon-calendar-60"
+            },
+            "id": {
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "startTime": {
+              "required": true
+            },
+            "endTime": {
+              "required": true
+            },
+            "activity": {
+              "required": true
+            },
+            "content": [
+              {
+                "id": "07ebb7b7-ec14-4df9-a149-5c21e6198388",
+                "activity": {
+                  "id": "e842eb85-7c8d-4e46-8738-8b0326ba0c2a"
+                },
+                "date": "2021-12-15",
+                "startTime": "19:00",
+                "endTime": "20:00"
+              },
+              {
+                "id": "be823e81-16a8-49d4-84ea-2678c9bbf387",
+                "activity": {
+                  "id": "e842eb85-7c8d-4e46-8738-8b0326ba0c2a"
+                },
+                "date": "2021-12-16",
+                "startTime": "22:11",
+                "endTime": "23:00"
+              }
+            ]
+          },
+          "pricePlan": {
+            "configRoute": {
+              "title": "Pacotes",
+              "path": "/pacotes",
+              "icon": "icon-money-coins"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "value": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "e0485c56-bbe4-4fef-87d0-aa786ef803bc",
+                "name": "rtrty",
+                "value": "6",
+                "description": "5656"
+              }
+            ]
+          },
+          "activity": {
+            "configRoute": {
+              "title": "Atividades",
+              "path": "/atividades",
+              "icon": "icon-puzzle-10"
+            },
+            "id": {
+              "required": true
+            },
+            "type": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "poweredBy": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "responsible": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "location": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "price": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "pricePlan": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": [
+              {
+                "id": "e842eb85-7c8d-4e46-8738-8b0326ba0c2a",
+                "title": "Abetura",
+                "type": "EventOpening",
+                "brief": "",
+                "poweredBy": "",
+                "responsible": {
+                  "id": "b300e3b6-a7f5-41eb-b4b8-ce7c55e65b14"
+                },
+                "description": "",
+                "picture": "/data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//assets/img/default-avatar.png",
+                "targetPublic": "",
+                "location": "",
+                "price": "",
+                "pricePlan": {}
+              }
+            ]
+          },
+          "committee": {
+            "configRoute": {
+              "title": "Comitês",
+              "path": "/comites",
+              "icon": "icon-badge"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "picture": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephone": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "content": [
+              {
+                "id": "a59d62bf-207a-48da-8891-31e68b2dd5ff",
+                "name": "Comite realiazdor",
+                "members": [
+                  {
+                    "id": "b300e3b6-a7f5-41eb-b4b8-ce7c55e65b14"
+                  }
+                ],
+                "picture": "",
+                "brief": "asdasd",
+                "telephone": "",
+                "email": ""
+              }
+            ]
+          },
+          "event": {
+            "configRoute": {
+              "title": "Evento",
+              "path": "/evento",
+              "icon": "icon-settings-gear-63"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "edition": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "eventType": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByInstitution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "poweredByDepartament": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "subject": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "targetPublic": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "logo": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "brief": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "description": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "telephoneName": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "telephoneNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "days": {
+              "required": true
+            },
+            "website": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "email": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworksFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "socialNetworksYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationLatLong": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            }
+          },
+          "pastEdition": {
+            "configRoute": {
+              "title": "Edições Passadas",
+              "path": "/edicoes",
+              "icon": "icon-components"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "date": {
+              "required": true
+            },
+            "logo": {
+              "required": false
+            },
+            "link": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "",
+                "name": "tyjtyjtyjhrtyrty",
+                "logo": "/data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//assets/img/default-avatar.png",
+                "date": "",
+                "link": ""
+              },
+              {
+                "id": "d5034450-61a8-4dca-864d-dd86542b1a10",
+                "name": "tyutyutyughnghn",
+                "logo": "/assets/img/default-avatar.png",
+                "date": "2021-12-01",
+                "link": ""
+              },
+              {
+                "id": "4f143185-900f-4867-9fb5-92eb1276fd5e",
+                "name": "tyutyutyughnghnrtbrtb",
+                "logo": "/assets/img/default-avatar.png",
+                "date": "2021-12-01",
+                "link": ""
+              },
+              {
+                "id": "3bbb77c0-18b2-4acb-99ab-1778cd11e571",
+                "name": "EDITADO",
+                "logo": "",
+                "date": "2021-12-01",
+                "link": ""
+              }
+            ]
+          },
+          "person": {
+            "configRoute": {
+              "title": "Pessoas",
+              "path": "/pessoas",
+              "icon": "icon-single-02"
+            },
+            "id": {
+              "required": true
+            },
+            "name": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "avatar": {
+              "required": false
+            },
+            "job": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "academicFormation": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "institution": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": false
+            },
+            "locationNeiborhood": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationNumber": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationAddress": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCep": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCity": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationUF": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "locationCountry": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkFacebook": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkTwitter": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWebsite": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkGithub": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLinkedin": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkSpotify": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkLattes": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkEmail": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkWhatsapp": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkBehance": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "socialNetworkYoutubeChannel": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "b300e3b6-a7f5-41eb-b4b8-ce7c55e65b14",
+                "name": "Teste Atualizado",
+                "avatar": "/data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//data/1f151e0e-5ecb-403b-b5ac-5ee6b0065ee4/img/avatar//assets/img/default-avatar.png",
+                "brief": "",
+                "job": "inp2",
+                "academicFormation": "",
+                "institution": "inp3",
+                "locationCep": "14075-610",
+                "locationAddress": "Avenida Marechal Costa e Silva",
+                "locationNumber": "496",
+                "locationNeiborhood": "Vila Brasil",
+                "locationCity": "Ribeirão Preto",
+                "locationUF": "SP",
+                "locationCountry": "Brasil",
+                "socialNetworks": {
+                  "facebook": "fa",
+                  "twitter": "tw",
+                  "github": "",
+                  "linkedin": "lk",
+                  "spotify": "",
+                  "whatsapp": "",
+                  "behance": "bh",
+                  "youtubeChannel": "yt",
+                  "email": "em"
+                }
+              }
+            ]
+          },
+          "proceeding": {
+            "configRoute": {
+              "title": "Anais",
+              "path": "/anais",
+              "icon": "icon-align-center"
+            },
+            "id": {
+              "required": true
+            },
+            "title": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "author": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "required": true
+            },
+            "specialty": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "code": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": [
+              {
+                "id": "6079e8c8-09be-4587-bf55-4ca205b5953d",
+                "title": "56456",
+                "file": "",
+                "specialty": "sdf",
+                "author": "sdf",
+                "code": ""
+              },
+              {
+                "id": "6079e8c8-09be-4587-bf55-4ca205b5953d",
+                "title": "yuyuyuyu",
+                "file": "",
+                "specialty": "sdf",
+                "author": "sdf",
+                "code": ""
+              },
+              {
+                "id": "6079e8c8-09be-4587-bf55-4ca205b5953d",
+                "title": "yuyuyuyu",
+                "file": "",
+                "specialty": "sdf",
+                "author": "sdf",
+                "code": ""
+              }
+            ]
+          },
+          "videoGallery": {
+            "configRoute": {
+              "title": "Galeria de Videos",
+              "path": "/videos",
+              "icon": "icon-video-66"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          },
+          "photoGallery": {
+            "configRoute": {
+              "title": "Galeria de Fotos",
+              "path": "/fotos",
+              "icon": "icon-camera-18"
+            },
+            "id": {
+              "required": true
+            },
+            "legend": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "file": {
+              "minlength": 4,
+              "maxlength": 50,
+              "required": true
+            },
+            "content": []
+          }
+        }
+      },
+      "days": [
+        "2021-12-15",
+        "2021-12-16",
+        "2021-12-17"
+      ],
+      "locationCep": "14075-620",
+      "locationAddress": "Rua Américo Reis",
+      "locationNumber": "496",
+      "locationNeiborhood": "Parque Industrial Tanquinho",
+      "locationCity": "Ribeirão Preto",
+      "locationUF": "SP",
+      "locationCountry": "Brasil",
+      "locationLatLong": "",
+      "socialNetworks": {
+        "facebook": "",
+        "twitter": "",
+        "github": "asd",
+        "linkedin": "asdasd",
+        "spotify": "asd",
+        "whatsapp": "",
+        "behance": "asd",
+        "youtubeChannel": "asdasd"
+      }
+    }
+  ]
+}

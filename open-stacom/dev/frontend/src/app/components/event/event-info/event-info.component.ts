@@ -14,9 +14,6 @@ export class EventInfoComponent implements OnInit {
   @Input()
   public event: Event;
 
-  @Input()
-  public template: Template;
-
   constructor() { }
 
   ngOnInit(): void {

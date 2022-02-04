@@ -36,24 +36,20 @@ export class PersonInfoComponent implements OnInit {
 
     this._personFormService.launchModal({
       operation:  Operation.Update,
-      person: person
+      model: person
     });
 
   }
 
   public deletePerson(person: Person): void {
 
+    this.person = person;
     this._confirmDialogService.launchConfirmDialog({
-      title: 'Antes de prosseguit..'
+      title: 'Antes de prosseguit..',
+      acceptButton: `Remover ${person.name}`,
+      cancelButton: `Cancelar`,
+      message: `Deseja realmente excluir o registro de ${person.name}`
     });
-
-    // this._sharedEventService.getEventObservable().subscribe(
-    //   eventResponse => this._personDeleteService.delete(person.id, eventResponse.id)
-
-    // );
-
-    this._personDeleteService.delete(person, this.event);
-
 
   }
 
@@ -63,6 +59,14 @@ export class PersonInfoComponent implements OnInit {
       personResponse => {
         this.person = personResponse ? personResponse : null
       }
+    );
+
+    this._confirmDialogService.getResponseObservable().subscribe(
+        response => {
+          if (response) {
+            this._personDeleteService.delete(this.person, this.event);
+          }
+        }
     );
 
   }

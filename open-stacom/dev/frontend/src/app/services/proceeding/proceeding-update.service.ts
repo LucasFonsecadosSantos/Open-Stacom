@@ -24,7 +24,7 @@ export class ProceedingUpdateService {
 
     event.template
           .objects
-          .person
+          .proceeding
           .content = event.template.objects
                           .proceeding
                           .content
