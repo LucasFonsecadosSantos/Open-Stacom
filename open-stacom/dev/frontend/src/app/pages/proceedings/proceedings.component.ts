@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { ProceedingFormService, ProceedingListComponent } from 'src/app/components/proceeding';
@@ -25,6 +26,8 @@ export class ProceedingsComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
+  public entityDownloadURL: SafeUrl;
+
 
   constructor(
     private _exportExcelService: ExcelExportService,
@@ -34,7 +37,8 @@ export class ProceedingsComponent implements OnInit {
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: ProceedingFormService,
-    private _confirmDialogService: ConfirmDialogService
+    private _confirmDialogService: ConfirmDialogService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -90,6 +94,14 @@ export class ProceedingsComponent implements OnInit {
       operation: Operation.Create
     });
 
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.proceeding.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   private _getResponseObservables(): void {
