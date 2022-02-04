@@ -6,6 +6,7 @@ import { Event, Template } from './../../models';
 import { ExcelExportService } from 'src/app/services/utils';
 import { ScheduleFormService, ScheduleListComponent } from 'src/app/components/schedule';
 import { Operation } from 'src/app/enums';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-schedule',
@@ -21,6 +22,8 @@ export class ScheduleComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
+  public entityDownloadURL: SafeUrl;
+
 
   constructor(
     private _exportExcelService: ExcelExportService,
@@ -28,7 +31,8 @@ export class ScheduleComponent implements OnInit {
     private _eventFindService: EventFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: ScheduleFormService,
-    private _confirmDialogService: ConfirmDialogService
+    private _confirmDialogService: ConfirmDialogService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +68,14 @@ export class ScheduleComponent implements OnInit {
 
   public confirmDeleteAllSchedule(): void {
 
+  }
+
+  public downloadEntitySource(): void {
+    let fileName: string = this.event.name;
+    let data = JSON.stringify(this.event.template.objects.schedule.content);
+    this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
+      `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
+    );
   }
 
   public exportExcel(): void {
