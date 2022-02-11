@@ -1,0 +1,24 @@
+.avatar {
+
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: solid 1px #cad1d7;
+  background: url("/assets/img/upload.png");
+  background-size: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.avatar:hover {
+
+  background: #cad1d7;
+  transition: .8s;
+  -o-transition: .8s;
+  -ms-transition: .8s;
+  -moz-transition: .8s;
+  -webkit-transition: .8s;
+
+}

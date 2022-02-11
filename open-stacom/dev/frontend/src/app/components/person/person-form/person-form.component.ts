@@ -19,6 +19,7 @@ import { Operation } from 'src/app/enums';
 import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import { ToastrService } from 'ngx-toastr';
 import { FormModel } from 'src/app/models/form-model.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-person-form',
@@ -39,7 +40,15 @@ export class PersonFormComponent implements OnInit {
 
   public person: Person;
 
+  public personAvatarSrc: string;
+
   public static readonly operation: Operation;
+
+  public personFormGroup: FormGroup = new FormGroup(
+    {
+      avatar: new FormControl('')
+    }
+  );
 
   constructor(
     private _modalService: NgbModal,
@@ -141,6 +150,27 @@ export class PersonFormComponent implements OnInit {
 
   }
 
+  public onPictureChange(event): void {
+
+    const reader: FileReader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+
+        this.personAvatarSrc = reader.result as string;
+
+        /*this.personFormGroup.patchValue({
+          fileSource: reader.result
+        });*/
+
+      }
+    }
+
+  }
+
   private _launchModal(): void {
 
     if (!this._modalService.hasOpenModals()) {
@@ -208,7 +238,7 @@ export class PersonFormComponent implements OnInit {
     let buildedPerson: Person = this._loadForm(person);
 
     try {
-      
+
       this._validatorService.validate(this.event.template.objects.person, person);
       this._personUpdateService
       .update(buildedPerson, this.event)
@@ -230,15 +260,15 @@ export class PersonFormComponent implements OnInit {
         }
 
       });
-    
-    
+
+
     } catch(exception) {
       this._showErrorToast(
         `Ops: Parece que houve um erro ao validar as informações de ${person.name}. ERRO: ${exception}`
       );
     }
-    
-      
+
+
   }
 
   public delete(person: Person): void {

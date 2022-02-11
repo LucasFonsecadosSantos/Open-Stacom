@@ -1,5 +1,5 @@
 <ng-template #personForm let-modal>
-  <form #personForm="ngForm" (ngSubmit)="createOrUpdate(personForm.value)">
+  <form  (ngSubmit)="createOrUpdate(personForm.value)" [formGroup]="personFormGroup">
     <div class="modal-body">
       <div class=" card">
         <div class=" card-header d-flex justify-content-between">
@@ -19,6 +19,23 @@
                   readonly="true"
                   class=" form-control"
                   type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-center align-items-center">
+              <div class=" form-group">
+                <label class="avatar" for="avatar">
+                  <img [src]="personAvatarSrc" *ngIf="personAvatarSrc" alt="">
+                </label>
+                <input
+                  [(ngModel)]="person.avatar"
+                  (change)="onPictureChange($event)"
+                  name="avatar"
+                  accept="image/png, image/gif, image/jpeg"
+                  class="form-control"
+                  type="file"
                 />
               </div>
             </div>
@@ -102,6 +119,11 @@
                   [required]="event.template.objects.person.brief.required"
                 ></textarea>
               </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class=" col-md-12">
+              <h4 class=" card-title">Localidade</h4>
             </div>
           </div>
           <div class=" row">
@@ -220,6 +242,11 @@
                   [required]="event.template.objects.person.locationCountry.required"
                 />
               </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class=" col-md-12">
+              <h4 class=" card-title">Redes sociais</h4>
             </div>
           </div>
           <div class=" row">
