@@ -1,6 +1,6 @@
 package com.openstacom.openstacom.modules.event.domain.services.eventvalidator;
 
-import com.openstacom.openstacom.modules.event.domain.dtos.IEventDTO;
+import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -8,13 +8,13 @@ import java.lang.reflect.Field;
 public class EventValidatorServiceImpl implements IEventValidatorService {
 
     @Override
-    public void validate(IEventDTO eventDTO) throws Exception {
+    public void validate(EventEntity eventDTO) throws Exception {
 
         validateEventTemplateObjectFields(eventDTO);
 
     }
 
-    private void validateEventTemplateObjectFields(IEventDTO eventDTO) throws Exception {
+    private void validateEventTemplateObjectFields(EventEntity eventDTO) throws Exception {
         
         if (eventDTO.getTemplate() != null) {
             ReflectionUtils.doWithFields(eventDTO.getClass(), field -> {
@@ -30,7 +30,7 @@ public class EventValidatorServiceImpl implements IEventValidatorService {
 
     }
 
-    private void fieldValidation(Field field, IEventDTO dto) throws Exception{
+    private void fieldValidation(Field field, EventEntity dto) throws Exception{
 
         if (field.get(dto) == null) {
             throw new Exception();

@@ -1,7 +1,7 @@
 package com.openstacom.openstacom.modules.template.domain.services.templateload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.openstacom.openstacom.modules.template.domain.dtos.ITemplateDTO;
+import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import com.openstacom.openstacom.shared.services.resourceloader.IResourceLoaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +17,21 @@ public class TemplateLoaderServiceImpl implements ITemplateLoaderService {
     private IResourceLoaderService resourceLoaderService;
 
     @Override
-    public List<ITemplateDTO> load(String path) throws  Exception {
+    public List<TemplateEntity> load(String path) throws  Exception {
 
         List<File> fetchedFiles = resourceLoaderService.loadFilesAtPath(path);
         return getMappedObjectsFromJSONResources(fetchedFiles);
 
     }
 
-    private List<ITemplateDTO> getMappedObjectsFromJSONResources(List<File> fetchedFiles) throws Exception {
+    private List<TemplateEntity> getMappedObjectsFromJSONResources(List<File> fetchedFiles) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
-        List<ITemplateDTO> buildedDTOs = new ArrayList<>();
+        List<TemplateEntity> buildedDTOs = new ArrayList<>();
         int fileAmount = fetchedFiles.size();
 
         for (int i=0; i < fileAmount; ++i) {
-            buildedDTOs.add(mapper.readValue(fetchedFiles.get(i), ITemplateDTO.class));
+            buildedDTOs.add(mapper.readValue(fetchedFiles.get(i), TemplateEntity.class));
         }
 
         return buildedDTOs;

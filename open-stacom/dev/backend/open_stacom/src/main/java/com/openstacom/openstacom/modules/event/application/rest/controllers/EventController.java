@@ -1,9 +1,10 @@
 package com.openstacom.openstacom.modules.event.application.rest.controllers;
 
-import com.openstacom.openstacom.modules.event.domain.dtos.IEventDTO;
-import com.openstacom.openstacom.modules.event.domain.dtos.IEventRequestDTO;
+import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
+import com.openstacom.openstacom.modules.event.domain.entities.EventRequestEntity;
 import com.openstacom.openstacom.modules.event.domain.services.eventgeneration.IEventGenerationService;
 import com.openstacom.openstacom.modules.event.domain.services.eventvalidator.IEventValidatorService;
+import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,11 @@ public class EventController {
 
     @CrossOrigin(origins = "${client.frontend_address}")
     @PostMapping("/generate")
-    public ResponseEntity<IEventDTO> generate(@Valid @RequestBody IEventDTO eventDTO) {
+    public ResponseEntity<EventEntity> generate(@Valid @RequestBody EventEntity templateEntity) {
 
         try {
 
-            IEventDTO eventDTOResponse = createService.generates(eventDTO);
+            EventEntity eventDTOResponse = createService.generates(templateEntity);
             return ResponseEntity.ok(eventDTOResponse);
 
         } catch(Exception e) {
@@ -45,7 +46,7 @@ public class EventController {
 
     //@CrossOrigin(origins = "${client.frontend_address")
     @PostMapping("/upload")
-    public ResponseEntity<IEventDTO> loadUploadedEvent(@RequestBody IEventRequestDTO eventDTO) {
+    public ResponseEntity<EventEntity> loadUploadedEvent(@RequestBody EventRequestEntity eventDTO) {
 
         try {
 

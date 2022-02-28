@@ -10,6 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.thymeleaf.ITemplateEngine;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.spring5.ISpringTemplateEngine;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 @Configuration
 @ComponentScan(basePackageClasses = OpenStacomApplication.class)
@@ -23,13 +31,37 @@ public class EventModuleBeanConfiguration {
     @Bean
     @Primary
     IEventGenerationService eventGenerationService() {
-        return new EventGenerationServiceImpl();
+        return new EventGenerationServiceImpl(eventTemplateEngine());
     }
 
     @Bean
-
     EventController eventController(final IEventGenerationService iEventGenerationService, final IEventValidatorService iEventValidatorService) {
         return new EventController(iEventGenerationService, iEventValidatorService);
     }
+
+    @Bean
+    public ISpringTemplateEngine eventTemplateEngine() {
+
+        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.addTemplateResolver(stringTemplateResolver());
+        return templateEngine;
+
+    }
+
+    private ITemplateResolver stringTemplateResolver() {
+
+        final ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+        //resolver.setOrder(Integer.valueOf(3));
+//        resolver.setTemplateMode(TemplateMode.HTML);
+//        resolver.setCacheable(false);
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode(TemplateMode.HTML);
+        resolver.setCacheable(false);
+        resolver.setOrder(1);
+        resolver.setCharacterEncoding("UTF-8");
+        return resolver;
+
+    }
+
 
 }

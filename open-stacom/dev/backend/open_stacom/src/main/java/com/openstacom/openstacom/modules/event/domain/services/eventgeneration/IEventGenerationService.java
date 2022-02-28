@@ -1,11 +1,12 @@
 package com.openstacom.openstacom.modules.event.domain.services.eventgeneration;
 
-import com.openstacom.openstacom.modules.event.domain.dtos.IEventDTO;
+import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
+import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface IEventGenerationService {
 
-    IEventDTO generates(IEventDTO eventDTO) throws Exception;
+    EventEntity generates(EventEntity eventDTO) throws Exception;
 
 }

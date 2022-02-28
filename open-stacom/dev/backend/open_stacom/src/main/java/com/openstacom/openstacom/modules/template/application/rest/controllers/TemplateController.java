@@ -1,6 +1,6 @@
 package com.openstacom.openstacom.modules.template.application.rest.controllers;
 
-import com.openstacom.openstacom.modules.template.domain.dtos.ITemplateDTO;
+import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import com.openstacom.openstacom.modules.template.domain.services.templatecreate.ITemplateCreateService;
 import com.openstacom.openstacom.modules.template.domain.services.templatecreate.TemplateCreateServiceImpl;
 import com.openstacom.openstacom.modules.template.domain.services.templateload.ITemplateLoaderService;
@@ -31,11 +31,11 @@ public class TemplateController {
 
     @CrossOrigin(origins = "${client.frontend_address}")
     @GetMapping("")
-    public ResponseEntity<List<ITemplateDTO>> all() {
+    public ResponseEntity<List<TemplateEntity>> all() {
 
         try {
 
-            List<ITemplateDTO> fetchedTemplateDTO = loaderService.load("classpath:template/definition/");
+            List<TemplateEntity> fetchedTemplateDTO = loaderService.load("classpath:template/definition/");
             return ResponseEntity.ok(fetchedTemplateDTO);
 
         } catch (Exception e) {
@@ -47,11 +47,11 @@ public class TemplateController {
 
     @CrossOrigin(origins = "${client.frontend_address}")
     @PostMapping("/create")
-    public ResponseEntity<ITemplateDTO> create(@Validated @RequestBody ITemplateDTO templateDTO) {
+    public ResponseEntity<TemplateEntity> create(@Validated @RequestBody TemplateEntity templateDTO) {
 
         try {
 
-            ITemplateDTO responseDTO = createService.create(templateDTO);
+            TemplateEntity responseDTO = createService.create(templateDTO);
             return ResponseEntity.ok(responseDTO);
 
         } catch (Exception e) {
