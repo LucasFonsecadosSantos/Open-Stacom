@@ -2,7 +2,7 @@
   <div class="content w-100">
     <div class="row d-flex justify-content-center">
       <div class="col-md-8">
-        <div class=" card">
+        <div class=" card" *ngIf="templates && templates.length > 0">
           <div class=" card-header">
             <h4 class=" card-title">Selecione um estilo para sua página</h4>
           </div>
@@ -23,6 +23,22 @@
                   <p class="mt-0 p-0">{{template.description}}</p>
                 </div> -->
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="card"*ngIf="!templates || templates.length == 0">
+          <div class="card-header">
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 d-flex justify-content-center align-items-center">
+                <h2>Ops: Não foi encontrado nenhum template disponível para criar sua página. :(</h2>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <a class="btn btn-fill btn-danger mr-2" href="#">Recarregar página</a>
+                <a class="btn btn-fill btn-danger" href="#">Reportar problema</a>
             </div>
           </div>
         </div>
