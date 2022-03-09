@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule.model';
-import { Event } from './../../models';
+import { Webpage } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,10 @@ export class ScheduleFindService {
 
   ) { }
 
-  public find(id: string, event: Event): Schedule {
+  public find(id: string, webpage: Webpage): Schedule {
 
-    let schedule = this._getByID(id, event.template.objects.schedule.content);
-    this._fetchActivity([schedule], event);
+    let schedule = this._getByID(id, webpage.template.objects.schedule.content);
+    this._fetchActivity([schedule], webpage);
     return schedule;
 
   }
@@ -25,21 +25,21 @@ export class ScheduleFindService {
 
   }
 
-  public list(event: Event): Schedule[] {
+  public list(webpage: Webpage): Schedule[] {
 
-    let scheduleArray: Schedule[] = event.template.objects.schedule.content;
-    this._fetchActivity(scheduleArray, event);
+    let scheduleArray: Schedule[] = webpage.template.objects.schedule.content;
+    this._fetchActivity(scheduleArray, webpage);
     return scheduleArray;
 
   }
 
-  private _fetchActivity(scheduleArray: Schedule[], event: Event): void {
+  private _fetchActivity(scheduleArray: Schedule[], webpage: Webpage): void {
 
     scheduleArray.forEach(
 
       schedule => {
 
-        schedule.activity = event.template
+        schedule.activity = webpage.template
               .objects
               .activity
               .content
@@ -48,7 +48,7 @@ export class ScheduleFindService {
               )[0];
 
         schedule.activity
-                .responsible = event.template
+                .responsible = webpage.template
                                     .objects
                                     .person
                                     .content

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event } from './../../models';
+import { Webpage } from './../../models';
 import { Schedule } from 'src/app/models/schedule.model';
-import { EventUpdateService } from '../event';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,34 +10,34 @@ import { EventUpdateService } from '../event';
 export class ScheduleDeleteService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(schedule: Schedule, event: Event): Observable<any> {
+  public delete(schedule: Schedule, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(schedule, event));
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-
-    return this._eventUpdateService
-                .update(this._removeAllSchedule(event));
+    return this._webpageUpdateService
+                .update(this._getWebpage(schedule, webpage));
 
   }
 
-  private _removeAllSchedule(event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
 
-    event.template.objects.schedule.content = [];
-    return event;
+    return this._webpageUpdateService
+                .update(this._removeAllSchedule(webpage));
 
   }
 
-  private _getEvent(schedule: Schedule, event: Event): Event {
+  private _removeAllSchedule(webpage: Webpage): Webpage {
+
+    webpage.template.objects.schedule.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(schedule: Schedule, webpage: Webpage): Webpage {
 
 
-    event.template.objects.schedule.content.forEach(
+    webpage.template.objects.schedule.content.forEach(
       fetched => {
         if (fetched.id != schedule.id) {
           fetched = null;
@@ -45,13 +45,13 @@ export class ScheduleDeleteService {
       }
     );
 
-      return event;
+      return webpage;
 
   }
 
-  private _removeScheduleFromEvent(schedule: Schedule, event: Event): Schedule[] {
+  private _removeScheduleFromWebpage(schedule: Schedule, webpage: Webpage): Schedule[] {
 
-    return event.template.objects.schedule.content.filter(fetched => fetched.id != schedule.id);
+    return webpage.template.objects.schedule.content.filter(fetched => fetched.id != schedule.id);
 
   }
 

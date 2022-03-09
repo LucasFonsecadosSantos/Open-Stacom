@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ActivityType, Operation } from 'src/app/enums';
-import { Activity, Event, Person, PricePlan, Template } from 'src/app/models';
+import { Activity, Event, Person, PricePlan, Template, Webpage } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { ActivityCreateService, ActivityDeleteService, ActivityUpdateService } from 'src/app/services/activity';
 import { PersonFindService } from 'src/app/services/person';
@@ -21,7 +21,7 @@ export class ActivityFormComponent implements OnInit {
   public activityForm: ActivityFormComponent;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public activity: Activity;
 
@@ -83,7 +83,7 @@ export class ActivityFormComponent implements OnInit {
   private _fetchPerson(): void {
 
     this.personArray = this._personFindService
-                            .list(this.event);
+                            .list(this.webpage);
 
 
   }
@@ -143,7 +143,7 @@ export class ActivityFormComponent implements OnInit {
   private _fetchPricePlans(): void {
 
     this.pricePlans = this._pricePlanFindService
-                          .list(this.event);
+                          .list(this.webpage);
 
   }
 
@@ -160,9 +160,9 @@ export class ActivityFormComponent implements OnInit {
   private _createActivity(activity: Activity): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.activity, activity);
+      this._validatorService.validate(this.webpage.template.objects.activity, activity);
       this._createService
-          .create(this._loadForm(activity), this.event)
+          .create(this._loadForm(activity), this.webpage)
           .subscribe({
 
             next: response => {
@@ -193,9 +193,9 @@ export class ActivityFormComponent implements OnInit {
   private _updateActivity(activity: Activity): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.activity, activity);
+      this._validatorService.validate(this.webpage.template.objects.activity, activity);
       this._updateService
-        .update(this._loadForm(activity), this.event)
+        .update(this._loadForm(activity), this.webpage)
         .subscribe({
 
           next: response => {
@@ -225,7 +225,7 @@ export class ActivityFormComponent implements OnInit {
 
   public delete(activity: Activity): void {
 
-    this._deleteService.delete(activity, this.event);
+    this._deleteService.delete(activity, this.webpage);
     this._modalService.dismissAll('Cross click');
 
   }

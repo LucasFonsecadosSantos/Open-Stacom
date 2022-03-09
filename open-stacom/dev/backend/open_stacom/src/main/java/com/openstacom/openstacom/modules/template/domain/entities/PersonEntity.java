@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PersonEntity {
+public class PersonEntity implements ITemplateEntity {
 
     @NotBlank
     private String id;

@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Person, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Person, Webpage } from 'src/app/models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +10,26 @@ import { v4 as uuidv4 } from 'uuid';
 export class PersonCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(person: Person, event: Event): Observable<any> {
+  public create(person: Person, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(person, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(person, webpage));
 
   }
 
-  private _addDataToEvent(person: Person, event: Event): Event {
+  private _addDataToWebpage(person: Person, webpage: Webpage): Webpage {
 
     person.id = uuidv4();
 
-    event.template
+    webpage.template
           .objects
           .person
           .content
           .push(person);
 
-    return event;
+    return webpage;
 
   }
 

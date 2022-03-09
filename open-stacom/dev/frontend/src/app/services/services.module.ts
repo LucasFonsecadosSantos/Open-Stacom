@@ -79,7 +79,7 @@ import {
 } from './utils';
 import {
   SharedTemplateService,
-  SharedEventService
+  SharedWebpageService
 } from './shared';
 import {
   PricePlanCreateService,
@@ -155,7 +155,7 @@ import {
     UrlService,
 
     SharedTemplateService,
-    SharedEventService,
+    SharedWebpageService,
 
     PricePlanCreateService,
     PricePlanDeleteService,

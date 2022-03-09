@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CommitteeTemplateObjectEntity {
+public class CommitteeTemplateObjectEntity implements ITemplateObjectEntity {
 
     private TemplateObjectRouteConfigEntity configRoute;
 

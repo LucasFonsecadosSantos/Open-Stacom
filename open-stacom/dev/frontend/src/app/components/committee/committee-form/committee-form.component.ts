@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Committee, Template, Event, Person } from 'src/app/models';
+import { Committee, Template, Event, Person, Webpage } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { CommitteCreateService, CommitteDeleteService, CommitteUpdateService } from 'src/app/services/committee';
 import { PersonFindService } from 'src/app/services/person';
@@ -20,7 +20,7 @@ export class CommitteeFormComponent implements OnInit {
   public committeeForm: CommitteeFormComponent;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public committeeMembers: Array<Person>;
 
@@ -57,7 +57,7 @@ export class CommitteeFormComponent implements OnInit {
   private _buildAvailablePeopleToSelect(): void {
 
     this.personArray = this._personFindService
-                            .list(this.event);
+                            .list(this.webpage);
 
   }
 
@@ -78,7 +78,7 @@ export class CommitteeFormComponent implements OnInit {
   public addMember(personID: string): void {
 
     let newMember: Person = this._personFindService
-                            .find(personID, this.event)
+                            .find(personID, this.webpage)
 
     this.committee.members.push(newMember);
     this.committeeTmp.push({'id': newMember.id});
@@ -157,9 +157,9 @@ export class CommitteeFormComponent implements OnInit {
   private _create(committee: Committee): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._validatorService.validate(this.webpage.template.objects.committee, committee);
       this._createService
-        .create(this._loadForm(committee), this.event)
+        .create(this._loadForm(committee), this.webpage)
         .subscribe({
 
           next: response => {
@@ -189,7 +189,7 @@ export class CommitteeFormComponent implements OnInit {
 
   public delete(committee: Committee): void {
 
-    this._deleteService.delete(committee, this.event);
+    this._deleteService.delete(committee, this.webpage);
     this._modalService.dismissAll('Cross click');
 
   }
@@ -235,9 +235,9 @@ export class CommitteeFormComponent implements OnInit {
   private _update(committee: Committee): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.committee, committee);
+      this._validatorService.validate(this.webpage.template.objects.committee, committee);
       this._updateService
-        .update(this._loadForm(committee), this.event)
+        .update(this._loadForm(committee), this.webpage)
         .subscribe({
 
           next: response => {
@@ -256,7 +256,7 @@ export class CommitteeFormComponent implements OnInit {
           }
 
         });
-        
+
     } catch(exception) {
       this._showErrorToast(
         `Ops: Parece que houve um erro ao validar as informações do comitê ${committee.name}. ERRO: ${exception}`

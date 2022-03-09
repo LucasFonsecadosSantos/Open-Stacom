@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PricePlan, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { PricePlan, Webpage } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,32 +9,32 @@ import { EventUpdateService } from '../event';
 export class PricePlanDeleteService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(pricePlan: PricePlan, event: Event): Observable<any> {
+  public delete(pricePlan: PricePlan, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(pricePlan, event))
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-    return this._eventUpdateService
-                .update(this._removeAllSchedule(event));
-  }
-
-  private _removeAllSchedule(event: Event): Event {
-
-    event.template.objects.pricePlan.content = [];
-    return event;
+    return this._webpageUpdateService
+                .update(this._getWebpage(pricePlan, webpage))
 
   }
 
-  private _getEvent(pricePlan: PricePlan, event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
+    return this._webpageUpdateService
+                .update(this._removeAllSchedule(webpage));
+  }
+
+  private _removeAllSchedule(webpage: Webpage): Webpage {
+
+    webpage.template.objects.pricePlan.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(pricePlan: PricePlan, webpage: Webpage): Webpage {
 
 
-    event.template.objects.pricePlan.content.forEach(
+    webpage.template.objects.pricePlan.content.forEach(
       fetched => {
         if (fetched.id != pricePlan.id) {
           fetched = null;
@@ -43,7 +42,7 @@ export class PricePlanDeleteService {
       }
     );
 
-      return event;
+      return webpage;
 
   }
 }

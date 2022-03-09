@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Operation } from 'src/app/enums';
-import { Sponsor } from 'src/app/models';
+import { Sponsor, Webpage } from 'src/app/models';
 import { SharedSponsorService } from 'src/app/pages';
 import { SponsorDeleteService } from 'src/app/services/sponsor';
 import { ConfirmDialogService } from '../../dialog';
@@ -15,7 +15,7 @@ import { Event } from './../../../models';
 export class SponsorInfoComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public sponsor: Sponsor;
 
@@ -50,7 +50,7 @@ export class SponsorInfoComponent implements OnInit {
     //   cancelButton: 'Cancelar',
 
     // });
-    this._deleteService.delete(sponsor, this.event);
+    this._deleteService.delete(sponsor, this.webpage);
 
 
   }
@@ -67,7 +67,7 @@ export class SponsorInfoComponent implements OnInit {
         .getResponseObservable()
         .subscribe({
           next: response => {
-            this._deleteService.delete(this.sponsor, this.event);
+            this._deleteService.delete(this.sponsor, this.webpage);
           }
         });
 

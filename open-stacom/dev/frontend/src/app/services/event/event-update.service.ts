@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Event } from './../../models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
+import { Event, Webpage } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,20 @@ import { Event } from './../../models';
 export class EventUpdateService {
 
   constructor(
-    private _http: HttpClient
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(event: Event): Observable<any> {
-    
-    return this._http
-                .put(
-                  `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${event.id}`,
-                  event,
-                  {
-                    responseType: 'json',
-                    headers: new HttpHeaders().set('AUTH_TOKEN', `${event.id}`)
-                  }
-                )
-                .pipe(
-                  retry(environment.API_CONNECTIONS_RETRY),
-                  catchError(this._handleError)
-                );
+  public update(event: Event, webpage: Webpage): Observable<Event> {
+
+    return this._webpageUpdateService.update(this._addDataToWebpage(event, webpage));
+
+  }
+
+  private _addDataToWebpage(event: Event, webpage: Webpage): Webpage {
+
+    webpage.template.objects.event.content = event;
+
+    return webpage;
 
   }
 
@@ -45,4 +42,5 @@ export class EventUpdateService {
         return new Error(errorMessage);
 
   }
+
 }

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProceedingEntity {
+public class ProceedingEntity implements ITemplateEntity {
 
     @NotBlank
     private String id;

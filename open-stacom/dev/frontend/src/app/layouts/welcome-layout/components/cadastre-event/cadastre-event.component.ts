@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Event, Template } from 'src/app/models';
-import { EventFindService } from 'src/app/services/event';
-import { TemplateFindService } from 'src/app/services/templates';
+import { Event, Template, Webpage } from 'src/app/models';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 
 @Component({
   selector: 'app-cadastre-event',
@@ -13,52 +12,43 @@ export class CadastreEventComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
-  public event: Event;
-
   public template: Template;
+
+  public webpage: Webpage;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _eventFindService: EventFindService,
-    private _templateFindService: TemplateFindService
+    private _webpageFindService: WebpageFindService
   ) { }
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebapageFromParam();
 
   }
 
-  private _getEventAndTemplate(): void {
+  private _getWebapageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
-            this._getTemplateById(event);
+          webpage => {
+            this.webpage = webpage;
+            this.template = webpage.template;
+            this.isDataLoaded = true;
           }
         );
   }
-
-  private _getTemplateById(event: Event): void {
-
-    this.template = this._templateFindService
-                        .find(event);
-      this.isDataLoaded = true;
-
-  }
-
 
 }

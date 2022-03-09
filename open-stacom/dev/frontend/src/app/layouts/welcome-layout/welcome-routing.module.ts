@@ -15,6 +15,6 @@ export const WelcomeRoutingModule: Routes = [
   { path: "load", component: LoadProjectComponent },
   { path: "open", component: LoadProjectComponent },
   { path: "abrir", component: LoadProjectComponent },
-  { path: "pre-carregar/:eventID", component: CadastreEventComponent },
+  { path: "pre-carregar/:webpageID", component: CadastreEventComponent },
   { path: "", component: WelcomeCardComponent }
 ];

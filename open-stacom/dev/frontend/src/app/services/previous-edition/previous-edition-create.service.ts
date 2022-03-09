@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PreviousEdition, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { PreviousEdition, Webpage } from 'src/app/models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +10,26 @@ import { v4 as uuidv4 } from 'uuid';
 export class PreviousEditionCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(edition: PreviousEdition, event: Event): Observable<PreviousEdition> {
+  public create(edition: PreviousEdition, webpage: Webpage): Observable<PreviousEdition> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(edition, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(edition, webpage));
 
   }
 
-  private _addDataToEvent(edition: PreviousEdition, event: Event): Event {
+  private _addDataToWebpage(edition: PreviousEdition, webpage: Webpage): Webpage {
 
     edition.id = uuidv4();
 
-    event.template
+    webpage.template
           .objects
           .pastEdition
           .content
           .push(edition);
 
-    return event;
+    return webpage;
 
   }
 

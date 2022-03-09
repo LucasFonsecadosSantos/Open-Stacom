@@ -18,7 +18,7 @@ import {
   CallsComponent
 } from './';
 import { SharedPersonService } from './person';
-import { SharedEventService, SharedTemplateService } from '../services/shared';
+import { SharedWebpageService, SharedTemplateService } from '../services/shared';
 import { CommitteComponent } from './committe';
 import { SharedActivityService } from './activity';
 import { PriceComponent } from './price/price.component';
@@ -66,7 +66,7 @@ import { SharedProceedingsService } from './proceedings';
   ],
   providers: [
     SharedPersonService,
-    SharedEventService,
+    SharedWebpageService,
     SharedTemplateService,
     SharedActivityService,
     SharedSponsorService,

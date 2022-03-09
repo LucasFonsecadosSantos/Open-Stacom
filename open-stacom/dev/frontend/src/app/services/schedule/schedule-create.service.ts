@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activity, Event } from 'src/app/models';
+import { Webpage } from 'src/app/models';
 import { Schedule } from 'src/app/models/schedule.model';
-import { EventUpdateService } from '../event';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,20 @@ import { v4 as uuidv4 } from 'uuid';
 export class ScheduleCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(schedule: Schedule, event: Event): Observable<any> {
+  public create(schedule: Schedule, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(schedule, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(schedule, webpage));
 
   }
 
-  private _addDataToEvent(schedule: Schedule, event: Event): Event {
+  private _addDataToWebpage(schedule: Schedule, webpage: Webpage): Webpage {
 
     schedule.id = uuidv4();
     schedule.activity = {'id': schedule.activity.id};
-    event.template
+    webpage.template
           .objects
           .schedule
           .content
@@ -33,7 +33,7 @@ export class ScheduleCreateService {
               schedule.activity = {'id': schedule.activity.id}
             );
 
-    event.template
+    webpage.template
             .objects
             .activity
             .content
@@ -42,13 +42,13 @@ export class ScheduleCreateService {
                 activity.responsible = {'id': activity.responsible.id}
               );
 
-    event.template
+    webpage.template
           .objects
           .schedule
           .content
           .push(schedule);
 
-    return event;
+    return webpage;
 
   }
 }

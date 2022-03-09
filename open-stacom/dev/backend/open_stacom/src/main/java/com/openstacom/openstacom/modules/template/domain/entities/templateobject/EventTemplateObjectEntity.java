@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EventTemplateObjectEntity {
+public class EventTemplateObjectEntity implements ITemplateObjectEntity {
 
     private TemplateObjectRouteConfigEntity configRoute;
 
@@ -74,5 +74,7 @@ public class EventTemplateObjectEntity {
     private TemplateObjectFieldEntity locationCountry;
 
     private TemplateObjectFieldEntity locationLatLong;
+
+    private EventEntity content;
 
 }

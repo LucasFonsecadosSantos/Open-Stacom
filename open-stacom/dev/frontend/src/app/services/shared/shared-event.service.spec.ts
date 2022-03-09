@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SharedEventService } from './shared-event.service';
+import { SharedWebpageService } from './shared-webpage.service';
 
 describe('SharedEventService', () => {
-  let service: SharedEventService;
+  let service: SharedWebpageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SharedEventService);
+    service = TestBed.inject(SharedWebpageService);
   });
 
   it('should be created', () => {

@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Event } from './../../models';
+import { Webpage } from './../../models';
 import { PersonFindService } from '../person';
 
 import {
@@ -18,11 +16,11 @@ export class CommitteFindService {
     private _personFindService: PersonFindService
   ) { }
 
-  public find(id: string, event: Event): Committee {
+  public find(id: string, webpage: Webpage): Committee {
 
-    let committee: Committee = this._getByID(id, event.template.objects.schedule.content);
-    this._buildSources([committee], event);
-    this._fetchMembers([committee], event);
+    let committee: Committee = this._getByID(id, webpage.template.objects.schedule.content);
+    this._buildSources([committee], webpage);
+    this._fetchMembers([committee], webpage);
 
     return committee;
 
@@ -35,51 +33,51 @@ export class CommitteFindService {
   }
 
 
-  public list(event: Event): Committee[] {
+  public list(webpage: Webpage): Committee[] {
 
-    let committee: Committee[] = event.template.objects.committee.content;
-    this._fetchMembers(committee, event);
-    this._buildSources(committee, event);
+    let committee: Committee[] = webpage.template.objects.committee.content;
+    this._fetchMembers(committee, webpage);
+    this._buildSources(committee, webpage);
 
     return committee;
 
   }
 
-  private _fetchMembers(committeeArray: Committee[], event: Event): void {
+  private _fetchMembers(committeeArray: Committee[], webpage: Webpage): void {
 
     committeeArray.forEach(
       committee => {
         committee.members.forEach(
-          member => this._fetchPerson(member, committee, event)
+          member => this._fetchPerson(member, committee, webpage)
         );
       }
     );
 
   }
 
-  private _fetchPerson(member: Person, committee: Committee, event: Event): void {
+  private _fetchPerson(member: Person, committee: Committee, webpage: Webpage): void {
 
     let members: Person = this._personFindService
-                                .find(member.id, event)
+                                .find(member.id, webpage)
 
     committee.members.push(members);
 
   }
 
-  private _buildSources(committeeArray: Committee[], event: Event): Committee[] {
+  private _buildSources(committeeArray: Committee[], webpage: Webpage): Committee[] {
 
     committeeArray.forEach(committee => {
-      committee.picture = this._buildCommitteeAvatarSource(committee.picture, event);
+      committee.picture = this._buildCommitteeAvatarSource(committee.picture, webpage);
     })
 
     return committeeArray;
 
   }
 
-  private _buildCommitteeAvatarSource(committeeAvatar: string, event: Event): string {
+  private _buildCommitteeAvatarSource(committeeAvatar: string, webpage: Webpage): string {
 
     return (committeeAvatar && (committeeAvatar != null) && (committeeAvatar.length > 0)) ?
-            committeeAvatar = `/data/${event.id}/img/avatar/${committeeAvatar}` :
+            committeeAvatar = `/data/${webpage.id}/img/avatar/${committeeAvatar}` :
             environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }

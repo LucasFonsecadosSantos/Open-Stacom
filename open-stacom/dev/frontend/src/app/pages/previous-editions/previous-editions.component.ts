@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { EventFindService } from 'src/app/services/event';
 import {
   Event,
-  Template
+  Template,
+  Webpage
 }  from './../../models';
 import { ExcelExportService } from 'src/app/services/utils';
 import {  PreviousEditionListComponent } from 'src/app/components/previous-editions';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 
 @Component({
   selector: 'app-previous-editions',
@@ -20,15 +22,17 @@ export class PreviousEditionsComponent implements OnInit {
   @ViewChild(PreviousEditionListComponent)
   public previousEditionListComponent: PreviousEditionListComponent
 
-  public template: Template;
-  public event: Event;
+  public webpage: Webpage;
+
   public editionsArray: any[];
+
   public isDataLoaded: boolean = false;
+
   public entityDownloadURL: SafeUrl;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _exportExcelService: ExcelExportService,
     private _confirmDialogService: ConfirmDialogService,
     private _sanitizer: DomSanitizer
@@ -36,7 +40,7 @@ export class PreviousEditionsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
 
   }
 
@@ -46,8 +50,8 @@ export class PreviousEditionsComponent implements OnInit {
   }
 
   public downloadEntitySource(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event.template.objects.pastEdition.content);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage.template.objects.pastEdition.content);
     this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );
@@ -55,12 +59,12 @@ export class PreviousEditionsComponent implements OnInit {
 
   public hasData(): boolean {
 
-    return  this.event &&
-            this.event.template &&
-            this.event.template.objects &&
-            this.event.template.objects.pastEdition &&
-            this.event.template.objects.pastEdition.content &&
-            this.event.template.objects.pastEdition.content.length > 0;
+    return  this.webpage &&
+            this.webpage.template &&
+            this.webpage.template.objects &&
+            this.webpage.template.objects.pastEdition &&
+            this.webpage.template.objects.pastEdition.content &&
+            this.webpage.template.objects.pastEdition.content.length > 0;
   }
 
   public confirmDeleteAllEditions(): void {
@@ -75,24 +79,24 @@ export class PreviousEditionsComponent implements OnInit {
     );
   }
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
+          webpage => {
+            this.webpage = webpage;
             this.isDataLoaded = true;
           }
         );

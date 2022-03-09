@@ -4,8 +4,10 @@ import { TemplateFindService } from "src/app/services/templates";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Template,
-  Event
+  Event,
+  Webpage
 } from './../../models';
+import { WebpageFindService } from "src/app/services/webpage/webpage-find.service";
 
 @Component({
   selector: "app-admin-layout",
@@ -18,10 +20,10 @@ export class AdminLayoutComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
 
-  public event: Event;
+  public webpage: Webpage;
 
   constructor(
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _activatedRoute: ActivatedRoute,
     private _closeEventService: EventCloseService,
     private _router: Router
@@ -66,29 +68,29 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
 
   }
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
           {
-            next: event => {
-              this.event = event;
+            next: webpage => {
+              this.webpage = webpage;
               this.isDataLoaded = true;
           },
           error: exception => {

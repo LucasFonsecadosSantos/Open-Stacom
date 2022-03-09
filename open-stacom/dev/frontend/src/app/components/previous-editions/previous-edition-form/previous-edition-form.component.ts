@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import {
   Template,
   Event,
-  PreviousEdition
+  PreviousEdition,
+  Webpage
 } from './../../../models';
 import {
   PreviousEditionCreateService,
@@ -25,7 +26,7 @@ export class PreviousEditionFormComponent implements OnInit {
   // public previousEditionFormModel: PreviousEditionForm;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public edition: PreviousEdition;
 
@@ -118,9 +119,9 @@ export class PreviousEditionFormComponent implements OnInit {
   private _create(edition: PreviousEdition): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._validatorService.validate(this.webpage.template.objects.pastEdition, edition);
       this._createService
-          .create(this._loadForm(edition), this.event)
+          .create(this._loadForm(edition), this.webpage)
           .subscribe({
 
             next: response => {
@@ -150,9 +151,9 @@ export class PreviousEditionFormComponent implements OnInit {
   private _update(edition: PreviousEdition): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.pastEdition, edition);
+      this._validatorService.validate(this.webpage.template.objects.pastEdition, edition);
       this._updateService
-          .update(this._loadForm(edition), this.event)
+          .update(this._loadForm(edition), this.webpage)
           .subscribe({
 
             next: response => {

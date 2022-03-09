@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, OnDestroy, Input } from "@angular/core";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Template, Event } from "./../../models";
+import { Template, Event, Webpage } from "./../../models";
 import { WebpageGenerationService } from "src/app/services/event";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
@@ -14,7 +14,7 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 export class NavbarComponent implements OnInit, OnDestroy {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public location: Location;
 
@@ -47,15 +47,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   public downloadProject(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage);
     this.projectDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );
   }
 
   public generateBuild(): void {
-    this._generatorService.generatesBuild(this.event);
+    this._generatorService.generatesBuild(this.webpage.template.objects.event.content);
   }
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)

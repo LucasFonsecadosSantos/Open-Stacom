@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
-import { EventCreateService } from './../../../../services/event/event-create.service';
 import { Component, OnInit } from '@angular/core';
 import { Template } from 'src/app/models';
 import { TemplatesRetrievingService } from 'src/app/services/templates';
+import { WebpageCreateService } from 'src/app/services/webpage/webpage-create.service';
 
 @Component({
   selector: 'app-new-project',
@@ -17,7 +17,7 @@ export class NewProjectComponent implements OnInit {
 
   constructor(
     private templatesRetrievingService: TemplatesRetrievingService,
-    private eventCreateService: EventCreateService,
+    private _webpageCreateService: WebpageCreateService,
     private router: Router
   ) { }
 
@@ -38,9 +38,9 @@ export class NewProjectComponent implements OnInit {
     );
   }
 
-  public createEvent(template: Template): void {
+  public createWebpage(template: Template): void {
 
-    this.eventCreateService
+    this._webpageCreateService
       .create(template)
       .subscribe(
         response => {

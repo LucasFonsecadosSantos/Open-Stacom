@@ -21,3 +21,4 @@ export * from './price-plan-template.model';
 export * from './past-edition-template.model';
 export * from './event-template.model';
 export * from './person-template.model';
+export * from './webpage.model';

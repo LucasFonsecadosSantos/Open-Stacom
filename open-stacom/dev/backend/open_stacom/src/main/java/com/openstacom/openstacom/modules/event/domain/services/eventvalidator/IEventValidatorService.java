@@ -1,6 +1,6 @@
 package com.openstacom.openstacom.modules.event.domain.services.eventvalidator;
 
-import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
+import com.openstacom.openstacom.modules.template.domain.entities.templateobject.EventEntity;
 import org.springframework.stereotype.Service;
 
 @Service

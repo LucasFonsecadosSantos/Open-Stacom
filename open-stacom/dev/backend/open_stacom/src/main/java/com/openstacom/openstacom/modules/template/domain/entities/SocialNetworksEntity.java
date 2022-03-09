@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SocialNetworksEntity {
+public class SocialNetworksEntity implements ITemplateEntity {
 
     private String facebook;
 

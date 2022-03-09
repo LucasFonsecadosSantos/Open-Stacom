@@ -1,8 +1,8 @@
 
 
 <div class="content">
-  <app-sponsor-form  [event]="event" *ngIf="isDataLoaded"></app-sponsor-form>
-  <app-confirm-dialog  [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
+  <app-sponsor-form  [webpage]="webpage" *ngIf="isDataLoaded"></app-sponsor-form>
+  <app-confirm-dialog  [webpage]="webpage" *ngIf="isDataLoaded"></app-confirm-dialog>
   <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
       <div class=" card">
@@ -19,7 +19,7 @@
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_patrocinadores.json'}}">
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.webpage.template.objects.event.content.name+'_patrocinadores.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>
@@ -29,10 +29,10 @@
   </div>
   <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-8">
-      <app-sponsor-list #sponsorListComponent  [event]="event"></app-sponsor-list>
+      <app-sponsor-list #sponsorListComponent  [webpage]="webpage"></app-sponsor-list>
     </div>
     <div class="col-md-4">
-      <app-sponsor-info  [event]="event"></app-sponsor-info>
+      <app-sponsor-info  [webpage]="webpage"></app-sponsor-info>
     </div>
   </div>
   <div class="row d-flex justify-content-center align-items-center" style="height: 40vh;" *ngIf="!isDataLoaded || !hasData()">

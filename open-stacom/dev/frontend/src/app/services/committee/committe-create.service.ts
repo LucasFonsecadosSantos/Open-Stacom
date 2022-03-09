@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Committee, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Committee, Webpage } from 'src/app/models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +10,17 @@ import { v4 as uuidv4 } from 'uuid';
 export class CommitteCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(committee: Committee, event: Event): Observable<any> {
+  public create(committee: Committee, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._addDataToEvent(committee, event));
+    return this._webpageUpdateService
+                .update(this._addDataToWebpage(committee, webpage));
 
   }
 
-  private _addDataToEvent(committee: Committee, event: Event): Event {
+  private _addDataToWebpage(committee: Committee, webpage: Webpage): Webpage {
 
 
 
@@ -31,14 +31,14 @@ export class CommitteCreateService {
     });
 
 
-          event.template
+          webpage.template
           .objects
           .committee
           .content
           .push(committee);
 
 
-    event.template
+    webpage.template
           .objects
           .committee
           .content
@@ -49,7 +49,7 @@ export class CommitteCreateService {
             );
 
           });
-    return event;
+    return webpage;
 
   }
 

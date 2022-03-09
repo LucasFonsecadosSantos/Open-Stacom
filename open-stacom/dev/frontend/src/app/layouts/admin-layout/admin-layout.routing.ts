@@ -23,7 +23,7 @@ export const AdminLayoutRoutes: Routes = [
   // { path: "dashboard", component: DashboardComponent },
   { path: "", component: DashboardComponent },
   { path: "home", component: DashboardComponent },
-  { path: "inicio/:eventID", component: DashboardComponent },
+  { path: "inicio/:webpageID", component: DashboardComponent },
 
   { path: "sobre", component: AboutComponent },
   { path: "about", component: AboutComponent },

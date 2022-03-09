@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
 export class UrlService {
 
   constructor(
-    private _route:                ActivatedRoute
+    private _route: ActivatedRoute
   ) { }
 
-  public getEventIDFromRoute(): string {
-    return this._route.snapshot.params['eventID'];
+  public getWebpageIDFromRoute(): string {
+    return this._route.snapshot.params['webpageID'];
   }
 }

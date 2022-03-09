@@ -3,15 +3,12 @@ package com.openstacom.openstacom.modules.template.domain.entities;
 import com.openstacom.openstacom.modules.template.domain.entities.templateobject.TemplateObjectEntity;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TemplateEntity {
+public class TemplateEntity implements ITemplateEntity {
 
 //    @NotBlank
 //    @Size(max = 20, min = 5)
@@ -40,6 +37,8 @@ public class TemplateEntity {
 //    @NotBlank
 //    @Size(max = 20, min = 5)
     private String mockup;
+
+    private String engine;
 
     //@NotBlank
     private String[] sections;

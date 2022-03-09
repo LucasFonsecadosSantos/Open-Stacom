@@ -1,11 +1,10 @@
-package com.openstacom.openstacom.modules.event.domain.entities;
+package com.openstacom.openstacom.modules.template.domain.entities.templateobject;
+
+import com.openstacom.openstacom.modules.template.domain.entities.ITemplateEntity;
 import com.openstacom.openstacom.modules.template.domain.entities.TelephoneEntity;
 import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
-public class EventEntity {
+public class EventEntity implements ITemplateEntity {
 
 //    @NotBlank
 //    @Size(max = 20, min = 5)

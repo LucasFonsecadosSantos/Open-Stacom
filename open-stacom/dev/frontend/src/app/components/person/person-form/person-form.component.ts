@@ -7,7 +7,8 @@ import {
   Person,
   Template,
   Event,
-  PersonTemplate
+  PersonTemplate,
+  Webpage
 } from './../../../models';
 import {
   Component,
@@ -34,7 +35,7 @@ export class PersonFormComponent implements OnInit {
   public personFormModel: FormModel;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public states: any;
 
@@ -204,9 +205,9 @@ export class PersonFormComponent implements OnInit {
     let buildedPerson: Person = this._loadForm(person);
 
     try {
-      this._validatorService.validate(this.event.template.objects.person, person);
+      this._validatorService.validate(this.webpage.template.objects.person, person);
       this._personCreateService
-          .create(buildedPerson, this.event)
+          .create(buildedPerson, this.webpage)
           .subscribe({
 
             next: response => {
@@ -239,9 +240,9 @@ export class PersonFormComponent implements OnInit {
 
     try {
 
-      this._validatorService.validate(this.event.template.objects.person, person);
+      this._validatorService.validate(this.webpage.template.objects.person, person);
       this._personUpdateService
-      .update(buildedPerson, this.event)
+      .update(buildedPerson, this.webpage)
       .subscribe({
 
         next: response => {
@@ -273,7 +274,7 @@ export class PersonFormComponent implements OnInit {
 
   public delete(person: Person): void {
 
-    this._deleteService.delete(person, this.event);
+    this._deleteService.delete(person, this.webpage);
     this._modalService.dismissAll('Cross click');
 
   }

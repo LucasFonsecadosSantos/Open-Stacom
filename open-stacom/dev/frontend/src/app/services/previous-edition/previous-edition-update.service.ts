@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Event, PreviousEdition } from 'src/app/models';
+import { Webpage, PreviousEdition } from 'src/app/models';
 import { Observable } from 'rxjs';
-import { EventUpdateService } from '../event';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +9,21 @@ import { EventUpdateService } from '../event';
 export class PreviousEditionUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(edition: PreviousEdition, event: Event): Observable<PreviousEdition> {
+  public update(edition: PreviousEdition, webpage: Webpage): Observable<PreviousEdition> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(edition, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(edition, webpage));
 
   }
 
-  private _updateDataToEvent(edition: PreviousEdition, event: Event): Event {
+  private _updateDataToWebpage(edition: PreviousEdition, webpage: Webpage): Webpage {
 
-    event.template
+    webpage.template
           .objects
           .pastEdition
-          .content = event.template
+          .content = webpage.template
                           .objects
                           .pastEdition
                           .content
@@ -31,13 +31,13 @@ export class PreviousEditionUpdateService {
                             fetchedSchedule => fetchedSchedule.id != edition.id
                           );
 
-    event.template
+    webpage.template
          .objects
          .pastEdition
          .content
          .push(edition);
 
-    return event;
+    return webpage;
 
   }
 

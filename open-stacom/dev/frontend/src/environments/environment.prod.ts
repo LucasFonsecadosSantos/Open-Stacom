@@ -17,6 +17,7 @@ export const environment = {
     VIDEO_GALLERY: '/video-gallery',
     ACTIVITY: '/activities',
     EVENT: '/event',
+    WEBPAGE: '/webpage',
     SCHEDULE: '/schedule',
     GENERATE_BUILD_URL: `http://0.0.0.0:8888/api/event/generate`,
     CLOSE_EVENT: '/close'

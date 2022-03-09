@@ -5,7 +5,8 @@ import { PreviousEditionFormService } from '..';
 
 import {
   Event,
-  PreviousEdition
+  PreviousEdition,
+  Webpage
 } from './../../../models';
 
 @Component({
@@ -16,7 +17,7 @@ import {
 export class PreviousEditionListComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public editionsArray: PreviousEdition[]
 
@@ -33,7 +34,7 @@ export class PreviousEditionListComponent implements OnInit {
   private _populateList(): void {
 
     this.editionsArray = this._fetchService
-                              .list(this.event);
+                              .list(this.webpage);
 
   }
 
@@ -52,7 +53,7 @@ export class PreviousEditionListComponent implements OnInit {
   public deleteEdition(edition: PreviousEdition): void {
 
     this._deleteService
-      .delete(edition.id, this.event.id)
+      .delete(edition.id, this.webpage.id)
       .subscribe(
 
         response => console.log

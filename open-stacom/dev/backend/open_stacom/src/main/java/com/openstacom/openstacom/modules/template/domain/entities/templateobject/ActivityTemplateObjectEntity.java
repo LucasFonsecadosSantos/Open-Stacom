@@ -1,6 +1,6 @@
 package com.openstacom.openstacom.modules.template.domain.entities.templateobject;
 
-import com.openstacom.openstacom.modules.template.domain.entities.ActivityEntity;
+import com.openstacom.openstacom.modules.template.domain.entities.ITemplateEntity;
 import lombok.*;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ActivityTemplateObjectEntity {
+public class ActivityTemplateObjectEntity implements ITemplateObjectEntity {
 
     private TemplateObjectRouteConfigEntity configRoute;
 
@@ -38,7 +38,7 @@ public class ActivityTemplateObjectEntity {
 
     private TemplateObjectFieldEntity pricePlan;
 
-    private List<ActivityEntity> content;
+    private List<ITemplateEntity> content;
 
 
 }

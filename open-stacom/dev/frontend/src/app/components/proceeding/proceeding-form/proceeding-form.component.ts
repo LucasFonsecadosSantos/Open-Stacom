@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation } from 'src/app/enums';
-import { Template, Event, Proceeding } from 'src/app/models';
+import { Template, Event, Proceeding, Webpage } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { ProceedingCreateService, ProceedingUpdateService } from 'src/app/services/proceeding';
 import { TemplateObjectValidatorService } from 'src/app/services/utils';
@@ -19,7 +19,7 @@ export class ProceedingFormComponent implements OnInit {
   public proceedingForm: ProceedingFormComponent;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public proceeding: Proceeding;
 
@@ -111,9 +111,9 @@ export class ProceedingFormComponent implements OnInit {
   private _create(proceeding: Proceeding): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._validatorService.validate(this.webpage.template.objects.proceeding, proceeding);
       this._createService
-        .create(this._loadForm(proceeding), this.event)
+        .create(this._loadForm(proceeding), this.webpage)
         .subscribe({
 
           next: response => {
@@ -132,7 +132,7 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
-    
+
     } catch(exception) {
       this._showErrorToast(
         `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`
@@ -143,9 +143,9 @@ export class ProceedingFormComponent implements OnInit {
   private _update(proceeding: Proceeding): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.proceeding, proceeding);
+      this._validatorService.validate(this.webpage.template.objects.proceeding, proceeding);
       this._updateService
-        .update(this._loadForm(proceeding), this.event)
+        .update(this._loadForm(proceeding), this.webpage)
         .subscribe({
 
           next: response => {
@@ -164,7 +164,7 @@ export class ProceedingFormComponent implements OnInit {
           }
 
         });
-    
+
     } catch(exception) {
       this._showErrorToast(
         `Ops: Parece que houve um erro ao validar as informações de ${proceeding.title}. ERRO: ${exception}`

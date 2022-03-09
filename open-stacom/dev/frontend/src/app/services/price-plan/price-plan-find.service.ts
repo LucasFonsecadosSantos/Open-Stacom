@@ -1,9 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Event, PricePlan } from 'src/app/models';
-import { environment } from 'src/environments/environment';
-import { EventFindService } from '../event';
+import { Webpage, PricePlan } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +8,9 @@ export class PricePlanFindService {
 
   constructor() { }
 
-  public find(id: string, event: Event): PricePlan {
+  public find(id: string, webpage: Webpage): PricePlan {
 
-    return this._getByID(id, event.template.objects.pricePlan.content);
+    return this._getByID(id, webpage.template.objects.pricePlan.content);
 
   }
 
@@ -24,9 +20,9 @@ export class PricePlanFindService {
 
   }
 
-  public list(event: Event): PricePlan[] {
+  public list(webpage: Webpage): PricePlan[] {
 
-    return event.template.objects.pricePlan.content;
+    return webpage.template.objects.pricePlan.content;
 
   }
 

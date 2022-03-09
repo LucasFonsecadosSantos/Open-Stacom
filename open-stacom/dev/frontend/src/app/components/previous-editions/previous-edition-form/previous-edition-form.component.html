@@ -21,9 +21,9 @@
         </div>
       </div>
       <div class=" row">
-        <div *ngIf="event.template.objects.pastEdition.name" class=" col-md-3 pr-md-1">
+        <div *ngIf="webpage.template.objects.pastEdition.name" class=" col-md-3 pr-md-1">
           <div class=" form-group">
-            <label> Titulo da edição <span *ngIf="event.template.objects.pastEdition.name.required">*</span></label>
+            <label> Titulo da edição <span *ngIf="webpage.template.objects.pastEdition.name.required">*</span></label>
             <input
               #editionNameField
               [(ngModel)]="edition.name"
@@ -31,45 +31,45 @@
               class=" form-control"
               placeholder="Ex.: XX Congresso XPTO"
               type="text"
-              maxlength="{{event.template.objects.pastEdition.name.maxlength}}"
-              minlength="{{event.template.objects.pastEdition.name.minlength}}"
-              required="{{event.template.objects.pastEdition.name.required}}"
+              maxlength="{{webpage.template.objects.pastEdition.name.maxlength}}"
+              minlength="{{webpage.template.objects.pastEdition.name.minlength}}"
+              required="{{webpage.template.objects.pastEdition.name.required}}"
             />
           </div>
         </div>
-        <div *ngIf="event.template.objects.pastEdition.date" class=" col-md-3 px-md-1">
+        <div *ngIf="webpage.template.objects.pastEdition.date" class=" col-md-3 px-md-1">
           <div class=" form-group">
-            <label> Data da edição <span *ngIf="event.template.objects.pastEdition.date.required">*</span></label>
+            <label> Data da edição <span *ngIf="webpage.template.objects.pastEdition.date.required">*</span></label>
             <input
               [(ngModel)]="edition.date"
               name="date"
               class=" form-control"
               placeholder="Ex.: 13/12/2020"
               type="date"
-              maxlength="{{event.template.objects.pastEdition.date.maxlength}}"
-              minlength="{{event.template.objects.pastEdition.date.minlength}}"
-              required="{{event.template.objects.pastEdition.date.required}}"
+              maxlength="{{webpage.template.objects.pastEdition.date.maxlength}}"
+              minlength="{{webpage.template.objects.pastEdition.date.minlength}}"
+              required="{{webpage.template.objects.pastEdition.date.required}}"
             />
           </div>
         </div>
-        <div *ngIf="event.template.objects.pastEdition.link" class=" col-md-3 px-md-1">
+        <div *ngIf="webpage.template.objects.pastEdition.link" class=" col-md-3 px-md-1">
           <div class=" form-group">
-            <label> Link do site <span *ngIf="event.template.objects.pastEdition.link.required">*</span></label>
+            <label> Link do site <span *ngIf="webpage.template.objects.pastEdition.link.required">*</span></label>
             <input
               [(ngModel)]="edition.link"
               name="link"
               class=" form-control"
               placeholder="Ex.: www.edicao.com.br"
               type="text"
-              maxlength="{{event.template.objects.pastEdition.link.maxlength}}"
-              minlength="{{event.template.objects.pastEdition.link.minlength}}"
-              required="{{event.template.objects.pastEdition.link.required}}"
+              maxlength="{{webpage.template.objects.pastEdition.link.maxlength}}"
+              minlength="{{webpage.template.objects.pastEdition.link.minlength}}"
+              required="{{webpage.template.objects.pastEdition.link.required}}"
             />
           </div>
         </div>
-        <div *ngIf="event.template.objects.pastEdition.logo" class=" col-md-3 pl-md-1">
+        <div *ngIf="webpage.template.objects.pastEdition.logo" class=" col-md-3 pl-md-1">
           <div class=" form-group">
-            <label> Logotipo <span *ngIf="event.template.objects.pastEdition.logo.required">*</span></label>
+            <label> Logotipo <span *ngIf="webpage.template.objects.pastEdition.logo.required">*</span></label>
             <input
               accept="image/png, image/gif, image/jpeg"
               class="form-control"

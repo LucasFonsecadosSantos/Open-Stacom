@@ -1,10 +1,8 @@
-import { environment } from './../../../environments/environment.prod';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Person, Event, Template } from './../../models';
-import { EventUpdateService } from '../event';
+import { Person, Webpage, Template } from './../../models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,40 +10,40 @@ export class PersonDeleteService {
 
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(person: Person, event: Event): Observable<any> {
+  public delete(person: Person, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(person, event));
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-
-    return this._eventUpdateService
-                .update(this._removeAllPerson(event));
+    return this._webpageUpdateService
+                .update(this._getWebpage(person, webpage));
 
   }
 
-  private _removeAllPerson(event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
 
-    event.template.objects.person.content = [];
-    return event;
-
-  }
-
-  private _getEvent(person: Person, event: Event): Event {
-
-    event.template.objects.person.content = event.template.objects.person.content.filter(fetchedPerson => fetchedPerson.id != person.id);
-    return event;
+    return this._webpageUpdateService
+                .update(this._removeAllPerson(webpage));
 
   }
 
-  private _removePersonFromEvent(person: Person, event: Event): Person[] {
+  private _removeAllPerson(webpage: Webpage): Webpage {
 
-    return event.template.objects.person.content.filter(fetched => fetched.id != person.id);
+    webpage.template.objects.person.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(person: Person, webpage: Webpage): Webpage {
+
+    webpage.template.objects.person.content = webpage.template.objects.person.content.filter(fetchedPerson => fetchedPerson.id != person.id);
+    return webpage;
+
+  }
+
+  private _removePersonFromWebpage(person: Person, webpage: Webpage): Person[] {
+
+    return webpage.template.objects.person.content.filter(fetched => fetched.id != person.id);
 
   }
 

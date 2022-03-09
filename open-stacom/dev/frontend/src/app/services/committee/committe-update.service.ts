@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Committee } from 'src/app/models';
-import { EventUpdateService } from '../event'
-import { Event } from './../../models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
+import { Webpage } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,46 +10,43 @@ import { Event } from './../../models';
 export class CommitteUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(committee: Committee, event: Event): Observable<any> {
+  public update(committee: Committee, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(committee, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(committee, webpage));
 
   }
 
-  private _updateDataToEvent(committee: Committee, event: Event): Event {
+  private _updateDataToWebpage(committee: Committee, webpage: Webpage): Webpage {
+
+      webpage.template.objects.committee.content = webpage.template.objects
+      .committee
+      .content
+      .filter(
+        fetchedSchedule => fetchedSchedule.id != committee.id
+      );
+
+      webpage.template
+            .objects
+            .committee
+            .content
+            .push(committee);
 
 
+      webpage.template
+            .objects
+            .committee
+            .content
+            .forEach(instance => {
 
+              instance.members = instance.members.filter(obj =>
+                Object.keys(obj).length == 1
+              );
 
-                  event.template.objects.committee.content = event.template.objects
-                  .committee
-                  .content
-                  .filter(
-                    fetchedSchedule => fetchedSchedule.id != committee.id
-                  );
-
-                  event.template
-                        .objects
-                        .committee
-                        .content
-                        .push(committee);
-
-
-                  event.template
-                        .objects
-                        .committee
-                        .content
-                        .forEach(instance => {
-
-                          instance.members = instance.members.filter(obj =>
-                            Object.keys(obj).length == 1
-                          );
-
-                        });
-                  return event;
+            });
+      return webpage;
 
   }
 

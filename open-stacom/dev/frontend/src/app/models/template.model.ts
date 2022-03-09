@@ -19,6 +19,7 @@ export class Template implements Model {
   description?: string;
   avatar?:      string;
   mockup?:      string;
+  engine?:      string;
   sections?:    [];
   objects?:     {
     proceeding?: ProceedingTemplate;

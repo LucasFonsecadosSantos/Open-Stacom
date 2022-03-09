@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PhotoGalleryTemplateObjectEntity {
+public class PhotoGalleryTemplateObjectEntity implements ITemplateObjectEntity {
 
     private TemplateObjectRouteConfigEntity configRoute;
 

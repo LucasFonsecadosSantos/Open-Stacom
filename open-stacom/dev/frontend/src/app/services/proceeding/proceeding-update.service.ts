@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Proceeding, Event, Template } from 'src/app/models';
-import { environment } from 'src/environments/environment';
-import { EventUpdateService } from '../event';
+import { Proceeding, Webpage, Template } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +9,21 @@ import { EventUpdateService } from '../event';
 export class ProceedingUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(proceeding: Proceeding, event: Event): Observable<any> {
+  public update(proceeding: Proceeding, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(proceeding, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(proceeding, webpage));
 
   }
 
-  private _updateDataToEvent(proceeding: Proceeding, event: Event): Event {
+  private _updateDataToWebpage(proceeding: Proceeding, webpage: Webpage): Webpage {
 
-    event.template
+    webpage.template
           .objects
           .proceeding
-          .content = event.template.objects
+          .content = webpage.template.objects
                           .proceeding
                           .content
                           .filter(
@@ -33,13 +31,13 @@ export class ProceedingUpdateService {
                           );
 
 
-    event.template
+    webpage.template
          .objects
          .proceeding
          .content
          .push(proceeding);
 
-    return event;
+    return webpage;
 
   }
 }

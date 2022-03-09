@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Operation } from 'src/app/enums';
-import { Sponsor, Template, Event } from 'src/app/models';
+import { Sponsor, Template, Event, Webpage } from 'src/app/models';
 import { SharedSponsorService } from 'src/app/pages';
 import { SponsorFindService } from 'src/app/services/sponsor';
 import { SponsorFormService } from '../sponsor-form/sponsor-form.service';
@@ -13,7 +13,7 @@ import { SponsorFormService } from '../sponsor-form/sponsor-form.service';
 export class SponsorListComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public sponsorArray: Sponsor[];
 
@@ -32,7 +32,7 @@ export class SponsorListComponent implements OnInit {
   private _fetchSponsors(): void {
 
     this.sponsorArray = this._findService
-                            .list(this.event);
+                            .list(this.webpage);
 
   }
 

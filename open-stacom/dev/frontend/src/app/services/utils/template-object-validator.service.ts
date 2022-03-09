@@ -9,28 +9,30 @@ export class TemplateObjectValidatorService {
   constructor() { }
 
   public validate(templateModel, data: any): void {
-        
+
     Object.keys(templateModel)
           .forEach(
             templateField => {
-              console.log(templateField);
-              console.log(templateModel);
-              if (templateField != 'content' && templateField != 'configRoute' && templateField != 'id') {
-                this._checkTemplateProperty(templateModel[templateField], data[templateField]);
+              if (this._isFieldToValidate(templateField)) {
+                this._checkTemplateProperty(templateModel[templateField], templateField, data[templateField]);
               }
             }
           );
 
   }
 
-  private _checkTemplateProperty(templateField: FieldTemplate, data: any): void {
+  private _isFieldToValidate(fieldName: string): boolean {
+    return fieldName != 'content' && fieldName != 'configRoute' && fieldName != 'id' && fieldName != 'logo' && fieldName != 'avatar' && fieldName != 'picture';
+  }
+
+  private _checkTemplateProperty(templateField: FieldTemplate, fieldName: string, data: any): void {
 
     this._checkTemplateModelFieldConsistency(templateField);
-    if(this._checkRequiredConsistency(templateField.required, data)) {
-      this._checkMaxLengthConsistency(templateField.maxlength, data);
-      this._checkMinLengthConsistency(templateField.minlength, data);
+    if(this._checkRequiredConsistency(templateField.required, fieldName, data)) {
+      this._checkMaxLengthConsistency(templateField.maxlength, fieldName, data);
+      this._checkMinLengthConsistency(templateField.minlength, fieldName, data);
     }
-    
+
   }
 
   private _checkTemplateModelFieldConsistency(templateField: FieldTemplate): void {
@@ -41,32 +43,32 @@ export class TemplateObjectValidatorService {
 
   }
 
-  private _checkRequiredConsistency(required: boolean, data: any): boolean {
+  private _checkRequiredConsistency(required: boolean,  fieldName: string, data: any): boolean {
 
     if(required === true) {
       if(data === undefined || data === null) {
-        throw `The information ${data} cannot be null.`;
+        throw `The information ${fieldName} cannot be null.`;
       }
     }
     return false;
 
   }
 
-  private _checkMaxLengthConsistency(maxlength: number, data: any): void {
-    
+  private _checkMaxLengthConsistency(maxlength: number, fieldName: string, data: any): void {
+
     if(maxlength !== undefined) {
       if(data.length > maxlength) {
-        throw `The information ${data} exceeds the character max length.`;
+        throw `The information ${fieldName} exceeds the character max length.`;
       }
     }
 
   }
 
-  private _checkMinLengthConsistency(minlength: number, data: any): void {
+  private _checkMinLengthConsistency(minlength: number, fieldName: string, data: any): void {
 
     if(minlength !== undefined) {
       if(data.length < minlength) {
-        throw `The information ${data} exceeds the character min length.`;
+        throw `The information ${fieldName} exceeds the character min length.`;
       }
     }
 

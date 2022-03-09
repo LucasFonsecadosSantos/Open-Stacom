@@ -1,10 +1,9 @@
-import { catchError, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Event, Template } from './../../models';
-import { environment } from 'src/environments/environment';
+import { Event, Template, Webpage } from './../../models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,46 +11,23 @@ import { v4 as uuidv4 } from 'uuid';
 export class EventCreateService {
 
   constructor(
-    private http: HttpClient
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public createEvent(event: Event): Observable<Event> {
+  public create(event: Event, webpage: Webpage): Observable<Event> {
 
-    const token = uuidv4();
+    event.id = uuidv4();
 
-    return this.http.post<Event>(
-      `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
-      {
-        "id": token,
-        "event": event,
-        "token": token
-      },
-      {
-        reportProgress: true,
-        responseType: 'json',
-      }
-    );
+    return this._webpageUpdateService.update(this._addDataToWebpage(event, webpage));
+
   }
 
-  public create(template: Template): Observable<any> {
+  private _addDataToWebpage(event: Event, webpage: Webpage): Webpage {
 
-    const token = uuidv4();
+    webpage.template.objects.event.content = event;
 
-    return this.http.post(
-      `${environment.API_URL.BASE}${environment.API_URL.EVENT}`,
-      {
-        "id": token,
-        "template": template,
-        "token": token
-      },
-      {
-        reportProgress: true,
-        responseType: 'text'
-        // headers: new HttpHeaders(
-        //   {"Access-Control-Allow-Origin": "*"}
-        // )
-      }
-    );
+    return webpage;
+
   }
 
 }

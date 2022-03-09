@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAllStates, getAllCities, getStateCities } from 'easy-location-br';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,8 @@ import { EventCreateService, EventUpdateService } from 'src/app/services/event';
 import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
 import {
   Event,
-  Template
+  Template,
+  Webpage
 } from './../../../models';
 
 @Component({
@@ -16,7 +17,12 @@ import {
 })
 export class EventFormComponent implements OnInit {
 
+  @ViewChild('eventForm')
+  public eventForm: EventFormComponent;
+
   @Input()
+  public webpage: Webpage;
+
   public event: Event;
 
   @Input()
@@ -43,7 +49,8 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.states = getAllStates();
-    this.tmpDays = this.event.days ? this.event.days : [];
+    this.tmpDays = this.webpage.template.objects.event.content.days ? this.webpage.template.objects.event.content.days : [];
+    this.event = this.webpage.template.objects.event.content;
     this._setEventTypes();
 
   }
@@ -79,12 +86,12 @@ export class EventFormComponent implements OnInit {
           .fetchInformationFromCEP(cep)
           .subscribe(
             response => {
-              this.event.locationCep = response.cep,
-              this.event.locationCity = response.localidade,
-              this.event.locationAddress = response.logradouro,
-              this.event.locationUF = response.uf,
-              this.event.locationNeiborhood = response.bairro,
-              this.event.locationCountry = 'Brasil'
+              this.webpage.template.objects.event.content.locationCep = response.cep,
+              this.webpage.template.objects.event.content.locationCity = response.localidade,
+              this.webpage.template.objects.event.content.locationAddress = response.logradouro,
+              this.webpage.template.objects.event.content.locationUF = response.uf,
+              this.webpage.template.objects.event.content.locationNeiborhood = response.bairro,
+              this.webpage.template.objects.event.content.locationCountry = 'Brasil'
             }
           );
 
@@ -104,9 +111,11 @@ export class EventFormComponent implements OnInit {
 
 
     try {
-      this._validatorService.validate(this.event.template.objects.event, event);
+
+      this._validatorService.validate(this.webpage.template.objects.event, this._loadForm(event));
+
       this._createService
-        .create(this.event.template)
+        .create(this._loadForm(event), this.webpage)
         .subscribe({
 
           next: response => {
@@ -116,7 +125,7 @@ export class EventFormComponent implements OnInit {
             );
 
             if (this.preLoad) {
-              this._router.navigate([`inicio/${this.event.id}`]);
+              this._router.navigate([`inicio/${this.webpage.id}`]);
             }
 
           },
@@ -140,9 +149,9 @@ export class EventFormComponent implements OnInit {
   private _update(event: Event): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.event, event);
+      this._validatorService.validate(this.webpage.template.objects.event, this._loadForm(event));
       this._updateService
-          .update(this._loadForm(event))
+          .update(this._loadForm(event), this.webpage)
           .subscribe({
 
             next: response => {
@@ -152,7 +161,7 @@ export class EventFormComponent implements OnInit {
               );
 
               if (this.preLoad) {
-                this._router.navigate([`inicio/${this.event.id}`]);
+                this._router.navigate([`inicio/${this.webpage.id}`]);
               }
 
             },
@@ -231,7 +240,6 @@ export class EventFormComponent implements OnInit {
       "telephones": this.tmpTelephones ? this.tmpTelephones : [],
       "poweredByInstitution": data.poweredByInstitution ? data.poweredByInstitution : '',
       "poweredByDepartment": data.poweredByDepartment ? data.poweredByDepartment : '',
-      "template": data.template,
       "days": this.tmpDays ? this.tmpDays : [],
       "locationCep": data.locationCep ? data.locationCep : '',
       "locationAddress": data.locationAddress ? data.locationAddress : '',

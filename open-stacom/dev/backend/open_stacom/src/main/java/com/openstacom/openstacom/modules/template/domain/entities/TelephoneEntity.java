@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @ToString
-public class TelephoneEntity {
+public class TelephoneEntity implements ITemplateEntity {
 
     @NotBlank
     private String name;

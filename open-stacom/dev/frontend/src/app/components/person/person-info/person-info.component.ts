@@ -2,7 +2,7 @@ import { PersonFormService } from './../person-form/person-form.service';
 import { ConfirmDialogService } from './../../dialog/confirm-dialog/confirm-dialog.service';
 import { PersonDeleteService } from './../../../services/person/person-delete.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Person } from 'src/app/models';
+import { Person, Webpage } from 'src/app/models';
 import { Operation } from 'src/app/enums';
 import { Event } from './../../../models';
 import { SharedPersonService } from 'src/app/pages';
@@ -15,7 +15,7 @@ import { SharedPersonService } from 'src/app/pages';
 export class PersonInfoComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   person: Person;
 
@@ -64,7 +64,7 @@ export class PersonInfoComponent implements OnInit {
     this._confirmDialogService.getResponseObservable().subscribe(
         response => {
           if (response) {
-            this._personDeleteService.delete(this.person, this.event);
+            this._personDeleteService.delete(this.person, this.webpage);
           }
         }
     );

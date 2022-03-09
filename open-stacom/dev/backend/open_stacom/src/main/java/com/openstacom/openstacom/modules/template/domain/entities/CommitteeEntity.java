@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CommitteeEntity {
+public class CommitteeEntity implements ITemplateEntity {
 
     @NotBlank
     private String id;

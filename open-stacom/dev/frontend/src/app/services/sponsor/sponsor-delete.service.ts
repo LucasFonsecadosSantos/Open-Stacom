@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event, Sponsor } from 'src/app/models';
-import { environment } from 'src/environments/environment';
-import { EventUpdateService } from '../event';
+import { Webpage, Sponsor } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,34 +9,34 @@ import { EventUpdateService } from '../event';
 export class SponsorDeleteService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(sponsor: Sponsor, event: Event): Observable<any> {
+  public delete(sponsor: Sponsor, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(sponsor, event))
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-
-    return this._eventUpdateService
-                .update(this._removeAllSponsor(event))
+    return this._webpageUpdateService
+                .update(this._getWebpage(sponsor, webpage))
 
   }
 
-  private _removeAllSponsor(event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
 
-    event.template.objects.sponsor.content = [];
-    return event;
+    return this._webpageUpdateService
+                .update(this._removeAllSponsor(webpage))
 
   }
 
-  private _getEvent(sponsor: Sponsor, event: Event): Event {
+  private _removeAllSponsor(webpage: Webpage): Webpage {
+
+    webpage.template.objects.sponsor.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(sponsor: Sponsor, webpage: Webpage): Webpage {
 
 
-    event.template.objects.sponsor.content.forEach(
+    webpage.template.objects.sponsor.content.forEach(
       fetched => {
         if (fetched.id != sponsor.id) {
           fetched = null;
@@ -46,13 +44,13 @@ export class SponsorDeleteService {
       }
     );
 
-      return event;
+      return webpage;
 
   }
 
-  private _removeSponsorFromEvent(sponsor: Sponsor, event: Event): Sponsor[] {
-    console.log(sponsor);
-    return event.template.objects.sponsor.content.filter(fetched => fetched.id != sponsor.id);
+  private _removeSponsorFromWebpage(sponsor: Sponsor, webpage: Webpage): Sponsor[] {
+
+    return webpage.template.objects.sponsor.content.filter(fetched => fetched.id != sponsor.id);
 
   }
 }

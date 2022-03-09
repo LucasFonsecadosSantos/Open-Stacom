@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activity, Event } from 'src/app/models';
-import { environment } from 'src/environments/environment';
-import { EventUpdateService } from '../event';
+import { Activity, Webpage } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +9,18 @@ import { EventUpdateService } from '../event';
 export class ActivityUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(activity: Activity, event: Event): Observable<any> {
+  public update(activity: Activity, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(activity, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(activity, webpage));
 
   }
 
-  private _updateDataToEvent(activity: Activity, event: Event): Event {
+  private _updateDataToWebpage(activity: Activity, webpage: Webpage): Webpage {
 
-    event.template.objects.activity.content = event.template.objects
+    webpage.template.objects.activity.content = webpage.template.objects
                   .activity
                   .content
                   .filter(
@@ -31,7 +29,7 @@ export class ActivityUpdateService {
 
     activity.responsible = {'id': activity.responsible.id };
     activity.pricePlan = {'id': activity.pricePlan.id };
-    event.template
+    webpage.template
           .objects
           .activity
           .content
@@ -44,13 +42,13 @@ export class ActivityUpdateService {
             }
           );
 
-    event.template
+    webpage.template
          .objects
          .activity
          .content
          .push(activity);
 
-    return event;
+    return webpage;
 
   }
 

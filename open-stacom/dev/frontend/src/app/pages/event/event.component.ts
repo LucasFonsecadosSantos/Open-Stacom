@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Template, Event } from 'src/app/models';
-import { EventFindService } from 'src/app/services/event';
-import { TemplateFindService } from 'src/app/services/templates';
+import { Template, Event, Webpage } from 'src/app/models';
 import { ExcelExportService } from 'src/app/services/utils';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 
 @Component({
   selector: 'app-event',
@@ -14,19 +13,19 @@ import { ExcelExportService } from 'src/app/services/utils';
 export class EventComponent implements OnInit {
 
   public isDataLoaded: boolean = false;
-  public event: Event;
+  public webpage: Webpage;
   public entityDownloadURL: SafeUrl;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _exportService: ExcelExportService,
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
 
   }
 
@@ -42,31 +41,32 @@ export class EventComponent implements OnInit {
   }
 
   public downloadEntitySource(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage);
     this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );
   }
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
+          webpage => {
+            this.webpage = webpage;
+            //this.event = webpage.template.objects.event.content;
             this.isDataLoaded = true;
           }
         );

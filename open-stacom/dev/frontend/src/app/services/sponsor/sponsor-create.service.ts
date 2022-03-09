@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event } from 'src/app/models';
+import { Webpage } from 'src/app/models';
 import { Sponsor } from 'src/app/models/sponsor.model';
 import { v4 as uuidv4 } from 'uuid';
-import { EventUpdateService } from '../event';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,20 @@ import { EventUpdateService } from '../event';
 export class SponsorCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(sponsor: Sponsor, event: Event): Observable<any> {
+  public create(sponsor: Sponsor, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(sponsor, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(sponsor, webpage));
 
   }
 
-  private _addDataToEvent(sponsor: Sponsor, event: Event): Event {
+  private _addDataToWebpage(sponsor: Sponsor, webpage: Webpage): Webpage {
 
     sponsor.id = uuidv4();
-    event.template.objects.sponsor.content.push(sponsor);
-    return event;
+    webpage.template.objects.sponsor.content.push(sponsor);
+    return webpage;
 
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PreviousEdition, Event } from 'src/app/models';
+import { PreviousEdition, Webpage } from 'src/app/models';
 import { environment } from 'src/environments/environment';
-import { EventFindService } from '../event';
+import { WebpageFindService } from '../webpage/webpage-find.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,13 @@ import { EventFindService } from '../event';
 export class PreviousEditionFindService {
 
   constructor(
-    private _eventFindService: EventFindService
+    private _webpageFindService: WebpageFindService
   ) { }
 
-  public list(event: Event): PreviousEdition[] {
+  public list(webpage: Webpage): PreviousEdition[] {
 
-    let edition: PreviousEdition[] = event.template.objects.pastEdition.content;
-    this._buildSources(edition, event);
+    let edition: PreviousEdition[] = webpage.template.objects.pastEdition.content;
+    this._buildSources(edition, webpage);
 
     return edition;
 
@@ -27,20 +27,20 @@ export class PreviousEditionFindService {
 
   }
 
-  private _buildSources(editionsArray: PreviousEdition[], event: Event): PreviousEdition[] {
+  private _buildSources(editionsArray: PreviousEdition[], webpage: Webpage): PreviousEdition[] {
 
     editionsArray.forEach(edition => {
-      edition.logo = this._buildEditionAvatarSource(edition.logo, event.id);
+      edition.logo = this._buildEditionAvatarSource(edition.logo, webpage.id);
     })
 
     return editionsArray;
 
   }
 
-  private _buildEditionAvatarSource(editionAvatar: string, eventID: string): string {
+  private _buildEditionAvatarSource(editionAvatar: string, webpageID: string): string {
 
     return (editionAvatar && (editionAvatar != null) && (editionAvatar.length > 0)) ?
-            editionAvatar = `/data/${eventID}/img/avatar/${editionAvatar}` :
+            editionAvatar = `/data/${webpageID}/img/avatar/${editionAvatar}` :
             environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }

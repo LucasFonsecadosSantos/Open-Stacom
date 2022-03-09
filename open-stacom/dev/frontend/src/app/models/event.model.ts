@@ -3,7 +3,6 @@ import { Template } from "./../models";
 export class Event implements Model {
 
   id?: string;
-  token?: string;
   name?: string;
   edition?: string;
   subject?: string;
@@ -17,7 +16,7 @@ export class Event implements Model {
   telephones?: {
     name: string,
     number: string
-  }[]
+  }[];
   poweredByInstitution?: string;
   poweredByDepartment?: string;
   days?: Date[];
@@ -37,6 +36,5 @@ export class Event implements Model {
   socialNetworkWhatsapp?: string;
   socialNetworkBehance?: string;
   socialNetworkYoutubeChannel?: string;
-  template: Template;
 
 }

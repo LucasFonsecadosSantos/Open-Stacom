@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Operation, OperationResult } from 'src/app/enums';
-import { Template, Event, PricePlan } from 'src/app/models';
+import { Template, Event, PricePlan, Webpage } from 'src/app/models';
 import { FormModel } from 'src/app/models/form-model.model';
 import { PricePlanCreateService, PricePlanDeleteService, PricePlanUpdateService } from 'src/app/services/price-plan';
 import { TemplateObjectValidatorService } from 'src/app/services/utils';
@@ -19,7 +19,7 @@ export class PriceFormComponent implements OnInit {
   public priceForm: PriceFormComponent;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public pricePlan: PricePlan;
 
@@ -109,7 +109,7 @@ export class PriceFormComponent implements OnInit {
 
   public delete(pricePlan: PricePlan): void {
 
-    this._deleteService.delete(pricePlan, this.event);
+    this._deleteService.delete(pricePlan, this.webpage);
     this._modalService.dismissAll('Cross click');
 
   }
@@ -127,9 +127,9 @@ export class PriceFormComponent implements OnInit {
   private _create(pricePlan: PricePlan): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._validatorService.validate(this.webpage.template.objects.pricePlan, pricePlan);
       this._createService
-        .create(this._loadForm(pricePlan), this.event)
+        .create(this._loadForm(pricePlan), this.webpage)
         .subscribe({
 
           next: response => {
@@ -159,9 +159,9 @@ export class PriceFormComponent implements OnInit {
   private _update(pricePlan: PricePlan): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.pricePlan, pricePlan);
+      this._validatorService.validate(this.webpage.template.objects.pricePlan, pricePlan);
       this._updateService
-        .update(this._loadForm(pricePlan), this.event)
+        .update(this._loadForm(pricePlan), this.webpage)
         .subscribe({
 
           next: response => {
@@ -179,7 +179,7 @@ export class PriceFormComponent implements OnInit {
           }
 
         });
-        
+
     } catch(exception) {
       this._showErrorToast(
         `Ops: Parece que houve um erro ao validar as informações de ${pricePlan.name}. ERRO: ${exception}`

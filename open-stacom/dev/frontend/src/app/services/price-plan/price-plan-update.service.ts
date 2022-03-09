@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PricePlan } from 'src/app/models';
-import { environment } from 'src/environments/environment';
-import { EventUpdateService } from '../event';
-import { Event } from './../../models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
+import { Webpage } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +10,21 @@ import { Event } from './../../models';
 export class PricePlanUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(pricePlan: PricePlan, event: Event): Observable<any> {
+  public update(pricePlan: PricePlan, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(pricePlan, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(pricePlan, webpage));
 
   }
 
-  private _updateDataToEvent(pricePlan: PricePlan, event: Event): Event {
+  private _updateDataToWebpage(pricePlan: PricePlan, webpage: Webpage): Webpage {
 
-    event.template
+    webpage.template
           .objects
           .pricePlan
-          .content = event.template
+          .content = webpage.template
                   .objects
                   .pricePlan
                   .content
@@ -34,13 +32,13 @@ export class PricePlanUpdateService {
                     fetchedSchedule => fetchedSchedule.id != pricePlan.id
                   );
 
-    event.template
+    webpage.template
           .objects
           .pricePlan
           .content
           .push(pricePlan);
 
-    return event;
+    return webpage;
   }
 
 }

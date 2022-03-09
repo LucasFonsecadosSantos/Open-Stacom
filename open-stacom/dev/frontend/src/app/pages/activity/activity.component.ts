@@ -6,10 +6,12 @@ import { ConfirmDialogService } from 'src/app/components/dialog';
 import { Operation } from 'src/app/enums';
 import { EventFindService } from 'src/app/services/event';
 import { ExcelExportService } from 'src/app/services/utils';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 import {
   Activity,
   Event,
-  Template
+  Template,
+  Webpage
 } from './../../models';
 @Component({
   selector: 'app-activity',
@@ -21,7 +23,7 @@ export class ActivityComponent implements OnInit {
   @ViewChild("ActivityListComponent")
   public activityListComponent: ActivityListComponent;
 
-  public event: Event;
+  public webpage: Webpage;
 
   public template: Template;
 
@@ -34,7 +36,7 @@ export class ActivityComponent implements OnInit {
     private _exportExcelService: ExcelExportService,
     // private _personFormService: PersonFormService,
     // private _personDeleteService: PersonDeleteService,
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: ActivityFormService,
     private _confirmDialogService: ConfirmDialogService,
@@ -43,30 +45,30 @@ export class ActivityComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
     this._getResponseObservables();
 
   }
 
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
+          webpage => {
+            this.webpage = webpage;
             this.isDataLoaded = true;
           }
         );
@@ -81,17 +83,17 @@ export class ActivityComponent implements OnInit {
 
   public hasData(): boolean {
 
-    return  this.event &&
-            this.event.template &&
-            this.event.template.objects &&
-            this.event.template.objects.activity &&
-            this.event.template.objects.activity.content &&
-            this.event.template.objects.activity.content.length > 0;
+    return  this.webpage &&
+            this.webpage.template &&
+            this.webpage.template.objects &&
+            this.webpage.template.objects.activity &&
+            this.webpage.template.objects.activity.content &&
+            this.webpage.template.objects.activity.content.length > 0;
   }
 
   public downloadEntitySource(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event.template.objects.activity.content);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage.template.objects.activity.content);
     this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );

@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event } from 'src/app/models';
+import { Webpage } from 'src/app/models';
 import { Schedule } from 'src/app/models/schedule.model';
-import { EventUpdateService } from '../event';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +10,18 @@ import { EventUpdateService } from '../event';
 export class ScheduleUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(schedule: Schedule, event: Event): Observable<any> {
+  public update(schedule: Schedule, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(schedule, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(schedule, webpage));
 
   }
 
-  private _updateDataToEvent(schedule: Schedule, event: Event): Event {
+  private _updateDataToWebpage(schedule: Schedule, webpage: Webpage): Webpage {
 
-    event.template.objects.schedule.content = event.template.objects
+    webpage.template.objects.schedule.content = webpage.template.objects
                   .schedule
                   .content
                   .filter(
@@ -30,7 +29,7 @@ export class ScheduleUpdateService {
                   );
 
     schedule.activity = {'id': schedule.activity.id};
-    event.template
+    webpage.template
           .objects
           .schedule
           .content
@@ -38,7 +37,7 @@ export class ScheduleUpdateService {
             schedule =>
               schedule.activity = {'id': schedule.activity.id}
             );
-    event.template
+    webpage.template
           .objects
           .activity
           .content
@@ -46,13 +45,13 @@ export class ScheduleUpdateService {
             activity =>
               activity.responsible = {'id': activity.responsible.id}
             );
-    event.template.objects
+    webpage.template.objects
                 .schedule
                 .content
                 .push(schedule);
 
 
-    return event;
+    return webpage;
 
   }
 }

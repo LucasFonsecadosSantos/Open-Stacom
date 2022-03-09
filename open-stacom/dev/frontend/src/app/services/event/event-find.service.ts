@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-import { Event } from './../../models';
+import { Event, Webpage } from './../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +11,17 @@ import { Event } from './../../models';
 export class EventFindService {
 
   constructor(
-    private http: HttpClient
   ) { }
 
-  public find(eventID: string): Observable<Event> {
+  public find(webpage: Webpage): Webpage {
 
-    return this.http.get<Event>(
-      `${environment.API_URL.BASE}${environment.API_URL.EVENT}/${eventID}`,
-      {
-        responseType: 'json',
-        headers: new HttpHeaders().set('AUTH_TOKEN', `${eventID}`)
-      }
-    ).pipe(
-      map(
-        event => {
-          event.logo = this._buildSources(event);
-          return event;
-        }
-      )
-    );
+    webpage.template
+            .objects
+            .event
+            .content
+            .logo = this._buildSources(webpage.template.objects.event.content);
+
+    return webpage.template.objects.event.content;
 
   }
 

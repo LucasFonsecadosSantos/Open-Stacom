@@ -1,9 +1,7 @@
-import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Person, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Person, Webpage } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,32 +9,31 @@ import { EventUpdateService } from '../event';
 export class PersonUpdateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public update(person: Person, event: Event): Observable<any> {
+  public update(person: Person, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._updateDataToEvent(person, event));
+    return this._webpageUpdateService.update(this._updateDataToWebpage(person, webpage));
 
   }
 
-  private _updateDataToEvent(person: Person, event: Event): Event {
+  private _updateDataToWebpage(person: Person, webpage: Webpage): Webpage {
 
-    event.template.objects.person.content = event.template.objects
+    webpage.template.objects.person.content = webpage.template.objects
                   .person
                   .content
                   .filter(
                     fetchedSchedule => fetchedSchedule.id != person.id
                   );
 
-
-    event.template
+    webpage.template
          .objects
          .person
          .content
          .push(person);
 
-    return event;
+    return webpage;
 
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activity, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Activity, Webpage } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +9,34 @@ import { EventUpdateService } from '../event';
 export class ActivityDeleteService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(activity: Activity, event: Event): Observable<any> {
+  public delete(activity: Activity, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(activity, event));
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-
-    return this._eventUpdateService
-                .update(this._removeAllActivity(event));
+    return this._webpageUpdateService
+                .update(this._getWebpage(activity, webpage));
 
   }
 
-  private _removeAllActivity(event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
 
-    event.template.objects.activity.content = [];
-    return event;
+    return this._webpageUpdateService
+                .update(this._removeAllActivity(webpage));
 
   }
 
-  private _getEvent(activity: Activity, event: Event): Event {
+  private _removeAllActivity(webpage: Webpage): Webpage {
+
+    webpage.template.objects.activity.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(activity: Activity, webpage: Webpage): Webpage {
 
 
-    event.template.objects.activity.content.forEach(
+    webpage.template.objects.activity.content.forEach(
       fetched => {
         if (fetched.id != activity.id) {
           fetched = null;
@@ -44,13 +44,13 @@ export class ActivityDeleteService {
       }
     );
 
-      return event;
+      return webpage;
 
   }
 
-  private _removeActivityFromEvent(activity: Activity, event: Event): Activity[] {
+  private _removeActivityFromWebpage(activity: Activity, webpage: Webpage): Activity[] {
 
-    return event.template.objects.activity.content.filter(fetched => fetched.id != activity.id);
+    return webpage.template.objects.activity.content.filter(fetched => fetched.id != activity.id);
 
   }
 

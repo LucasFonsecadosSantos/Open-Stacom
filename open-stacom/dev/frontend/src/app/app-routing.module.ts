@@ -22,7 +22,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "inicio/:eventID",
+    path: "inicio/:webpageID",
     component: AdminLayoutComponent,
     children: [
       {

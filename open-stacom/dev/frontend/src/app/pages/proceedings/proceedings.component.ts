@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { ProceedingFormService, ProceedingListComponent } from 'src/app/components/proceeding';
 import { Operation } from 'src/app/enums';
-import { Template, Event } from 'src/app/models';
+import { Template, Event, Webpage } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
 import { ProceedingDeleteService } from 'src/app/services/proceeding';
 import { TemplateFindService } from 'src/app/services/templates';
 import { ExcelExportService } from 'src/app/services/utils';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 
 @Component({
   selector: 'app-proceedings',
@@ -20,9 +21,7 @@ export class ProceedingsComponent implements OnInit {
   @ViewChild("proceedingListComponent")
   public proceedingListComponent: ProceedingListComponent;
 
-  public event: Event;
-
-  public template: Template;
+  public webpage: Webpage;
 
   public isDataLoaded: boolean = false;
 
@@ -33,8 +32,7 @@ export class ProceedingsComponent implements OnInit {
     private _exportExcelService: ExcelExportService,
     // private _personFormService: PersonFormService,
     private _deleteService: ProceedingDeleteService,
-    private _templateFindService: TemplateFindService,
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: ProceedingFormService,
     private _confirmDialogService: ConfirmDialogService,
@@ -43,30 +41,30 @@ export class ProceedingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
     this._getResponseObservables();
 
   }
 
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
+          webpage => {
+            this.webpage = webpage;
             this.isDataLoaded = true;
           }
         );
@@ -78,12 +76,12 @@ export class ProceedingsComponent implements OnInit {
 
   public hasData(): boolean {
 
-    return  this.event &&
-            this.event.template &&
-            this.event.template.objects &&
-            this.event.template.objects.proceeding &&
-            this.event.template.objects.proceeding.content &&
-            this.event.template.objects.proceeding.content.length > 0;
+    return  this.webpage &&
+            this.webpage.template &&
+            this.webpage.template.objects &&
+            this.webpage.template.objects.proceeding &&
+            this.webpage.template.objects.proceeding.content &&
+            this.webpage.template.objects.proceeding.content.length > 0;
   }
 
   public deleteAllProceedings(): void {
@@ -107,8 +105,8 @@ export class ProceedingsComponent implements OnInit {
   }
 
   public downloadEntitySource(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event.template.objects.proceeding.content);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage.template.objects.proceeding.content);
     this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );

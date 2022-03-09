@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event, Proceeding } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Webpage, Proceeding } from 'src/app/models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +10,26 @@ import { v4 as uuidv4 } from 'uuid';
 export class ProceedingCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(proceeding: Proceeding, event: Event): Observable<any> {
+  public create(proceeding: Proceeding, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(proceeding, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(proceeding, webpage));
 
   }
 
-  private _addDataToEvent(proceeding: Proceeding, event: Event): Event {
+  private _addDataToWebpage(proceeding: Proceeding, webpage: Webpage): Webpage {
 
     proceeding.id = uuidv4();
 
-    event.template
+    webpage.template
           .objects
           .proceeding
           .content
           .push(proceeding);
 
-    return event;
+    return webpage;
 
   }
 }

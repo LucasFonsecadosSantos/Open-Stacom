@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TemplateObjectEntity {
+public class TemplateObjectEntity implements ITemplateObjectEntity {
 
     private ProceedingTemplateObjectEntity proceeding;
 

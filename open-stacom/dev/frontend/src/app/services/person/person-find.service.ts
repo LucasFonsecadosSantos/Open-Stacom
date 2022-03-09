@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Person, Event } from './../../models';
+import { Person, Webpage } from './../../models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,10 +9,10 @@ export class PersonFindService {
 
   constructor() { }
 
-  public find(id: string, event: Event): Person {
+  public find(id: string, webpage: Webpage): Person {
 
-    let person: Person = this._getByID(id, event.template.objects.person.content);
-    this._buildSources([person], event);
+    let person: Person = this._getByID(id, webpage.template.objects.person.content);
+    this._buildSources([person], webpage);
 
     return person;
   }
@@ -23,29 +23,29 @@ export class PersonFindService {
 
   }
 
-  public list(event: Event): Person[] {
+  public list(webpage: Webpage): Person[] {
 
-    let person: Person[] = event.template.objects.person.content;
-    this._buildSources(person, event);
+    let person: Person[] = webpage.template.objects.person.content;
+    this._buildSources(person, webpage);
 
     return person;
 
   }
 
-  private _buildSources(personArray: Person[], event: Event): Person[] {
+  private _buildSources(personArray: Person[], webpage: Webpage): Person[] {
 
     personArray.forEach(person => {
-      person.avatar = this._buildPersonAvatarSource(person.avatar, event);
+      person.avatar = this._buildPersonAvatarSource(person.avatar, webpage);
     })
 
     return personArray;
 
   }
 
-  private _buildPersonAvatarSource(personAvatar: string, event: Event): string {
+  private _buildPersonAvatarSource(personAvatar: string, webpage: Webpage): string {
 
     return (personAvatar && (personAvatar != null) && (personAvatar.length > 0)) ?
-            personAvatar = `/data/${event.id}/img/avatar/${personAvatar}` :
+            personAvatar = `/data/${webpage.id}/img/avatar/${personAvatar}` :
             environment.DEFAULT_AVATAR_PICTURE_PATH;
 
   }

@@ -11,12 +11,12 @@ export class PreviousEditionDeleteService {
     private _http: HttpClient
   ) { }
 
-  public delete(personID: string, eventID: string): Observable<any> {
+  public delete(personID: string, webpageID: string): Observable<any> {
     //return this._http.delete(`${environment.API_URL.BASE}${environment.API_URL.PERSON}/${personID}`);
     return null;
   }
 
-  public deleteAll(eventID: string): Observable<any> {
+  public deleteAll(webpageID: string): Observable<any> {
     //return this._http.delete()
     return null;
   }

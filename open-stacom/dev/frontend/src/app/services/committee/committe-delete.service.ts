@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Committee, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { Committee, Webpage } from 'src/app/models';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +9,34 @@ import { EventUpdateService } from '../event';
 export class CommitteDeleteService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public delete(committee: Committee, event: Event): Observable<any> {
+  public delete(committee: Committee, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService
-                .update(this._getEvent(committee, event));
-
-  }
-
-  public deleteAll(event: Event): Observable<any> {
-
-    return this._eventUpdateService
-                .update(this._removeAllActivity(event));
+    return this._webpageUpdateService
+                .update(this._getWebpage(committee, webpage));
 
   }
 
-  private _removeAllActivity(event: Event): Event {
+  public deleteAll(webpage: Webpage): Observable<any> {
 
-    event.template.objects.committee.content = [];
-    return event;
+    return this._webpageUpdateService
+                .update(this._removeAllActivity(webpage));
 
   }
 
-  private _getEvent(committee: Committee, event: Event): Event {
+  private _removeAllActivity(webpage: Webpage): Webpage {
+
+    webpage.template.objects.committee.content = [];
+    return webpage;
+
+  }
+
+  private _getWebpage(committee: Committee, webpage: Webpage): Webpage {
 
 
-    event.template.objects.committee.content.forEach(
+    webpage.template.objects.committee.content.forEach(
       fetched => {
         if (fetched.id != committee.id) {
           fetched = null;
@@ -44,13 +44,13 @@ export class CommitteDeleteService {
       }
     );
 
-      return event;
+      return webpage;
 
   }
 
-  private _removeActivityFromEvent(committee: Committee, event: Event): Committee[] {
+  private _removeActivityFromWebpage(committee: Committee, webpage: Webpage): Committee[] {
 
-    return event.template.objects.committee.content.filter(fetched => fetched.id != committee.id);
+    return webpage.template.objects.committee.content.filter(fetched => fetched.id != committee.id);
 
   }
 

@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.modules.template.infrastructure;
+package com.openstacom.openstacom.modules.template.configuration;
 
 import com.openstacom.openstacom.OpenStacomApplication;
 import com.openstacom.openstacom.modules.template.application.rest.controllers.TemplateController;

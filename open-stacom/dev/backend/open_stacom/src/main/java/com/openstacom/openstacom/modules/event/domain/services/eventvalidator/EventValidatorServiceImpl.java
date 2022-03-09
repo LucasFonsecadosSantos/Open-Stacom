@@ -1,6 +1,6 @@
 package com.openstacom.openstacom.modules.event.domain.services.eventvalidator;
 
-import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
+import com.openstacom.openstacom.modules.template.domain.entities.templateobject.EventEntity;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -8,18 +8,18 @@ import java.lang.reflect.Field;
 public class EventValidatorServiceImpl implements IEventValidatorService {
 
     @Override
-    public void validate(EventEntity eventDTO) throws Exception {
+    public void validate(EventEntity eventEntity) throws Exception {
 
-        validateEventTemplateObjectFields(eventDTO);
+        validateEventTemplateObjectFields(eventEntity);
 
     }
 
-    private void validateEventTemplateObjectFields(EventEntity eventDTO) throws Exception {
+    private void validateEventTemplateObjectFields(EventEntity eventEntity) throws Exception {
         
-        if (eventDTO.getTemplate() != null) {
-            ReflectionUtils.doWithFields(eventDTO.getClass(), field -> {
+        if (eventEntity.getTemplate() != null) {
+            ReflectionUtils.doWithFields(eventEntity.getClass(), field -> {
                 try {
-                    fieldValidation(field, eventDTO);
+                    fieldValidation(field, eventEntity);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -30,9 +30,9 @@ public class EventValidatorServiceImpl implements IEventValidatorService {
 
     }
 
-    private void fieldValidation(Field field, EventEntity dto) throws Exception{
+    private void fieldValidation(Field field, EventEntity eventEntity) throws Exception{
 
-        if (field.get(dto) == null) {
+        if (field.get(eventEntity) == null) {
             throw new Exception();
         }
 

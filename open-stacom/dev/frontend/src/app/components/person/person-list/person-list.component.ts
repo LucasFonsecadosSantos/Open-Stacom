@@ -4,7 +4,8 @@ import { Component, Input, OnInit} from '@angular/core';
 import {
   Event,
   Person,
-  Template
+  Template,
+  Webpage
 } from 'src/app/models';
 import { PersonFormService } from '..';
 import { Operation } from 'src/app/enums';
@@ -17,10 +18,7 @@ import { Operation } from 'src/app/enums';
 export class PersonListComponent implements OnInit {
 
   @Input()
-  public event: Event;
-
-  @Input()
-  public template: Template;
+  public webpage: Webpage;
 
   public personArray: Person[];
 
@@ -64,7 +62,7 @@ export class PersonListComponent implements OnInit {
   private _listPeople(): void {
 
     this.personArray = this._personFindService
-                            .list(this.event)
+                            .list(this.webpage)
 
     this._sharedPersonService
         .sharedPersonFromListToInfo(

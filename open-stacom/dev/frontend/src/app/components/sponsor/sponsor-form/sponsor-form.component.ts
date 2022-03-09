@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Operation } from 'src/app/enums';
 import { SponsorshipPlan } from 'src/app/enums/sponsorship-plan.enum';
-import { Event } from 'src/app/models';
+import { Event, Webpage } from 'src/app/models';
 import { Sponsor } from 'src/app/models/sponsor.model';
 import { SponsorCreateService, SponsorDeleteService, SponsorUpdateService } from 'src/app/services/sponsor';
 import { CepService, TemplateObjectValidatorService } from 'src/app/services/utils';
@@ -22,7 +22,7 @@ export class SponsorFormComponent implements OnInit {
   public sponsorForm: SponsorFormComponent;
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public sponsor: Sponsor;
 
@@ -150,7 +150,7 @@ export class SponsorFormComponent implements OnInit {
 
   public delete(sponsor: Sponsor): void {
 
-    this._deleteService.delete(sponsor, this.event);
+    this._deleteService.delete(sponsor, this.webpage);
     this._modalService.dismissAll('Cross click');
 
   }
@@ -198,9 +198,9 @@ export class SponsorFormComponent implements OnInit {
   private _update(sponsor: Sponsor): void {
 
     try {
-      this._validatorService.validate(this.event.template.objects.sponsor, sponsor);
+      this._validatorService.validate(this.webpage.template.objects.sponsor, this._loadForm(sponsor));
       this._updateService
-        .update(this._loadForm(sponsor), this.event)
+        .update(this._loadForm(sponsor), this.webpage)
         .subscribe({
 
           next: response => {
@@ -229,9 +229,9 @@ export class SponsorFormComponent implements OnInit {
 
   private _create(data): void {
     try {
-      this._validatorService.validate(this.event.template.objects.sponsor, data);
+      this._validatorService.validate(this.webpage.template.objects.sponsor, this._loadForm(data));
       this._createService
-        .create(this._loadForm(data), this.event)
+        .create(this._loadForm(data), this.webpage)
         .subscribe({
 
           next: response => {

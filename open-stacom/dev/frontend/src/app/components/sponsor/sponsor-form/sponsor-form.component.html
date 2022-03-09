@@ -12,7 +12,7 @@
         <div class=" card-body">
             <div class="row" *ngIf="sponsorFormModel.operation == operationUpdate">
               <div class="col-md-12">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.name">
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.name">
                   <label> ID</label>
                   <input
                     [(ngModel)]="sponsor.id"
@@ -27,8 +27,8 @@
             </div>
             <div class=" row">
               <div class=" col-md-6 pr-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.name">
-                  <label> Nome <span *ngIf="event.template.objects.sponsor.name.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.name">
+                  <label> Nome <span *ngIf="this.webpage.template.objects.sponsor.name.required">*</span></label>
                   <input
                   [(ngModel)]="sponsor.name"
                     class=" form-control"
@@ -40,8 +40,8 @@
                 </div>
               </div>
               <div class=" col-md-3 px-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.sponsorshipPlan">
-                  <label> Plano <span *ngIf="event.template.objects.sponsor.sponsorshipPlan.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.sponsorshipPlan">
+                  <label> Plano <span *ngIf="this.webpage.template.objects.sponsor.sponsorshipPlan.required">*</span></label>
                   <select
                     [(ngModel)]="sponsor.sponsorshipPlan"
                     name="sponsorshipPlan"
@@ -53,8 +53,8 @@
                 </div>
               </div>
               <div class=" col-md-3 pl-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.picture">
-                  <label for="exampleInputEmail1"> Imagem <span *ngIf="event.template.objects.sponsor.picture.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.picture">
+                  <label for="exampleInputEmail1"> Imagem <span *ngIf="this.webpage.template.objects.sponsor.picture.required">*</span></label>
                   <input
                     name="picture"
                     class=" form-control"
@@ -66,9 +66,9 @@
               </div>
             </div>
             <div class=" row">
-              <div class=" col-md-6 pr-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.telephone">
-                  <label> Telefone <span *ngIf="event.template.objects.sponsor.telephone.required">*</span></label>
+              <div class=" col-md-4 pr-md-1">
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.telephone">
+                  <label> Telefone <span *ngIf="this.webpage.template.objects.sponsor.telephone.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.telephone"
                     name="telephone"
@@ -79,9 +79,22 @@
                   />
                 </div>
               </div>
-              <div class=" col-md-6 pl-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.email">
-                  <label> E-Mail <span *ngIf="event.template.objects.sponsor.email.required">*</span></label>
+              <div class=" col-md-4">
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.website">
+                  <label> Website <span *ngIf="this.webpage.template.objects.sponsor.website.required">*</span></label>
+                  <input
+                   [(ngModel)]="sponsor.website"
+                    name="website"
+                    class=" form-control"
+                    placeholder="Ex.: www.patrocinio.com.br"
+                    type="text"
+
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4 pl-md-1">
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.email">
+                  <label> E-Mail <span *ngIf="this.webpage.template.objects.sponsor.email.required">*</span></label>
                   <input
                    [(ngModel)]="sponsor.email"
                     name="email"
@@ -95,8 +108,8 @@
             </div>
             <div class=" row">
               <div class=" col-md-4 pr-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationCep">
-                  <label> CEP <span *ngIf="event.template.objects.sponsor.locationCep.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationCep">
+                  <label> CEP <span *ngIf="this.webpage.template.objects.sponsor.locationCep.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationCep"
                     #cep
@@ -110,8 +123,8 @@
                 </div>
               </div>
               <div class=" col-md-4 px-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationAddress">
-                  <label> Endereço <span *ngIf="event.template.objects.sponsor.locationAddress.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationAddress">
+                  <label> Endereço <span *ngIf="this.webpage.template.objects.sponsor.locationAddress.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationAddress"
                     #streetField
@@ -124,8 +137,8 @@
                 </div>
               </div>
               <div class=" col-md-4 pl-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationNeiborhood">
-                  <label> Bairro <span *ngIf="event.template.objects.sponsor.locationNeiborhood.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationNeiborhood">
+                  <label> Bairro <span *ngIf="this.webpage.template.objects.sponsor.locationNeiborhood.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationNeiborhood"
                     #neiborhoodField
@@ -139,8 +152,8 @@
             </div>
             <div class=" row">
               <div class=" col-md-3 pr-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationNumber">
-                  <label> Número <span *ngIf="event.template.objects.sponsor.locationNumber.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationNumber">
+                  <label> Número <span *ngIf="this.webpage.template.objects.sponsor.locationNumber.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationNumber"
                     #numberField
@@ -153,8 +166,8 @@
                 </div>
               </div>
               <div class=" col-md-3 px-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationUF">
-                  <label> UF <span *ngIf="event.template.objects.sponsor.locationUF.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationUF">
+                  <label> UF <span *ngIf="this.webpage.template.objects.sponsor.locationUF.required">*</span></label>
                   <select
                     [(ngModel)]="sponsor.locationUF"
                     #ufField
@@ -170,8 +183,8 @@
                 </div>
               </div>
               <div class=" col-md-3 px-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationCity">
-                  <label> Cidade <span *ngIf="event.template.objects.sponsor.locationCity.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationCity">
+                  <label> Cidade <span *ngIf="this.webpage.template.objects.sponsor.locationCity.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationCity"
                     #cityField
@@ -183,8 +196,8 @@
                 </div>
               </div>
               <div class=" col-md-3 pl-md-1">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.locationCountry">
-                  <label> Pais <span *ngIf="event.template.objects.sponsor.locationCountry.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.locationCountry">
+                  <label> Pais <span *ngIf="this.webpage.template.objects.sponsor.locationCountry.required">*</span></label>
                   <input
                     [(ngModel)]="sponsor.locationCountry"
                     #countryField
@@ -198,8 +211,8 @@
             </div>
             <div class=" row">
               <div class=" col-md-12">
-                <div class=" form-group" *ngIf="event.template.objects.sponsor.brief">
-                  <label> Resumo/Descrição <span *ngIf="event.template.objects.sponsor.brief.required">*</span></label>
+                <div class=" form-group" *ngIf="this.webpage.template.objects.sponsor.brief">
+                  <label> Resumo/Descrição <span *ngIf="this.webpage.template.objects.sponsor.brief.required">*</span></label>
                   <textarea
                     [(ngModel)]="sponsor.locationBrief"
                     name="brief"

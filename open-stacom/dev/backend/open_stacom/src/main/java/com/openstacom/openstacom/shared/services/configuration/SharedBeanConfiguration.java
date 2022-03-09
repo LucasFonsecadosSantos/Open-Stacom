@@ -1,4 +1,4 @@
-package com.openstacom.openstacom.shared.services.infrastructure;
+package com.openstacom.openstacom.shared.services.configuration;
 
 import com.openstacom.openstacom.OpenStacomApplication;
 import com.openstacom.openstacom.shared.services.resourcecreate.IResourceCreateService;

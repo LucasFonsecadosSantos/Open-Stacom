@@ -1,10 +1,9 @@
 package com.openstacom.openstacom.modules.event.application.rest.controllers;
 
-import com.openstacom.openstacom.modules.event.domain.entities.EventEntity;
+import com.openstacom.openstacom.modules.template.domain.entities.templateobject.EventEntity;
 import com.openstacom.openstacom.modules.event.domain.entities.EventRequestEntity;
 import com.openstacom.openstacom.modules.event.domain.services.eventgeneration.IEventGenerationService;
 import com.openstacom.openstacom.modules.event.domain.services.eventvalidator.IEventValidatorService;
-import com.openstacom.openstacom.modules.template.domain.entities.TemplateEntity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

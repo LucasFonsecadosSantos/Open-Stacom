@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/components/dialog';
 import { PriceFormService, PriceListComponent } from 'src/app/components/price';
 import { Operation } from 'src/app/enums';
-import { Event } from 'src/app/models';
+import { Event, Webpage } from 'src/app/models';
 import { EventFindService } from 'src/app/services/event';
 import { PricePlanDeleteService } from 'src/app/services/price-plan';
 import { ExcelExportService } from 'src/app/services/utils';
+import { WebpageFindService } from 'src/app/services/webpage/webpage-find.service';
 
 @Component({
   selector: 'app-price',
@@ -19,7 +20,7 @@ export class PriceComponent implements OnInit {
   @ViewChild("pricePlanList")
   public pricePlan: PriceListComponent;
 
-  public event: Event;
+  public webpage: Webpage;
 
   public isDataLoaded: boolean = false;
 
@@ -28,7 +29,7 @@ export class PriceComponent implements OnInit {
   constructor(
     private _exportExcelService: ExcelExportService,
     private _priceDeleteService: PricePlanDeleteService,
-    private _eventFindService: EventFindService,
+    private _webpageFindService: WebpageFindService,
     private _activatedRoute: ActivatedRoute,
     private _formService: PriceFormService,
     private _confirmDialogService: ConfirmDialogService,
@@ -37,30 +38,30 @@ export class PriceComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._getEventAndTemplate();
+    this._getWebpageFromParam();
     // this._getResponseObservables();
 
   }
 
 
-  private _getEventAndTemplate(): void {
+  private _getWebpageFromParam(): void {
 
     this._activatedRoute.paramMap.subscribe(
 
       params => {
-        this._getEvent(params.get('eventID'));
+        this._getWebpage(params.get('webpageID'));
       }
 
     );
   }
 
-  private _getEvent(eventID: string): void {
+  private _getWebpage(webpageID: string): void {
 
-    this._eventFindService
-        .find(eventID)
+    this._webpageFindService
+        .find(webpageID)
         .subscribe(
-          event => {
-            this.event = event;
+          webpage => {
+            this.webpage = webpage;
             this.isDataLoaded = true;
           }
         );
@@ -76,17 +77,17 @@ export class PriceComponent implements OnInit {
 
   public hasData(): boolean {
 
-    return  this.event &&
-            this.event.template &&
-            this.event.template.objects &&
-            this.event.template.objects.pricePlan &&
-            this.event.template.objects.pricePlan.content &&
-            this.event.template.objects.pricePlan.content.length > 0;
+    return  this.webpage &&
+            this.webpage.template &&
+            this.webpage.template.objects &&
+            this.webpage.template.objects.pricePlan &&
+            this.webpage.template.objects.pricePlan.content &&
+            this.webpage.template.objects.pricePlan.content.length > 0;
   }
 
   public downloadEntitySource(): void {
-    let fileName: string = this.event.name;
-    let data = JSON.stringify(this.event.template.objects.pricePlan.content);
+    let fileName: string = this.webpage.template.objects.event.content.name;
+    let data = JSON.stringify(this.webpage.template.objects.pricePlan.content);
     this.entityDownloadURL = this._sanitizer.bypassSecurityTrustUrl(
       `data:text/json;charset=UTF-8,${encodeURIComponent(data)}`
     );

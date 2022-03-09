@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Event, Template } from "src/app/models";
+import { Event, Template, Webpage } from "src/app/models";
 
 declare interface RouteInfo {
   path: string;
@@ -17,7 +17,7 @@ declare interface RouteInfo {
 export class SidebarComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
   public menuItems: any[];
 
@@ -39,8 +39,8 @@ export class SidebarComponent implements OnInit {
   private _buildNavbar(): void {
 
     this.menuItems = new Array();
-    Object.keys(this.event.template.objects).forEach(
-      entity => this._buildNavbarItem(this.event.template.objects[entity])
+    Object.keys(this.webpage.template.objects).forEach(
+      entity => this._buildNavbarItem(this.webpage.template.objects[entity])
     );
 
   }
@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
 
     this.menuItems.push(
       {
-        path: `../${this.event.id}/${entity.configRoute.path}`,
+        path: `../${this.webpage.id}/${entity.configRoute.path}`,
         title: entity.configRoute.title,
         icon: entity.configRoute.icon,
         class: ""

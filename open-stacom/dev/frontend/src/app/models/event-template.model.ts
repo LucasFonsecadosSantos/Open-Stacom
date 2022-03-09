@@ -1,4 +1,4 @@
-import { ConfigRouteTemplate, FieldTemplate } from "."
+import { ConfigRouteTemplate, FieldTemplate, Event } from "."
 
 export class EventTemplate implements Model {
 
@@ -35,5 +35,6 @@ export class EventTemplate implements Model {
   locationUF?: FieldTemplate;
   locationCountry?: FieldTemplate;
   locationLatLong?: FieldTemplate;
+  content?: Event;
 
 }

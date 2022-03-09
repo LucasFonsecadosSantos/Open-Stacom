@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PricePlan, Event } from 'src/app/models';
-import { EventUpdateService } from '../event';
+import { PricePlan, Webpage } from 'src/app/models';
 import { v4 as uuidv4 } from 'uuid';
+import { WebpageUpdateService } from '../webpage/webpage-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +10,20 @@ import { v4 as uuidv4 } from 'uuid';
 export class PricePlanCreateService {
 
   constructor(
-    private _eventUpdateService: EventUpdateService
+    private _webpageUpdateService: WebpageUpdateService
   ) { }
 
-  public create(pricePlan: PricePlan, event: Event): Observable<any> {
+  public create(pricePlan: PricePlan, webpage: Webpage): Observable<any> {
 
-    return this._eventUpdateService.update(this._addDataToEvent(pricePlan, event));
+    return this._webpageUpdateService.update(this._addDataToWebpage(pricePlan, webpage));
 
   }
 
-  private _addDataToEvent(pricePlan: PricePlan, event: Event): Event {
+  private _addDataToWebpage(pricePlan: PricePlan, webpage: Webpage): Webpage {
 
     pricePlan.id = uuidv4();
-    event.template.objects.pricePlan.content.push(pricePlan);
-    return event;
+    webpage.template.objects.pricePlan.content.push(pricePlan);
+    return webpage;
 
   }
 }
