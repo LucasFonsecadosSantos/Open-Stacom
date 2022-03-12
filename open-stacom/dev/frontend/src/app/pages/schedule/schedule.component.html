@@ -1,7 +1,7 @@
 <div class="content">
   <div class="row">
     <div class="col-md-12">
-      <app-schedule-form *ngIf="isDataLoaded" [event]="event"></app-schedule-form>
+      <app-schedule-form *ngIf="isDataLoaded" [webpage]="webpage"></app-schedule-form>
     </div>
   </div>
   <div class="row" *ngIf="isDataLoaded && hasData()">
@@ -12,7 +12,7 @@
             <i class="tim-icons icon-simple-add mr-1"></i>
             Agendar uma Atividade
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" href="#/inicio/{{event.id}}/atividades" >
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" href="#/inicio/{{this.webpage.template.objects.event.content.id}}/atividades" >
             <i class="tim-icons icon-simple-add mr-1"></i>
             Criar uma Atividade
           </a>
@@ -24,7 +24,7 @@
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar Lista para Excel
           </button>
-          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.event.name+'_programacao.json'}}">
+          <a class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center" (click)="downloadEntitySource()" [href]="entityDownloadURL" download="{{this.webpage.template.objects.schedule.content+'_programacao.json'}}">
             <i class="tim-icons icon-paper mr-1"></i>
             Exportar como JSON
           </a>
@@ -34,7 +34,7 @@
   </div>
   <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
-      <app-schedule-list #scheduleListComponent *ngIf="isDataLoaded" [event]="event"></app-schedule-list>
+      <app-schedule-list #scheduleListComponent *ngIf="isDataLoaded" [webpage]="webpage"></app-schedule-list>
     </div>
   </div>
   <div class="row d-flex justify-content-center align-items-center" style="height: 40vh;" *ngIf="!isDataLoaded || !hasData()">
@@ -42,7 +42,7 @@
       <h1>Ops: Ainda não temos uma programação definida.</h1>
     </div>
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <a class="btn btn-lg btn-danger mr-2 d-flex align-items-center" href="#/inicio/{{event.id}}/atividades" >
+      <a class="btn btn-lg btn-danger mr-2 d-flex align-items-center" href="#/inicio/{{this.webpage.template.objects.event.content.id}}/atividades" >
         Se ainda não temos atividades, vamos criar uma
       </a>
     </div>

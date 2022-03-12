@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   Event,
-  Template
+  Template,
+  Webpage
 } from './../../../models';
 
 @Component({
@@ -12,11 +13,14 @@ import {
 export class EventInfoComponent implements OnInit {
 
   @Input()
+  public webpage: Webpage;
+
   public event: Event;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.event = this.webpage.template.objects.event.content;
   }
 
 }

@@ -11,7 +11,7 @@
         <div class=" card-body">
           <div class="row" *ngIf="scheduleFormModel.operation == operationUpdate">
             <div class="col-md-12">
-              <div class=" form-group" *ngIf="event.template.objects.schedule.id">
+              <div class=" form-group" *ngIf="this.webpage.template.objects.schedule.id">
                 <label> ID</label>
                 <input
                   [(ngModel)]="schedule.id"
@@ -26,7 +26,7 @@
           <div class=" row">
             <div class=" col-md-3 pr-md-1">
               <div class=" form-group">
-                <label> Atividade <span *ngIf="event.template.objects.schedule.activity.required">*</span></label>
+                <label> Atividade <span *ngIf="this.webpage.template.objects.schedule.activity.required">*</span></label>
                 <select
                   class=" form-control"
                   name="activity"
@@ -45,7 +45,7 @@
             </div>
             <div class=" col-md-3 px-md-1">
               <div class=" form-group">
-                <label> Data <span *ngIf="event.template.objects.schedule.date.required">*</span></label>
+                <label> Data <span *ngIf="this.webpage.template.objects.schedule.date.required">*</span></label>
                 <select
                   [(ngModel)]="schedule.date"
                   name="date"
@@ -54,7 +54,7 @@
                 >
                   <option value="" [selected]="!activity || !activity.date">- SELECIONE -</option>
                   <option
-                    *ngFor="let day of event.days"
+                    *ngFor="let day of this.event.days"
                     [value]="day"
                     [selected]="activity && activity.date && activity.date == day"
                   >{{day.toString() | date: 'dd/MM/yyyy' }}</option>
@@ -63,7 +63,7 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Inicio<span *ngIf="event.template.objects.schedule.startTime.required">*</span></label>
+                <label> Horário de Inicio<span *ngIf="this.webpage.template.objects.schedule.startTime.required">*</span></label>
                 <input
                   [(ngModel)]="schedule.startTime"
                   name="startTime"
@@ -75,7 +75,7 @@
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <label> Horário de Término<span *ngIf="event.template.objects.schedule.endTime.required">*</span></label>
+                <label> Horário de Término<span *ngIf="this.webpage.template.objects.schedule.endTime.required">*</span></label>
                 <input
                   [(ngModel)]="schedule.endTime"
                   name="endTime"

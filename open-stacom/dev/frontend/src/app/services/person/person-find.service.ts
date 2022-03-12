@@ -36,7 +36,7 @@ export class PersonFindService {
 
     personArray.forEach(person => {
       person.avatar = this._buildPersonAvatarSource(person.avatar, webpage);
-    })
+    });
 
     return personArray;
 

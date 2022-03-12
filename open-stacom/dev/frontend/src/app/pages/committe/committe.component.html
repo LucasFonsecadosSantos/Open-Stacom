@@ -1,8 +1,8 @@
 
 
 <div class="content">
-  <app-committee-form [event]="event" *ngIf="isDataLoaded"></app-committee-form>
-  <app-confirm-dialog [event]="event" *ngIf="isDataLoaded"></app-confirm-dialog>
+  <app-committee-form *ngIf="isDataLoaded" [webpage]="webpage"></app-committee-form>
+  <app-confirm-dialog *ngIf="isDataLoaded" [webpage]="webpage"></app-confirm-dialog>
   <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
       <div class=" card">
@@ -29,10 +29,10 @@
   </div>
   <div class="row" *ngIf="isDataLoaded && hasData()">
     <div class="col-md-12">
-      <app-committee-list [event]="event" *ngIf="isDataLoaded"></app-committee-list>
+      <app-committee-list *ngIf="isDataLoaded" [webpage]="webpage"></app-committee-list>
     </div>
     <!-- <div class="col-md-4">
-      <app-committee-info [template]="template" [event]="event" *ngIf="isDataLoaded"></app-committee-info>
+      <app-committee-info [template]="template" [webpage]="webpage"  *ngIf="isDataLoaded"></app-committee-info>
     </div> -->
   </div>
   <div class="row d-flex justify-content-center align-items-center" style="height: 40vh;" *ngIf="!isDataLoaded || !hasData()">

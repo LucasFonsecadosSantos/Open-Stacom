@@ -23,6 +23,8 @@ export class ScheduleFormComponent implements OnInit {
   @Input()
   public webpage: Webpage;
 
+  public event: Event;
+
   public schedule: Schedule;
 
   public scheduleFormModel: FormModel;
@@ -44,6 +46,7 @@ export class ScheduleFormComponent implements OnInit {
 
     this._populateActivities();
     this._getFormObservables();
+    this.event = this.webpage.template.objects.event.content;
 
   }
 

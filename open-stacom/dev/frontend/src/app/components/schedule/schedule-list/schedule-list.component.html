@@ -5,13 +5,13 @@
   </div>
   <div class=" card-body">
     <!-- <div class="div">
-      <button *ngFor="let day of event.days" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="changeListationPerDay(day)" >
+      <button *ngFor="let day of this.event.days" class="btn btn-sm btn-outline-primary mr-2 d-flex align-items-center"(click)="changeListationPerDay(day)" >
         <i class="tim-icons icon-calendar-60 mr-1"></i>
         Dia {{day}}
       </button>
     </div> -->
-    <div class="row" *ngIf="event && event.days">
-      <div class=" table-responsive {{getColumSize()}}" *ngFor="let day of event.days">
+    <div class="row" *ngIf="this.event && this.event.days">
+      <div class=" table-responsive {{getColumSize()}}" *ngFor="let day of this.event.days">
         <table class=" table tablesorter" id="">
           <thead class=" text-primary">
             <tr>

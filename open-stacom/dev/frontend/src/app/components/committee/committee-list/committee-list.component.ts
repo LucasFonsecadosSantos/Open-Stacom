@@ -6,7 +6,8 @@ import { CommitteeFormService } from '..';
 import {
   Event,
   Template,
-  Committee
+  Committee,
+  Webpage
 } from './../../../models';
 
 @Component({
@@ -17,10 +18,7 @@ import {
 export class CommitteeListComponent implements OnInit {
 
   @Input()
-  public event: Event;
-
-  @Input()
-  public template: Template;
+  public webpage: Webpage;
 
   public committeesArray: Committee[]
 
@@ -38,7 +36,7 @@ export class CommitteeListComponent implements OnInit {
   private _listCommittees(): void {
 
     this.committeesArray = this._findService
-                                .list(this.event);
+                                .list(this.webpage);
     console.log(this.committeesArray);
 
   }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Operation } from 'src/app/enums';
-import { Event, Template } from 'src/app/models';
+import { Event, Template, Webpage } from 'src/app/models';
 import { Schedule } from 'src/app/models/schedule.model';
 import { ScheduleFindService } from 'src/app/services/schedule';
 import { ScheduleFormService } from '..';
@@ -13,10 +13,9 @@ import { ScheduleFormService } from '..';
 export class ScheduleListComponent implements OnInit {
 
   @Input()
-  public event: Event;
+  public webpage: Webpage;
 
-  @Input()
-  public template: Template;
+  public event: Event;
 
   public scheduleArray: Schedule[];
 
@@ -32,6 +31,7 @@ export class ScheduleListComponent implements OnInit {
   ngOnInit(): void {
 
     this._fetchSchedule();
+    this.event = this.webpage.template.objects.event.content;
 
   }
 
@@ -51,7 +51,7 @@ export class ScheduleListComponent implements OnInit {
 
   private _fetchSchedule(): void {
 
-    this.scheduleArray = this._findService.list(this.event);
+    this.scheduleArray = this._findService.list(this.webpage);
     this.isScheduleLoaded = true;
 
   }
